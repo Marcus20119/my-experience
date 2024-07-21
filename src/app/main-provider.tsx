@@ -10,26 +10,18 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { theme as defaultTheme } from '@/lib/antd';
 import { i18nFormConfig } from '@/lib/antd/form';
 import enUS from '@/lib/antd/locale/en_US';
-import frFr from '@/lib/antd/locale/fr_FR';
 import viVN from '@/lib/antd/locale/vi_VN';
 import { client } from '@/lib/apollo-client';
 import i18n from '@/lib/i18next';
-import { useConfigBusiness } from './features/config-business';
 import { routes } from './routes';
 
 function AntProvider() {
   const { i18n } = useTranslation();
   const { primaryColor, buttonTextColor } = useBusinessStore();
 
-  useConfigBusiness();
-
   const locale: Locale = useMemo(() => {
     if (i18n.language === 'en') {
       return enUS;
-    }
-
-    if (i18n.language === 'fr') {
-      return frFr;
     }
 
     return viVN;
@@ -38,10 +30,6 @@ function AntProvider() {
   const formConfig: FormConfig = useMemo(() => {
     if (i18n.language === 'en') {
       return i18nFormConfig.en;
-    }
-
-    if (i18n.language === 'fr') {
-      return i18nFormConfig.fr;
     }
 
     return i18nFormConfig.vi;

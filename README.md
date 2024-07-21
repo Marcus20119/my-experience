@@ -1,4 +1,4 @@
-# Bespoke Solution Web
+# My Experience Web
 
 This project is a React application using Vite, Typescript, Apollo client with GraphQL, Zustand and Antd v5.
 
@@ -16,20 +16,20 @@ This project is a React application using Vite, Typescript, Apollo client with G
 
 ## Getting Started
 
-To clone the Bespoke Solution Web and get started, follow these steps:
+To clone the My Experience Web and get started, follow these steps:
 
 1. Open your terminal or command prompt.
 2. Navigate to the directory where you want to clone the codebase.
 3. Run the following command to clone the repository:
 
 ```
-git clone https://gitlab.enosta.com/smartos/web/smartos-bespoke-living-web
+git clone https://github.com/Marcus20119/my-experience.git
 ```
 
 1. Once the cloning process is complete, navigate into the cloned directory:
 
 ```
-cd bespoke-solution-web
+cd my-experience
 ```
 
 1. Install the project dependencies using pnpm:
@@ -44,7 +44,7 @@ pnpm install
 pnpm dev
 ```
 
-This will start the development server and you will be able to access the application in your browser at `http://localhost:3400`.
+This will start the development server and you will be able to access the application in your browser at `http://localhost:3000`.
 
 To build the application for production, use the following command:
 

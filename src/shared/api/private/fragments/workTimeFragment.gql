@@ -1,0 +1,37 @@
+fragment WorkTimeFragment on WorkingTime {
+  monday {
+    openTime
+    closeTime
+    isOpen
+  }
+  tuesday {
+    openTime
+    closeTime
+    isOpen
+  }
+  wednesday {
+    openTime
+    closeTime
+    isOpen
+  }
+  thursday {
+    openTime
+    closeTime
+    isOpen
+  }
+  friday {
+    openTime
+    closeTime
+    isOpen
+  }
+  saturday {
+    openTime
+    closeTime
+    isOpen
+  }
+  sunday {
+    openTime
+    closeTime
+    isOpen
+  }
+}

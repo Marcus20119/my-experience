@@ -1,0 +1,14 @@
+query GetLocationOptions($queryParams: LocationWhiteLabelQueryDto!) {
+  getLocations(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      name
+      thumbnail
+      gallery
+      address
+    }
+  }
+}

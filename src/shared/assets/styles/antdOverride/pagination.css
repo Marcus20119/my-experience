@@ -1,0 +1,23 @@
+.ant-pagination {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ant-pagination-item-active > a {
+  color: var(--primaryText-color) !important;
+}
+
+.ant-pagination-item-active {
+  background-color: var(--primary-color) !important;
+}
+
+.ant-pagination-next,
+.ant-pagination-prev {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ant-pagination-item-ellipsis {
+  font-size: 0.5rem !important;
+}

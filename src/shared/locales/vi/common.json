@@ -1,0 +1,82 @@
+{
+  "common": {
+    "button": {
+      "create": "Tạo",
+      "cancel": "Hủy",
+      "back": "Quay lại",
+      "finish": "Hoàn tất",
+      "register": "Đăng ký",
+      "sendRegister": "Gửi đăng ký",
+      "completeRegister": "Hoàn tất đăng ký",
+      "confirm": "Xác nhận",
+      "home": "Trang chủ",
+      "login": "Đăng nhập",
+      "next": "Tiếp tục",
+      "search": "Tìm kiếm",
+      "viewMore": "Xem thêm",
+      "viewLess": "Thu gọn",
+      "viewMap": "Xem bản đồ",
+      "exploreMore": "Khám phá thêm"
+    },
+    "unit": {
+      "months": "Tháng",
+      "days": "Ngày",
+      "years": "Năm",
+      "thousand": "k",
+      "million": "tr"
+    },
+    "label": {
+      "price": "Giá",
+      "originalPrice": "Giá gốc",
+      "discountPrice": "Giá ưu đãi",
+      "contactLocation": "Liên hệ cơ sở",
+      "fullName": "Họ và tên",
+      "email": "Email",
+      "phoneNumber": "Số điện thoại",
+      "aboutUs": "Về chúng tôi",
+      "quickView": "Xem nhanh",
+      "all": "Tất cả",
+      "sortBy": "Sắp xếp theo",
+      "joinedFrom": "Đã tham gia từ",
+      "notAvailable": "Không có sẵn",
+      "linkSocial": "Link {{social}}"
+    },
+    "title": {
+      "emptyData": "Không có dữ liệu",
+      "emptySearch": "Không tìm thấy kết quả"
+    },
+    "description": {
+      "emptySearch": "Hãy thử sử dụng từ khóa hoặc bộ lọc khác"
+    },
+    "loading": {
+      "floor": "Đang tải dữ liệu tầng...",
+      "room": "Đang tải dữ liệu phòng...",
+      "location": "Đang tải dữ liệu cơ sở..."
+    },
+    "placeholder": {
+      "fullName": " Vd. Nguyen Van A",
+      "email": "Vd. nguyenvana@gmail.com",
+      "phoneNumber": "Vd. 0233 123 ***"
+    },
+    "error": {
+      "phoneNumber": "Vui lòng nhập số điện thoại hợp lệ",
+      "email": "Vui lòng nhập email hợp lệ",
+      "smtWentWrong": "Đã xảy ra lỗi, vui lòng thử lại sau."
+    },
+    "breadcrumb": {
+      "booking": "Đặt phòng",
+      "viewAvailableRoom": "Xem phòng trống",
+      "createVisitTour": "Đăng ký lịch xem phòng trực tiếp",
+      "locationDetail": "Chi tiết cơ sở"
+    },
+    "message": {
+      "reply": "Thường phản hồi trong vòng 1 giờ",
+      "pageNotFound": "Không tìm thấy trang!",
+      "linkNotFound": "Rất tiếc, đường dẫn liên kết không tồn tại",
+      "contactAdmin": "Vui lòng kiểm tra lại hoặc liên hệ với quản trị viên để được hỗ trợ"
+    },
+    "status": {
+      "na": "N/A"
+    }
+  }
+}

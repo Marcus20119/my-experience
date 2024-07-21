@@ -1,0 +1,8 @@
+.slick-arrow {
+  background: var(--neutral-600-color) !important;
+  border-radius: 50% !important;
+  padding: 0.25rem !important;
+  display: block !important;
+  width: 2rem !important;
+  height: 2rem !important;
+}

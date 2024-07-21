@@ -1,0 +1,1 @@
+{ "*.{ts,tsx,js}": "eslint --fix --ext .tsx,.ts,.js,.jsx src" }

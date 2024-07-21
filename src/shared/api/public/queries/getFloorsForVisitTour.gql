@@ -1,0 +1,11 @@
+query GetFloorsForVisitTour($queryParams: QueryFilterDto!) {
+  getFloors(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      name
+    }
+  }
+}

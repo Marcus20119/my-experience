@@ -1,0 +1,14 @@
+.ant-tabs-tab-btn {
+  font-weight: 600;
+  color: var(--neutral-500-color);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
+.ant-tabs-tab-active {
+  .ant-tabs-tab-btn {
+    color: var(--neutral-800-color);
+  }
+}

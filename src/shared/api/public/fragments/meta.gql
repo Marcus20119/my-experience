@@ -1,0 +1,7 @@
+fragment MetaFragment on MetaPaginationInterface {
+  totalItems
+  itemCount
+  itemsPerPage
+  totalPages
+  currentPage
+}

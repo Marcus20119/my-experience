@@ -1,0 +1,27 @@
+query GetRoomsForLocationDetail($queryParams: RoomWhiteLabelQueryDto!) {
+  getRooms(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      thumbnail
+      displayName
+      name
+      capacityPeople
+      gallery
+      availableTimeFrom
+      floor {
+        name
+      }
+      packages {
+        amount
+        originalAmount
+        isActive
+        packageType {
+          unit
+        }
+      }
+    }
+  }
+}

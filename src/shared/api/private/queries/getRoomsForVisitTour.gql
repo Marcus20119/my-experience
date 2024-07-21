@@ -1,0 +1,32 @@
+query GetRoomsForVisitTour($queryParams: RoomWhiteLabelQueryDto!) {
+  getRooms(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      area
+      thumbnail
+      displayName
+      name
+      capacityPeople
+      gallery
+      availableTimeFrom
+      roomType {
+        displayName
+        name
+      }
+      floor {
+        name
+      }
+      packages {
+        amount
+        originalAmount
+        isActive
+        packageType {
+          unit
+        }
+      }
+    }
+  }
+}

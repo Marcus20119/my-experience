@@ -1,0 +1,11 @@
+query GetAboutCategories($queryParams: QueryFilterDto!) {
+  getPostCategoryBlogs(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      name
+    }
+  }
+}

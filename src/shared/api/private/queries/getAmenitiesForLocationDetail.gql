@@ -1,0 +1,17 @@
+query GetAmenitiesForLocationDetail($queryParams: QueryFilterDto!) {
+  getAmenities(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      displayName
+      icon
+      type
+      name
+      amenityType {
+        displayName
+        name
+      }
+    }
+  }
+}

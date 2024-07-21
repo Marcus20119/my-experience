@@ -1,0 +1,21 @@
+query GetServiceGroupOptions(
+  $businessId: ID
+  $locationId: ID
+  $queryParams: QueryFilterDto!
+) {
+  getAvailableServiceGroups(
+    businessId: $businessId
+    locationId: $locationId
+    queryParams: $queryParams
+  ) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      name
+      displayName
+      isActive
+    }
+  }
+}

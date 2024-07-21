@@ -1,0 +1,19 @@
+query GetBusinessMe {
+  getBusinessMe {
+    zalo
+    messenger
+    address
+    emailContact
+    phoneContact
+    youtube
+    linkedln
+    facebook
+    twitter
+    description
+    tiktok
+    coordinates
+    businessConfig {
+      currency
+    }
+  }
+}

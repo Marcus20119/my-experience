@@ -1,0 +1,19 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo '(1/2) 🏗️👷 Styling, testing and building your project before committing'
+pnpm check-types
+
+echo '(2/2) ✅  Linting your project'
+pnpm lint-staged
+
+# echo '(3/5) 🏗️👷 Generating dependency visualization'
+# pnpm dep-cruiser:preview
+
+# echo '(4/5) ✅ Checking for unused translations'
+# pnpm i18n-check-unused
+
+# echo '(5/5) ✅ Running unit tests'
+# pnpm test:units
+
+echo '✅ Finished linting your project, checking commit message with conventional commit'

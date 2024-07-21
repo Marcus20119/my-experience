@@ -1,0 +1,5 @@
+mutation createPublicVisitTour($input: CreateVisitTourPubliclyDto!) {
+  createVisitTourPublicly(input: $input) {
+    id
+  }
+}

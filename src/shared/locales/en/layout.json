@@ -1,0 +1,12 @@
+{
+  "layout": {
+    "navbar": {
+      "home": "Home",
+      "booking": "Booking",
+      "about": "About",
+      "event": "Event",
+      "contact": "Contact",
+      "searchInvoice": "Search invoice"
+    }
+  }
+}

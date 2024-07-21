@@ -1,0 +1,23 @@
+.ant-form-item-required::before {
+  display: none !important;
+}
+
+.ant-form-item-required::after {
+  content: '*' !important;
+  color: var(--system-error-color);
+  margin-left: 0.25rem !important;
+  visibility: visible !important;
+}
+
+.ant-form-item-label > label {
+  font-weight: 600 !important;
+}
+
+.ant-form-horizontal .ant-form-item-label > label {
+  padding-top: 0.25rem !important;
+}
+
+.ant-form-item-explain {
+  font-size: 0.75rem !important;
+  font-weight: 500 !important;
+}

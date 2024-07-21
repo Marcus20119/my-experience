@@ -1,0 +1,19 @@
+query GetOtherLocations($queryParams: LocationWhiteLabelQueryDto!) {
+  getLocations(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      name
+      address
+      thumbnail
+      rating
+      minPrice
+      maxPrice
+      gallery
+      numOfAvailableRoom
+      amenityIds
+    }
+  }
+}

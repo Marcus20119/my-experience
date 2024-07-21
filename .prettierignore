@@ -1,0 +1,6 @@
+codegen.yml
+codegen.yaml
+
+pnpm-lock.yaml
+
+*.md

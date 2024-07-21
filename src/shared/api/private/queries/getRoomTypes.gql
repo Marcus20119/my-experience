@@ -1,0 +1,12 @@
+query getRoomTypes($queryParams: QueryFilterDto!) {
+  getRoomTypes(queryParams: $queryParams) {
+    meta {
+      ...MetaFragment
+    }
+    items {
+      id
+      name
+      displayName
+    }
+  }
+}

@@ -1,17 +1,16 @@
 import type { RouteObject } from 'react-router-dom';
-import PRIVATE_ROUTES from '@/app/routes/main-routes';
+import MAIN_ROUTES from '@/app/routes/main-routes';
 import NotFoundPage from '@/pages/NotFoundPage';
-import PrivateLayout from '../layout/PrivateLayout';
-import RouteLayout from '../layout/RouteLayout';
+import { MainLayout, RootLayout } from '../layout';
 
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <RouteLayout />,
+    element: <RootLayout />,
     children: [
       {
-        element: <PrivateLayout />,
-        children: [...PRIVATE_ROUTES],
+        element: <MainLayout />,
+        children: [...MAIN_ROUTES],
         errorElement: <NotFoundPage />,
       },
     ],

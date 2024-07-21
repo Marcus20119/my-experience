@@ -4,6 +4,8 @@ import type { RemoveStates, SetStates } from '../types';
 
 interface LocalState {
   language?: string;
+  primaryButtonTextColor?: string;
+  primaryColor?: string;
 }
 
 interface LocalAction {
@@ -30,7 +32,9 @@ export const useLocalStore = create<LocalAction & LocalState>()(
             });
             return newState;
           }),
-        language: 'vi',
+        language: 'en',
+        primaryButtonTextColor: '#E2CB8D',
+        primaryColor: '#3A393B',
       }),
       {
         name: 'local-store',

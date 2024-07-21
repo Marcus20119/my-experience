@@ -1,12 +1,18 @@
 {
   "layout": {
-    "navbar": {
-      "home": "Home",
-      "booking": "Booking",
-      "about": "About",
-      "event": "Event",
-      "contact": "Contact",
-      "searchInvoice": "Search invoice"
+    "mainSidebar": {
+      "configuration": "Configuration",
+      "image": "Image",
+      "game": "Game",
+      "animation": "Animation"
+    },
+    "subSidebar": {
+      "eslint": "ESLint",
+      "vite": "Vite"
+    },
+    "lockSidebar": {
+      "lock": "Lock Sidebar",
+      "unlock": "Unlock Sidebar"
     }
   }
 }

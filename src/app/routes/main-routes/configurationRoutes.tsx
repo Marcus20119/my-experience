@@ -10,4 +10,8 @@ export const CONFIGURATION_ROUTES = [
     path: 'configuration/eslint',
     element: <div>Eslint Page</div>,
   },
+  {
+    path: 'configuration/vite',
+    element: <div>Vite Page</div>,
+  },
 ] as const satisfies DeepReadonly<RouteObject[]>;

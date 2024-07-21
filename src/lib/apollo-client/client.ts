@@ -1,6 +1,5 @@
 import type { DefaultContext, Operation } from '@apollo/client';
 import { useAuthStore } from '@/shared/stores/authStore';
-import { useBusinessStore } from '@/shared/stores/businessStore';
 import { ApolloService } from '@/shared/types';
 import { ApolloClient, ApolloLink, from } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
@@ -43,7 +42,6 @@ const getHeaders = () => {
     authorization: token ? `Bearer ${token}` : '',
     platform: ['WHITELABEL_WEB'],
     namespace,
-    businessId: useBusinessStore.getState().businessId ?? '',
     timezone: TIME_ZONE_FOR_HEADER,
   };
 };

@@ -23,9 +23,7 @@ function CarouselGallery({ gallery, showCount }: Props) {
   return (
     <div className="relative w-full flex-1" ref={wrapperRef}>
       <div className="absolute inset-0">
-        {!gallery?.length ? (
-          <Thumbnail.Business className="h-full" mode="center" />
-        ) : null}
+        {!gallery?.length ? <Thumbnail.Empty /> : null}
 
         {gallery?.length === 1 ? (
           <Flex className="h-full w-full" justify="center">

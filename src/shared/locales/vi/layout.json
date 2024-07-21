@@ -1,12 +1,18 @@
 {
   "layout": {
-    "navbar": {
-      "home": "Trang chủ",
-      "booking": "Đặt phòng",
-      "about": "Giới thiệu",
-      "event": "Sự kiện",
-      "contact": "Liên hệ",
-      "searchInvoice": "Tra cứu hóa đơn"
+    "mainSidebar": {
+      "configuration": "Configuration",
+      "image": "Image",
+      "game": "Game",
+      "animation": "Animation"
+    },
+    "subSidebar": {
+      "eslint": "ESLint",
+      "vite": "Vite"
+    },
+    "lockSidebar": {
+      "lock": "Lock Sidebar",
+      "unlock": "Unlock Sidebar"
     }
   }
 }

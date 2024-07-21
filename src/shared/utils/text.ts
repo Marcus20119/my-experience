@@ -1,9 +1,6 @@
 import { round } from 'lodash-es';
 import i18n from '@/lib/i18next';
-import type { Scalars } from '../api/public/schemas';
-import { Currency } from '../api/private/schemas';
 import { DEFAULT_CURRENCY_UNIT, UNITS } from '../constants';
-import { useBusinessStore } from '../stores/businessStore';
 import { useLocalStore } from '../stores/localStore';
 
 /**
@@ -27,34 +24,9 @@ const truncateText = (text: string, limit = 255) => {
 const capitalizeFirstLetter = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
-/**
- * Formats the display name based on the given displayName.
- * The display name is based on the language set in the local store.
- *
- * @param {Scalars['JSON']['input']} displayName - The displayName to format the display name.
- * @return {string} The formatted display name.
- */
-
-const formatDisplayName = (
-  displayName?: Scalars['JSON']['input'] | null,
-  name?: null | string,
-): string => {
-  if (!displayName) return name ?? '';
-
-  const language = useLocalStore.getState().language ?? 'vi';
-
-  if (displayName[language]) {
-    return displayName[language] as string;
-  }
-
-  return (displayName.vi as string) ?? '';
-};
-
 const formatMoney = (value?: null | number | string): string => {
-  const { currencySymbol, currency } = useBusinessStore.getState();
-
-  const symbol = currencySymbol ?? DEFAULT_CURRENCY_UNIT;
-  const precision = currency === Currency.Vnd ? 0 : 2;
+  const symbol = DEFAULT_CURRENCY_UNIT;
+  const precision = 2;
 
   if (!value || isNaN(Number(value))) return `${symbol} 0`;
   const fallbackDigits = 3;
@@ -105,8 +77,7 @@ const formatRangeMoney = (
   minValue?: null | number | string,
   maxValue?: null | number | string,
 ): string => {
-  const { currencySymbol } = useBusinessStore.getState();
-  const symbol = currencySymbol ?? DEFAULT_CURRENCY_UNIT;
+  const symbol = DEFAULT_CURRENCY_UNIT;
 
   if (minValue === maxValue) return formatMoney(minValue);
 
@@ -158,7 +129,6 @@ const getPhoneCallUrl = (phoneNumber?: null | string) => {
 export const TextTool = {
   capitalizeFirstLetter,
   truncateText,
-  formatDisplayName,
   formatMoney,
   formatUnit,
   formatRangeMoney,

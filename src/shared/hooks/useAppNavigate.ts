@@ -17,7 +17,7 @@ export const useAppNavigate = () => {
 
     if (param) {
       for (const key in param) {
-        newPath = newPath.replace(`:${key}`, param[key as keyof typeof param]);
+        newPath = newPath.replace(`:${key}`, param[key]);
       }
 
       newPath = `${newPath}`;

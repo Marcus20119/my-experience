@@ -43,12 +43,12 @@ body {
   /* Caret */
   &::-moz-selection {
     /* Code for Firefox */
-    color: var(--primaryText-color);
+    color: var(--primary-color);
     background: var(--primaryLight-color);
   }
 
   &::selection {
-    color: var(--primaryText-color);
+    color: var(--primary-color);
     background: var(--primaryLight-color);
   }
 }

@@ -43,7 +43,7 @@ function SubSideBar() {
           <Link key={item.key} to={item.path}>
             <Flex
               className={cn(
-                'box-border h-12 border-0 border-b border-solid border-neutral-300 pl-4 pr-1 text-neutral-700 transition-colors',
+                'h-12 border-0 border-b border-solid border-neutral-300 pl-4 pr-1 text-neutral-700 transition-colors',
                 activeSubKey === item.key
                   ? 'bg-neutral-100'
                   : 'bg-neutral-50 hover:bg-neutral-100',

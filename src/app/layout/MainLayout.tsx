@@ -1,5 +1,6 @@
 import { Flex } from 'antd';
 import { Outlet } from 'react-router-dom';
+import { Header } from '../features/header';
 import { Sidebar } from '../features/sidebar';
 
 function MainLayout() {
@@ -7,7 +8,8 @@ function MainLayout() {
     <Flex className="min-h-screen">
       <Sidebar />
 
-      <div className="h-[2000px]">
+      <div className="flex-1">
+        <Header />
         <Outlet />
       </div>
     </Flex>

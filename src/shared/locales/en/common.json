@@ -6,8 +6,6 @@
       "back": "Back",
       "finish": "Finish",
       "register": "Register",
-      "sendRegister": "Send register",
-      "completeRegister": "Complete register",
       "confirm": "Confirm",
       "home": "Home",
       "login": "Login",
@@ -26,20 +24,11 @@
       "million": "M"
     },
     "label": {
-      "price": "Price",
-      "originalPrice": "Original Price",
-      "discountPrice": "Discount Price",
-      "contactLocation": "Contact location",
       "fullName": "Full name",
       "email": "Email",
       "phoneNumber": "Phone number",
-      "aboutUs": "About Us",
-      "quickView": "Quick view",
       "all": "All",
-      "sortBy": "Sort by",
-      "joinedFrom": "Joined from",
-      "notAvailable": "Not available",
-      "linkSocial": "Link {{social}}"
+      "sortBy": "Sort by"
     },
     "title": {
       "emptyData": "Empty data",
@@ -48,32 +37,20 @@
     "description": {
       "emptySearch": "Try using other keywords or filters"
     },
-    "loading": {
-      "floor": "Loading floor data...",
-      "room": "Loading room data...",
-      "location": "Loading location data..."
-    },
     "placeholder": {
       "fullName": " Ex. Nguyen Van A",
       "email": "Ex. nguyenvana@gmail.com",
-      "phoneNumber": "Ex. 0233 123 ***"
+      "phoneNumber": "Ex. 0233 123 ***",
+      "quickSearch": "Quick search..."
     },
     "error": {
       "phoneNumber": "Please enter a valid phone number",
       "email": "Please enter a valid email",
       "smtWentWrong": "Something went wrong, please try again later."
     },
-    "breadcrumb": {
-      "booking": "Booking",
-      "viewAvailableRoom": "View available room",
-      "createVisitTour": "Create visit tour",
-      "locationDetail": "Location detail"
-    },
     "message": {
-      "reply": "Usually reply within 1 hour",
       "pageNotFound": "Page not found!",
-      "linkNotFound": "Sorry, the link does not exist",
-      "contactAdmin": "Please check or contact the administrator for help"
+      "linkNotFound": "Sorry, the link does not exist"
     },
     "status": {
       "na": "N/A"

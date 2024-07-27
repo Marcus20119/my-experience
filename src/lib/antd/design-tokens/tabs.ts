@@ -3,8 +3,8 @@ import { COLOR } from '@/shared/assets/styles/constants';
 
 export const TABS: OverrideToken['Tabs'] = {
   colorPrimary: COLOR.neutral['700'],
-  inkBarColor: COLOR.primary,
-  horizontalItemPadding: '12px 16px',
   horizontalItemGutter: 8,
+  horizontalItemPadding: '12px 16px',
+  inkBarColor: COLOR.primary,
   titleFontSize: 16,
 };

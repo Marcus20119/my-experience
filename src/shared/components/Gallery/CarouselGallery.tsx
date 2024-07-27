@@ -43,11 +43,11 @@ function CarouselGallery({ gallery, showCount }: Props) {
               afterChange={current => {
                 setCurrentIndex(current);
               }}
-              nextArrow={<ArrowRight2 />}
-              prevArrow={<ArrowLeft2 />}
               arrows
               autoplay
               dots
+              nextArrow={<ArrowRight2 />}
+              prevArrow={<ArrowLeft2 />}
             >
               {gallery.map((image, index) => (
                 <div key={index}>

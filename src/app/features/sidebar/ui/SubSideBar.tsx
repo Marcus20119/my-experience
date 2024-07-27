@@ -10,7 +10,7 @@ const { Text } = Typography;
 
 function SubSideBar() {
   const { isSubBarCollapsed, setSidebarStates } = useSidebarStore();
-  const { subSidebarItems, activeSubKey, mainLabel } = useGetSidebarItems();
+  const { activeSubKey, mainLabel, subSidebarItems } = useGetSidebarItems();
 
   if (!subSidebarItems?.length) return null;
 
@@ -42,13 +42,13 @@ function SubSideBar() {
         {subSidebarItems.map(item => (
           <Link key={item.key} to={item.path}>
             <Flex
+              align="center"
               className={cn(
-                'box-border h-12 border-0 border-b border-solid border-neutral-300 pl-4 pr-1 text-neutral-700 transition-colors',
+                'h-12 border-0 border-b border-solid border-neutral-300 pl-4 pr-1 text-neutral-700 transition-colors',
                 activeSubKey === item.key
                   ? 'bg-neutral-100'
                   : 'bg-neutral-50 hover:bg-neutral-100',
               )}
-              align="center"
               gap="0.5rem"
               justify="space-between"
             >

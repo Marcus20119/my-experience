@@ -17,6 +17,9 @@ export const useLocalStore = create<LocalAction & LocalState>()(
   devtools(
     persist(
       set => ({
+        language: 'en',
+        primaryButtonTextColor: '#E2CB8D',
+        primaryColor: '#3A393B',
         removeLocalStates: keys =>
           set(() => {
             const newState: LocalState = {};
@@ -32,9 +35,6 @@ export const useLocalStore = create<LocalAction & LocalState>()(
             });
             return newState;
           }),
-        language: 'en',
-        primaryButtonTextColor: '#E2CB8D',
-        primaryColor: '#3A393B',
       }),
       {
         name: 'local-store',

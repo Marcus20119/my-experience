@@ -12,9 +12,9 @@ const { Text } = Typography;
 
 function MainSideBar() {
   const { t } = useTranslation();
-  const { isMainBarCollapsed, setSidebarStates, isMainBarLocked } =
+  const { isMainBarCollapsed, isMainBarLocked, setSidebarStates } =
     useSidebarStore();
-  const { mainSidebarItems, activeMainKey } = useGetSidebarItems();
+  const { activeMainKey, mainSidebarItems } = useGetSidebarItems();
 
   const onExpandMainSidebar = () => {
     if (isMainBarLocked) return;
@@ -34,8 +34,8 @@ function MainSideBar() {
 
   const onToggleLockMainSidebar = () => {
     setSidebarStates({
-      isMainBarLocked: !isMainBarLocked,
       isMainBarCollapsed: true,
+      isMainBarLocked: !isMainBarLocked,
     });
   };
 
@@ -51,11 +51,11 @@ function MainSideBar() {
       vertical
     >
       <Flex
+        align="center"
         className={cn(
           'h-10 transition-all duration-300 ease-in-out',
           isMainBarCollapsed ? 'pl-2' : 'pl-5',
         )}
-        align="center"
         gap="0.5rem"
       >
         <ICReact className="h-8 w-8 flex-shrink-0" />
@@ -75,6 +75,7 @@ function MainSideBar() {
               title={isMainBarLocked ? item.label : undefined}
             >
               <Flex
+                align="center"
                 className={cn(
                   'h-10 rounded-lg transition-all duration-300 ease-in-out',
                   activeMainKey === item.key
@@ -82,13 +83,12 @@ function MainSideBar() {
                     : 'text-neutral-50 hover:bg-primary hover:text-primaryText',
                   isMainBarCollapsed ? 'px-3' : 'px-4',
                 )}
+                gap="0.5rem"
                 onClick={() => {
                   setSidebarStates({
                     isSubBarCollapsed: false,
                   });
                 }}
-                align="center"
-                gap="0.5rem"
               >
                 <div className="flex-shrink-0" role="presentation">
                   {item.icon}
@@ -111,11 +111,11 @@ function MainSideBar() {
         title={isMainBarLocked ? t('layout.lockSidebar.unlock') : undefined}
       >
         <Flex
+          align="center"
           className={cn(
             'mt-auto h-10 cursor-pointer rounded-lg text-neutral-50 text-primaryText transition-all duration-300 ease-in-out',
             isMainBarCollapsed ? 'px-3' : 'px-4',
           )}
-          align="center"
           gap="0.5rem"
           onClick={onToggleLockMainSidebar}
         >

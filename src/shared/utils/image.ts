@@ -12,7 +12,7 @@ export const resizeUrl = (url: string, size?: ImageSize): string => {
 
   if (!key) return url;
 
-  const { width, height } = size;
+  const { height, width } = size;
   const formattedUrl = `${import.meta.env.VITE_RESIZE_IMAGE_URL}/${key}?size=${width ? width : ''}${
     height?.toString() ? `x${height}` : ''
   }`;

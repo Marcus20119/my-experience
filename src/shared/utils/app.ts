@@ -1,5 +1,5 @@
 const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ behavior: 'smooth', top: 0 });
 };
 
 const scrollToTarget = (sectionId: string, headerOffset: number) => {
@@ -17,6 +17,6 @@ const scrollToTarget = (sectionId: string, headerOffset: number) => {
 };
 
 export const AppTool = {
-  scrollToTop,
   scrollToTarget,
+  scrollToTop,
 };

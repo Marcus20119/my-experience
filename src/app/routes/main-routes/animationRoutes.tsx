@@ -3,7 +3,7 @@ import type { RouteObject } from 'react-router-dom';
 
 export const ANIMATION_ROUTES = [
   {
-    path: 'animation',
     element: <div>Animation Page</div>,
+    path: 'animation',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

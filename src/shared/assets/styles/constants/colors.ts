@@ -1,8 +1,4 @@
 export const COLOR = {
-  primary: 'var(--primary-color)',
-  primaryLight: 'var(--primaryLight-color)',
-  primaryText: 'var(--primaryText-color)',
-
   neutral: {
     ['0']: '#ffffff',
     ['100']: '#f5f5f5',
@@ -15,6 +11,10 @@ export const COLOR = {
     ['800']: '#0a0a0a',
     ['900']: '#000000',
   },
+  primary: 'var(--primary-color)',
+  primaryLight: 'var(--primaryLight-color)',
+
+  primaryText: 'var(--primaryText-color)',
   system: {
     alert: '#FFCC00',
     alertSoft: '#FFF9E5',

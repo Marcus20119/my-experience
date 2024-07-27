@@ -128,11 +128,11 @@ const getPhoneCallUrl = (phoneNumber?: null | string) => {
 
 export const TextTool = {
   capitalizeFirstLetter,
-  truncateText,
   formatMoney,
-  formatUnit,
   formatRangeMoney,
+  formatUnit,
   getGoogleMapUrl,
   getMailToUrl,
   getPhoneCallUrl,
+  truncateText,
 };

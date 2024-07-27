@@ -21,7 +21,7 @@ function DisplayIcon({ type }: { type?: 'empty-data' | 'empty-search' }) {
   return <ICEmpty />;
 }
 
-export function EmptyThumbnail({ type, title, description }: Props) {
+export function EmptyThumbnail({ description, title, type }: Props) {
   const { t } = useTranslation();
 
   const defaultTitle = useMemo(() => {

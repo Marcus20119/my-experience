@@ -8,14 +8,14 @@ interface Props {
   layout: '1:2' | '1:4';
 }
 
-function GridGallery({ layout, gallery, height }: Props) {
+function GridGallery({ gallery, height, layout }: Props) {
   if (!gallery?.length) {
     return (
       <Flex
+        className="w-full overflow-hidden rounded-xl"
         style={{
           height,
         }}
-        className="w-full overflow-hidden rounded-xl"
       >
         <CarouselGallery gallery={gallery} showCount />
       </Flex>
@@ -25,10 +25,10 @@ function GridGallery({ layout, gallery, height }: Props) {
   if (layout === '1:2') {
     return (
       <Flex
+        className="w-full"
         style={{
           height,
         }}
-        className="w-full"
       >
         <Image.PreviewGroup>
           <Row className="m-0 h-full w-full" gutter={12}>
@@ -54,6 +54,8 @@ function GridGallery({ layout, gallery, height }: Props) {
                     span={24}
                   >
                     <Image
+                      className="object-cover"
+                      height="100%"
                       preview={
                         index === 1 && gallery.length > 3
                           ? {
@@ -62,8 +64,6 @@ function GridGallery({ layout, gallery, height }: Props) {
                             }
                           : undefined
                       }
-                      className="object-cover"
-                      height="100%"
                       rootClassName="overflow-hidden rounded-xl"
                       src={image}
                       width="100%"
@@ -81,10 +81,10 @@ function GridGallery({ layout, gallery, height }: Props) {
   if (layout === '1:4') {
     return (
       <Flex
+        className="w-full"
         style={{
           height,
         }}
-        className="w-full"
       >
         <Image.PreviewGroup>
           <Row className="m-0 h-full w-full" gutter={12}>
@@ -110,6 +110,8 @@ function GridGallery({ layout, gallery, height }: Props) {
                     span={12}
                   >
                     <Image
+                      className="object-cover"
+                      height="100%"
                       preview={
                         index === 3 && gallery.length > 5
                           ? {
@@ -118,8 +120,6 @@ function GridGallery({ layout, gallery, height }: Props) {
                             }
                           : undefined
                       }
-                      className="object-cover"
-                      height="100%"
                       rootClassName="overflow-hidden rounded-xl"
                       src={image}
                       width="100%"

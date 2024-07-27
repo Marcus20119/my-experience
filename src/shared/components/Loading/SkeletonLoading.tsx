@@ -6,14 +6,14 @@ interface Props {
   width?: number | string;
 }
 
-function SkeletonLoading({ height, width, className }: Props) {
+function SkeletonLoading({ className, height, width }: Props) {
   return (
     <StyledSkeletonLoading
-      style={{
-        width: width ?? '100%',
-        height: height ?? '100%',
-      }}
       className={className}
+      style={{
+        height: height ?? '100%',
+        width: width ?? '100%',
+      }}
     />
   );
 }

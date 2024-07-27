@@ -17,14 +17,14 @@ interface Props
 }
 
 function ConfirmModal({
+  cancelText,
   description,
   mode,
+  okText,
   onCancel,
   onOk,
-  title,
   open,
-  cancelText,
-  okText,
+  title,
   width,
 }: Props) {
   const { t } = useTranslation();
@@ -55,17 +55,17 @@ function ConfirmModal({
 
   return (
     <Modal
+      centered
+      closable={false}
+      footer={null}
+      maskClosable={false}
+      open={open}
       styles={{
         content: {
           padding: 0,
         },
       }}
-      closable={false}
-      footer={null}
-      maskClosable={false}
-      open={open}
       width={width}
-      centered
     >
       <Flex align="center" className="p-4" gap="0.5rem" vertical>
         {icon}

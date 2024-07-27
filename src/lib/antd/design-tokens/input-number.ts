@@ -10,6 +10,7 @@ export const INPUT_NUMBER: OverrideToken['InputNumber'] = {
   colorIcon: COLOR.neutral['500'],
   colorPrimary: COLOR.neutral['700'],
   colorPrimaryHover: COLOR.neutral['700'],
+  colorTextDisabled: COLOR.neutral['500'],
   colorTextPlaceholder: COLOR.neutral['500'],
   controlHeight: 40,
   controlHeightLG: 48,
@@ -19,5 +20,4 @@ export const INPUT_NUMBER: OverrideToken['InputNumber'] = {
   fontSizeLG: 16,
   fontSizeSM: 14,
   fontWeightStrong: 400,
-  colorTextDisabled: COLOR.neutral['500'],
 };

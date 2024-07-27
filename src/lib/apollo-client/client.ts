@@ -40,8 +40,8 @@ const getHeaders = () => {
   return {
     ['Accept-Language']: i18next.language,
     authorization: token ? `Bearer ${token}` : '',
-    platform: ['WHITELABEL_WEB'],
     namespace,
+    platform: ['WHITELABEL_WEB'],
     timezone: TIME_ZONE_FOR_HEADER,
   };
 };

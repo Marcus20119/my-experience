@@ -3,7 +3,7 @@ import type { RouteObject } from 'react-router-dom';
 
 export const GAME_ROUTES = [
   {
-    path: 'game',
     element: <div>Game Page</div>,
+    path: 'game',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

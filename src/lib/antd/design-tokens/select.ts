@@ -10,6 +10,7 @@ export const SELECT: OverrideToken['Select'] = {
   colorIcon: COLOR.neutral['500'],
   colorPrimary: COLOR.neutral['700'],
   colorPrimaryHover: COLOR.neutral['700'],
+  colorTextDisabled: COLOR.neutral['500'],
   colorTextPlaceholder: COLOR.neutral['500'],
   controlHeight: 40,
   controlHeightLG: 48,
@@ -22,5 +23,4 @@ export const SELECT: OverrideToken['Select'] = {
   optionHeight: 32,
   optionPadding: `0.375rem 1rem`,
   optionSelectedFontWeight: 400,
-  colorTextDisabled: COLOR.neutral['500'],
 };

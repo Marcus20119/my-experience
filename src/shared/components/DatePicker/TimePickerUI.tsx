@@ -8,10 +8,10 @@ function TimePickerUI(props: TimePickerProps) {
     <TimePicker
       className="w-full"
       format={DEFAULT_TIME_FORMAT}
+      inputReadOnly
       minuteStep={5}
       needConfirm={false}
       suffixIcon={<Clock className="text-neutral-700" size={20} />}
-      inputReadOnly
       {...props}
     />
   );

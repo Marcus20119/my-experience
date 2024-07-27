@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/tailwind';
 
-const { Paragraph, Link } = Typography;
+const { Link, Paragraph } = Typography;
 
 interface Props {
   className?: string;
@@ -11,7 +11,7 @@ interface Props {
   value?: null | string;
 }
 
-function ExpandableValue({ rows, value, className }: Props) {
+function ExpandableValue({ className, rows, value }: Props) {
   const { t } = useTranslation();
 
   const [expanded, setExpanded] = useState(false);
@@ -19,27 +19,27 @@ function ExpandableValue({ rows, value, className }: Props) {
 
   return (
     <Paragraph
+      className={cn('mb-0', className)}
       ellipsis={{
-        rows: rows ?? 2,
         expandable: true,
         expanded,
-        symbol: t('common.button.viewMore'),
-        onExpand: () => {
-          setExpanded(true);
-        },
         onEllipsis(ellipsis) {
           setIsEllipsis(ellipsis);
         },
+        onExpand: () => {
+          setExpanded(true);
+        },
+        rows: rows ?? 2,
+        symbol: t('common.button.viewMore'),
       }}
-      className={cn('mb-0', className)}
     >
       {value}{' '}
       {isEllipsis ? (
         <Link
+          className={cn(className, 'text-system-information')}
           onClick={() => {
             setExpanded(false);
           }}
-          className={cn(className, 'text-system-information')}
         >
           {t('common.button.viewLess')}
         </Link>

@@ -24,8 +24,10 @@ module.exports = {
   overrides: [
     { extends: 'plugin:jest/all', files: ['src'] },
     {
-      files: ['*.json', '*.json5', '*.jsonc'],
-      parser: 'jsonc-eslint-parser',
+      files: ['*.json'],
+      rules: {
+        'no-unused-expressions': 'off',
+      },
     },
   ],
   ignorePatterns: [
@@ -51,7 +53,6 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:jsx-a11y/recommended',
     'prettier',
-    'plugin:jsonc/recommended-with-jsonc',
   ],
   plugins: [
     'perfectionist',
@@ -223,7 +224,7 @@ module.exports = {
     'prefer-destructuring': ['error'],
     'prefer-object-spread': 'error',
     'prefer-template': 'error',
-    'comma-dangle': [1, 'always-multiline'],
+    'comma-dangle': [0, 'always-multiline'],
     'no-shadow': 'off',
     camelcase: 1,
     'no-empty-function': 1,
@@ -314,7 +315,6 @@ module.exports = {
       2,
       { caseSensitive: false },
     ],
-    'jsonc/sort-keys': ['warn'],
     'import/no-restricted-paths': [
       'error',
       {

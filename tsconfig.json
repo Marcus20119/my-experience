@@ -21,7 +21,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
@@ -30,6 +29,6 @@
       "@/pages/*": ["src/pages/*"]
     }
   },
-  "include": ["src", "src/@types/**/*"],
-  "references": [{ "path": "./tsconfig.node.json" }],
+  "include": ["src", "src/@types/**/*", ".eslintrc.cjs"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

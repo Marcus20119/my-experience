@@ -5,15 +5,15 @@ import { MainLayout, RootLayout } from '../layout';
 
 export const routes: RouteObject[] = [
   {
-    path: '/',
-    element: <RootLayout />,
     children: [
       {
-        element: <MainLayout />,
         children: [...MAIN_ROUTES],
+        element: <MainLayout />,
         errorElement: <NotFoundPage />,
       },
     ],
+    element: <RootLayout />,
+    path: '/',
   },
   { element: <NotFoundPage />, path: '*' },
   { element: <NotFoundPage />, path: '/404' },

@@ -3,6 +3,7 @@ import { COLOR } from '@/shared/assets/styles/constants';
 
 export const token: Partial<AliasToken> = {
   colorBgBase: COLOR.neutral['100'],
+  colorBorder: COLOR.neutral['300'],
   colorError: COLOR.system.error,
   colorErrorBg: COLOR.system.errorSoft,
   colorErrorHover: COLOR.system.errorHover,
@@ -13,5 +14,4 @@ export const token: Partial<AliasToken> = {
   colorTextBase: COLOR.neutral['800'],
   colorWarning: COLOR.system.alert,
   colorWarningBg: COLOR.system.alertSoft,
-  colorBorder: COLOR.neutral['300'],
 };

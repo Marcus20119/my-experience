@@ -8,7 +8,7 @@ import { ApolloProvider } from '@apollo/client';
 import { ConfigProvider, Spin } from 'antd';
 import { Suspense, useEffect, useMemo } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { theme as defaultTheme } from '@/lib/antd';
 import { i18nFormConfig } from '@/lib/antd/form';
 import enUS from '@/lib/antd/locale/en_US';
@@ -19,7 +19,7 @@ import { routes } from './routes';
 
 function AntProvider() {
   const { i18n } = useTranslation();
-  const { primaryColor, primaryButtonTextColor } = useLocalStore();
+  const { primaryButtonTextColor, primaryColor } = useLocalStore();
 
   const locale: Locale = useMemo(() => {
     if (i18n.language === 'en') {
@@ -89,7 +89,7 @@ function AntProvider() {
       locale={locale}
       theme={theme}
     >
-      <Suspense fallback={<Spin size="large" spinning={false} fullscreen />}>
+      <Suspense fallback={<Spin fullscreen size="large" spinning={false} />}>
         <RouterProvider router={createBrowserRouter(routes)} />
       </Suspense>
     </ConfigProvider>

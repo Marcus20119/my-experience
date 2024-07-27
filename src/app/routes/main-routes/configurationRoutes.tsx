@@ -3,15 +3,15 @@ import type { RouteObject } from 'react-router-dom';
 
 export const CONFIGURATION_ROUTES = [
   {
-    path: 'configuration',
     element: <div>Configuration Page</div>,
+    path: 'configuration',
   },
   {
-    path: 'configuration/eslint',
     element: <div>Eslint Page</div>,
+    path: 'configuration/eslint',
   },
   {
-    path: 'configuration/vite',
     element: <div>Vite Page</div>,
+    path: 'configuration/vite',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

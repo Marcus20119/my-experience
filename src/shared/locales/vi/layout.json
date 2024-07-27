@@ -1,18 +1,18 @@
 {
   "layout": {
+    "lockSidebar": {
+      "lock": "Lock Sidebar",
+      "unlock": "Unlock Sidebar"
+    },
     "mainSidebar": {
+      "animation": "Animation",
       "configuration": "Configuration",
-      "image": "Image",
       "game": "Game",
-      "animation": "Animation"
+      "image": "Image"
     },
     "subSidebar": {
       "eslint": "ESLint",
       "vite": "Vite"
-    },
-    "lockSidebar": {
-      "lock": "Lock Sidebar",
-      "unlock": "Unlock Sidebar"
     }
   }
 }

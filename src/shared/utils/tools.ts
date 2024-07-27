@@ -239,8 +239,8 @@ const getQueryParamsFromUrl = (searchStr: string) => {
 export {
   arraysAreEqual,
   classnames,
-  getATagHref,
   getAllPaths,
+  getATagHref,
   getQueryParamsFromUrl,
   getUniqueArrayValues,
   isDefinedAndNotNull,

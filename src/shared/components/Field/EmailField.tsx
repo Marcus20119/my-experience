@@ -25,6 +25,7 @@ function EmailField<T>({ formItemProps, inputProps }: Props<T>) {
       ]}
     >
       <Input
+        placeholder={t('common.placeholder.email')}
         suffix={
           <Icon
             className="text-neutral-700"
@@ -33,7 +34,6 @@ function EmailField<T>({ formItemProps, inputProps }: Props<T>) {
             width="20"
           />
         }
-        placeholder={t('common.placeholder.email')}
         {...inputProps}
       />
     </Form.Item>

@@ -1,59 +1,59 @@
 {
   "common": {
     "button": {
-      "create": "Tạo",
-      "cancel": "Hủy",
       "back": "Quay lại",
-      "finish": "Hoàn tất",
-      "register": "Đăng ký",
+      "cancel": "Hủy",
       "confirm": "Xác nhận",
+      "create": "Tạo",
+      "exploreMore": "Khám phá thêm",
+      "finish": "Hoàn tất",
       "home": "Trang chủ",
       "login": "Đăng nhập",
       "next": "Tiếp tục",
+      "register": "Đăng ký",
       "search": "Tìm kiếm",
-      "viewMore": "Xem thêm",
       "viewLess": "Thu gọn",
       "viewMap": "Xem bản đồ",
-      "exploreMore": "Khám phá thêm"
+      "viewMore": "Xem thêm"
     },
-    "unit": {
-      "months": "Tháng",
-      "days": "Ngày",
-      "years": "Năm",
-      "thousand": "k",
-      "million": "tr"
+    "description": {
+      "emptySearch": "Hãy thử sử dụng từ khóa hoặc bộ lọc khác"
+    },
+    "error": {
+      "email": "Vui lòng nhập email hợp lệ",
+      "phoneNumber": "Vui lòng nhập số điện thoại hợp lệ",
+      "smtWentWrong": "Đã xảy ra lỗi, vui lòng thử lại sau."
     },
     "label": {
-      "fullName": "Họ và tên",
-      "email": "Email",
-      "phoneNumber": "Số điện thoại",
       "all": "Tất cả",
+      "email": "Email",
+      "fullName": "Họ và tên",
+      "phoneNumber": "Số điện thoại",
       "sortBy": "Sắp xếp theo"
+    },
+    "message": {
+      "linkNotFound": "Rất tiếc, đường dẫn liên kết không tồn tại",
+      "pageNotFound": "Không tìm thấy trang!"
+    },
+    "placeholder": {
+      "email": "Vd. nguyenvana@gmail.com",
+      "fullName": " Vd. Nguyen Van A",
+      "phoneNumber": "Vd. 0233 123 ***",
+      "quickSearch": "Tìm kiếm nhanh..."
+    },
+    "status": {
+      "na": "N/A"
     },
     "title": {
       "emptyData": "Không có dữ liệu",
       "emptySearch": "Không tìm thấy kết quả"
     },
-    "description": {
-      "emptySearch": "Hãy thử sử dụng từ khóa hoặc bộ lọc khác"
-    },
-    "placeholder": {
-      "fullName": " Vd. Nguyen Van A",
-      "email": "Vd. nguyenvana@gmail.com",
-      "phoneNumber": "Vd. 0233 123 ***",
-      "quickSearch": "Tìm kiếm nhanh..."
-    },
-    "error": {
-      "phoneNumber": "Vui lòng nhập số điện thoại hợp lệ",
-      "email": "Vui lòng nhập email hợp lệ",
-      "smtWentWrong": "Đã xảy ra lỗi, vui lòng thử lại sau."
-    },
-    "message": {
-      "pageNotFound": "Không tìm thấy trang!",
-      "linkNotFound": "Rất tiếc, đường dẫn liên kết không tồn tại"
-    },
-    "status": {
-      "na": "N/A"
+    "unit": {
+      "days": "Ngày",
+      "million": "tr",
+      "months": "Tháng",
+      "thousand": "k",
+      "years": "Năm"
     }
   }
 }

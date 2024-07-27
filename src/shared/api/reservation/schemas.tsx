@@ -1082,8 +1082,8 @@ export interface ExtraServiceOrder {
   createdById?: Maybe<Scalars['ObjectID']['output']>;
   customer: BaseCustomerEntity;
   customerId: Scalars['ObjectID']['output'];
-  extraServiceTypeIds?: Maybe<Scalars['ObjectID']['output'][]>;
   extraServices: ExtraService[];
+  extraServiceTypeIds?: Maybe<Scalars['ObjectID']['output'][]>;
   id: Scalars['ObjectID']['output'];
   invoiceIds: Scalars['ObjectID']['output'][];
   locationId: Scalars['ObjectID']['output'];
@@ -2024,11 +2024,11 @@ export enum PriceType {
 export interface Query {
   booking: Booking;
   bookingCalendarRecords: BookingCalendarRecord[];
+  bookingchangelogs: BookingChangelogList;
   bookingDetailSummary: BookingDetailSummary;
   bookingInvoicesPreCreate: BookingInvoicePreCreate[];
   bookingPolicy: BookingPolicy;
   bookingPreCompleteInfo: BookingPreCompleteInfo;
-  bookingchangelogs: BookingChangelogList;
   bookings: BookingList;
   calculateBooking: CalculateBookingResponse;
   extraService: ExtraService;
@@ -2037,9 +2037,9 @@ export interface Query {
   extraServiceOrder: ExtraServiceOrder;
   extraServiceOrderInvoicePreCreate: ExtraServiceOrderInvoicePreCreate;
   extraServiceOrders: ExtraServiceOrderList;
+  extraServices: ExtraServiceList;
   extraServiceType: ExtraServiceType;
   extraServiceTypes: ExtraServiceTypeList;
-  extraServices: ExtraServiceList;
   measurementUnit: MeasurementUnit;
   measurementUnits: MeasurementUnitList;
   paymentPeriod: PaymentPeriod;

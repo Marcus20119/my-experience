@@ -12,11 +12,11 @@ interface Props extends SelectProps {
 }
 
 function SelectUI({
-  onDropdownVisibleChange,
   allowClear,
-  loading,
-  prefixIcon,
   className,
+  loading,
+  onDropdownVisibleChange,
+  prefixIcon,
   ...props
 }: Props) {
   const [isOpened, setIsOpened] = useState(false);
@@ -57,11 +57,11 @@ function SelectUI({
               }
             : undefined
         }
+        className={cn('w-full', className)}
         onDropdownVisibleChange={open => {
           setIsOpened(open);
           onDropdownVisibleChange?.(open);
         }}
-        className={cn('w-full', className)}
         suffixIcon={suffixIcon}
         {...props}
       />

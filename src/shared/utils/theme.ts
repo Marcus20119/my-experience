@@ -53,7 +53,7 @@ function rgbToHex(r: number, g: number, b: number) {
 }
 
 function getHexColorVariant(color: string, lightVolume: number) {
-  const { r, g, b } = hexToRgb(color) || { b: 0, g: 0, r: 0 };
+  const { b, g, r } = hexToRgb(color) || { b: 0, g: 0, r: 0 };
 
   return rgbToHex(
     Math.round(r + (255 - r) * lightVolume),
@@ -63,7 +63,7 @@ function getHexColorVariant(color: string, lightVolume: number) {
 }
 
 export const ThemeTool = {
+  getHexColorVariant,
   setWebIcon,
   setWebsiteTitle,
-  getHexColorVariant,
 };

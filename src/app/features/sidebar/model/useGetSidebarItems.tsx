@@ -9,46 +9,46 @@ export const useGetSidebarItems = () => {
 
   const mainSidebarItems: SidebarItem[] = [
     {
-      key: 'configuration',
-      label: t('layout.mainSidebar.configuration'),
-      icon: <Cpu />,
-      path: '/configuration/eslint',
-      match: '/configuration',
       children: [
         {
           key: 'eslint',
           label: t('layout.subSidebar.eslint'),
-          path: '/configuration/eslint',
           match: '/configuration/eslint',
+          path: '/configuration/eslint',
         },
         {
           key: 'vite',
           label: t('layout.subSidebar.vite'),
-          path: '/configuration/vite',
           match: '/configuration/vite',
+          path: '/configuration/vite',
         },
       ],
+      icon: <Cpu />,
+      key: 'configuration',
+      label: t('layout.mainSidebar.configuration'),
+      match: '/configuration',
+      path: '/configuration/eslint',
     },
     {
+      icon: <Image />,
       key: 'image',
       label: t('layout.mainSidebar.image'),
-      icon: <Image />,
-      path: '/image',
       match: '/image',
+      path: '/image',
     },
     {
+      icon: <Colorfilter />,
       key: 'animation',
       label: t('layout.mainSidebar.animation'),
-      icon: <Colorfilter />,
-      path: '/animation',
       match: '/animation',
+      path: '/animation',
     },
     {
+      icon: <Game />,
       key: 'game',
       label: t('layout.mainSidebar.game'),
-      icon: <Game />,
-      path: '/game',
       match: '/game',
+      path: '/game',
     },
   ];
 

@@ -13,7 +13,7 @@ interface Props extends Omit<TextProps, 'children'> {
   value?: null | string;
 }
 
-function TruncateTextValue({ value, tooltipProps, ...textProps }: Props) {
+function TruncateTextValue({ tooltipProps, value, ...textProps }: Props) {
   const textRef = useRef<TextRef>(null);
 
   const shouldShowTooltip =

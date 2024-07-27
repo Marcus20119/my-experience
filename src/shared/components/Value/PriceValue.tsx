@@ -12,10 +12,10 @@ interface Props {
 }
 
 function PriceValue({
+  mode = 'default',
+  size = 'default',
   unit,
   value,
-  size = 'default',
-  mode = 'default',
 }: Props) {
   return (
     <Typography>

@@ -5,7 +5,7 @@ import { DatePicker } from 'antd';
 import { Calendar, CloseCircle } from 'iconsax-react';
 import { cn } from '@/lib/tailwind';
 
-function DatePickerUI({ className, allowClear, ...props }: DatePickerProps) {
+function DatePickerUI({ allowClear, className, ...props }: DatePickerProps) {
   return (
     <DatePicker
       allowClear={

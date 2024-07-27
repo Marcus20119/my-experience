@@ -1,10 +1,12 @@
 import type { FormConfig } from 'antd/es/config-provider/context';
 import type { Locale } from 'antd/es/locale';
 import type { ThemeConfig } from 'antd/lib';
-import { useBusinessStore } from '@/shared/stores/businessStore';
+import { COLOR } from '@/shared/assets/styles/constants';
+import { useLocalStore } from '@/shared/stores/localStore';
+import { ThemeTool } from '@/shared/utils';
 import { ApolloProvider } from '@apollo/client';
 import { ConfigProvider, Spin } from 'antd';
-import { Suspense, useMemo } from 'react';
+import { Suspense, useEffect, useMemo } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { theme as defaultTheme } from '@/lib/antd';
@@ -17,7 +19,7 @@ import { routes } from './routes';
 
 function AntProvider() {
   const { i18n } = useTranslation();
-  const { primaryColor, buttonTextColor } = useBusinessStore();
+  const { primaryColor, primaryButtonTextColor } = useLocalStore();
 
   const locale: Locale = useMemo(() => {
     if (i18n.language === 'en') {
@@ -45,14 +47,40 @@ function AntProvider() {
         ...defaultTheme.components,
         ['Button']: {
           ...defaultTheme.components.Button,
-          primaryColor: buttonTextColor ?? undefined,
+          primaryColor: primaryButtonTextColor ?? undefined,
         },
       },
       token: {
         colorPrimary: primaryColor,
       },
     };
-  }, [buttonTextColor, primaryColor]);
+  }, [primaryButtonTextColor, primaryColor]);
+
+  useEffect(() => {
+    if (primaryColor) {
+      COLOR.primary = primaryColor;
+      COLOR.primaryLight = ThemeTool.getHexColorVariant(primaryColor, 0.8);
+    }
+
+    if (primaryButtonTextColor) {
+      COLOR.primaryText = primaryButtonTextColor;
+    }
+
+    //map colors variables for root
+    const root = document.documentElement;
+
+    const setProperties = <T extends object>(obj: T, prefix = ''): void => {
+      Object.entries(obj).forEach(([key, value]) => {
+        if (typeof value === 'object' && value !== null) {
+          setProperties(value, `${prefix}${key}-`);
+        } else if (typeof value === 'string') {
+          root.style.setProperty(`--${prefix}${key}-color`, value);
+        }
+      });
+    };
+
+    setProperties(COLOR);
+  }, [primaryButtonTextColor, primaryColor]);
 
   return (
     <ConfigProvider

@@ -1,12 +1,10 @@
-import { CONFIGURATION_ROUTES } from '@/app/routes/main-routes/configurationRoutes';
+import MAIN_ROUTES from '@/app/routes/main-routes';
 
 type FlattenPrivateRouter<T extends readonly RouteObject[]> = {
   [K in keyof T]: `/${T[K]['path']}`;
 }[number];
 
 declare global {
-  type ConfigurationRouterPath = FlattenPrivateRouter<
-    typeof CONFIGURATION_ROUTES
-  >;
-  type RouterPath = PrivateRouterPath | '/' | '/404';
+  type MainRouterPath = FlattenPrivateRouter<typeof MAIN_ROUTES>;
+  type RouterPath = MainRouterPath | '/' | '/404';
 }

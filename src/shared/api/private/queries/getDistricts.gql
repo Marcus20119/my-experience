@@ -1,3 +1,0 @@
-query GetDistricts($queryParams: DistrictWhiteLabelQueryDto) {
-  getDistricts(queryParams: $queryParams)
-}

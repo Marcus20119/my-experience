@@ -1,6 +1,0 @@
-query GetCityOptions($input: CountAvailableRoomInput!) {
-  countRoomByCity(input: $input) {
-    name
-    totalAvailableRooms
-  }
-}

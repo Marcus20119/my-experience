@@ -5,5 +5,4 @@ export * from './Loading';
 export * from './Modal';
 export * from './Select';
 export * from './Thumbnail';
-export * from './Ticket';
 export * from './Value';

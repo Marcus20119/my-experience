@@ -13,4 +13,5 @@ export const token: Partial<AliasToken> = {
   colorTextBase: COLOR.neutral['800'],
   colorWarning: COLOR.system.alert,
   colorWarningBg: COLOR.system.alertSoft,
+  colorBorder: COLOR.neutral['300'],
 };

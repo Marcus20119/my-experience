@@ -1,4 +1,5 @@
 import { COLOR } from '@/shared/assets/styles/constants';
+import { AppTool } from '@/shared/utils';
 import { Flex, Typography } from 'antd';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import { Link } from 'react-router-dom';
@@ -29,18 +30,21 @@ function SubSideBar() {
       gap="1rem"
       vertical
     >
-      <Flex
-        align="center"
-        className={cn('h-9 px-3', isSubBarCollapsed ? 'hidden' : '')}
-      >
+      <Flex align="center" className="h-9 px-3">
         <Text className="line-clamp-1 text-xl font-semibold text-primary">
           {mainLabel}
         </Text>
       </Flex>
 
-      <Flex className={cn(isSubBarCollapsed ? 'hidden' : '')} vertical>
+      <Flex className="overflow-hidden" vertical>
         {subSidebarItems.map(item => (
-          <Link key={item.key} to={item.path}>
+          <Link
+            key={item.key}
+            onClick={() => {
+              AppTool.scrollToTop();
+            }}
+            to={item.path}
+          >
             <Flex
               align="center"
               className={cn(

@@ -1,4 +1,4 @@
-import { Colorfilter, Cpu, Game, Image } from 'iconsax-react';
+import { Box1, Colorfilter, Cpu, Game, Image } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import type { SidebarItem } from './types';
@@ -11,42 +11,81 @@ export const useGetSidebarItems = () => {
     {
       children: [
         {
-          key: 'eslint',
-          label: t('layout.subSidebar.eslint'),
-          match: '/configuration/eslint',
-          path: '/configuration/eslint',
+          key: 'configuration',
+          label: t('layout.title.configuration'),
+          match: '/technology/configuration',
+          path: '/technology/configuration',
         },
         {
-          key: 'vite',
-          label: t('layout.subSidebar.vite'),
-          match: '/configuration/vite',
-          path: '/configuration/vite',
+          key: 'language',
+          label: t('layout.title.language'),
+          match: '/technology/language',
+          path: '/technology/language',
+        },
+        {
+          key: 'uiLibrary',
+          label: t('layout.title.uiLibrary'),
+          match: '/technology/ui-library',
+          path: '/technology/ui-library',
+        },
+        {
+          key: 'other',
+          label: t('layout.title.other'),
+          match: '/technology/other',
+          path: '/technology/other',
         },
       ],
       icon: <Cpu />,
-      key: 'configuration',
-      label: t('layout.mainSidebar.configuration'),
-      match: '/configuration',
-      path: '/configuration/eslint',
+      key: 'technology',
+      label: t('layout.title.technology'),
+      match: '/technology',
+      path: '/technology/configuration',
+    },
+    {
+      children: [
+        {
+          key: 'table',
+          label: t('layout.title.table'),
+          match: '/component/table',
+          path: '/component/table',
+        },
+        {
+          key: 'form',
+          label: t('layout.title.form'),
+          match: '/component/form',
+          path: '/component/form',
+        },
+        {
+          key: 'calendar',
+          label: t('layout.title.calendar'),
+          match: '/component/calendar',
+          path: '/component/calendar',
+        },
+      ],
+      icon: <Box1 />,
+      key: 'component',
+      label: t('layout.title.component'),
+      match: '/component',
+      path: '/component/table',
     },
     {
       icon: <Image />,
       key: 'image',
-      label: t('layout.mainSidebar.image'),
+      label: t('layout.title.image'),
       match: '/image',
       path: '/image',
     },
     {
       icon: <Colorfilter />,
       key: 'animation',
-      label: t('layout.mainSidebar.animation'),
+      label: t('layout.title.animation'),
       match: '/animation',
       path: '/animation',
     },
     {
       icon: <Game />,
       key: 'game',
-      label: t('layout.mainSidebar.game'),
+      label: t('layout.title.game'),
       match: '/game',
       path: '/game',
     },

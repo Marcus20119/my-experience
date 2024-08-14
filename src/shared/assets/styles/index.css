@@ -1,5 +1,6 @@
 @import './reset.css';
 @import './fonts.css';
+@import './keyframes.css';
 @import './antdOverride/index.css';
 
 @tailwind base;
@@ -23,21 +24,18 @@ body {
 * {
   /* Scrollbar */
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
   }
 
   &::-webkit-scrollbar-track {
-    border-radius: 8px;
+    background-color: var(--neutral-100-color);
   }
 
   &::-webkit-scrollbar-thumb {
     background-color: var(--neutral-400-color);
+    border: 3px solid var(--neutral-100-color);
     border-radius: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: white;
   }
 
   /* Caret */

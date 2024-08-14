@@ -2,7 +2,7 @@ import type { FormConfig } from 'antd/es/config-provider/context';
 import type { Locale } from 'antd/es/locale';
 import type { ThemeConfig } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { useLocalStore } from '@/shared/stores/localStore';
+import { useLocalStore } from '@/shared/stores/local.store';
 import { ThemeTool } from '@/shared/utils';
 import { ApolloProvider } from '@apollo/client';
 import { ConfigProvider, Spin } from 'antd';

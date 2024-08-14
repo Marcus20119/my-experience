@@ -1,5 +1,5 @@
 import type { GraphQLError } from 'graphql/error/GraphQLError';
-import { useLocalStore } from '@/shared/stores/localStore';
+import { useLocalStore } from '@/shared/stores/local.store';
 import { NotiTool } from '@/shared/utils';
 import { onError } from '@apollo/client/link/error';
 import { notification } from 'antd';

@@ -9,7 +9,7 @@ function Header() {
   return (
     <Flex
       align="center"
-      className="sticky right-0 top-0 h-14 w-full border-0 border-b border-solid border-neutral-200 bg-neutral-0 px-6"
+      className="z-header-main sticky right-0 top-0 h-14 w-full border-0 border-b border-solid border-neutral-200 bg-neutral-0 px-6"
       justify="space-between"
     >
       <Input

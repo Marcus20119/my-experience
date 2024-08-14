@@ -168,7 +168,7 @@ module.exports = {
       {
         blankLine: 'always',
         next: ['*'],
-        prev: ['interface', 'type', 'export', 'block-like'],
+        prev: ['interface', 'type', 'block-like'],
       },
     ],
     '@typescript-eslint/prefer-optional-chain': 'error',

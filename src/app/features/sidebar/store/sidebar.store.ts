@@ -17,6 +17,9 @@ export const useSidebarStore = create<SidebarAction & SidebarState>()(
   devtools(
     persist(
       set => ({
+        isMainBarCollapsed: true,
+        isMainBarLocked: true,
+        isSubBarCollapsed: false,
         removeSidebarStates: keys =>
           set(() => {
             const newState: SidebarState = {};
@@ -34,7 +37,7 @@ export const useSidebarStore = create<SidebarAction & SidebarState>()(
           }),
       }),
       {
-        name: 'sidebar-store',
+        name: 'store-sidebar',
         storage: createJSONStorage(() => localStorage), // default
       },
     ),

@@ -2,42 +2,40 @@ import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import type { RemoveStates, SetStates } from '../types';
 
-interface LocalState {
-  language?: string;
-  primaryButtonTextColor?: string;
-  primaryColor?: string;
+interface AuthState {
+  accessToken?: string;
+  isAuthenticated?: boolean;
+  refreshToken?: string;
+  shouldAuthenticating?: boolean;
 }
 
-interface LocalAction {
-  removeLocalStates: RemoveStates<LocalState>;
-  setLocalStates: SetStates<LocalState>;
+interface AuthAction {
+  removeAuthStates: RemoveStates<AuthState>;
+  setAuthStates: SetStates<AuthState>;
 }
 
-export const useLocalStore = create<LocalAction & LocalState>()(
+export const useAuthStore = create<AuthAction & AuthState>()(
   devtools(
     persist(
       set => ({
-        language: 'en',
-        primaryButtonTextColor: '#E2CB8D',
-        primaryColor: '#3A393B',
-        removeLocalStates: keys =>
+        removeAuthStates: keys =>
           set(() => {
-            const newState: LocalState = {};
+            const newState: AuthState = {};
             keys.forEach(key => (newState[key] = undefined));
             return newState;
           }),
-        setLocalStates: param =>
+        setAuthStates: param =>
           set(() => {
-            const newState: LocalState = {};
+            const newState: AuthState = {};
             Object.keys(param).forEach(key => {
-              const k = key as keyof LocalState;
+              const k = key as keyof AuthState;
               newState[k] = param[k] as undefined;
             });
             return newState;
           }),
       }),
       {
-        name: 'local-store',
+        name: 'store-auth',
         storage: createJSONStorage(() => localStorage), // default
       },
     ),

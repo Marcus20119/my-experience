@@ -1,3 +1,5 @@
+import type { RouterNavigator } from '../hooks';
+
 export enum ApolloService {
   Audit = 'audit',
   Contract = 'contract',
@@ -17,6 +19,7 @@ export enum ApolloService {
 
 export interface BreadCrumbItem {
   onClick?: () => void;
+  route?: RouterNavigator;
   title: string;
 }
 

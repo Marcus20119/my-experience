@@ -1,7 +1,55 @@
 import { round } from 'lodash-es';
 import i18n from '@/lib/i18next';
 import { DEFAULT_CURRENCY_UNIT, UNITS } from '../constants';
-import { useLocalStore } from '../stores/localStore';
+import { useLocalStore } from '../stores/local.store';
+
+const invertHexColor = (hexColor: string): string => {
+  // Remove the '#' character if present
+  const hex = hexColor.replace('#', '');
+
+  // Handle shorthand hex notation (e.g., #fff)
+  const expandedHex =
+    hex.length === 3
+      ? hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+      : hex;
+
+  // Convert hex to decimal
+  const r = parseInt(expandedHex.substring(0, 2), 16);
+  const g = parseInt(expandedHex.substring(2, 4), 16);
+  const b = parseInt(expandedHex.substring(4, 6), 16);
+  // Invert colors
+  const invertedR = 255 - r;
+  const invertedG = 255 - g;
+  const invertedB = 255 - b;
+
+  // Convert back to hex and pad with zeros if necessary
+  const invertedHexR = invertedR.toString(16).padStart(2, '0');
+  const invertedHexG = invertedG.toString(16).padStart(2, '0');
+  const invertedHexB = invertedB.toString(16).padStart(2, '0');
+
+  return `#${invertedHexR}${invertedHexG}${invertedHexB}`;
+};
+
+function getTextColorByBgColor(hexColor: string): string {
+  // Remove the '#' character if present
+  const hex = hexColor.replace('#', '');
+
+  // Handle shorthand hex notation (e.g., #fff)
+  const expandedHex =
+    hex.length === 3
+      ? hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]
+      : hex;
+
+  // Convert hex to decimal
+  const r = parseInt(expandedHex.substring(0, 2), 16);
+  const g = parseInt(expandedHex.substring(2, 4), 16);
+  const b = parseInt(expandedHex.substring(4, 6), 16);
+  // Calculate luminance (perceptual brightness)
+  const luminance = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+
+  // Determine if color is darker or lighter than neutral
+  return luminance < 0.5 ? '#ffffff' : '#000000';
+}
 
 /**
  * Truncates the given text if it exceeds the specified limit.
@@ -134,5 +182,7 @@ export const TextTool = {
   getGoogleMapUrl,
   getMailToUrl,
   getPhoneCallUrl,
+  getTextColorByBgColor,
+  invertHexColor,
   truncateText,
 };

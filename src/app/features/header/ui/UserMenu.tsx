@@ -1,5 +1,5 @@
 import type { MenuItemType } from 'antd/es/menu/interface';
-import { Dropdown, Image } from 'antd';
+import { Dropdown, Flex, Image } from 'antd';
 import { DirectNormal, Medal, User } from 'iconsax-react';
 
 function UserMenu() {
@@ -30,13 +30,16 @@ function UserMenu() {
         width: '12rem',
       }}
     >
-      <Image
-        className="rounded-full object-cover"
-        height="2.25rem"
-        preview={false}
-        src="/src/shared/assets/images/avatar.jpg"
-        width="2.25rem"
-      />
+      {/* Wrap by Flex to prevent Warning: findDOMNode is deprecated in StrictMode */}
+      <Flex>
+        <Image
+          className="rounded-full object-cover"
+          height="2.25rem"
+          preview={false}
+          src="/src/shared/assets/images/avatar.jpg"
+          width="2.25rem"
+        />
+      </Flex>
     </Dropdown>
   );
 }

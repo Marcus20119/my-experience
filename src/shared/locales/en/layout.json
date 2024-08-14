@@ -4,15 +4,19 @@
       "lock": "Lock Sidebar",
       "unlock": "Unlock Sidebar"
     },
-    "mainSidebar": {
+    "title": {
       "animation": "Animation",
+      "calendar": "Calendar",
+      "component": "Component",
       "configuration": "Configuration",
+      "form": "Form",
       "game": "Game",
-      "image": "Image"
-    },
-    "subSidebar": {
-      "eslint": "ESLint",
-      "vite": "Vite"
+      "image": "Image",
+      "language": "Language",
+      "other": "Other",
+      "table": "Table",
+      "technology": "Technology",
+      "uiLibrary": "UI Library"
     }
   }
 }

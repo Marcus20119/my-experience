@@ -14,14 +14,3 @@ export enum ApolloService {
   Reservation = 'reservation',
   Storage = 'storage',
 }
-
-export interface BreadCrumbItem {
-  onClick?: () => void;
-  title: string;
-}
-
-export interface PaginationEntity {
-  currentPage?: number;
-  pageSize?: number;
-  total?: number;
-}

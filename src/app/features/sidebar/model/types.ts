@@ -3,6 +3,6 @@ export interface SidebarItem {
   icon: React.ReactNode;
   key: string;
   label: string;
-  match: RouterPath;
+  match: string;
   path: RouterPath;
 }

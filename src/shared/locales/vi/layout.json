@@ -1,18 +1,28 @@
 {
   "layout": {
+    "action": {
+      "introduction": "Introduction"
+    },
     "lockSidebar": {
       "lock": "Lock Sidebar",
       "unlock": "Unlock Sidebar"
     },
-    "mainSidebar": {
+    "title": {
       "animation": "Animation",
+      "calendar": "Calendar",
+      "collapsibleTable": "Collapsible table",
+      "component": "Component",
       "configuration": "Configuration",
+      "editableTable": "Editable table",
+      "form": "Form",
       "game": "Game",
-      "image": "Image"
-    },
-    "subSidebar": {
-      "eslint": "ESLint",
-      "vite": "Vite"
+      "image": "Image",
+      "language": "Language",
+      "originalTable": "Original table",
+      "other": "Other",
+      "table": "Table",
+      "technology": "Technology",
+      "uiLibrary": "UI Library"
     }
   }
 }

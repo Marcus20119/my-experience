@@ -17,6 +17,7 @@ export const useLocalStore = create<LocalAction & LocalState>()(
   devtools(
     persist(
       set => ({
+        hideContentHeader: false,
         language: 'en',
         primaryButtonTextColor: '#E2CB8D',
         primaryColor: '#3A393B',
@@ -37,7 +38,7 @@ export const useLocalStore = create<LocalAction & LocalState>()(
           }),
       }),
       {
-        name: 'local-store',
+        name: 'store-local',
         storage: createJSONStorage(() => localStorage), // default
       },
     ),

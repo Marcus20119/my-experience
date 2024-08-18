@@ -1,5 +1,5 @@
 import type { DefaultContext, Operation } from '@apollo/client';
-import { useAuthStore } from '@/shared/stores/authStore';
+import { useAuthStore } from '@/shared/stores';
 import { ApolloService } from '@/shared/types';
 import { ApolloClient, ApolloLink, from } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';

@@ -1,4 +1,5 @@
 import type { RemoveStates, SetStates } from '@/shared/types';
+import { WIDTH } from '@/shared/assets/styles/constants/width';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
@@ -9,6 +10,7 @@ interface SidebarState {
 }
 
 interface SidebarAction {
+  getSidebarWidth: () => number;
   removeSidebarStates: RemoveStates<SidebarState>;
   setSidebarStates: SetStates<SidebarState>;
 }
@@ -16,7 +18,27 @@ interface SidebarAction {
 export const useSidebarStore = create<SidebarAction & SidebarState>()(
   devtools(
     persist(
-      set => ({
+      (set, get) => ({
+        getSidebarWidth: () => {
+          const { isMainBarCollapsed, isSubBarCollapsed } = get();
+
+          if (isMainBarCollapsed && isSubBarCollapsed)
+            return WIDTH.sidebarCollapsed;
+
+          if (!isMainBarCollapsed && !isSubBarCollapsed)
+            return WIDTH.sidebarExpanded * 2;
+
+          if (isMainBarCollapsed && !isSubBarCollapsed)
+            return WIDTH.sidebarExpanded + WIDTH.sidebarCollapsed;
+
+          if (!isMainBarCollapsed && isSubBarCollapsed)
+            return WIDTH.sidebarExpanded;
+
+          return 0;
+        },
+        isMainBarCollapsed: true,
+        isMainBarLocked: true,
+        isSubBarCollapsed: false,
         removeSidebarStates: keys =>
           set(() => {
             const newState: SidebarState = {};
@@ -34,7 +56,7 @@ export const useSidebarStore = create<SidebarAction & SidebarState>()(
           }),
       }),
       {
-        name: 'sidebar-store',
+        name: 'store-sidebar',
         storage: createJSONStorage(() => localStorage), // default
       },
     ),

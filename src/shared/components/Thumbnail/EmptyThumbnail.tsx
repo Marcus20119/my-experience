@@ -1,4 +1,4 @@
-import { ReactComponent as ICEmpty } from '@/shared/assets/svgs/empty.svg';
+import { ReactComponent as LogoEmpty } from '@/shared/assets/svgs/empty.svg';
 import { Flex, Typography } from 'antd';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,10 +15,10 @@ interface Props {
 
 function DisplayIcon({ type }: { type?: 'empty-data' | 'empty-search' }) {
   if (type === 'empty-data') {
-    return <ICEmpty />;
+    return <LogoEmpty />;
   }
 
-  return <ICEmpty />;
+  return <LogoEmpty />;
 }
 
 export function EmptyThumbnail({ description, title, type }: Props) {

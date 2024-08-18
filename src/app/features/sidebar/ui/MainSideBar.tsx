@@ -1,5 +1,5 @@
 import { COLOR } from '@/shared/assets/styles/constants';
-import { ReactComponent as ICReact } from '@/shared/assets/svgs/ic-react.svg';
+import { ReactComponent as LogoReact } from '@/shared/assets/svgs/logo-react.svg';
 import { Flex, Tooltip, Typography } from 'antd';
 import { ToggleOffCircle, ToggleOnCircle } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +43,7 @@ function MainSideBar() {
     <Flex
       className={cn(
         'h-full bg-neutral-900 p-4 transition-all duration-300 ease-in-out',
-        isMainBarCollapsed ? 'w-20' : 'w-52',
+        isMainBarCollapsed ? 'w-sidebarCollapsed' : 'w-sidebarExpanded',
       )}
       gap="1rem"
       onMouseEnter={onExpandMainSidebar}
@@ -58,7 +58,7 @@ function MainSideBar() {
         )}
         gap="0.5rem"
       >
-        <ICReact className="h-8 w-8 flex-shrink-0" />
+        <LogoReact className="h-8 w-8 flex-shrink-0" />
         {!isMainBarCollapsed ? (
           <Text className="line-clamp-1 font-mono text-2xl text-primaryText transition-all">
             ReactJS

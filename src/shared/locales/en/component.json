@@ -1,0 +1,17 @@
+{
+  "component": {
+    "table": {
+      "action": "Action",
+      "address": "Address",
+      "bio": "Bio",
+      "birthday": "Birthday",
+      "city": "City",
+      "gallery": "Gallery",
+      "gender": "Gender",
+      "job": "Job",
+      "nationality": "Nationality",
+      "phoneNumber": "Phone number",
+      "user": "User"
+    }
+  }
+}

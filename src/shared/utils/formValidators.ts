@@ -1,6 +1,6 @@
 import type { Rule } from 'antd/lib/form';
 import i18next from 'i18next';
-import { useLocalStore } from '../stores/localStore';
+import { useLocalStore } from '../stores/local.store';
 
 const validateRegex = {
   email: /^[^@]+@[^@]+\.[^@.]{2,}$/,

@@ -88,7 +88,7 @@ export default ({ mode }: viteConfigProps) => {
     },
     server: {
       open: true,
-      port: 3000,
+      port: 3002,
     },
   });
 };

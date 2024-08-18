@@ -3,7 +3,7 @@ import type { ParseKeys } from 'i18next';
 import type { DetailedHTMLProps, ThHTMLAttributes } from 'react';
 import type { ResizableProps } from 'react-resizable';
 
-export interface TableEntity {
+export interface OriginalTableEntity {
   address: string;
   bio: string;
   city: string;
@@ -37,10 +37,10 @@ export type HeaderCellProps = DetailedHTMLProps<
 };
 
 export type CustomOnHeaderCell<T> = (
-  column: TableWrapperColumn<T>,
+  column: MyTableColumn<T>,
 ) => HeaderCellProps;
 
-export interface TableWrapperColumn<T>
+export interface MyTableColumn<T>
   extends Omit<ColumnType<T>, 'key' | 'onHeaderCell' | 'width'> {
   key: string;
   onHeaderCell?: CustomOnHeaderCell<T>;

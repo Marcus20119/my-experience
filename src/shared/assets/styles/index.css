@@ -49,6 +49,8 @@ body {
     color: var(--primary-color);
     background: var(--primaryLight-color);
   }
+
+  user-select: none;
 }
 
 textarea {

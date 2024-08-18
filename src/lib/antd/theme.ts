@@ -10,6 +10,7 @@ import { PAGINATION } from './design-tokens/pagination';
 import { SELECT } from './design-tokens/select';
 import { SLIDER } from './design-tokens/slider';
 import { STEPS } from './design-tokens/steps';
+import { TABLE } from './design-tokens/table';
 import { TABS } from './design-tokens/tabs';
 import { TYPOGRAPHY } from './design-tokens/typography';
 
@@ -26,6 +27,7 @@ export const theme = {
     ['Select']: SELECT,
     ['Slider']: SLIDER,
     ['Steps']: STEPS,
+    ['Table']: TABLE,
     ['Tabs']: TABS,
     ['Typography']: TYPOGRAPHY,
   },

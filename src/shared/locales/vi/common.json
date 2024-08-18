@@ -46,6 +46,7 @@
       "email": "Email",
       "fullName": "Họ và tên",
       "phoneNumber": "Số điện thoại",
+      "results": "Kết quả",
       "sortBy": "Sắp xếp theo"
     },
     "message": {

@@ -46,6 +46,7 @@
       "email": "Email",
       "fullName": "Full name",
       "phoneNumber": "Phone number",
+      "results": "Results",
       "sortBy": "Sort by"
     },
     "message": {

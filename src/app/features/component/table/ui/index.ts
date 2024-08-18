@@ -1,2 +1,2 @@
 export { default as Cell } from './Cell';
-export { default as MyTable } from './MyTable';
+export { default as OriginalTable } from './OriginalTable';

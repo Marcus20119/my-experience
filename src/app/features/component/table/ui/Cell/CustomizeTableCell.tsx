@@ -1,15 +1,17 @@
 import type {
   CustomizeColumnProps,
   CustomizeTableProps,
+  DragIndexState,
+  MyTableColumn,
 } from '@/app/features/component/table';
-import type {
-  DragEndEvent,
-  DragOverEvent,
-  UniqueIdentifier,
-} from '@dnd-kit/core';
+import type { DragEndEvent, DragOverEvent } from '@dnd-kit/core';
 import type { CheckboxProps } from 'antd';
+import type { AnyObject } from 'antd/lib/_util/type';
 import type { Key } from 'react';
-import { useTableColumnsStore } from '@/app/features/component/table';
+import {
+  DragIndexContext,
+  useTableStore,
+} from '@/app/features/component/table';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { useToggle } from '@/shared/hooks';
 import {
@@ -30,28 +32,13 @@ import { CSS } from '@dnd-kit/utilities';
 import { Icon } from '@iconify/react';
 import { Checkbox, Flex, Popover, Tooltip, Typography } from 'antd';
 import { Refresh, Setting2 } from 'iconsax-react';
-import { createContext, useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/tailwind';
 
 const { Text } = Typography;
 
 const MAX_SHOW_ITEM = 7;
-
-export const DragIndexContext = createContext<DragIndexState>({
-  active: -1,
-  over: -1,
-});
-
-export interface DragIndexState {
-  active: UniqueIdentifier;
-  direction?: 'bottom' | 'top';
-  over: UniqueIdentifier | undefined;
-}
-
-interface CustomizeTableCellProps {
-  tableName: string;
-}
 
 function DraggableCheckboxItem({
   id,
@@ -107,56 +94,20 @@ function DraggableCheckboxItem({
   );
 }
 
-function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
+interface Props {
+  initialColumns: MyTableColumn<AnyObject>[];
+  tableName: string;
+}
+
+function CustomizeTableCell({ initialColumns, tableName }: Props) {
   const { t } = useTranslation();
   const { onToggle, open } = useToggle();
-
-  const [dragIndex, setDragIndex] = useState<DragIndexState>({
-    active: -1,
-    over: -1,
-  });
-
-  const { setActiveColumnKeys, setOrderColumnKeys, tables } =
-    useTableColumnsStore();
-
-  const table: CustomizeTableProps = tables.find(
-    table => table.name === tableName,
-  ) ?? {
-    activeColumnKeys: [],
-    columns: [],
-    name: '',
-    orderColumnKeys: [],
-  };
-
-  const { activeColumnKeys, columns, orderColumnKeys } = table;
-
-  const formattedColumns: CustomizeColumnProps[] = useMemo(() => {
-    if (!orderColumnKeys) {
-      return (
-        columns?.map((column, i) => ({
-          ...column,
-          index: i,
-        })) ?? []
-      );
-    }
-
-    return (
-      orderColumnKeys?.map((key, i) => {
-        const column = columns?.find(
-          col => col.key === key,
-        ) as CustomizeColumnProps;
-
-        return {
-          ...column,
-          index: i,
-        };
-      }) ?? []
-    );
-  }, [orderColumnKeys, columns]);
-
-  const handleChangeSelectedColumnKeys = (values: string[]) => {
-    setActiveColumnKeys(tableName, values as Key[]);
-  };
+  const {
+    getTable,
+    initTableColumns,
+    setActiveColumnKeys,
+    setOrderColumnKeys,
+  } = useTableStore();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -165,6 +116,30 @@ function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
       },
     }),
   );
+
+  const [dragIndex, setDragIndex] = useState<DragIndexState>({
+    active: -1,
+    over: -1,
+  });
+
+  const { activeColumnKeys, columns, orderColumnKeys }: CustomizeTableProps =
+    getTable(tableName);
+
+  const orderedColumns: CustomizeColumnProps[] =
+    orderColumnKeys?.map((key, i) => {
+      const column = columns?.find(
+        col => col.key === key,
+      ) as CustomizeColumnProps;
+
+      return {
+        ...column,
+        index: i,
+      };
+    }) ?? [];
+
+  const handleChangeSelectedColumnKeys = (values: string[]) => {
+    setActiveColumnKeys(tableName, values as Key[]);
+  };
 
   const onDragEnd = ({ active, over }: DragEndEvent) => {
     if (!over) return;
@@ -180,12 +155,12 @@ function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
       }
 
       // prevent changing the last column order
-      if (over.id === formattedColumns.length - 1) {
-        overId = formattedColumns.length - 2;
+      if (over.id === orderedColumns.length - 1) {
+        overId = orderedColumns.length - 2;
       }
 
       const newColumns = arrayMove(
-        formattedColumns,
+        orderedColumns,
         Number(active.id),
         Number(overId),
       );
@@ -203,8 +178,8 @@ function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
   };
 
   const onDragOver = ({ active, over }: DragOverEvent) => {
-    const activeIndex = formattedColumns.findIndex(i => i.index === active.id);
-    const overIndex = formattedColumns.findIndex(i => i.index === over?.id);
+    const activeIndex = orderedColumns.findIndex(i => i.index === active.id);
+    const overIndex = orderedColumns.findIndex(i => i.index === over?.id);
 
     setDragIndex({
       active: active.id,
@@ -271,7 +246,7 @@ function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
             sensors={sensors}
           >
             <SortableContext
-              items={formattedColumns.map(i => i.index)}
+              items={orderedColumns.map(i => i.index)}
               strategy={verticalListSortingStrategy}
             >
               <DragIndexContext.Provider value={dragIndex}>
@@ -285,7 +260,7 @@ function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
                   onChange={handleChangeSelectedColumnKeys}
                   value={(activeColumnKeys ?? []) as string[]}
                 >
-                  {formattedColumns?.map((column, index) => (
+                  {orderedColumns?.map((column, index) => (
                     <DraggableCheckboxItem
                       className="ml-0"
                       disabled={index === 0 || column.key === 'actions'}
@@ -314,7 +289,14 @@ function CustomizeTableCell({ tableName }: CustomizeTableCellProps) {
       placement="bottomRight"
       trigger={['click']}
     >
-      <Flex align="baseline" className="w-full cursor-pointer" justify="center">
+      <Flex
+        align="baseline"
+        className="customize-cell w-full cursor-pointer"
+        justify="center"
+        onClick={() => {
+          initTableColumns(tableName, initialColumns);
+        }}
+      >
         <Tooltip placement="left" title={t('common.button.customizeColumns')}>
           <Setting2 size={20} />
         </Tooltip>

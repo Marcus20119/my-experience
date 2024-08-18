@@ -1,7 +1,10 @@
 {
   "component": {
+    "label": {
+      "selected": "Selected"
+    },
     "table": {
-      "action": "Action",
+      "actions": "Actions",
       "address": "Address",
       "bio": "Bio",
       "birthday": "Birthday",

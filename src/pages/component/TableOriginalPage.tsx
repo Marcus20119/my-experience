@@ -49,7 +49,7 @@ function TableOriginalPage() {
         />
       ),
       target: () => {
-        const element = document.querySelector('.z-tableResizableHandle');
+        const element = document.querySelector('.resize-handle');
         return element as HTMLElement;
       },
       title: 'Resizable columns',

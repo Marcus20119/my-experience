@@ -88,20 +88,22 @@ function MyTable<T extends AnyObject>({
     [columns, initialColumns],
   );
 
-  const customizedColumns: MyTableColumn<T>[] = useMemo(
-    () =>
-      orderColumnKeys.map(key => {
+  const customizedColumns: MyTableColumn<T>[] = useMemo(() => {
+    if (orderColumnKeys?.length) {
+      return orderColumnKeys.map(key => {
         const column = resizedColumns.find(
           col => col.key === key,
         ) as MyTableColumn<T>;
 
         return {
           ...column,
-          hidden: !activeColumnKeys.includes(column.key),
+          hidden: !activeColumnKeys.includes(column?.key),
         };
-      }),
-    [activeColumnKeys, orderColumnKeys, resizedColumns],
-  );
+      });
+    }
+
+    return resizedColumns;
+  }, [activeColumnKeys, orderColumnKeys, resizedColumns]);
 
   return (
     <div className="relative">
@@ -114,6 +116,7 @@ function MyTable<T extends AnyObject>({
         }}
         pagination={{
           className: 'mb-0',
+          defaultPageSize: 20,
           nextIcon: (
             <button
               className="ant-pagination-item-link flex items-center justify-center"

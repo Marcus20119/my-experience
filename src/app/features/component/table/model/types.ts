@@ -7,7 +7,6 @@ export interface OriginalTableEntity {
   address: string;
   bio: string;
   city: string;
-  gallery: string[];
   gender: string;
   id: string;
   job: string;
@@ -16,8 +15,9 @@ export interface OriginalTableEntity {
   user: {
     name: string;
     email: string;
-    avatar: string;
+    avatar?: string;
   };
+  vehicle: string;
   zodiacSign: string;
 }
 

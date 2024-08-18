@@ -14,7 +14,8 @@
       "job": "Job",
       "nationality": "Nationality",
       "phoneNumber": "Phone number",
-      "user": "User"
+      "user": "User",
+      "vehicle": "Vehicle"
     }
   }
 }

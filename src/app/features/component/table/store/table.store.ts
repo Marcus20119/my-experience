@@ -57,20 +57,46 @@ export const useTableStore = create(
               item => item.name === tableName,
             );
 
+            const keys = columns.map(column => column.key);
+
             if (index === -1) {
               const newTable: CustomizeTableProps = {
-                activeColumnKeys: columns.map(column => column.key),
+                activeColumnKeys: keys,
                 columns: columns.map((column, i) => ({
                   index: i,
                   key: column.key,
                   titleI18Key: column.titleI18Key,
                 })),
                 name: tableName,
-                orderColumnKeys: columns.map(column => column.key),
+                orderColumnKeys: keys,
               };
 
               return {
                 tables: [...state.tables, newTable],
+              };
+            }
+
+            const currentTable = state.tables[index];
+            const currentKeys = currentTable.columns.map(column => column.key);
+
+            if (JSON.stringify(currentKeys) !== JSON.stringify(keys)) {
+              return {
+                tables: state.tables.map(item => {
+                  if (item.name === tableName) {
+                    return {
+                      ...item,
+                      activeColumnKeys: keys,
+                      columns: columns.map((column, i) => ({
+                        index: i,
+                        key: column.key,
+                        titleI18Key: column.titleI18Key,
+                      })),
+                      orderColumnKeys: keys,
+                    };
+                  }
+
+                  return item;
+                }),
               };
             }
 

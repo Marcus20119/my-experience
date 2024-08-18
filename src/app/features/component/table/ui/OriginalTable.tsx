@@ -2,6 +2,7 @@ import { useHeaderStore } from '@/app/features/header';
 import { useSidebarStore } from '@/app/features/sidebar';
 import { HEIGHT } from '@/shared/assets/styles/constants/height';
 import { SPACING } from '@/shared/assets/styles/constants/spacing';
+import { WIDTH } from '@/shared/assets/styles/constants/width';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { Button, Flex } from 'antd';
 import { Edit2, Trash } from 'iconsax-react';
@@ -28,7 +29,8 @@ function OriginalTable() {
       SPACING.contentPadding * 2 +
       HEIGHT.tableHeader +
       HEIGHT.pagination,
-    widthOffset: getSidebarWidth() + SPACING.contentPadding * 2,
+    widthOffset:
+      getSidebarWidth() + SPACING.contentPadding * 2 + WIDTH.scrollbar,
   });
 
   return (

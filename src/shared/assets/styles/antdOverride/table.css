@@ -11,3 +11,13 @@
 .ant-table-cell {
   vertical-align: middle;
 }
+
+.ant-table-thead:has(.resizing) {
+  th {
+    pointer-events: none !important;
+
+    .resize-handle {
+      pointer-events: auto !important;
+    }
+  }
+}

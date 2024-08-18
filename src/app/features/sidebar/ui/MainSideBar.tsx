@@ -43,7 +43,7 @@ function MainSideBar() {
     <Flex
       className={cn(
         'h-full bg-neutral-900 p-4 transition-all duration-300 ease-in-out',
-        isMainBarCollapsed ? 'w-20' : 'w-52',
+        isMainBarCollapsed ? 'w-sidebarCollapsed' : 'w-sidebarExpanded',
       )}
       gap="1rem"
       onMouseEnter={onExpandMainSidebar}

@@ -3,7 +3,6 @@ import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import type { RemoveStates, SetStates } from '../types';
 
 interface LocalState {
-  hideContentHeader?: boolean;
   language?: string;
   primaryButtonTextColor?: string;
   primaryColor?: string;

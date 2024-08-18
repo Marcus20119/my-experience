@@ -84,7 +84,7 @@ function AntProvider() {
 
   return (
     <ConfigProvider
-      componentSize="middle"
+      componentSize="small"
       form={formConfig}
       locale={locale}
       theme={theme}

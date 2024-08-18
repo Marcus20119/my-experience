@@ -1,4 +1,4 @@
-import type { BreadCrumbItem } from '@/shared/types';
+import type { BreadCrumbItem } from '@/app/features/header';
 import { useGetTechnologyItems } from '@/app/features/technology';
 import { ContentLayout } from '@/app/layout';
 import { Ticket } from '@/shared/components/Ticket';

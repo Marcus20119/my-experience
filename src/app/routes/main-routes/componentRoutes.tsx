@@ -1,15 +1,21 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
-import TablePage from '@/pages/component/TablePage';
+import TableCollapsiblePage from '@/pages/component/TableCollapsiblePage';
+import TableEditablePage from '@/pages/component/TableEditablePage';
+import TableOriginalPage from '@/pages/component/TableOriginalPage';
 
 export const COMPONENT_ROUTES = [
   {
-    element: <TablePage />,
-    path: 'component',
+    element: <TableOriginalPage />,
+    path: 'component/table/original',
   },
   {
-    element: <TablePage />,
-    path: 'component/table',
+    element: <TableEditablePage />,
+    path: 'component/table/editable',
+  },
+  {
+    element: <TableCollapsiblePage />,
+    path: 'component/table/collapsible',
   },
   {
     element: <div>Form Page</div>,

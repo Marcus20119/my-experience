@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import type { RefObject } from 'react';
 import { useEffect, useState } from 'react';
 

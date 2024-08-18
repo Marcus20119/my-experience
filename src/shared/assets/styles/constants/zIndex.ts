@@ -1,5 +1,6 @@
 export const Z_INDEX = {
-  ['header-content']: '5',
-  ['header-main']: '10',
+  headerContent: '5',
+  headerMain: '10',
   sidebar: '20',
+  tableResizableHandle: '1',
 };

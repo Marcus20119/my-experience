@@ -1,17 +1,27 @@
 import { Flex } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { Header } from '../features/header';
-import { Sidebar } from '../features/sidebar';
+import { Sidebar, useSidebarStore } from '../features/sidebar';
 
 function MainLayout() {
+  const { getSidebarWidth } = useSidebarStore();
+
+  const sideBarWidth = getSidebarWidth();
+
   return (
     <Flex className="min-h-screen">
       <Sidebar />
 
-      <div className="flex-1">
+      <Flex
+        className="transition-all duration-300"
+        style={{
+          width: `calc(100% - ${sideBarWidth}px)`,
+        }}
+        vertical
+      >
         <Header />
         <Outlet />
-      </div>
+      </Flex>
     </Flex>
   );
 }

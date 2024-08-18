@@ -47,7 +47,7 @@ export const useGetSidebarItems = () => {
           key: 'table',
           label: t('layout.title.table'),
           match: '/component/table',
-          path: '/component/table',
+          path: '/component/table/original',
         },
         {
           key: 'form',
@@ -66,7 +66,7 @@ export const useGetSidebarItems = () => {
       key: 'component',
       label: t('layout.title.component'),
       match: '/component',
-      path: '/component/table',
+      path: '/component/table/original',
     },
     {
       icon: <Image />,
@@ -92,7 +92,7 @@ export const useGetSidebarItems = () => {
   ];
 
   const activeMainKey = mainSidebarItems.find(item =>
-    pathname.includes(item.match as string),
+    pathname.includes(item.match),
   )?.key;
 
   const mainLabel = mainSidebarItems.find(
@@ -104,7 +104,7 @@ export const useGetSidebarItems = () => {
   )?.children;
 
   const activeSubKey = subSidebarItems?.find(item =>
-    pathname.includes(item.match as string),
+    pathname.includes(item.match),
   )?.key;
 
   return {

@@ -1,73 +1,39 @@
+import type { ParseKeys } from 'i18next';
 import type { Key } from 'react';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
-export interface ColumnProps {
+export interface CustomizeColumnProps {
+  index: number;
   key: Key;
-  title?: string | null;
+  titleI18Key: ParseKeys;
 }
 
-export interface TableProps {
-  activeColumnsKeys?: Key[];
-  columnOrder?: Key[];
-  columns: ColumnProps[];
-  language: string;
+export interface CustomizeTableProps {
+  activeColumnKeys?: Key[];
+  columns: CustomizeColumnProps[];
   name: string;
+  orderColumnKeys?: Key[];
 }
 
 interface TableColumnsState {
-  tables: TableProps[];
+  tables: CustomizeTableProps[];
 }
 
 interface TableColumnsAction {
-  changeLanguage: (
-    tableName: string,
-    language: string,
-    columns: ColumnProps[],
-  ) => void;
-  initTableColumns: (table: TableProps) => void;
-  resetShowingTableColumns: () => void;
-  resetTable: (tableName: string, newTable: TableProps) => void;
-  setColumnOrder: (tableName: string, columnKeys: Key[]) => void;
-  setShowAllColumns: (tableName: string) => void;
-  setShowingTableColumns: (tableName: string, columnKeys: Key[]) => void;
+  initTableColumns: (table: CustomizeTableProps) => void;
+  resetTable: (tableName: string, newTable: CustomizeTableProps) => void;
+  setActiveColumnKeys: (tableName: string, columnKeys: Key[]) => void;
+  setOrderColumnKeys: (tableName: string, columnKeys: Key[]) => void;
 }
 
 export const useTableColumnsStore = create(
   devtools(
     persist<TableColumnsState & TableColumnsAction>(
       set => ({
-        changeLanguage: (tableName, language, columns) => {
-          set(state => {
-            const selectedTable = state.tables.find(
-              item => item.name === tableName,
-            ) as TableProps;
-
-            if (!selectedTable) return state;
-
-            return {
-              tables: state.tables.map(item => {
-                if (item.name === tableName) {
-                  return {
-                    ...item,
-                    columns,
-                    language,
-                  };
-                }
-
-                return item;
-              }),
-            };
-          });
-        },
-        initTableColumns: (table: TableProps) => {
+        initTableColumns: (table: CustomizeTableProps) => {
           set(state => ({
             tables: [...state.tables, table],
-          }));
-        },
-        resetShowingTableColumns: () => {
-          set(() => ({
-            tables: [],
           }));
         },
         resetTable: (tableName, newTable) => {
@@ -81,7 +47,29 @@ export const useTableColumnsStore = create(
             }),
           }));
         },
-        setColumnOrder: (table, columnKeys) => {
+        setActiveColumnKeys: (tableName, columnKeys) => {
+          set(state => {
+            const selectedTable = state.tables.find(
+              item => item.name === tableName,
+            ) as CustomizeTableProps;
+
+            if (!selectedTable) return state;
+
+            return {
+              tables: state.tables.map(item => {
+                if (item.name === tableName) {
+                  return {
+                    ...item,
+                    activeColumnKeys: columnKeys,
+                  };
+                }
+
+                return item;
+              }),
+            };
+          });
+        },
+        setOrderColumnKeys: (table, columnKeys) => {
           set(state => {
             const selectedTable = state.tables.find(
               item => item.name === table,
@@ -94,51 +82,7 @@ export const useTableColumnsStore = create(
                 if (item.name === table) {
                   return {
                     ...item,
-                    columnOrder: columnKeys,
-                  };
-                }
-
-                return item;
-              }),
-            };
-          });
-        },
-        setShowAllColumns: tableName => {
-          set(state => {
-            const selectedTable = state.tables.find(
-              item => item.name === tableName,
-            ) as TableProps;
-
-            if (!selectedTable) return state;
-
-            return {
-              tables: state.tables.map(item => {
-                if (item.name === tableName) {
-                  return {
-                    ...item,
-                    activeColumnsKeys: item.columns.map(column => column.key),
-                  };
-                }
-
-                return item;
-              }),
-            };
-          });
-        },
-        setShowingTableColumns: (tableName, columnKeys) => {
-          set(state => {
-            const selectedTable = state.tables.find(
-              item => item.name === tableName,
-            ) as TableProps;
-
-            if (!selectedTable) return state;
-
-            return {
-              tables: state.tables.map(item => {
-                if (item.name === tableName) {
-                  return {
-                    ...item,
-                    activeColumnsKeys: columnKeys,
+                    orderColumnKeys: columnKeys,
                   };
                 }
 

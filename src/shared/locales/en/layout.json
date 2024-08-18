@@ -1,5 +1,8 @@
 {
   "layout": {
+    "action": {
+      "introduction": "Introduction"
+    },
     "lockSidebar": {
       "lock": "Lock Sidebar",
       "unlock": "Unlock Sidebar"
@@ -7,12 +10,15 @@
     "title": {
       "animation": "Animation",
       "calendar": "Calendar",
+      "collapsibleTable": "Collapsible table",
       "component": "Component",
       "configuration": "Configuration",
+      "editableTable": "Editable table",
       "form": "Form",
       "game": "Game",
       "image": "Image",
       "language": "Language",
+      "originalTable": "Original table",
       "other": "Other",
       "table": "Table",
       "technology": "Technology",

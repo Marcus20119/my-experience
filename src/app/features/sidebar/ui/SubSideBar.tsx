@@ -25,7 +25,7 @@ function SubSideBar() {
     <Flex
       className={cn(
         'relative h-full bg-neutral-50 py-4 transition-all duration-300 ease-in-out',
-        isSubBarCollapsed ? 'w-0' : 'w-52',
+        isSubBarCollapsed ? 'w-0' : 'w-sidebarExpanded',
       )}
       gap="1rem"
       vertical

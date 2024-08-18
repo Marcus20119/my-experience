@@ -3,3 +3,9 @@
   height: 1.25rem !important;
   transform: translateY(-0.25rem) !important;
 }
+
+.ant-select-open {
+  .ant-select-selector {
+    box-shadow: 0 0 0 2px var(--neutral-300-color) !important;
+  }
+}

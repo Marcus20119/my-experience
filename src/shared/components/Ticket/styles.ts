@@ -32,7 +32,6 @@ export const StyledThreeDTicket = styled.div<{
     transition-timing-function: cublogo-bezier(0.4, 0, 0.2, 1);
     transition-duration: 500ms;
     border-radius: 8px;
-    /* overflow: hidden; */
   }
 
   .content-box {
@@ -44,7 +43,7 @@ export const StyledThreeDTicket = styled.div<{
     transition-property: all;
     transition-timing-function: cublogo-bezier(0.4, 0, 0.2, 1);
     transition-duration: 500ms;
-    padding: 60px 25px 25px 25px;
+    padding: 52px 25px 25px 25px;
     transform-style: preserve-3d;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;

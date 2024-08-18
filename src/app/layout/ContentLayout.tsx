@@ -1,23 +1,26 @@
-import type { BreadCrumbItem } from '@/shared/types';
 import type { BreadcrumbProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { useAppNavigate } from '@/shared/hooks';
-import { useLocalStore } from '@/shared/stores';
-import { Breadcrumb, Flex, Typography } from 'antd';
+import { Breadcrumb, Dropdown, Flex, Tabs, Typography } from 'antd';
 import { ArrowDown2, ArrowRight2, ArrowUp2 } from 'iconsax-react';
+import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
+import type { BreadCrumbItem, HeaderTabItem } from '../features/header';
+import { useHeaderStore } from '../features/header';
 
 const { Text, Title } = Typography;
 
 interface Props {
   breadCrumb?: BreadCrumbItem[];
   children: React.ReactNode;
+  tabs?: HeaderTabItem[];
   title: string;
 }
 
-function ContentLayout({ breadCrumb, children, title }: Props) {
+function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
   const { navigate } = useAppNavigate();
-  const { hideContentHeader, setLocalStates } = useLocalStore();
+  const { pathname } = useLocation();
+  const { isContentHeaderCollapsed, setHeaderStates } = useHeaderStore();
 
   const formattedBreadCrumb: BreadcrumbProps['items'] = breadCrumb?.map(
     ({ onClick, route, title }) => ({
@@ -41,18 +44,23 @@ function ContentLayout({ breadCrumb, children, title }: Props) {
   );
 
   return (
-    <Flex vertical>
-      <div className="z-header-content sticky left-0 top-[3.5rem]">
+    <Flex className="flex-1" vertical>
+      <div className="sticky left-0 top-[3.5rem] z-headerContent">
         <Flex
           align="top"
           className={cn(
             'box-border overflow-hidden border-neutral-200 bg-neutral-0 px-4 transition-all duration-300',
-            hideContentHeader
+            isContentHeaderCollapsed
               ? 'h-0 max-h-0 overflow-hidden'
-              : 'h-20 max-h-20 border-0 border-b border-solid',
+              : 'h-headerContent max-h-20 border-0 border-b border-solid',
           )}
         >
-          <Flex className="py-3" gap="0.375rem" vertical>
+          <Flex
+            className="w-full py-3"
+            gap="0.375rem"
+            justify="space-between"
+            vertical
+          >
             {breadCrumb ? (
               <Breadcrumb
                 items={formattedBreadCrumb}
@@ -67,30 +75,65 @@ function ContentLayout({ breadCrumb, children, title }: Props) {
             ) : null}
             <Title>{title}</Title>
           </Flex>
-        </Flex>
 
-        <Flex
-          align="center"
-          className="absolute bottom-0 right-0 h-6 w-7 cursor-pointer rounded-t-md bg-neutral-100 hover:bg-neutral-50"
-          justify="center"
-          onClick={() => setLocalStates({ hideContentHeader: true })}
-        >
-          <ArrowUp2 size="20" />
+          <Flex align="end" className="h-full">
+            {tabs?.length ? (
+              <Tabs
+                className="[&_.ant-tabs-nav]:m-0"
+                defaultActiveKey={pathname}
+                items={tabs.map(tab => ({
+                  key: tab.route.path,
+                  label: (
+                    <Dropdown
+                      menu={{
+                        items: tab.menuItems,
+                      }}
+                      open={pathname === tab.route.path ? undefined : false}
+                      placement="bottomCenter"
+                      trigger={['hover']}
+                    >
+                      <Flex align="center" gap="0.5rem">
+                        <Text className="whitespace-nowrap">{tab.label}</Text>
+                        {pathname === tab.route.path ? (
+                          <ArrowDown2 size="16" />
+                        ) : null}
+                      </Flex>
+                    </Dropdown>
+                  ),
+                }))}
+                onChange={key =>
+                  navigate({
+                    path: key as RouterPath,
+                  })
+                }
+                size="small"
+                type="card"
+              />
+            ) : null}
+          </Flex>
         </Flex>
 
         <Flex
           align="center"
           className={cn(
             'absolute right-0 top-0 h-6 w-7 cursor-pointer rounded-b-md bg-neutral-100 transition-all duration-300 hover:bg-neutral-50',
-            hideContentHeader ? 'opacity-100' : 'opacity-0',
+            isContentHeaderCollapsed ? 'shadow-md' : 'shadow-none',
           )}
           justify="center"
-          onClick={() => setLocalStates({ hideContentHeader: false })}
+          onClick={() =>
+            setHeaderStates({
+              isContentHeaderCollapsed: !isContentHeaderCollapsed,
+            })
+          }
         >
-          <ArrowDown2 size="20" />
+          {isContentHeaderCollapsed ? (
+            <ArrowDown2 size="20" />
+          ) : (
+            <ArrowUp2 size="20" />
+          )}
         </Flex>
       </div>
-      <Flex className="h-[2000px] p-4">{children}</Flex>
+      <div className="flex-1 overflow-hidden p-contentPadding">{children}</div>
     </Flex>
   );
 }

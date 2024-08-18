@@ -24,18 +24,18 @@ body {
 * {
   /* Scrollbar */
   &::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
+    width: 12px !important;
+    height: 12px !important;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: var(--neutral-100-color);
+    background-color: var(--neutral-100-color) !important;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--neutral-400-color);
-    border: 3px solid var(--neutral-100-color);
-    border-radius: 8px;
+    background-color: var(--neutral-400-color) !important;
+    border: 3px solid var(--neutral-100-color) !important;
+    border-radius: 8px !important;
   }
 
   /* Caret */

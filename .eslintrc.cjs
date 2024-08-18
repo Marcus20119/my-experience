@@ -275,6 +275,13 @@ module.exports = {
         ],
       },
     ],
+    'perfectionist/sort-exports': [
+      'error',
+      {
+        type: 'natural',
+        order: 'asc',
+      },
+    ],
     'perfectionist/sort-jsx-props': [
       'error',
       {

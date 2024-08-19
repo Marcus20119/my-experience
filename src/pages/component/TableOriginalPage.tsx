@@ -1,6 +1,6 @@
 import type { ItemType } from 'antd/es/menu/interface';
 import type { TourProps } from 'antd/lib';
-import { OriginalTable } from '@/app/features/component/table';
+import { UserTable } from '@/app/features/component/table';
 import { TableLayout } from '@/app/layout';
 import { Value } from '@/shared/components';
 import { useToggle } from '@/shared/hooks';
@@ -123,7 +123,7 @@ function TableOriginalPage() {
       }}
       tabItems={tabItems}
     >
-      <OriginalTable />
+      <UserTable />
       <Tour onClose={onCloseTour} open={openTour} steps={steps} />
     </TableLayout>
   );

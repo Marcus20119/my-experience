@@ -1,18 +1,27 @@
 {
   "component": {
+    "button": {
+      "student": "Student"
+    },
     "label": {
       "selected": "Selected"
     },
     "table": {
+      "academicTranscript": "Academic transcript",
       "actions": "Actions",
       "address": "Address",
+      "age": "Age",
+      "applyDate": "Apply date",
       "bio": "Bio",
+      "birthDate": "Birth date",
       "birthday": "Birthday",
       "city": "City",
       "gallery": "Gallery",
       "gender": "Gender",
       "job": "Job",
+      "name": "Name",
       "nationality": "Nationality",
+      "note": "Note",
       "phoneNumber": "Phone number",
       "user": "User",
       "vehicle": "Vehicle"

@@ -15,14 +15,17 @@ interface Props<T> extends Omit<TableProps<T>, 'columns'> {
   footerActions?: (selectedRowKeys: React.Key[]) => React.ReactNode;
   initialColumns?: MyTableColumn<T>[];
   showCustomizeTable?: boolean;
+  showPagination?: boolean;
   showRowSelection?: boolean;
   tableName: string;
 }
 
 function MyTable<T extends AnyObject>({
+  components,
   footerActions,
   initialColumns = [],
   showCustomizeTable,
+  showPagination = true,
   showRowSelection,
   tableName,
   ...props
@@ -113,32 +116,37 @@ function MyTable<T extends AnyObject>({
           header: {
             cell: Cell.Header,
           },
+          ...components,
         }}
-        pagination={{
-          className: 'mb-0',
-          defaultPageSize: 20,
-          nextIcon: (
-            <button
-              className="ant-pagination-item-link flex items-center justify-center"
-              tabIndex={-1}
-              type="button"
-            >
-              <ArrowRight2 size="16" />
-            </button>
-          ),
-          prevIcon: (
-            <button
-              className="ant-pagination-item-link flex items-center justify-center"
-              tabIndex={-1}
-              type="button"
-            >
-              <ArrowLeft2 size="16" />
-            </button>
-          ),
-          showLessItems: true,
-          showTotal: (total: number, range: [number, number]) =>
-            `${range[0]}-${range[1]}/${total} ${t('common.label.results').toLowerCase()}`,
-        }}
+        pagination={
+          showPagination
+            ? {
+                className: 'mb-0',
+                defaultPageSize: 20,
+                nextIcon: (
+                  <button
+                    className="ant-pagination-item-link flex items-center justify-center"
+                    tabIndex={-1}
+                    type="button"
+                  >
+                    <ArrowRight2 size="16" />
+                  </button>
+                ),
+                prevIcon: (
+                  <button
+                    className="ant-pagination-item-link flex items-center justify-center"
+                    tabIndex={-1}
+                    type="button"
+                  >
+                    <ArrowLeft2 size="16" />
+                  </button>
+                ),
+                showLessItems: true,
+                showTotal: (total: number, range: [number, number]) =>
+                  `${range[0]}-${range[1]}/${total} ${t('common.label.results').toLowerCase()}`,
+              }
+            : false
+        }
         rowSelection={
           showRowSelection
             ? {

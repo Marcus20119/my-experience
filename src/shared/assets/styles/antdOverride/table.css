@@ -21,3 +21,35 @@
     }
   }
 }
+
+/* Editable Table */
+.editable-table {
+  tbody {
+    .ant-table-cell {
+      padding: 0.25rem 0.5rem !important;
+    }
+  }
+
+  .editable-cell {
+    position: relative;
+  }
+
+  .editable-row {
+    height: 3.05rem !important; /* 48.8px */
+  }
+
+  .editable-cell-value-wrap {
+    padding: 5px 8px !important;
+    cursor: pointer;
+  }
+
+  .editable-row:hover .editable-cell-value-wrap {
+    padding: 4px 7px !important;
+    border: 1px solid var(--neutral-300-color);
+    border-radius: 2px;
+  }
+
+  .disabled-cell-value-wrap {
+    padding: 5px 8px !important;
+  }
+}

@@ -1,13 +1,13 @@
 import { Button, Flex } from 'antd';
 import { Edit2, Trash } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
-import type { MyTableColumn, OriginalTableEntity } from './types';
+import type { MyTableColumn, UserTableEntity } from './types';
 import { Cell } from '../ui';
 
-export const useOriginalTableColumns = () => {
+export const useUserTableColumns = () => {
   const { t } = useTranslation();
 
-  const columns: MyTableColumn<OriginalTableEntity>[] = [
+  const columns: MyTableColumn<UserTableEntity>[] = [
     {
       dataIndex: 'user',
       fixed: 'left',

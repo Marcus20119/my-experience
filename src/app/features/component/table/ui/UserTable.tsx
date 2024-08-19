@@ -6,8 +6,8 @@ import { WIDTH } from '@/shared/assets/styles/constants/width';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { Button, Flex } from 'antd';
 import { Edit2, Trash } from 'iconsax-react';
-import type { OriginalTableEntity } from '../model';
-import { mockTableData, useOriginalTableColumns } from '../model';
+import type { UserTableEntity } from '../model';
+import { mockTableData, useUserTableColumns } from '../model';
 import MyTable from './MyTable';
 
 function FooterActions() {
@@ -19,8 +19,8 @@ function FooterActions() {
   );
 }
 
-function OriginalTable() {
-  const { columns } = useOriginalTableColumns();
+function UserTable() {
+  const { columns } = useUserTableColumns();
   const { getHeaderHeight } = useHeaderStore();
   const { getSidebarWidth } = useSidebarStore();
   const { height, width } = useCalculateElementSize({
@@ -34,7 +34,7 @@ function OriginalTable() {
   });
 
   return (
-    <MyTable<OriginalTableEntity>
+    <MyTable<UserTableEntity>
       dataSource={mockTableData}
       footerActions={FooterActions}
       initialColumns={columns}
@@ -47,4 +47,4 @@ function OriginalTable() {
   );
 }
 
-export default OriginalTable;
+export default UserTable;

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/en';
-import type { OriginalTableEntity } from './types';
+import type { UserTableEntity } from './types';
 
-export const mockTableData: OriginalTableEntity[] = Array(120)
+export const mockTableData: UserTableEntity[] = Array(120)
   .fill(null)
   .map(() => ({
     address: faker.location.streetAddress(),

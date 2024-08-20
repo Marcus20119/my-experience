@@ -42,7 +42,7 @@ function UserTable() {
       scroll={{ x: width, y: height }}
       showCustomizeTable
       showRowSelection
-      tableName="originalTable"
+      tableName="customizableTable"
     />
   );
 }

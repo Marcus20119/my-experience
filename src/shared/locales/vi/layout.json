@@ -1,7 +1,9 @@
 {
   "layout": {
     "action": {
-      "introduction": "Introduction"
+      "introduction": "Introduction",
+      "removeData": "Remove data",
+      "saveData": "Save data"
     },
     "lockSidebar": {
       "lock": "Lock Sidebar",
@@ -13,12 +15,12 @@
       "collapsibleTable": "Collapsible table",
       "component": "Component",
       "configuration": "Configuration",
+      "customizableTable": "Customizable table",
       "editableTable": "Editable table",
       "form": "Form",
       "game": "Game",
       "image": "Image",
       "language": "Language",
-      "originalTable": "Original table",
       "other": "Other",
       "table": "Table",
       "technology": "Technology",

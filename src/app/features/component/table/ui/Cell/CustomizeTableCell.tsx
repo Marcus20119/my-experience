@@ -198,9 +198,9 @@ function CustomizeTableCell({ initialColumns, tableName }: Props) {
       return true;
     }
 
-    const originalOrder = columns?.map(i => i.key);
+    const customizableOrder = columns?.map(i => i.key);
 
-    if (JSON.stringify(originalOrder) !== JSON.stringify(orderColumnKeys)) {
+    if (JSON.stringify(customizableOrder) !== JSON.stringify(orderColumnKeys)) {
       return true;
     }
 

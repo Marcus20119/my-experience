@@ -16,8 +16,8 @@ function TableLabel({ children, route, tabItems }: Props) {
 
   const mainTitle = useMemo(() => {
     switch (route.path) {
-      case '/component/table/original': {
-        return t('layout.title.originalTable');
+      case '/component/table/customizable': {
+        return t('layout.title.customizableTable');
       }
 
       case '/component/table/editable': {
@@ -48,8 +48,8 @@ function TableLabel({ children, route, tabItems }: Props) {
 
   const headerTabs: HeaderTabItem[] = [
     {
-      label: t('layout.title.originalTable'),
-      route: { path: '/component/table/original' },
+      label: t('layout.title.customizableTable'),
+      route: { path: '/component/table/customizable' },
     },
     {
       label: t('layout.title.editableTable'),

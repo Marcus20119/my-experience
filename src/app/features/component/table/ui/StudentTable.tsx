@@ -36,7 +36,7 @@ function StudentTable({ onChange, students }: Props) {
     heightOffset:
       getHeaderHeight() +
       SPACING.contentPadding * 2 +
-      HEIGHT.tableHeader +
+      HEIGHT.tableHeader * 2 +
       +ADD_STUDENT_BUTTON_HEIGHT,
     widthOffset:
       getSidebarWidth() + SPACING.contentPadding * 2 + WIDTH.scrollbar,
@@ -44,20 +44,17 @@ function StudentTable({ onChange, students }: Props) {
 
   const defaultValue: EditableTableRow<StudentTableEntity> = useMemo(
     () => ({
-      age: 0,
       applyDate: [dayjs(), dayjs().add(1, 'month')],
       birthDate: dayjs(),
+      chemistry: 0,
+      english: 0,
       gender: undefined,
       key: 0,
+      literature: 0,
+      math: 0,
       name: 'Student 1',
       note: undefined,
-      scores: [
-        {
-          key: 'math',
-          name: 'math',
-          score: 0,
-        },
-      ],
+      physics: 0,
     }),
     [],
   );
@@ -106,7 +103,7 @@ function StudentTable({ onChange, students }: Props) {
       inputType: 'text',
       key: 'name',
       render: (_, { name }) => (
-        <Text className="w-full text-wrap text-sm">{name}</Text>
+        <Text className="input-text-cell w-full text-wrap text-sm">{name}</Text>
       ),
       title: t('component.table.name'),
       width: 180,
@@ -138,6 +135,7 @@ function StudentTable({ onChange, students }: Props) {
             },
           ]}
           placeholder={t('common.placeholder.selectGender')}
+          rootClassName="input-select-cell"
           value={student.gender}
         />
       ),
@@ -145,28 +143,13 @@ function StudentTable({ onChange, students }: Props) {
       width: 180,
     },
     {
-      dataIndex: 'age',
-      editable: true,
-      fixed: 'left',
-      inputNumberProps: {
-        min: 0,
-      },
-      inputType: 'number',
-      key: 'age',
-      render: (_, { age }) => (
-        <Text className="w-full text-wrap text-right text-sm">{age}</Text>
-      ),
-      title: t('component.table.age'),
-      width: 180,
-    },
-    {
+      align: 'right',
       dataIndex: 'birthDate',
       editable: true,
-      fixed: 'left',
       inputType: 'date',
       key: 'birthDate',
       render: (_, { birthDate }) => (
-        <Text className="w-full text-wrap text-right text-sm">
+        <Text className="input-date-cell w-full text-wrap text-right text-sm">
           {DateTimeTool.formatDate(birthDate)}
         </Text>
       ),
@@ -174,26 +157,126 @@ function StudentTable({ onChange, students }: Props) {
       width: 180,
     },
     {
+      align: 'right',
       dataIndex: 'applyDate',
       editable: true,
-      fixed: 'left',
       inputType: 'rangeDate',
       key: 'applyDate',
       render: (_, { applyDate }) => (
-        <Text className="w-full text-wrap text-right text-sm">
+        <Text className="input-range-date-cell w-full text-wrap text-right text-sm">
           {DateTimeTool.formatDateRange(applyDate?.[0], applyDate?.[1])}
         </Text>
       ),
       title: t('component.table.applyDate'),
-      width: 180,
+      width: 240,
     },
     {
+      align: 'center',
       children: [
         {
-          title: 'Math',
+          align: 'right',
+          dataIndex: 'math',
+          editable: true,
+          inputNumberProps: {
+            max: 10,
+            min: 0,
+            precision: 2,
+            step: 0.25,
+          },
+          inputType: 'number',
+          key: 'math',
+          render: (_, { math }) => (
+            <Text className="input-number-cell w-full text-wrap text-right text-sm">
+              {math}
+            </Text>
+          ),
+          title: t('component.table.math'),
+          width: 100,
+        },
+        {
+          align: 'right',
+          dataIndex: 'literature',
+          editable: true,
+          inputNumberProps: {
+            max: 10,
+            min: 0,
+            precision: 2,
+            step: 0.25,
+          },
+          inputType: 'number',
+          key: 'literature',
+          render: (_, { literature }) => (
+            <Text className="w-full text-wrap text-right text-sm">
+              {literature}
+            </Text>
+          ),
+          title: t('component.table.literature'),
+          width: 100,
+        },
+        {
+          align: 'right',
+          dataIndex: 'physics',
+          editable: true,
+          inputNumberProps: {
+            max: 10,
+            min: 0,
+            precision: 2,
+            step: 0.25,
+          },
+          inputType: 'number',
+          key: 'physics',
+          render: (_, { physics }) => (
+            <Text className="w-full text-wrap text-right text-sm">
+              {physics}
+            </Text>
+          ),
+          title: t('component.table.physics'),
+          width: 100,
+        },
+        {
+          align: 'right',
+          dataIndex: 'english',
+          editable: true,
+          inputNumberProps: {
+            max: 10,
+            min: 0,
+            precision: 2,
+            step: 0.25,
+          },
+          inputType: 'number',
+          key: 'english',
+          render: (_, { english }) => (
+            <Text className="w-full text-wrap text-right text-sm">
+              {english}
+            </Text>
+          ),
+          title: t('component.table.english'),
+          width: 100,
+        },
+        {
+          align: 'right',
+          dataIndex: 'chemistry',
+          editable: true,
+          inputNumberProps: {
+            max: 10,
+            min: 0,
+            precision: 2,
+            step: 0.25,
+          },
+          inputType: 'number',
+          key: 'chemistry',
+          render: (_, { chemistry }) => (
+            <Text className="w-full text-wrap text-right text-sm">
+              {chemistry}
+            </Text>
+          ),
+          title: t('component.table.chemistry'),
+          width: 100,
         },
       ],
+      editable: true,
       title: t('component.table.academicTranscript'),
+      width: 500,
     },
     {
       dataIndex: 'note',
@@ -205,12 +288,12 @@ function StudentTable({ onChange, students }: Props) {
       inputType: 'textarea',
       key: 'note',
       render: (_, { note }) => (
-        <Paragraph className="mb-0 w-full whitespace-pre-line text-wrap text-sm">
+        <Paragraph className="input-textarea-cell mb-0 w-full whitespace-pre-line text-wrap text-sm">
           {note}
         </Paragraph>
       ),
       title: t('component.table.note'),
-      width: 180,
+      width: 320,
     },
     {
       align: 'center',
@@ -232,7 +315,10 @@ function StudentTable({ onChange, students }: Props) {
             onConfirm={() => handleDelete(record?.key ?? '')}
             title={t('common.title.sureDelete')}
           >
-            <Button icon={<Trash size="20" />} />
+            <Button
+              icon={<Trash size="20" />}
+              rootClassName="delete-student-button"
+            />
           </Popconfirm>
         ) : null,
       width: 60,
@@ -246,6 +332,14 @@ function StudentTable({ onChange, students }: Props) {
 
     return {
       ...col,
+      children: col.children?.map(child => ({
+        ...child,
+        onCell: (record: EditableTableRow<StudentTableEntity>) => ({
+          ...child,
+          handleSave,
+          record,
+        }),
+      })),
       onCell: (record: EditableTableRow<StudentTableEntity>) => ({
         ...col,
         handleSave,
@@ -262,7 +356,7 @@ function StudentTable({ onChange, students }: Props) {
           key: index,
         })),
       );
-      setCount(students.length + 1);
+      setCount(students.length);
     }
 
     if (!students && count > 1) {
@@ -281,7 +375,7 @@ function StudentTable({ onChange, students }: Props) {
       />
       <Flex
         align="center"
-        className="cursor-pointer border border-x-0 border-b border-t-0 border-solid border-neutral-100 border-b-neutral-500 px-3 py-3 hover:bg-neutral-100 hover:text-system-information"
+        className="add-student-button cursor-pointer border border-x-0 border-b border-t-0 border-solid border-neutral-100 border-b-neutral-500 px-3 py-3 hover:bg-primaryLight hover:text-primary"
         gap="0.75rem"
         onClick={handleAdd}
         style={{ height: ADD_STUDENT_BUTTON_HEIGHT }}

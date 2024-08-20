@@ -1,3 +1,5 @@
+/* eslint-disable import/no-restricted-paths */
+import type { StudentTableEntity } from '@/app/features/component/table';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import type { RemoveStates, SetStates } from '../types';
@@ -6,6 +8,7 @@ interface LocalState {
   language?: string;
   primaryButtonTextColor?: string;
   primaryColor?: string;
+  students?: StudentTableEntity[];
 }
 
 interface LocalAction {

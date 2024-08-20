@@ -8,7 +8,7 @@ import { Tour } from 'antd';
 import { InfoCircle } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
 
-function TableOriginalPage() {
+function TableCustomizablePage() {
   const { t } = useTranslation();
   const {
     onClose: onCloseTour,
@@ -30,21 +30,21 @@ function TableOriginalPage() {
       description: (
         <Value.List
           value={[
-            'Includes all basic and some advanced features.',
-            'Always fit the window size.',
+            t('component.tour.customizableTable.overall.description.line1'),
+            t('component.tour.customizableTable.overall.description.line2'),
           ]}
         />
       ),
       placement: 'center',
-      title: 'Original table',
+      title: t('component.tour.customizableTable.overall.title'),
     },
     {
       description: (
         <Value.List
           value={[
-            'Hover here to see the resizable handle',
-            'Drag and drop to resize the column.',
-            'Double click to reset the size.',
+            t('component.tour.customizableTable.resize.description.line1'),
+            t('component.tour.customizableTable.resize.description.line2'),
+            t('component.tour.customizableTable.resize.description.line3'),
           ]}
         />
       ),
@@ -52,15 +52,15 @@ function TableOriginalPage() {
         const element = document.querySelector('.resize-handle');
         return element as HTMLElement;
       },
-      title: 'Resizable columns',
+      title: t('component.tour.customizableTable.resize.title'),
     },
     {
       description: (
         <Value.List
           value={[
-            'Click here to see the customizable columns panel.',
-            'Drag and drop to reorder the column.',
-            'Toggle the checkbox to show/hide the column.',
+            t('component.tour.customizableTable.customize.description.line1'),
+            t('component.tour.customizableTable.customize.description.line2'),
+            t('component.tour.customizableTable.customize.description.line3'),
           ]}
         />
       ),
@@ -68,22 +68,32 @@ function TableOriginalPage() {
         const element = document.querySelector('.customize-cell');
         return element as HTMLElement;
       },
-      title: 'Customizable columns',
-    },
-    {
-      description: <Value.List value={['Includes all pagination features.']} />,
-      target: () => {
-        const element = document.querySelector('.ant-pagination');
-        return element as HTMLElement;
-      },
-      title: 'Pagination',
+      title: t('component.tour.customizableTable.customize.title'),
     },
     {
       description: (
         <Value.List
           value={[
-            'Allow select multiple rows.',
-            'Add more action to these rows at table footer.',
+            t('component.tour.customizableTable.pagination.description.line1'),
+          ]}
+        />
+      ),
+      target: () => {
+        const element = document.querySelector('.ant-pagination');
+        return element as HTMLElement;
+      },
+      title: t('component.tour.customizableTable.pagination.title'),
+    },
+    {
+      description: (
+        <Value.List
+          value={[
+            t(
+              'component.tour.customizableTable.multipleSelection.description.line1',
+            ),
+            t(
+              'component.tour.customizableTable.multipleSelection.description.line2',
+            ),
           ]}
         />
       ),
@@ -91,35 +101,37 @@ function TableOriginalPage() {
         const element = document.querySelector('.ant-table-selection-column');
         return element as HTMLElement;
       },
-      title: 'Multiple selection',
+      title: t('component.tour.customizableTable.multipleSelection.title'),
     },
     {
       description: (
-        <Value.List value={['Basic sort feature by each column.']} />
+        <Value.List
+          value={[t('component.tour.customizableTable.sort.description.line1')]}
+        />
       ),
       target: () => {
         const element = document.querySelector('.ant-table-column-sorter');
         return element as HTMLElement;
       },
-      title: 'Sortable columns',
+      title: t('component.tour.customizableTable.sort.title'),
     },
     {
       description: (
         <Value.List
           value={[
-            'Filter feature is currently not include in this table because it based on BE query structure. ',
-            'Depends on each project, I will define this feature later.',
+            t('component.tour.customizableTable.filter.description.line1'),
+            t('component.tour.customizableTable.filter.description.line2'),
           ]}
         />
       ),
-      title: 'Filter',
+      title: t('component.tour.customizableTable.filter.title'),
     },
   ];
 
   return (
     <TableLayout
       route={{
-        path: '/component/table/original',
+        path: '/component/table/customizable',
       }}
       tabItems={tabItems}
     >
@@ -129,4 +141,4 @@ function TableOriginalPage() {
   );
 }
 
-export default TableOriginalPage;
+export default TableCustomizablePage;

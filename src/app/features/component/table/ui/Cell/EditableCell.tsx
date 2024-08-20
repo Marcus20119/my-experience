@@ -15,6 +15,7 @@ interface Props<T extends AnyObject> extends AdditionalEditableTableProps<T> {
   children: React.ReactNode;
   handleSave: (record: T) => void;
   record: T;
+  render?: () => React.ReactNode;
 }
 
 function EditableCell<T extends AnyObject>({
@@ -30,6 +31,7 @@ function EditableCell<T extends AnyObject>({
   inputTextProps,
   inputType = 'number',
   record,
+  render: _, // do not pass this prop to the td element
   ...restProps
 }: Props<T>) {
   const [editing, setEditing] = useState(false);

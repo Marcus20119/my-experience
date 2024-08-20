@@ -34,17 +34,16 @@ export interface UserTableEntity {
 }
 
 export interface StudentTableEntity {
-  age?: number;
   applyDate?: [Dayjs, Dayjs];
   birthDate?: Dayjs;
+  chemistry?: number;
+  english?: number;
   gender?: Gender;
+  literature?: number;
+  math?: number;
   name?: string;
   note?: string;
-  scores?: {
-    name: string;
-    key: string;
-    score?: number;
-  }[];
+  physics?: number;
 }
 
 export interface StudentFormEntity {
@@ -106,7 +105,9 @@ export interface EditableColumnType<T extends AnyObject>
       NonNullable<TableProps<T>['columns']>[number],
       'columns' | 'dataIndex'
     >,
-    AdditionalEditableTableProps<T> {}
+    AdditionalEditableTableProps<T> {
+  children?: EditableColumnType<T>[];
+}
 
 export type EditableTableRow<T extends AnyObject> = {
   key?: React.Key;

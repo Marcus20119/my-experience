@@ -15,16 +15,137 @@
       "bio": "Bio",
       "birthDate": "Birth date",
       "birthday": "Birthday",
+      "chemistry": "Chemistry",
       "city": "City",
+      "english": "English",
       "gallery": "Gallery",
       "gender": "Gender",
       "job": "Job",
+      "literature": "Literature",
+      "math": "Math",
       "name": "Name",
       "nationality": "Nationality",
       "note": "Note",
       "phoneNumber": "Phone number",
+      "physics": "Physics",
       "user": "User",
       "vehicle": "Vehicle"
+    },
+    "tour": {
+      "customizableTable": {
+        "customize": {
+          "description": {
+            "line1": "Click here to see the customizable columns panel.",
+            "line2": "Drag and drop to reorder the column.",
+            "line3": "Toggle the checkbox to show/hide the column."
+          },
+          "title": "Customizable columns"
+        },
+        "filter": {
+          "description": {
+            "line1": "Filter feature is currently not include in this table because it based on BE query structure.",
+            "line2": "Depends on each project, I will define this feature later."
+          },
+          "title": "Filter feature"
+        },
+        "multipleSelection": {
+          "description": {
+            "line1": "Allow select multiple rows.",
+            "line2": "Add more action to these rows at table footer."
+          },
+          "title": "Multiple selection"
+        },
+        "overall": {
+          "description": {
+            "line1": "Includes all basic and some advanced features.",
+            "line2": "Always fit the window size."
+          },
+          "title": "Customizable table"
+        },
+        "pagination": {
+          "description": {
+            "line1": "Includes all pagination features."
+          },
+          "title": "Pagination"
+        },
+        "resize": {
+          "description": {
+            "line1": "Hover here to see the resizable handle",
+            "line2": "Drag and drop to resize the column.",
+            "line3": "Double click to reset the size."
+          },
+          "title": "Resizable columns"
+        },
+        "sort": {
+          "description": {
+            "line1": "Basic sort feature by each column."
+          },
+          "title": "Sortable columns"
+        }
+      },
+      "editableTable": {
+        "addMoreRow": {
+          "description": {
+            "line1": "Click here to add more row."
+          },
+          "title": "Add more row"
+        },
+        "date": {
+          "description": {
+            "line1": "Click here to open the date picker.",
+            "line2": "Select date or click outside to save."
+          },
+          "title": "Date input cell"
+        },
+        "deleteRow": {
+          "description": {
+            "line1": "Click here to delete this row."
+          },
+          "title": "Delete row"
+        },
+        "input": {
+          "description": {
+            "line1": "Click here to open the input.",
+            "line2": "Press Enter or click outside to save."
+          },
+          "title": "Text input cell"
+        },
+        "number": {
+          "description": {
+            "line1": "Click here to open the number input.",
+            "line2": "Press Enter or click outside to save."
+          },
+          "title": "Number input cell"
+        },
+        "overall": {
+          "description": {
+            "line1": "Includes all type of input cell.",
+            "line2": "Used in form or some advanced edit feature."
+          },
+          "title": "Editable table"
+        },
+        "rangeDate": {
+          "description": {
+            "line1": "Click here to open the range date picker.",
+            "line2": "Select range date or click outside to save."
+          },
+          "title": "Range date input cell"
+        },
+        "select": {
+          "description": {
+            "line1": "Click here to open the select.",
+            "line2": "Select option or click outside to save."
+          },
+          "title": "Select input cell"
+        },
+        "textarea": {
+          "description": {
+            "line1": "Click here to open the textarea.",
+            "line2": "Click outside to save."
+          },
+          "title": "Textarea input cell"
+        }
+      }
     }
   }
 }

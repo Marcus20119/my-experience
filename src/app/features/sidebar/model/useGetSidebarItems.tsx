@@ -47,7 +47,7 @@ export const useGetSidebarItems = () => {
           key: 'table',
           label: t('layout.title.table'),
           match: '/component/table',
-          path: '/component/table/original',
+          path: '/component/table/customizable',
         },
         {
           key: 'form',
@@ -66,7 +66,7 @@ export const useGetSidebarItems = () => {
       key: 'component',
       label: t('layout.title.component'),
       match: '/component',
-      path: '/component/table/original',
+      path: '/component/table/customizable',
     },
     {
       icon: <Image />,

@@ -1,4 +1,4 @@
-import { TextTool } from '@/shared/utils';
+import { NumberTool, TextTool } from '@/shared/utils';
 import { Typography } from 'antd';
 import { cn } from '@/lib/tailwind';
 
@@ -32,8 +32,8 @@ function PriceValue({
         )}
       >
         {typeof value === 'object'
-          ? TextTool.formatRangeMoney(value?.min, value?.max)
-          : TextTool.formatMoney(value)}
+          ? NumberTool.formatRangeMoney(value?.min, value?.max)
+          : NumberTool.formatMoney(value)}
       </Text>
       {unit ? (
         <Text

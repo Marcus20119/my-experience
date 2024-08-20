@@ -41,11 +41,17 @@
       "phoneNumber": "Please enter a valid phone number",
       "smtWentWrong": "Something went wrong, please try again later."
     },
+    "gender": {
+      "female": "Female",
+      "male": "Male",
+      "nonBinary": "Non-binary"
+    },
     "label": {
       "all": "All",
       "email": "Email",
       "fullName": "Full name",
       "phoneNumber": "Phone number",
+      "results": "Results",
       "sortBy": "Sort by"
     },
     "message": {
@@ -56,14 +62,16 @@
       "email": "Ex. nguyenvana@gmail.com",
       "fullName": " Ex. Nguyen Van A",
       "phoneNumber": "Ex. 0233 123 ***",
-      "quickSearch": "Quick search..."
+      "quickSearch": "Quick search...",
+      "selectGender": "Select gender"
     },
     "status": {
       "na": "N/A"
     },
     "title": {
       "emptyData": "Empty data",
-      "emptySearch": "No results found"
+      "emptySearch": "No results found",
+      "sureDelete": "Sure to delete?"
     },
     "unit": {
       "days": "Day",

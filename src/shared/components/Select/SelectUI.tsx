@@ -1,15 +1,11 @@
-import type { SelectProps } from 'antd';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { Icon } from '@iconify/react/dist/iconify.cjs';
 import { Select } from 'antd';
 import { ArrowDown2, ArrowUp2, CloseCircle } from 'iconsax-react';
 import { useMemo, useState } from 'react';
 import { cn } from '@/lib/tailwind';
+import type { SelectUIProps } from './types';
 import { StyledSelect } from './styles';
-
-interface Props extends SelectProps {
-  prefixIcon?: React.ReactNode;
-}
 
 function SelectUI({
   allowClear,
@@ -18,7 +14,7 @@ function SelectUI({
   onDropdownVisibleChange,
   prefixIcon,
   ...props
-}: Props) {
+}: SelectUIProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   const suffixIcon = useMemo(() => {

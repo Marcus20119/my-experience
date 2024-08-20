@@ -84,10 +84,6 @@ module.exports = {
     'react/self-closing-comp': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'react-hooks/rules-of-hooks': 'error',
-    'react-refresh/only-export-components': [
-      'warn',
-      { allowConstantExport: true },
-    ],
     'react/jsx-no-script-url': [
       'error',
       [

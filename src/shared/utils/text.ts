@@ -1,7 +1,13 @@
-import { round } from 'lodash-es';
 import i18n from '@/lib/i18next';
-import { DEFAULT_CURRENCY_UNIT, UNITS } from '../constants';
+import { UNITS } from '../constants';
 import { useLocalStore } from '../stores/local.store';
+
+/**
+ * Inverts the given hex color.
+ *
+ * @param {string} hexColor - the hex color to invert
+ * @return {string} the inverted hex color
+ */
 
 const invertHexColor = (hexColor: string): string => {
   // Remove the '#' character if present
@@ -29,6 +35,13 @@ const invertHexColor = (hexColor: string): string => {
 
   return `#${invertedHexR}${invertedHexG}${invertedHexB}`;
 };
+
+/**
+ * Determines the text color (black or white) that contrasts best with the given background color.
+ *
+ * @param {string} hexColor - the hex color to determine the text color for
+ * @return {string} the text color that contrasts best with the given background color
+ */
 
 function getTextColorByBgColor(hexColor: string): string {
   // Remove the '#' character if present
@@ -72,69 +85,6 @@ const truncateText = (text: string, limit = 255) => {
 const capitalizeFirstLetter = (text: string) =>
   text.charAt(0).toUpperCase() + text.slice(1);
 
-const formatMoney = (value?: null | number | string): string => {
-  const symbol = DEFAULT_CURRENCY_UNIT;
-  const precision = 2;
-
-  if (!value || isNaN(Number(value))) return `${symbol} 0`;
-  const fallbackDigits = 3;
-  const roundNum = round(Number(value), precision);
-
-  return `${symbol} ${roundNum
-    .toString()
-    .replace(/^[+-]?\d+/, init =>
-      init.replace(
-        new RegExp(`(\\d)(?=(\\d{${fallbackDigits}})+$)`, 'g'),
-        '$1,',
-      ),
-    )}`;
-};
-
-const roundedNumber = (
-  value: null | number | string,
-  digit: number,
-): string => {
-  if (!value || isNaN(Number(value))) return '0';
-
-  return `${Math.round(Number(value) * Math.pow(10, digit)) / Math.pow(10, digit)}`;
-};
-
-const roundedMoney = (value?: null | number | string): string => {
-  if (Number(value) > 1000000) {
-    return `${roundedNumber(Number(value) / 1000000, 1)}${i18n.t(
-      'common.unit.million',
-      {
-        lng: useLocalStore.getState().language ?? 'vi',
-      },
-    )}`;
-  }
-
-  if (Number(value) > 1000) {
-    return `${roundedNumber(Number(value) / 1000, 1)}${i18n.t(
-      'common.unit.thousand',
-      {
-        lng: useLocalStore.getState().language ?? 'vi',
-      },
-    )}`;
-  }
-
-  return String(value ?? 0);
-};
-
-const formatRangeMoney = (
-  minValue?: null | number | string,
-  maxValue?: null | number | string,
-): string => {
-  const symbol = DEFAULT_CURRENCY_UNIT;
-
-  if (minValue === maxValue) return formatMoney(minValue);
-
-  const formattedMinValue = roundedMoney(minValue);
-  const formattedMaxValue = roundedMoney(maxValue);
-
-  return `${symbol} ${formattedMinValue} - ${formattedMaxValue}`;
-};
-
 const formatUnit = (unit?: null | string): string => {
   if (!unit) return '';
 
@@ -151,6 +101,14 @@ const formatUnit = (unit?: null | string): string => {
     .toLowerCase()}`;
 };
 
+/**
+ * Returns the Google Maps URL for the given latitude and longitude.
+ *
+ * @param {null | number} latitude - the latitude of the location
+ * @param {null | number} longitude - the longitude of the location
+ * @return {string} the Google Maps URL for the location
+ */
+
 const getGoogleMapUrl = (
   latitude?: null | number,
   longitude?: null | number,
@@ -162,11 +120,25 @@ const getGoogleMapUrl = (
   return '';
 };
 
+/**
+ * Returns the mailto URL for the given email address.
+ *
+ * @param {null | string} email - the email address to create the mailto URL for
+ * @return {string} the mailto URL for the email address
+ */
+
 const getMailToUrl = (email?: null | string) => {
   if (!email) return '';
 
   return `mailto:${email}`;
 };
+
+/**
+ * Returns the tel URL for the given phone number.
+ *
+ * @param {null | string} phoneNumber - the phone number to create the tel URL for
+ * @return {string} the tel URL for the phone number
+ */
 
 const getPhoneCallUrl = (phoneNumber?: null | string) => {
   if (!phoneNumber) return '';
@@ -176,8 +148,6 @@ const getPhoneCallUrl = (phoneNumber?: null | string) => {
 
 export const TextTool = {
   capitalizeFirstLetter,
-  formatMoney,
-  formatRangeMoney,
   formatUnit,
   getGoogleMapUrl,
   getMailToUrl,

@@ -89,8 +89,8 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
                         items: tab.menuItems,
                       }}
                       open={pathname === tab.route.path ? undefined : false}
-                      placement="bottomCenter"
-                      trigger={['hover']}
+                      placement="bottom"
+                      trigger={['hover', 'click']}
                     >
                       <Flex align="center" gap="0.5rem">
                         <Text className="whitespace-nowrap">{tab.label}</Text>

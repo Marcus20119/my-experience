@@ -41,11 +41,17 @@
       "phoneNumber": "Vui lòng nhập số điện thoại hợp lệ",
       "smtWentWrong": "Đã xảy ra lỗi, vui lòng thử lại sau."
     },
+    "gender": {
+      "female": "Nữ",
+      "male": "Nam",
+      "nonBinary": "Khác"
+    },
     "label": {
       "all": "Tất cả",
       "email": "Email",
       "fullName": "Họ và tên",
       "phoneNumber": "Số điện thoại",
+      "results": "Kết quả",
       "sortBy": "Sắp xếp theo"
     },
     "message": {
@@ -56,14 +62,16 @@
       "email": "Vd. nguyenvana@gmail.com",
       "fullName": " Vd. Nguyen Van A",
       "phoneNumber": "Vd. 0233 123 ***",
-      "quickSearch": "Tìm kiếm nhanh..."
+      "quickSearch": "Tìm kiếm nhanh...",
+      "selectGender": "Chọn giới tính"
     },
     "status": {
       "na": "N/A"
     },
     "title": {
       "emptyData": "Không có dữ liệu",
-      "emptySearch": "Không tìm thấy kết quả"
+      "emptySearch": "Không tìm thấy kết quả",
+      "sureDelete": "Chắc chắn muốn xóa?"
     },
     "unit": {
       "days": "Ngày",

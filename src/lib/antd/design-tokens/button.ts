@@ -4,6 +4,8 @@ import { COLOR } from '@/shared/assets/styles/constants';
 export const BUTTON: OverrideToken['Button'] = {
   borderColorDisabled: COLOR.neutral['300'],
   borderRadius: 10,
+  borderRadiusLG: 12,
+  borderRadiusSM: 8,
   colorTextBase: COLOR.primaryText,
   colorTextLightSolid: COLOR.primaryText,
   controlHeight: 40,

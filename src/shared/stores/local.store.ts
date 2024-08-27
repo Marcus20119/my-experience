@@ -6,8 +6,8 @@ import type { RemoveStates, SetStates } from '../types';
 
 interface LocalState {
   language?: string;
-  primaryButtonTextColor?: string;
   primaryColor?: string;
+  secondaryColor?: string;
   students?: StudentTableEntity[];
 }
 
@@ -22,7 +22,6 @@ export const useLocalStore = create<LocalAction & LocalState>()(
       set => ({
         hideContentHeader: false,
         language: 'en',
-        primaryButtonTextColor: '#E2CB8D',
         primaryColor: '#3A393B',
         removeLocalStates: keys =>
           set(() => {
@@ -30,6 +29,7 @@ export const useLocalStore = create<LocalAction & LocalState>()(
             keys.forEach(key => (newState[key] = undefined));
             return newState;
           }),
+        secondaryColor: '#E2CB8D',
         setLocalStates: param =>
           set(() => {
             const newState: LocalState = {};

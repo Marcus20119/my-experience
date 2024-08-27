@@ -1,8 +1,12 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
-import TableCollapsiblePage from '@/pages/component/TableCollapsiblePage';
+import FieldOriginalPage from '@/pages/component/FieldOriginalPage';
+import FieldSpecialPage from '@/pages/component/FieldSpecialPage';
+import FormOriginalPage from '@/pages/component/FormOriginalPage';
+import FormSpecialPage from '@/pages/component/FormSpecialPage';
 import TableCustomizablePage from '@/pages/component/TableCustomizablePage';
 import TableEditablePage from '@/pages/component/TableEditablePage';
+import TableExpandablePage from '@/pages/component/TableExpandablePage';
 
 export const COMPONENT_ROUTES = [
   {
@@ -14,12 +18,24 @@ export const COMPONENT_ROUTES = [
     path: 'component/table/editable',
   },
   {
-    element: <TableCollapsiblePage />,
-    path: 'component/table/collapsible',
+    element: <TableExpandablePage />,
+    path: 'component/table/expandable',
   },
   {
-    element: <div>Form Page</div>,
-    path: 'component/form',
+    element: <FormOriginalPage />,
+    path: 'component/form/original',
+  },
+  {
+    element: <FormSpecialPage />,
+    path: 'component/form/special',
+  },
+  {
+    element: <FieldOriginalPage />,
+    path: 'component/field/original',
+  },
+  {
+    element: <FieldSpecialPage />,
+    path: 'component/field/special',
   },
   {
     element: <div>Calendar Page</div>,

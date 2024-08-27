@@ -19,7 +19,7 @@ import { routes } from './routes';
 
 function AntProvider() {
   const { i18n } = useTranslation();
-  const { primaryButtonTextColor, primaryColor } = useLocalStore();
+  const { primaryColor, secondaryColor } = useLocalStore();
 
   const locale: Locale = useMemo(() => {
     if (i18n.language === 'en') {
@@ -47,14 +47,25 @@ function AntProvider() {
         ...defaultTheme.components,
         ['Button']: {
           ...defaultTheme.components.Button,
-          primaryColor: primaryButtonTextColor ?? undefined,
+          primaryColor: secondaryColor ?? undefined,
+        },
+        ['DatePicker']: {
+          ...defaultTheme.components.DatePicker,
+          cellActiveWithRangeBg: ThemeTool.getHexColorVariant(
+            secondaryColor,
+            0.8,
+          ),
+        },
+        ['Select']: {
+          ...defaultTheme.components.Select,
+          optionSelectedBg: ThemeTool.getHexColorVariant(secondaryColor, 0.8),
         },
       },
       token: {
         colorPrimary: primaryColor,
       },
     };
-  }, [primaryButtonTextColor, primaryColor]);
+  }, [secondaryColor, primaryColor]);
 
   useEffect(() => {
     if (primaryColor) {
@@ -62,8 +73,8 @@ function AntProvider() {
       COLOR.primaryLight = ThemeTool.getHexColorVariant(primaryColor, 0.8);
     }
 
-    if (primaryButtonTextColor) {
-      COLOR.primaryText = primaryButtonTextColor;
+    if (secondaryColor) {
+      COLOR.secondary = secondaryColor;
     }
 
     //map colors variables for root
@@ -80,7 +91,7 @@ function AntProvider() {
     };
 
     setProperties(COLOR);
-  }, [primaryButtonTextColor, primaryColor]);
+  }, [secondaryColor, primaryColor]);
 
   return (
     <ConfigProvider

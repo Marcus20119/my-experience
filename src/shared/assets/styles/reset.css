@@ -144,5 +144,5 @@ table {
   border-spacing: 0;
 }
 a {
-  color: var(--primaryText);
+  color: var(--secondary);
 }

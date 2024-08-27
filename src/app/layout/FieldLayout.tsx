@@ -11,21 +11,17 @@ interface Props {
   tabItems?: ItemType[];
 }
 
-function TableLayout({ children, route, tabItems }: Props) {
+function FieldLayout({ children, route, tabItems }: Props) {
   const { t } = useTranslation();
 
   const mainTitle = useMemo(() => {
     switch (route.path) {
-      case '/component/table/customizable': {
-        return t('layout.title.customizableTable');
+      case '/component/field/original': {
+        return t('layout.title.originalField');
       }
 
-      case '/component/table/editable': {
-        return t('layout.title.editableTable');
-      }
-
-      case '/component/table/expandable': {
-        return t('layout.title.expandableTable');
+      case '/component/field/special': {
+        return t('layout.title.specialField');
       }
 
       default: {
@@ -39,7 +35,7 @@ function TableLayout({ children, route, tabItems }: Props) {
       title: t('layout.title.component'),
     },
     {
-      title: t('layout.title.table'),
+      title: t('layout.title.field'),
     },
     {
       title: mainTitle,
@@ -48,16 +44,12 @@ function TableLayout({ children, route, tabItems }: Props) {
 
   const headerTabs: HeaderTabItem[] = [
     {
-      label: t('layout.title.customizableTable'),
-      route: { path: '/component/table/customizable' },
+      label: t('layout.title.originalField'),
+      route: { path: '/component/field/original' },
     },
     {
-      label: t('layout.title.editableTable'),
-      route: { path: '/component/table/editable' },
-    },
-    {
-      label: t('layout.title.expandableTable'),
-      route: { path: '/component/table/expandable' },
+      label: t('layout.title.specialField'),
+      route: { path: '/component/field/special' },
     },
   ];
 
@@ -75,4 +67,4 @@ function TableLayout({ children, route, tabItems }: Props) {
   );
 }
 
-export default TableLayout;
+export default FieldLayout;

@@ -18,16 +18,30 @@
       "chemistry": "Chemistry",
       "city": "City",
       "english": "English",
+      "entertainment": "Entertainment",
+      "expense": "Expense",
+      "food": "Food",
+      "freelance": "Freelance",
+      "fuel": "Fuel",
       "gallery": "Gallery",
       "gender": "Gender",
+      "grocery": "Grocery",
+      "income": "Income",
       "job": "Job",
       "literature": "Literature",
       "math": "Math",
       "name": "Name",
       "nationality": "Nationality",
       "note": "Note",
+      "other": "Other",
+      "pharmacy": "Pharmacy",
       "phoneNumber": "Phone number",
       "physics": "Physics",
+      "remaining": "Remaining",
+      "rental": "Rental",
+      "salary": "Salary",
+      "summary": "Summary",
+      "total": "Total",
       "user": "User",
       "vehicle": "Vehicle"
     },
@@ -144,6 +158,33 @@
             "line2": "Click outside to save."
           },
           "title": "Textarea input cell"
+        }
+      },
+      "expandableTable": {
+        "collapse": {
+          "description": {
+            "line1": "Click here to collapse the row."
+          },
+          "title": "Collapse row"
+        },
+        "expand": {
+          "description": {
+            "line1": "Click here to expand the row."
+          },
+          "title": "Expand row"
+        },
+        "overall": {
+          "description": {
+            "line1": "Includes nested and expandable rows.",
+            "line2": "Used in board layout features."
+          },
+          "title": "Expandable table"
+        },
+        "summary": {
+          "description": {
+            "line1": "We can add multiple summary rows to show our summary data."
+          },
+          "title": "Summary row"
         }
       }
     }

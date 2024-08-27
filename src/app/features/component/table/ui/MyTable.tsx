@@ -16,6 +16,7 @@ interface Props<T> extends Omit<TableProps<T>, 'columns'> {
   initialColumns?: MyTableColumn<T>[];
   showCustomizeTable?: boolean;
   showPagination?: boolean;
+  showResizable?: boolean;
   showRowSelection?: boolean;
   tableName: string;
 }
@@ -26,6 +27,7 @@ function MyTable<T extends AnyObject>({
   initialColumns = [],
   showCustomizeTable,
   showPagination = true,
+  showResizable,
   showRowSelection,
   tableName,
   ...props
@@ -113,9 +115,11 @@ function MyTable<T extends AnyObject>({
       <Table<T>
         columns={customizedColumns as TableProps<T>['columns']}
         components={{
-          header: {
-            cell: Cell.Header,
-          },
+          header: showResizable
+            ? {
+                cell: Cell.Header,
+              }
+            : undefined,
           ...components,
         }}
         pagination={

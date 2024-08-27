@@ -281,7 +281,6 @@ function StudentTable({ onChange, students }: Props) {
     {
       dataIndex: 'note',
       editable: true,
-      fixed: 'left',
       inputTextAreaProps: {
         autoSize: true,
       },

@@ -5,7 +5,6 @@ import { Sidebar, useSidebarStore } from '../features/sidebar';
 
 function MainLayout() {
   const { getSidebarWidth } = useSidebarStore();
-
   const sideBarWidth = getSidebarWidth();
 
   return (

@@ -7,7 +7,7 @@ import { useCalculateElementSize } from '@/shared/hooks';
 import { Button, Flex } from 'antd';
 import { Edit2, Trash } from 'iconsax-react';
 import type { UserTableEntity } from '../model';
-import { mockTableData, useUserTableColumns } from '../model';
+import { mockUserData, useUserTableColumns } from '../model';
 import MyTable from './MyTable';
 
 function FooterActions() {
@@ -35,12 +35,13 @@ function UserTable() {
 
   return (
     <MyTable<UserTableEntity>
-      dataSource={mockTableData}
+      dataSource={mockUserData}
       footerActions={FooterActions}
       initialColumns={columns}
       rowKey="id"
       scroll={{ x: width, y: height }}
       showCustomizeTable
+      showResizable
       showRowSelection
       tableName="customizableTable"
     />

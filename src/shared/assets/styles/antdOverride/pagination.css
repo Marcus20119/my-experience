@@ -4,7 +4,7 @@
 }
 
 .ant-pagination-item-active > a {
-  color: var(--primaryText-color) !important;
+  color: var(--secondary-color) !important;
 }
 
 .ant-pagination-item-active {

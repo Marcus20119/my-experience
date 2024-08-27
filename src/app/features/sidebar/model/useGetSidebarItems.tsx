@@ -53,7 +53,13 @@ export const useGetSidebarItems = () => {
           key: 'form',
           label: t('layout.title.form'),
           match: '/component/form',
-          path: '/component/form',
+          path: '/component/form/original',
+        },
+        {
+          key: 'field',
+          label: t('layout.title.field'),
+          match: '/component/field',
+          path: '/component/field/original',
         },
         {
           key: 'calendar',

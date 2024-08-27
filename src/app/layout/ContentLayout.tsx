@@ -49,14 +49,15 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
         <Flex
           align="top"
           className={cn(
-            'box-border overflow-hidden border-neutral-200 bg-neutral-0 px-4 transition-all duration-300',
+            'box-border w-full overflow-hidden border-neutral-200 bg-neutral-0 px-4 transition-all duration-300',
             isContentHeaderCollapsed
               ? 'h-0 max-h-0 overflow-hidden'
               : 'h-headerContent max-h-20 border-0 border-b border-solid',
           )}
+          justify="space-between"
         >
           <Flex
-            className="w-full py-3"
+            className="w-fit flex-shrink-0 py-3"
             gap="0.375rem"
             justify="space-between"
             vertical
@@ -76,14 +77,14 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
             <Title>{title}</Title>
           </Flex>
 
-          <Flex align="end" className="h-full">
+          <Flex align="end" className="h-full flex-1">
             {tabs?.length ? (
               <Tabs
-                className="[&_.ant-tabs-nav]:m-0"
+                className="w-full [&_.ant-tabs-nav-wrap]:justify-end [&_.ant-tabs-nav]:m-0"
                 defaultActiveKey={pathname}
                 items={tabs.map(tab => ({
                   key: tab.route.path,
-                  label: (
+                  label: tab.menuItems ? (
                     <Dropdown
                       menu={{
                         items: tab.menuItems,
@@ -99,8 +100,13 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
                         ) : null}
                       </Flex>
                     </Dropdown>
+                  ) : (
+                    <Text className="whitespace-nowrap">{tab.label}</Text>
                   ),
                 }))}
+                more={{
+                  visible: false,
+                }}
                 onChange={key =>
                   navigate({
                     path: key as RouterPath,

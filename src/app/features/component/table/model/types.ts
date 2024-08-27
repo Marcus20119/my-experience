@@ -46,6 +46,26 @@ export interface StudentTableEntity {
   physics?: number;
 }
 
+export interface IncomeTableEntity {
+  children?: IncomeTableEntity[];
+  entertainment: number;
+  food: number;
+  freelance: number;
+  fuel: number;
+  grocery: number;
+  id: string;
+  name: string;
+  note: string;
+  otherExpense: number;
+  otherIncome: number;
+  pharmacy: number;
+  rental: number;
+  salary: number;
+  totalExpense: number;
+  totalIncome: number;
+  type: 'week' | 'month';
+}
+
 export interface StudentFormEntity {
   students: StudentTableEntity[];
 }
@@ -72,6 +92,7 @@ export type CustomOnHeaderCell<T> = (
 
 export interface MyTableColumn<T>
   extends Omit<ColumnType<T>, 'key' | 'onHeaderCell' | 'width'> {
+  children?: MyTableColumn<T>[];
   key: string;
   onHeaderCell?: CustomOnHeaderCell<T>;
   titleI18Key: ParseKeys;

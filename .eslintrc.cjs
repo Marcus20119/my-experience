@@ -79,7 +79,6 @@ module.exports = {
     'react/jsx-no-leaked-render': 'error',
     'react/button-has-type': 'error',
     'react/no-array-index-key': 'off',
-    'react/no-unstable-nested-components': 'error',
     'react/no-unused-prop-types': 'error',
     'react/self-closing-comp': 'error',
     'react-hooks/exhaustive-deps': 'warn',

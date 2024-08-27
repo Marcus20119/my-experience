@@ -16,7 +16,7 @@ function UserCell({ additionalInfo, avatar, name }: Props) {
       ) : (
         <Flex
           align="center"
-          className="h-10 w-10 flex-shrink-0 rounded-full bg-primaryText"
+          className="bg-secondary h-10 w-10 flex-shrink-0 rounded-full"
           justify="center"
         >
           <Text className="text-xl font-bold uppercase text-primary">

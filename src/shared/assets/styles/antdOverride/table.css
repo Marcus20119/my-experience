@@ -53,3 +53,33 @@
     padding: 5px 8px !important;
   }
 }
+
+/* Table with expandable row */
+.ant-table-row-level-0:has(.ant-table-row-expand-icon-expanded) > td {
+  border-top: 1px solid #000 !important;
+  border-bottom: 1px solid #000 !important;
+  background-color: var(--neutral-100-color);
+}
+
+.ant-table-row-level-0:has(.ant-table-row-expand-icon-expanded)
+  > td:first-child,
+.ant-table-row-level-1 > td:first-child {
+  border-left: 1px solid #000 !important;
+}
+
+.ant-table-row-level-0:has(.ant-table-row-expand-icon-expanded) > td:last-child,
+.ant-table-row-level-1 > td:last-child {
+  border-right: 1px solid #000 !important;
+}
+
+.ant-table-row-level-1 + .ant-table-row-level-0 > td {
+  border-top: 1px solid #000 !important;
+}
+
+.ant-table-cell:has(.ant-table-expanded-row-fixed) {
+  border-right: 1px solid #000 !important;
+}
+
+.ant-table-expanded-row-fixed {
+  border-left: 1px solid #000 !important;
+}

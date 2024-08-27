@@ -60,7 +60,7 @@ function MainSideBar() {
       >
         <LogoReact className="h-8 w-8 flex-shrink-0" />
         {!isMainBarCollapsed ? (
-          <Text className="line-clamp-1 font-mono text-2xl text-primaryText transition-all">
+          <Text className="text-secondary line-clamp-1 font-mono text-2xl transition-all">
             ReactJS
           </Text>
         ) : null}
@@ -79,8 +79,8 @@ function MainSideBar() {
                 className={cn(
                   'h-10 rounded-lg transition-all duration-300 ease-in-out',
                   activeMainKey === item.key
-                    ? 'bg-primary text-primaryText'
-                    : 'text-neutral-50 hover:bg-primary hover:text-primaryText',
+                    ? 'text-secondary bg-primary'
+                    : 'hover:text-secondary text-neutral-50 hover:bg-primary',
                   isMainBarCollapsed ? 'px-3' : 'px-4',
                 )}
                 gap="0.5rem"
@@ -113,21 +113,18 @@ function MainSideBar() {
         <Flex
           align="center"
           className={cn(
-            'mt-auto h-10 cursor-pointer rounded-lg text-neutral-50 text-primaryText transition-all duration-300 ease-in-out',
+            'text-secondary mt-auto h-10 cursor-pointer rounded-lg text-neutral-50 transition-all duration-300 ease-in-out',
             isMainBarCollapsed ? 'px-3' : 'px-4',
           )}
           gap="0.5rem"
           onClick={onToggleLockMainSidebar}
         >
           {isMainBarLocked ? (
-            <ToggleOnCircle
-              className="flex-shrink-0"
-              color={COLOR.primaryText}
-            />
+            <ToggleOnCircle className="flex-shrink-0" color={COLOR.secondary} />
           ) : (
             <ToggleOffCircle
               className="flex-shrink-0"
-              color={COLOR.primaryText}
+              color={COLOR.secondary}
             />
           )}
 

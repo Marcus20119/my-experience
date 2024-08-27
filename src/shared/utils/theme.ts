@@ -52,7 +52,11 @@ function rgbToHex(r: number, g: number, b: number) {
   return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
 }
 
-function getHexColorVariant(color: string, lightVolume: number) {
+function getHexColorVariant(color?: string, lightVolume?: number) {
+  if (!color || !lightVolume) {
+    return '';
+  }
+
   const { b, g, r } = hexToRgb(color) || { b: 0, g: 0, r: 0 };
 
   return rgbToHex(

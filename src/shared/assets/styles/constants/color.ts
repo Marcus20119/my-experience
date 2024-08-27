@@ -13,7 +13,7 @@ export const COLOR = {
   },
   primary: 'var(--primary-color)',
   primaryLight: 'var(--primaryLight-color)',
-  primaryText: 'var(--primaryText-color)',
+  secondary: 'var(--secondary-color)',
   system: {
     alert: '#FFCC00',
     alertSoft: '#FFF9E5',

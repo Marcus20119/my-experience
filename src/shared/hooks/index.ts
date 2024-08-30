@@ -2,6 +2,7 @@ export * from './useAppNavigate';
 export * from './useAppParams';
 export * from './useCalculateElementSize';
 export * from './useElementSize';
+export * from './useKeyDown';
 export * from './useMatchRoutes';
 export * from './useResponsive';
 export * from './useToggle';

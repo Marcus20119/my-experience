@@ -1,5 +1,6 @@
 export const WIDTH = {
-  scrollbar: 14, // 12px + 2px for padding
+  form: 600,
+  scrollbar: 12, // 10px + 2px for padding
   sidebarCollapsed: 80,
   sidebarExpanded: 208,
 };

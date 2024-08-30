@@ -5,16 +5,20 @@ import { ToggleOffCircle, ToggleOnCircle } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
-import { useGetSidebarItems } from '../model';
+import { useGetSidebarData } from '../model';
 import { useSidebarStore } from '../store';
 
 const { Text } = Typography;
 
 function MainSideBar() {
   const { t } = useTranslation();
-  const { isMainBarCollapsed, isMainBarLocked, setSidebarStates } =
-    useSidebarStore();
-  const { activeMainKey, mainSidebarItems } = useGetSidebarItems();
+  const {
+    isMainBarCollapsed,
+    isMainBarLocked,
+    isSubBarCollapsed,
+    setSidebarStates,
+  } = useSidebarStore();
+  const { activeMainKey, mainSidebarItems } = useGetSidebarData();
 
   const onExpandMainSidebar = () => {
     if (isMainBarLocked) return;
@@ -60,7 +64,7 @@ function MainSideBar() {
       >
         <LogoReact className="h-8 w-8 flex-shrink-0" />
         {!isMainBarCollapsed ? (
-          <Text className="text-secondary line-clamp-1 font-mono text-2xl transition-all">
+          <Text className="line-clamp-1 font-mono text-2xl text-secondary transition-all">
             ReactJS
           </Text>
         ) : null}
@@ -79,15 +83,17 @@ function MainSideBar() {
                 className={cn(
                   'h-10 rounded-lg transition-all duration-300 ease-in-out',
                   activeMainKey === item.key
-                    ? 'text-secondary bg-primary'
-                    : 'hover:text-secondary text-neutral-50 hover:bg-primary',
+                    ? 'bg-primary text-secondary'
+                    : 'text-neutral-50 hover:bg-primary hover:text-secondary',
                   isMainBarCollapsed ? 'px-3' : 'px-4',
                 )}
                 gap="0.5rem"
                 onClick={() => {
-                  setSidebarStates({
-                    isSubBarCollapsed: false,
-                  });
+                  if (activeMainKey === item.key) {
+                    setSidebarStates({
+                      isSubBarCollapsed: !isSubBarCollapsed,
+                    });
+                  }
                 }}
               >
                 <div className="flex-shrink-0" role="presentation">
@@ -113,7 +119,7 @@ function MainSideBar() {
         <Flex
           align="center"
           className={cn(
-            'text-secondary mt-auto h-10 cursor-pointer rounded-lg text-neutral-50 transition-all duration-300 ease-in-out',
+            'mt-auto h-10 cursor-pointer rounded-lg text-neutral-50 text-secondary transition-all duration-300 ease-in-out',
             isMainBarCollapsed ? 'px-3' : 'px-4',
           )}
           gap="0.5rem"

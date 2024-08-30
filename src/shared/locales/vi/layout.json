@@ -1,9 +1,15 @@
 {
   "layout": {
     "action": {
+      "collapseHeader": "Collapse header",
+      "collapseSidebar": "Collapse sidebar",
+      "expandHeader": "Expand header",
+      "expandSidebar": "Expand sidebar",
       "introduction": "Introduction",
       "removeData": "Remove data",
-      "saveData": "Save data"
+      "saveData": "Save data",
+      "stickHeader": "Stick header",
+      "unstickHeader": "Unstick header"
     },
     "lockSidebar": {
       "lock": "Lock Sidebar",
@@ -22,9 +28,11 @@
       "game": "Game",
       "image": "Image",
       "language": "Language",
+      "multipleStepForm": "Multiple Step Form",
       "originalField": "Original Field",
       "originalForm": "Original Form",
       "other": "Other",
+      "singleStepForm": "Single Step Form",
       "specialField": "Special Field",
       "specialForm": "Special Form",
       "table": "Table",

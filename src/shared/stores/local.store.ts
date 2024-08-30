@@ -1,5 +1,3 @@
-/* eslint-disable import/no-restricted-paths */
-import type { StudentTableEntity } from '@/app/features/component/table';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 import type { RemoveStates, SetStates } from '../types';
@@ -8,7 +6,6 @@ interface LocalState {
   language?: string;
   primaryColor?: string;
   secondaryColor?: string;
-  students?: StudentTableEntity[];
 }
 
 interface LocalAction {
@@ -20,7 +17,6 @@ export const useLocalStore = create<LocalAction & LocalState>()(
   devtools(
     persist(
       set => ({
-        hideContentHeader: false,
         language: 'en',
         primaryColor: '#3A393B',
         removeLocalStates: keys =>

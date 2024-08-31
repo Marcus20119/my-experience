@@ -1,10 +1,23 @@
 import type { RemoveStates, SetStates } from '@/shared/types';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import { FormStepType } from '../model';
+import type {
+  MultipleFormFirstStepEntity,
+  MultipleFormSecondStepEntity,
+  MultipleFormThirdStepEntity,
+  SingleStepFormEntity,
+} from '../model';
+import { StepType } from '../model';
 
 interface FormState {
-  originalFormType?: FormStepType;
+  currentStep?: number;
+  multipleStepFormValue?: {
+    firstStep?: MultipleFormFirstStepEntity;
+    secondStep?: MultipleFormSecondStepEntity;
+    thirdStep?: MultipleFormThirdStepEntity;
+  };
+  originalFormType?: StepType;
+  singleStepFormValue?: SingleStepFormEntity;
 }
 
 interface FormAction {
@@ -16,7 +29,8 @@ export const useFormStore = create<FormAction & FormState>()(
   devtools(
     persist(
       set => ({
-        originalFormType: FormStepType.Single,
+        currentStep: 1,
+        originalFormType: StepType.Single,
         removeFormStates: keys =>
           set(() => {
             const newState: FormState = {};
@@ -35,6 +49,12 @@ export const useFormStore = create<FormAction & FormState>()(
       }),
       {
         name: 'store-form',
+        partialize: state =>
+          Object.fromEntries(
+            Object.entries(state).filter(
+              ([key]) => !['currentStep'].includes(key),
+            ),
+          ),
         storage: createJSONStorage(() => localStorage), // default
       },
     ),

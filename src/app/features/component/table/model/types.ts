@@ -10,8 +10,8 @@ import type { DetailedHTMLProps, ThHTMLAttributes } from 'react';
 import type { ResizableProps } from 'react-resizable';
 
 export enum Gender {
-  Male = 'male',
   Female = 'female',
+  Male = 'male',
   NonBinary = 'non binary',
 }
 

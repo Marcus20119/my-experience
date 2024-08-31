@@ -28,16 +28,16 @@
       "game": "Game",
       "image": "Image",
       "language": "Language",
-      "multipleStepForm": "Multiple Step Form",
-      "originalField": "Original Field",
-      "originalForm": "Original Form",
+      "multipleStepForm": "Multiple step form",
+      "originalField": "Original field",
+      "originalForm": "Original form",
       "other": "Other",
-      "singleStepForm": "Single Step Form",
-      "specialField": "Special Field",
-      "specialForm": "Special Form",
+      "singleStepForm": "Single step form",
+      "specialField": "Special field",
+      "specialForm": "Special form",
       "table": "Table",
       "technology": "Technology",
-      "uiLibrary": "UI Library"
+      "uiLibrary": "UI library"
     }
   }
 }

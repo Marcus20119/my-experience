@@ -1,17 +1,17 @@
+import type { MultipleFormFirstStepEntity } from '@/app/features/component/form';
 import type { FormInstance } from 'antd/lib';
+import { DatePickerUI } from '@/shared/components';
 import { Button, Col, Flex, Form, Input, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
-import type { SingleStepFormEntity } from '../model';
-
-const { TextArea } = Input;
 
 interface Props {
-  form?: FormInstance<SingleStepFormEntity>;
-  onFinish?: (values: SingleStepFormEntity) => void;
+  form?: FormInstance<MultipleFormFirstStepEntity>;
+  loading?: boolean;
+  onFinish?: (values: MultipleFormFirstStepEntity) => void;
   showButton?: boolean;
 }
 
-function SingleStepForm({ form, onFinish, showButton = true }: Props) {
+function FirstStepForm({ form, loading, onFinish, showButton = true }: Props) {
   const { t } = useTranslation();
 
   return (
@@ -29,8 +29,8 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
     >
       <Row className="max-w-form" gutter={[16, 0]}>
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity>
-            label="Full Name"
+          <Form.Item<MultipleFormFirstStepEntity>
+            label="Full name"
             name="fullName"
             rules={[{ required: true }]}
           >
@@ -39,7 +39,7 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity>
+          <Form.Item<MultipleFormFirstStepEntity>
             label="Email"
             name="email"
             rules={[{ required: true, type: 'email' }]}
@@ -49,25 +49,7 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="City" name="city">
-            <Input placeholder="Enter city" />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="Country" name="country">
-            <Input placeholder="Enter country" />
-          </Form.Item>
-        </Col>
-
-        <Col span={24}>
-          <Form.Item<SingleStepFormEntity> label="Address" name="address">
-            <TextArea placeholder="Enter address" rows={4} />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item<SingleStepFormEntity>
+          <Form.Item<MultipleFormFirstStepEntity>
             label="Phone number"
             name="phoneNumber"
             rules={[{ required: true }]}
@@ -77,28 +59,34 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="State" name="state">
-            <Input placeholder="Enter state" />
+          <Form.Item<MultipleFormFirstStepEntity>
+            label="Date of birth"
+            name="dateOfBirth"
+          >
+            <DatePickerUI placeholder="Select date of birth" />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="Zip code" name="zip">
-            <Input placeholder="Enter zip code" />
+          <Form.Item<MultipleFormFirstStepEntity> label="City" name="city">
+            <Input placeholder="Enter city" />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="Major" name="major">
-            <Input placeholder="Enter major" />
+          <Form.Item<MultipleFormFirstStepEntity>
+            label="Address"
+            name="address"
+          >
+            <Input placeholder="Enter address" />
           </Form.Item>
         </Col>
       </Row>
 
       {showButton ? (
         <Flex justify="end">
-          <Button htmlType="submit" type="primary">
-            {t('common.button.save')}
+          <Button htmlType="submit" loading={loading} type="primary">
+            {t('common.button.next')}
           </Button>
         </Flex>
       ) : null}
@@ -106,4 +94,4 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
   );
 }
 
-export default SingleStepForm;
+export default FirstStepForm;

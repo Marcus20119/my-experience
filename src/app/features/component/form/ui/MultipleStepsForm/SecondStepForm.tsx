@@ -26,11 +26,6 @@ function SecondStepForm({
       form={form}
       layout="vertical"
       onFinish={onFinish}
-      scrollToFirstError={{
-        behavior: 'smooth',
-        block: 'center',
-        scrollMode: 'always',
-      }}
       size="middle"
     >
       <Row gutter={[16, 0]}>

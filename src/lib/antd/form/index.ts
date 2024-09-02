@@ -1,6 +1,11 @@
 import type { FormConfig } from 'antd/es/config-provider/context';
 
 const enFormConfig: FormConfig = {
+  scrollToFirstError: {
+    behavior: 'smooth',
+    block: 'center',
+    scrollMode: 'always',
+  },
   validateMessages: {
     required: 'This field is required',
     types: {
@@ -10,6 +15,11 @@ const enFormConfig: FormConfig = {
 };
 
 const frFormConfig: FormConfig = {
+  scrollToFirstError: {
+    behavior: 'smooth',
+    block: 'center',
+    scrollMode: 'always',
+  },
   validateMessages: {
     required: 'Ce champ est obligatoire',
     types: {
@@ -19,6 +29,11 @@ const frFormConfig: FormConfig = {
 };
 
 const viFormConfig: FormConfig = {
+  scrollToFirstError: {
+    behavior: 'smooth',
+    block: 'center',
+    scrollMode: 'always',
+  },
   validateMessages: {
     required: 'Trường này là bắt buộc',
     types: {

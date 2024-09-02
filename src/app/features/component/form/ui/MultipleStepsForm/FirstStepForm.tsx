@@ -20,11 +20,6 @@ function FirstStepForm({ form, loading, onFinish, showButton = true }: Props) {
       form={form}
       layout="vertical"
       onFinish={onFinish}
-      scrollToFirstError={{
-        behavior: 'smooth',
-        block: 'center',
-        scrollMode: 'always',
-      }}
       size="middle"
     >
       <Row gutter={[16, 0]}>

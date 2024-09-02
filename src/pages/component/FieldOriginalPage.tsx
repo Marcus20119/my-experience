@@ -1,13 +1,38 @@
+import type { OriginalFieldForm } from '@/app/features/component/field';
+import { InputFields } from '@/app/features/component/field';
 import { FieldLayout } from '@/app/layout';
+import { Button, Flex, Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 function FieldOriginalPage() {
+  const { t } = useTranslation();
+  const [form] = Form.useForm<OriginalFieldForm>();
+
   return (
     <FieldLayout
       route={{
         path: '/component/field/original',
       }}
     >
-      Original Field Page
+      <Form<OriginalFieldForm>
+        autoComplete="off"
+        form={form}
+        layout="vertical"
+        onFinish={values => console.log(values)}
+        size="middle"
+      >
+        <Flex gap="1rem" vertical>
+          <Flex gap="1rem" vertical>
+            <InputFields />
+          </Flex>
+
+          <Flex justify="end">
+            <Button htmlType="submit" type="primary">
+              {t('common.button.save')}
+            </Button>
+          </Flex>
+        </Flex>
+      </Form>
     </FieldLayout>
   );
 }

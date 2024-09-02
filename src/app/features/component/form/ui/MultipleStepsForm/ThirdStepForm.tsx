@@ -34,7 +34,7 @@ function ThirdStepForm({
       }}
       size="middle"
     >
-      <Row className="max-w-form" gutter={[16, 0]}>
+      <Row gutter={[16, 0]}>
         <Col span={24}>
           <Form.Item<MultipleFormThirdStepEntity>
             label="Highest education level"
@@ -78,6 +78,7 @@ function ThirdStepForm({
               placeholder="Enter gpa"
               precision={2}
               step={0.01}
+              type="number"
             />
           </Form.Item>
         </Col>

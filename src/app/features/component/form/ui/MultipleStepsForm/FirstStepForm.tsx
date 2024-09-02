@@ -27,7 +27,7 @@ function FirstStepForm({ form, loading, onFinish, showButton = true }: Props) {
       }}
       size="middle"
     >
-      <Row className="max-w-form" gutter={[16, 0]}>
+      <Row gutter={[16, 0]}>
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
             label="Full name"

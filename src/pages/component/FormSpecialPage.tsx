@@ -5,15 +5,17 @@ import type {
   SingleStepFormEntity,
 } from '@/app/features/component/form';
 import {
+  DrawerFormWrapper,
+  ModalFormWrapper,
   MultipleStepsForm,
   SingleStepForm,
   useFormStore,
 } from '@/app/features/component/form';
-import ModalFormWrapper from '@/app/features/component/form/ui/ModalFormWrapper';
 import { FormLayout } from '@/app/layout';
 import { WIDTH } from '@/shared/assets/styles/constants/width';
-import { useToggle } from '@/shared/hooks';
-import { Button, Flex, Form, Typography } from 'antd';
+import { DEFAULT_TIMEOUT } from '@/shared/constants';
+import { useDrawerRouter, useModalRouter, useToggle } from '@/shared/hooks';
+import { Button, Flex, Form, Progress, Typography } from 'antd';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -51,6 +53,8 @@ function FormSpecialPage() {
     onOpen: onOpenDrawerProgress,
     open: openDrawerProgress,
   } = useToggle();
+  const { onOpenModal } = useModalRouter();
+  const { onOpenDrawer } = useDrawerRouter();
 
   const [singleStepForm] = Form.useForm<SingleStepFormEntity>();
   const [multipleFirstStepForm] = Form.useForm<MultipleFormFirstStepEntity>();
@@ -105,19 +109,15 @@ function FormSpecialPage() {
     {
       children: [
         {
-          onClick: () => {
-            console.log('Router modal form');
-          },
+          onClick: () => onOpenModal({ path: 'user/edit' }),
           title: 'Modal',
         },
         {
-          onClick: () => {
-            console.log('Router drawer form');
-          },
+          onClick: () => onOpenDrawer({ path: 'user/edit' }),
           title: 'Drawer',
         },
       ],
-      description: 'Form that keep open even when reloading the page',
+      description: 'Form that keep opening even when reloading the page',
       title: 'Router form',
     },
     {
@@ -175,7 +175,7 @@ function FormSpecialPage() {
       });
       onCancel();
       setLoading(false);
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   // ----- Multiple steps form -----
@@ -203,7 +203,7 @@ function FormSpecialPage() {
       });
       setLoading(false);
       onNext();
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   const onFinishSecondStep = (values: MultipleFormSecondStepEntity) => {
@@ -218,7 +218,7 @@ function FormSpecialPage() {
       });
       setLoading(false);
       onNext();
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   const onFinishThirdStep = (values: MultipleFormThirdStepEntity) => {
@@ -233,7 +233,7 @@ function FormSpecialPage() {
       });
       setLoading(false);
       onCancel();
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   const onClickNext = () => {
@@ -252,6 +252,18 @@ function FormSpecialPage() {
       return;
     }
   };
+
+  // ----- Progress form -----
+  const progress = Form.useWatch(values => {
+    const { email, fullName, phoneNumber } = values;
+
+    const valuesArray = [email, fullName, phoneNumber];
+
+    const percent =
+      (valuesArray.filter(Boolean).length / valuesArray.length) * 100;
+
+    return Math.round(percent);
+  }, singleStepForm);
 
   return (
     <>
@@ -304,6 +316,34 @@ function FormSpecialPage() {
         />
       </ModalFormWrapper>
 
+      <DrawerFormWrapper
+        footer={
+          <Flex align="center" gap="0.5rem" justify="end">
+            <Button onClick={onCancel} size="middle">
+              {t('common.button.cancel')}
+            </Button>
+            <Button
+              loading={loading}
+              onClick={singleStepForm.submit}
+              size="middle"
+              type="primary"
+            >
+              {t('common.button.save')}
+            </Button>
+          </Flex>
+        }
+        onClose={onCancel}
+        open={openDrawerSingle}
+        title="Drawer single step form"
+        width={WIDTH.form}
+      >
+        <SingleStepForm
+          form={singleStepForm}
+          onFinish={onFinishSingleStep}
+          showButton={false}
+        />
+      </DrawerFormWrapper>
+
       {/* Multiple steps form */}
       <ModalFormWrapper
         classNames={{
@@ -333,9 +373,6 @@ function FormSpecialPage() {
             </Flex>
           </Flex>
         }
-        okButtonProps={{
-          loading,
-        }}
         onCancel={onCancel}
         open={openModalMultiple}
         title="Modal multiple steps form"
@@ -352,6 +389,98 @@ function FormSpecialPage() {
           thirdStepForm={multipleThirdStepForm}
         />
       </ModalFormWrapper>
+
+      <DrawerFormWrapper
+        classNames={{
+          body: 'pt-10',
+        }}
+        footer={
+          <Flex align="center" justify="space-between">
+            <Button
+              className={currentStep === 1 ? 'invisible' : 'visible'}
+              onClick={onPrevious}
+              size="middle"
+            >
+              {t('common.button.back')}
+            </Button>
+            <Flex align="center" gap="0.5rem">
+              <Button onClick={onCancel} size="middle">
+                {t('common.button.cancel')}
+              </Button>
+              <Button
+                loading={loading}
+                onClick={onClickNext}
+                size="middle"
+                type="primary"
+              >
+                {t('common.button.next')}
+              </Button>
+            </Flex>
+          </Flex>
+        }
+        onClose={onCancel}
+        open={openDrawerMultiple}
+        title="Drawer multiple steps form"
+        width={WIDTH.form}
+      >
+        <MultipleStepsForm
+          firstStepForm={multipleFirstStepForm}
+          onFinishFirstStep={onFinishFirstStep}
+          onFinishSecondStep={onFinishSecondStep}
+          onFinishThirdStep={onFinishThirdStep}
+          secondStepForm={multipleSecondStepForm}
+          showButton={false}
+          thirdStepForm={multipleThirdStepForm}
+        />
+      </DrawerFormWrapper>
+
+      {/* Progress form */}
+      <ModalFormWrapper
+        extraHeader={<Progress percent={progress} />}
+        okButtonProps={{
+          loading,
+          onClick: singleStepForm.submit,
+        }}
+        onCancel={onCancel}
+        open={openModalProgress}
+        title="Modal progress form"
+        width={WIDTH.form}
+      >
+        <SingleStepForm
+          form={singleStepForm}
+          onFinish={onFinishSingleStep}
+          showButton={false}
+        />
+      </ModalFormWrapper>
+
+      <DrawerFormWrapper
+        extraHeader={<Progress percent={progress} />}
+        footer={
+          <Flex align="center" gap="0.5rem" justify="end">
+            <Button onClick={onCancel} size="middle">
+              {t('common.button.cancel')}
+            </Button>
+            <Button
+              loading={loading}
+              onClick={singleStepForm.submit}
+              size="middle"
+              type="primary"
+            >
+              {t('common.button.save')}
+            </Button>
+          </Flex>
+        }
+        onClose={onCancel}
+        open={openDrawerProgress}
+        title="Drawer progress form"
+        width={WIDTH.form}
+      >
+        <SingleStepForm
+          form={singleStepForm}
+          onFinish={onFinishSingleStep}
+          showButton={false}
+        />
+      </DrawerFormWrapper>
     </>
   );
 }

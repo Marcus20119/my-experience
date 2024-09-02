@@ -1,6 +1,6 @@
 import type { BreadcrumbProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { useAppNavigate } from '@/shared/hooks';
+import { useAppRouter } from '@/shared/hooks';
 import { Breadcrumb, Dropdown, Flex, Tabs, Typography } from 'antd';
 import { ArrowDown2, ArrowRight2, ArrowUp2 } from 'iconsax-react';
 import { useLocation } from 'react-router-dom';
@@ -14,12 +14,19 @@ const { Text, Title } = Typography;
 interface Props {
   breadCrumb?: BreadCrumbItem[];
   children: React.ReactNode;
+  onChangeTab?: (path: RouterPath) => void;
   tabs?: HeaderTabItem[];
   title: string;
 }
 
-function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
-  const { navigate } = useAppNavigate();
+function ContentLayout({
+  breadCrumb,
+  children,
+  onChangeTab,
+  tabs,
+  title,
+}: Props) {
+  const { navigate } = useAppRouter();
   const { pathname } = useLocation();
   const { isContentHeaderCollapsed, isContentHeaderSticky, setHeaderStates } =
     useHeaderStore();
@@ -116,11 +123,12 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
                 more={{
                   visible: false,
                 }}
-                onChange={key => {
+                onChange={path => {
                   navigate({
-                    path: key as RouterPath,
+                    path: path as RouterPath,
                   });
-                  setSubSidebarHistory(activeSubKey, key as RouterPath);
+                  setSubSidebarHistory(activeSubKey, path as RouterPath);
+                  onChangeTab?.(path as RouterPath);
                 }}
                 size="small"
                 type="card"

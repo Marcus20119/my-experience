@@ -14,3 +14,9 @@ export enum ApolloService {
   Reservation = 'reservation',
   Storage = 'storage',
 }
+
+export type PathProps<T> = T extends `${infer _}:${infer U}/${infer R}`
+  ? PathProps<R> & Record<U, string>
+  : T extends `${infer _}:${infer U}`
+    ? Record<U, string>
+    : Record<string, string>;

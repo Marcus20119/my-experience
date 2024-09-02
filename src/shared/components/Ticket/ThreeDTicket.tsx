@@ -1,4 +1,4 @@
-import { useAppNavigate } from '@/shared/hooks';
+import { useAppRouter } from '@/shared/hooks';
 import { Flex, Rate } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { StyledThreeDTicket } from './styles';
@@ -27,7 +27,7 @@ function ThreeDTicket({
   width,
 }: ThreeDTicketProps) {
   const { t } = useTranslation();
-  const { navigate } = useAppNavigate();
+  const { navigate } = useAppRouter();
 
   return (
     <StyledThreeDTicket

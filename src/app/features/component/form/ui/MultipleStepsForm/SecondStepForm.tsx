@@ -33,7 +33,7 @@ function SecondStepForm({
       }}
       size="middle"
     >
-      <Row className="max-w-form" gutter={[16, 0]}>
+      <Row gutter={[16, 0]}>
         <Col span={24}>
           <Form.Item<MultipleFormSecondStepEntity>
             label="Company name"
@@ -66,6 +66,7 @@ function SecondStepForm({
               placeholder="Enter years of experience"
               precision={1}
               step={0.5}
+              type="number"
             />
           </Form.Item>
         </Col>
@@ -99,6 +100,7 @@ function SecondStepForm({
               placeholder="Enter years of experience"
               precision={1}
               step={0.5}
+              type="number"
             />
           </Form.Item>
         </Col>

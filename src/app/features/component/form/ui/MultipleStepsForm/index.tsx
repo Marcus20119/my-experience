@@ -51,20 +51,20 @@ function MultipleStepsForm({
       <Steps
         className={cn(
           direction === 'horizontal'
-            ? 'max-w-stepForm'
+            ? 'w-5/6'
             : 'sticky left-0 top-0 w-fit pl-3 pt-4',
         )}
         current={currentStep - 1}
         direction={direction}
         items={[
           {
-            title: 'Basic Information',
+            title: 'Basic Info',
           },
           {
-            title: 'Employment Details',
+            title: 'Employment',
           },
           {
-            title: 'Education Information',
+            title: 'Education Info',
           },
         ]}
       />

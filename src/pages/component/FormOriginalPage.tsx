@@ -12,6 +12,7 @@ import {
 } from '@/app/features/component/form';
 import { useFormStore } from '@/app/features/component/form/store';
 import { FormLayout } from '@/app/layout';
+import { DEFAULT_TIMEOUT } from '@/shared/constants';
 import { Flex, Form, Typography } from 'antd';
 import { Convertshape2 } from 'iconsax-react';
 import { useState } from 'react';
@@ -84,7 +85,7 @@ function FormOriginalPage() {
       });
       setLoading(false);
       onNext();
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   const onFinishSecondStep = (values: MultipleFormSecondStepEntity) => {
@@ -99,7 +100,7 @@ function FormOriginalPage() {
       });
       setLoading(false);
       onNext();
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   const onFinishThirdStep = (values: MultipleFormThirdStepEntity) => {
@@ -113,7 +114,7 @@ function FormOriginalPage() {
         },
       });
       setLoading(false);
-    }, 1000);
+    }, DEFAULT_TIMEOUT);
   };
 
   return (
@@ -124,7 +125,7 @@ function FormOriginalPage() {
       tabItems={tabItems}
     >
       <Flex justify="center">
-        <div className="w-full">
+        <div className="w-full max-w-form">
           {originalFormType === StepType.Single ? (
             <Flex align="center" className="w-full" gap="2rem" vertical>
               <Title className="text-xl" level={2}>

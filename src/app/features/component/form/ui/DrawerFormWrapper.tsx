@@ -1,50 +1,42 @@
-import type { ModalProps } from 'antd/lib';
+import type { DrawerProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { Flex, Modal, Typography } from 'antd';
-import { useTranslation } from 'react-i18next';
+import { Drawer, Flex, Typography } from 'antd';
+import { cn } from '@/lib/tailwind';
 
 const { Text, Title } = Typography;
 
-interface Props extends Omit<ModalProps, 'title'> {
+interface Props extends Omit<DrawerProps, 'title'> {
   extraHeader?: React.ReactNode;
   subTitle?: string;
   title?: string;
 }
 
-function ModalFormWrapper({
-  cancelButtonProps,
+function DrawerFormWrapper({
   children,
+  classNames,
   extraHeader,
-  okButtonProps,
   styles,
   subTitle,
   title,
   ...props
 }: Props) {
-  const { t } = useTranslation();
-
   return (
-    <Modal
-      cancelText={t('common.button.cancel')}
-      centered
+    <Drawer
       destroyOnClose
       maskClosable={false}
-      okText={t('common.button.save')}
       {...props}
-      cancelButtonProps={{
-        size: 'middle',
-        ...cancelButtonProps,
-      }}
-      okButtonProps={{
-        size: 'middle',
-        ...okButtonProps,
+      classNames={{
+        ...classNames,
+        header: cn(
+          '[&_.ant-drawer-close]:order-[10] [&_.ant-drawer-close]:m-0 [&_.ant-drawer-close]:w-8 [&_.ant-drawer-close]:h-8',
+          classNames?.header,
+        ),
       }}
       styles={{
         ...styles,
         body: {
-          maxHeight: 'calc(100vh - 200px)',
           overflowY: 'auto',
-          padding: '1rem 0.75rem',
+          padding: '1rem 1rem',
           scrollbarGutter: 'stable both-edges',
           ...styles?.body,
         },
@@ -57,7 +49,7 @@ function ModalFormWrapper({
           borderTopStyle: 'solid',
           borderTopWidth: 1,
           marginTop: 0,
-          padding: '1rem 1.25rem',
+          padding: '1rem 1.5rem',
           ...styles?.footer,
         },
         header: {
@@ -65,7 +57,7 @@ function ModalFormWrapper({
           borderBottomStyle: 'solid',
           borderBottomWidth: 1,
           marginBottom: 0,
-          padding: subTitle ? '0.75rem 1.25rem' : '1rem 1.25rem',
+          padding: subTitle ? '0.75rem 1.5rem' : '1rem 1.5rem',
           ...styles?.header,
         },
       }}
@@ -84,8 +76,8 @@ function ModalFormWrapper({
       }
     >
       {children}
-    </Modal>
+    </Drawer>
   );
 }
 
-export default ModalFormWrapper;
+export default DrawerFormWrapper;

@@ -4,6 +4,7 @@ import type { ItemType } from 'antd/es/menu/interface';
 import { ContentLayout } from '@/app/layout';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useFormStore } from '../features/component/form';
 
 interface Props {
   children?: React.ReactNode;
@@ -13,6 +14,7 @@ interface Props {
 
 function FormLayout({ children, route, tabItems }: Props) {
   const { t } = useTranslation();
+  const { setFormStates } = useFormStore();
 
   const mainTitle = useMemo(() => {
     switch (route.path) {
@@ -56,6 +58,13 @@ function FormLayout({ children, route, tabItems }: Props) {
   return (
     <ContentLayout
       breadCrumb={breadCrumb}
+      onChangeTab={() => {
+        setFormStates({
+          currentStep: 1,
+          multipleStepFormValue: undefined,
+          singleStepFormValue: undefined,
+        });
+      }}
       tabs={headerTabs.map(tab => ({
         ...tab,
         menuItems: tab.route.path === route.path ? tabItems : undefined,

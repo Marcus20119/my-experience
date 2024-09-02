@@ -36,34 +36,34 @@ function SecondStepForm({
       <Row gutter={[16, 0]}>
         <Col span={24}>
           <Form.Item<MultipleFormSecondStepEntity>
-            label="Company name"
+            label={t('component.label.companyName')}
             name="companyName"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter company name" />
+            <Input placeholder={t('component.placeholder.companyName')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormSecondStepEntity>
-            label="Current job title"
+            label={t('component.label.currentJobTitle')}
             name="currentJobTitle"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter current job title" />
+            <Input placeholder={t('component.placeholder.currentJobTitle')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormSecondStepEntity>
-            label="Years of experience"
+            label={t('component.label.yearsOfExperience')}
             name="yearsOfExperience"
             rules={[{ required: true }]}
           >
             <InputNumber
               className="w-full"
               min={0}
-              placeholder="Enter years of experience"
+              placeholder={t('component.placeholder.yearsOfExperience')}
               precision={1}
               step={0.5}
               type="number"
@@ -73,31 +73,33 @@ function SecondStepForm({
 
         <Col span={24}>
           <Form.Item<MultipleFormSecondStepEntity>
-            label="Previous company name"
+            label={t('component.label.previousCompanyName')}
             name="previousCompanyName"
           >
-            <Input placeholder="Enter previous company name" />
+            <Input
+              placeholder={t('component.placeholder.previousCompanyName')}
+            />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormSecondStepEntity>
-            label="Previous job title"
+            label={t('component.label.previousJobTitle')}
             name="previousJobTitle"
           >
-            <Input placeholder="Enter previous job title" />
+            <Input placeholder={t('component.placeholder.previousJobTitle')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormSecondStepEntity>
-            label="Years of experience"
+            label={t('component.label.yearsOfExperience')}
             name="yearsOfExperienceInPreviousJob"
           >
             <InputNumber
               className="w-full"
               min={0}
-              placeholder="Enter years of experience"
+              placeholder={t('component.placeholder.yearsOfExperience')}
               precision={1}
               step={0.5}
               type="number"

@@ -30,67 +30,88 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
       <Row gutter={[16, 0]}>
         <Col span={12}>
           <Form.Item<SingleStepFormEntity>
-            label="Full Name"
+            label={t('component.label.fullName')}
             name="fullName"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter full name" />
+            <Input placeholder={t('component.label.fullName')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<SingleStepFormEntity>
-            label="Email"
+            label={t('component.label.email')}
             name="email"
             rules={[{ required: true, type: 'email' }]}
           >
-            <Input placeholder="Enter email" />
+            <Input placeholder={t('component.placeholder.email')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="City" name="city">
-            <Input placeholder="Enter city" />
+          <Form.Item<SingleStepFormEntity>
+            label={t('component.label.city')}
+            name="city"
+          >
+            <Input placeholder={t('component.placeholder.city')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="Country" name="country">
-            <Input placeholder="Enter country" />
+          <Form.Item<SingleStepFormEntity>
+            label={t('component.label.country')}
+            name="country"
+          >
+            <Input placeholder={t('component.placeholder.country')} />
           </Form.Item>
         </Col>
 
         <Col span={24}>
-          <Form.Item<SingleStepFormEntity> label="Address" name="address">
-            <TextArea placeholder="Enter address" rows={4} />
+          <Form.Item<SingleStepFormEntity>
+            label={t('component.label.address')}
+            name="address"
+          >
+            <TextArea
+              placeholder={t('component.placeholder.address')}
+              rows={4}
+            />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<SingleStepFormEntity>
-            label="Phone number"
+            label={t('component.label.phoneNumber')}
             name="phoneNumber"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter phone number" />
+            <Input placeholder={t('component.placeholder.phoneNumber')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="State" name="state">
-            <Input placeholder="Enter state" />
+          <Form.Item<SingleStepFormEntity>
+            label={t('component.label.state')}
+            name="state"
+          >
+            <Input placeholder={t('component.placeholder.state')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="Zip code" name="zip">
-            <Input placeholder="Enter zip code" />
+          <Form.Item<SingleStepFormEntity>
+            label={t('component.label.zipCode')}
+            name="zip"
+          >
+            <Input placeholder={t('component.placeholder.zipCode')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
-          <Form.Item<SingleStepFormEntity> label="Major" name="major">
-            <Input placeholder="Enter major" />
+          <Form.Item<SingleStepFormEntity>
+            label={t('component.label.major')}
+            name="major"
+          >
+            <Input placeholder={t('component.placeholder.major')} />
           </Form.Item>
         </Col>
       </Row>

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import type {
   MultipleFormFirstStepEntity,
   MultipleFormSecondStepEntity,
@@ -5,14 +6,13 @@ import type {
   SingleStepFormEntity,
 } from '@/app/features/component/form';
 import {
-  DrawerFormWrapper,
-  ModalFormWrapper,
   MultipleStepsForm,
   SingleStepForm,
   useFormStore,
 } from '@/app/features/component/form';
 import { FormLayout } from '@/app/layout';
 import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { Drawer, Modal } from '@/shared/components';
 import { DEFAULT_TIMEOUT } from '@/shared/constants';
 import { useDrawerRouter, useModalRouter, useToggle } from '@/shared/hooks';
 import { Button, Flex, Form, Progress, Typography } from 'antd';
@@ -53,6 +53,26 @@ function FormSpecialPage() {
     onOpen: onOpenDrawerProgress,
     open: openDrawerProgress,
   } = useToggle();
+  const {
+    onClose: onCloseInfoConfirmModal,
+    onOpen: onOpenInfoConfirmModal,
+    open: openInfoConfirmModal,
+  } = useToggle();
+  const {
+    onClose: onCloseWarningConfirmModal,
+    onOpen: onOpenWarningConfirmModal,
+    open: openWarningConfirmModal,
+  } = useToggle();
+  const {
+    onClose: onCloseErrorConfirmModal,
+    onOpen: onOpenErrorConfirmModal,
+    open: openErrorConfirmModal,
+  } = useToggle();
+  const {
+    onClose: onCloseSuccessConfirmModal,
+    onOpen: onOpenSuccessConfirmModal,
+    open: openSuccessConfirmModal,
+  } = useToggle();
   const { onOpenModal } = useModalRouter();
   const { onOpenDrawer } = useDrawerRouter();
 
@@ -74,74 +94,72 @@ function FormSpecialPage() {
       children: [
         {
           onClick: onOpenModalSingle,
-          title: 'Single step',
+          title: t('component.button.singleStep'),
         },
         {
           onClick: onOpenModalMultiple,
-          title: 'Multiple steps',
+          title: t('component.button.multipleSteps'),
         },
         {
           onClick: onOpenModalProgress,
-          title: 'Progress',
+          title: t('component.button.progress'),
         },
       ],
-      description: 'Form inside a regular modal',
-      title: 'Modal form',
+      description: t('component.description.modalForm'),
+      title: t('component.title.modalForm'),
     },
     {
       children: [
         {
           onClick: onOpenDrawerSingle,
-          title: 'Single step',
+          title: t('component.button.singleStep'),
         },
         {
           onClick: onOpenDrawerMultiple,
-          title: 'Multiple steps',
+          title: t('component.button.multipleSteps'),
         },
         {
           onClick: onOpenDrawerProgress,
-          title: 'Progress',
+          title: t('component.button.progress'),
         },
       ],
-      description: 'Form inside a regular drawer',
-      title: 'Drawer form',
+      description: t('component.description.drawerForm'),
+      title: t('component.title.drawerForm'),
     },
     {
       children: [
         {
           onClick: () => onOpenModal({ path: 'user/edit' }),
-          title: 'Modal',
+          title: t('component.button.modal'),
         },
         {
           onClick: () => onOpenDrawer({ path: 'user/edit' }),
-          title: 'Drawer',
+          title: t('component.button.drawer'),
         },
       ],
-      description: 'Form that keep opening even when reloading the page',
-      title: 'Router form',
+      description: t('component.description.routerForm'),
+      title: t('component.title.routerForm'),
     },
     {
       children: [
         {
-          onClick: () => {
-            console.log('Confirm info form');
-          },
-          title: 'Info',
+          onClick: onOpenInfoConfirmModal,
+          title: t('component.button.info'),
         },
         {
-          onClick: () => {
-            console.log('Confirm warning form');
-          },
-          title: 'Warning',
+          onClick: onOpenWarningConfirmModal,
+          title: t('component.button.warning'),
         },
         {
-          onClick: () => {
-            console.log('Confirm error form');
-          },
-          title: 'Error',
+          onClick: onOpenErrorConfirmModal,
+          title: t('component.button.error'),
+        },
+        {
+          onClick: onOpenSuccessConfirmModal,
+          title: t('component.button.success'),
         },
       ],
-      title: 'Confirm form',
+      title: t('component.title.confirmForm'),
     },
   ];
 
@@ -152,6 +170,10 @@ function FormSpecialPage() {
     onCloseDrawerSingle();
     onCloseDrawerMultiple();
     onCloseDrawerProgress();
+    onCloseInfoConfirmModal();
+    onCloseWarningConfirmModal();
+    onCloseErrorConfirmModal();
+    onCloseSuccessConfirmModal();
     singleStepForm.resetFields();
     multipleFirstStepForm.resetFields();
     multipleSecondStepForm.resetFields();
@@ -265,6 +287,16 @@ function FormSpecialPage() {
     return Math.round(percent);
   }, singleStepForm);
 
+  // ----- Confirm form -----
+  const onFinishConfirm = () => {
+    setLoading(true);
+
+    setTimeout(() => {
+      onCancel();
+      setLoading(false);
+    }, DEFAULT_TIMEOUT);
+  };
+
   return (
     <>
       <FormLayout
@@ -299,14 +331,14 @@ function FormSpecialPage() {
       </FormLayout>
 
       {/* Single step form */}
-      <ModalFormWrapper
+      <Modal.FormWrapper
         okButtonProps={{
           loading,
           onClick: singleStepForm.submit,
         }}
         onCancel={onCancel}
         open={openModalSingle}
-        title="Modal single step form"
+        title={t('component.title.modalSingleStepForm')}
         width={WIDTH.form}
       >
         <SingleStepForm
@@ -314,9 +346,9 @@ function FormSpecialPage() {
           onFinish={onFinishSingleStep}
           showButton={false}
         />
-      </ModalFormWrapper>
+      </Modal.FormWrapper>
 
-      <DrawerFormWrapper
+      <Drawer.FormWrapper
         footer={
           <Flex align="center" gap="0.5rem" justify="end">
             <Button onClick={onCancel} size="middle">
@@ -334,7 +366,7 @@ function FormSpecialPage() {
         }
         onClose={onCancel}
         open={openDrawerSingle}
-        title="Drawer single step form"
+        title={t('component.title.drawerSingleStepForm')}
         width={WIDTH.form}
       >
         <SingleStepForm
@@ -342,10 +374,10 @@ function FormSpecialPage() {
           onFinish={onFinishSingleStep}
           showButton={false}
         />
-      </DrawerFormWrapper>
+      </Drawer.FormWrapper>
 
       {/* Multiple steps form */}
-      <ModalFormWrapper
+      <Modal.FormWrapper
         classNames={{
           body: 'p-0',
         }}
@@ -375,7 +407,7 @@ function FormSpecialPage() {
         }
         onCancel={onCancel}
         open={openModalMultiple}
-        title="Modal multiple steps form"
+        title={t('component.title.modalMultipleStepsForm')}
         width={WIDTH.stepForm}
       >
         <MultipleStepsForm
@@ -388,9 +420,9 @@ function FormSpecialPage() {
           showButton={false}
           thirdStepForm={multipleThirdStepForm}
         />
-      </ModalFormWrapper>
+      </Modal.FormWrapper>
 
-      <DrawerFormWrapper
+      <Drawer.FormWrapper
         classNames={{
           body: 'pt-10',
         }}
@@ -420,7 +452,7 @@ function FormSpecialPage() {
         }
         onClose={onCancel}
         open={openDrawerMultiple}
-        title="Drawer multiple steps form"
+        title={t('component.title.drawerMultipleStepsForm')}
         width={WIDTH.form}
       >
         <MultipleStepsForm
@@ -432,10 +464,10 @@ function FormSpecialPage() {
           showButton={false}
           thirdStepForm={multipleThirdStepForm}
         />
-      </DrawerFormWrapper>
+      </Drawer.FormWrapper>
 
       {/* Progress form */}
-      <ModalFormWrapper
+      <Modal.FormWrapper
         extraHeader={<Progress percent={progress} />}
         okButtonProps={{
           loading,
@@ -443,7 +475,7 @@ function FormSpecialPage() {
         }}
         onCancel={onCancel}
         open={openModalProgress}
-        title="Modal progress form"
+        title={t('component.title.modalProgressForm')}
         width={WIDTH.form}
       >
         <SingleStepForm
@@ -451,9 +483,9 @@ function FormSpecialPage() {
           onFinish={onFinishSingleStep}
           showButton={false}
         />
-      </ModalFormWrapper>
+      </Modal.FormWrapper>
 
-      <DrawerFormWrapper
+      <Drawer.FormWrapper
         extraHeader={<Progress percent={progress} />}
         footer={
           <Flex align="center" gap="0.5rem" justify="end">
@@ -472,7 +504,7 @@ function FormSpecialPage() {
         }
         onClose={onCancel}
         open={openDrawerProgress}
-        title="Drawer progress form"
+        title={t('component.title.drawerProgressForm')}
         width={WIDTH.form}
       >
         <SingleStepForm
@@ -480,7 +512,57 @@ function FormSpecialPage() {
           onFinish={onFinishSingleStep}
           showButton={false}
         />
-      </DrawerFormWrapper>
+      </Drawer.FormWrapper>
+
+      {/* Confirm form */}
+      <Modal.Confirm
+        description={t('component.description.infoConfirmForm')}
+        mode="info"
+        okButtonProps={{
+          loading,
+        }}
+        okText={t('common.button.ok')}
+        onCancel={onCancel}
+        onOk={onFinishConfirm}
+        open={openInfoConfirmModal}
+        title={t('component.title.infoConfirmForm')}
+      />
+      <Modal.Confirm
+        description={t('component.description.warningConfirmForm')}
+        mode="warning"
+        okButtonProps={{
+          loading,
+        }}
+        okText={t('common.button.continue')}
+        onCancel={onCancel}
+        onOk={onFinishConfirm}
+        open={openWarningConfirmModal}
+        title={t('component.title.warningConfirmForm')}
+      />
+      <Modal.Confirm
+        description={t('component.description.errorConfirmForm')}
+        mode="error"
+        okButtonProps={{
+          loading,
+        }}
+        okText={t('common.button.delete')}
+        onCancel={onCancel}
+        onOk={onFinishConfirm}
+        open={openErrorConfirmModal}
+        title={t('component.title.errorConfirmForm')}
+      />
+      <Modal.Confirm
+        description={t('component.description.successConfirmForm')}
+        mode="success"
+        okButtonProps={{
+          loading,
+        }}
+        okText={t('common.button.ok')}
+        onCancel={onCancel}
+        onOk={onFinishConfirm}
+        open={openSuccessConfirmModal}
+        title={t('component.title.successConfirmForm')}
+      />
     </>
   );
 }

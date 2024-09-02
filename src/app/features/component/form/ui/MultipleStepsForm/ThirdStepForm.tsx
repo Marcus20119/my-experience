@@ -37,37 +37,39 @@ function ThirdStepForm({
       <Row gutter={[16, 0]}>
         <Col span={24}>
           <Form.Item<MultipleFormThirdStepEntity>
-            label="Highest education level"
+            label={t('component.label.highestEducationLevel')}
             name="highestEducationLevel"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter highest education level" />
+            <Input
+              placeholder={t('component.placeholder.highestEducationLevel')}
+            />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormThirdStepEntity>
-            label="Major"
+            label={t('component.label.major')}
             name="major"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter major" />
+            <Input placeholder={t('component.placeholder.major')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormThirdStepEntity>
-            label="University"
+            label={t('component.label.university')}
             name="university"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter university" />
+            <Input placeholder={t('component.placeholder.university')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormThirdStepEntity>
-            label="GPA"
+            label={t('component.label.gpa')}
             name="gpa"
             rules={[{ required: true }]}
           >
@@ -75,7 +77,7 @@ function ThirdStepForm({
               className="w-full"
               max={4}
               min={0}
-              placeholder="Enter gpa"
+              placeholder={t('component.placeholder.gpa')}
               precision={2}
               step={0.01}
               type="number"
@@ -85,20 +87,22 @@ function ThirdStepForm({
 
         <Col span={12}>
           <Form.Item<MultipleFormThirdStepEntity>
-            label="Graduation date"
+            label={t('component.label.graduationDate')}
             name="graduationDate"
           >
-            <DatePickerUI placeholder="Select graduation date" />
+            <DatePickerUI
+              placeholder={t('component.placeholder.graduationDate')}
+            />
           </Form.Item>
         </Col>
 
         <Col span={24}>
           <Form.Item<MultipleFormThirdStepEntity>
-            label="Relevant courses"
+            label={t('component.label.relevantCourses')}
             name="relevantCourses"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter relevant courses" />
+            <Input placeholder={t('component.placeholder.relevantCourses')} />
           </Form.Item>
         </Col>
       </Row>

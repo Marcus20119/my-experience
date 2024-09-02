@@ -1,10 +1,7 @@
 import type { SingleStepFormEntity } from '@/app/features/component/form';
-import {
-  DrawerFormWrapper,
-  SingleStepForm,
-  useFormStore,
-} from '@/app/features/component/form';
+import { SingleStepForm, useFormStore } from '@/app/features/component/form';
 import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { Drawer } from '@/shared/components';
 import { DEFAULT_TIMEOUT } from '@/shared/constants';
 import { Button, Flex, Form } from 'antd';
 import { useState } from 'react';
@@ -37,7 +34,7 @@ function FormDrawer({ onCancel }: Props) {
   };
 
   return (
-    <DrawerFormWrapper
+    <Drawer.FormWrapper
       footer={
         <Flex align="center" gap="0.5rem" justify="end">
           <Button onClick={onCancel} size="middle">
@@ -55,7 +52,7 @@ function FormDrawer({ onCancel }: Props) {
       }
       onClose={onCancel}
       open={true}
-      title="Drawer router form"
+      title={t('component.title.drawerRouterForm')}
       width={WIDTH.form}
     >
       <SingleStepForm
@@ -63,7 +60,7 @@ function FormDrawer({ onCancel }: Props) {
         onFinish={onFinish}
         showButton={false}
       />
-    </DrawerFormWrapper>
+    </Drawer.FormWrapper>
   );
 }
 

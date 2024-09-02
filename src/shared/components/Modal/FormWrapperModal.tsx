@@ -5,13 +5,14 @@ import { useTranslation } from 'react-i18next';
 
 const { Text, Title } = Typography;
 
-interface Props extends Omit<ModalProps, 'title'> {
+export interface FormModalWrapperProps
+  extends Omit<ModalProps, 'title' | 'loading'> {
   extraHeader?: React.ReactNode;
   subTitle?: string;
   title?: string;
 }
 
-function ModalFormWrapper({
+function FormWrapperModal({
   cancelButtonProps,
   children,
   extraHeader,
@@ -20,7 +21,7 @@ function ModalFormWrapper({
   subTitle,
   title,
   ...props
-}: Props) {
+}: FormModalWrapperProps) {
   const { t } = useTranslation();
 
   return (
@@ -88,4 +89,4 @@ function ModalFormWrapper({
   );
 }
 
-export default ModalFormWrapper;
+export default FormWrapperModal;

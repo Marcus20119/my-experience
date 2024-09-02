@@ -30,55 +30,60 @@ function FirstStepForm({ form, loading, onFinish, showButton = true }: Props) {
       <Row gutter={[16, 0]}>
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
-            label="Full name"
+            label={t('component.label.fullName')}
             name="fullName"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter full name" />
+            <Input placeholder={t('component.placeholder.fullName')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
-            label="Email"
+            label={t('component.label.email')}
             name="email"
             rules={[{ required: true, type: 'email' }]}
           >
-            <Input placeholder="Enter email" />
+            <Input placeholder={t('component.placeholder.email')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
-            label="Phone number"
+            label={t('component.label.phoneNumber')}
             name="phoneNumber"
             rules={[{ required: true }]}
           >
-            <Input placeholder="Enter phone number" />
+            <Input placeholder={t('component.placeholder.phoneNumber')} />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
-            label="Date of birth"
+            label={t('component.label.dateOfBirth')}
             name="dateOfBirth"
           >
-            <DatePickerUI placeholder="Select date of birth" />
-          </Form.Item>
-        </Col>
-
-        <Col span={12}>
-          <Form.Item<MultipleFormFirstStepEntity> label="City" name="city">
-            <Input placeholder="Enter city" />
+            <DatePickerUI
+              placeholder={t('component.placeholder.dateOfBirth')}
+            />
           </Form.Item>
         </Col>
 
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
-            label="Address"
+            label={t('component.label.city')}
+            name="city"
+          >
+            <Input placeholder={t('component.placeholder.city')} />
+          </Form.Item>
+        </Col>
+
+        <Col span={12}>
+          <Form.Item<MultipleFormFirstStepEntity>
+            label={t('component.label.country')}
             name="address"
           >
-            <Input placeholder="Enter address" />
+            <Input placeholder={t('component.placeholder.country')} />
           </Form.Item>
         </Col>
       </Row>

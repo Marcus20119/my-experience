@@ -11,7 +11,7 @@ interface Props extends Omit<DrawerProps, 'title'> {
   title?: string;
 }
 
-function DrawerFormWrapper({
+function FormWrapperDrawer({
   children,
   classNames,
   extraHeader,
@@ -80,4 +80,4 @@ function DrawerFormWrapper({
   );
 }
 
-export default DrawerFormWrapper;
+export default FormWrapperDrawer;

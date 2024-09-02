@@ -1,35 +1,54 @@
-import type { ModalProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { Button, Flex, Modal, Typography } from 'antd';
-import { CloseCircle, TickCircle } from 'iconsax-react';
+import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { Flex, Typography } from 'antd';
+import { CloseCircle, InfoCircle, TickCircle, Warning2 } from 'iconsax-react';
 import { useMemo } from 'react';
-import { useTranslation } from 'react-i18next';
+import type { FormModalWrapperProps } from './FormWrapperModal';
+import FormWrapperModal from './FormWrapperModal';
 
 const { Text } = Typography;
 
-interface Props
-  extends Pick<ModalProps, 'cancelText' | 'okText' | 'open' | 'width'> {
+interface Props extends FormModalWrapperProps {
   description: string;
-  mode: 'error' | 'success';
-  onCancel: () => void;
-  onOk: () => void;
-  title: string;
+  mode: 'error' | 'success' | 'warning' | 'info';
 }
 
 function ConfirmModal({
-  cancelText,
   description,
   mode,
-  okText,
-  onCancel,
-  onOk,
-  open,
-  title,
-  width,
+  okButtonProps,
+  styles,
+  ...props
 }: Props) {
-  const { t } = useTranslation();
-
   const icon = useMemo(() => {
+    if (mode === 'info') {
+      return (
+        <Flex
+          align="center"
+          className="h-12 w-12 rounded-xl bg-system-informationSoft"
+          justify="center"
+        >
+          <InfoCircle
+            color={COLOR.system.information}
+            size="24"
+            variant="Bold"
+          />
+        </Flex>
+      );
+    }
+
+    if (mode === 'warning') {
+      return (
+        <Flex
+          align="center"
+          className="h-12 w-12 rounded-xl bg-system-alertSoft"
+          justify="center"
+        >
+          <Warning2 color={COLOR.system.alert} size="24" variant="Bold" />
+        </Flex>
+      );
+    }
+
     if (mode === 'error') {
       return (
         <Flex
@@ -54,37 +73,37 @@ function ConfirmModal({
   }, [mode]);
 
   return (
-    <Modal
-      centered
-      closable={false}
-      footer={null}
-      maskClosable={false}
-      open={open}
-      styles={{
-        content: {
-          padding: 0,
+    <FormWrapperModal
+      width={WIDTH.confirmModal}
+      {...props}
+      okButtonProps={{
+        danger: mode === 'error',
+        ...okButtonProps,
+        style: {
+          color: mode === 'error' ? COLOR.neutral['0'] : undefined,
+          ...okButtonProps?.style,
         },
       }}
-      width={width}
+      styles={{
+        ...styles,
+        body: {
+          padding: '1rem 0.5rem',
+          ...styles?.body,
+        },
+        header: {
+          display: 'none',
+          ...styles?.header,
+        },
+      }}
     >
-      <Flex align="center" className="p-4" gap="0.5rem" vertical>
+      <Flex align="center" gap="0.75rem">
         {icon}
-
-        <Flex align="center" vertical>
-          <Text className="text-lg font-semibold">{title}</Text>
+        <Flex vertical>
+          <Text className="text-lg font-semibold">{props.title}</Text>
           <Text className="text-sm text-neutral-600">{description}</Text>
         </Flex>
       </Flex>
-
-      <Flex className="px-5 py-3.5" gap="0.75rem" justify="space-between">
-        <Button className="flex-grow" onClick={onCancel}>
-          {cancelText ?? t('common.button.cancel')}
-        </Button>
-        <Button className="flex-grow" onClick={onOk} type="primary">
-          {okText ?? t('common.button.confirm')}
-        </Button>
-      </Flex>
-    </Modal>
+    </FormWrapperModal>
   );
 }
 

@@ -1,19 +1,18 @@
 import type { SingleStepFormEntity } from '@/app/features/component/form';
-import {
-  ModalFormWrapper,
-  SingleStepForm,
-  useFormStore,
-} from '@/app/features/component/form';
+import { SingleStepForm, useFormStore } from '@/app/features/component/form';
 import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { Modal } from '@/shared/components';
 import { DEFAULT_TIMEOUT } from '@/shared/constants';
 import { Form } from 'antd';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   onCancel: () => void;
 }
 
 function FormModal({ onCancel }: Props) {
+  const { t } = useTranslation();
   const [singleStepForm] = Form.useForm<SingleStepFormEntity>();
   const { setFormStates, singleStepFormValue } = useFormStore();
 
@@ -35,14 +34,14 @@ function FormModal({ onCancel }: Props) {
   };
 
   return (
-    <ModalFormWrapper
+    <Modal.FormWrapper
       okButtonProps={{
         loading,
         onClick: singleStepForm.submit,
       }}
       onCancel={onCancel}
       open={true}
-      title="Modal router form"
+      title={t('component.title.modalRouterForm')}
       width={WIDTH.form}
     >
       <SingleStepForm
@@ -50,7 +49,7 @@ function FormModal({ onCancel }: Props) {
         onFinish={onFinish}
         showButton={false}
       />
-    </ModalFormWrapper>
+    </Modal.FormWrapper>
   );
 }
 

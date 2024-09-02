@@ -11,9 +11,6 @@ function ConfigurationPage() {
 
   const breadCrumb: BreadCrumbItem[] = [
     {
-      route: {
-        path: '/technology',
-      },
       title: t('layout.title.technology'),
     },
     {

@@ -1,26 +1,37 @@
 import type { BreadcrumbProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { useAppNavigate } from '@/shared/hooks';
+import { useAppRouter } from '@/shared/hooks';
 import { Breadcrumb, Dropdown, Flex, Tabs, Typography } from 'antd';
 import { ArrowDown2, ArrowRight2, ArrowUp2 } from 'iconsax-react';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
 import type { BreadCrumbItem, HeaderTabItem } from '../features/header';
 import { useHeaderStore } from '../features/header';
+import { useGetSidebarData, useSidebarStore } from '../features/sidebar';
 
 const { Text, Title } = Typography;
 
 interface Props {
   breadCrumb?: BreadCrumbItem[];
   children: React.ReactNode;
+  onChangeTab?: (path: RouterPath) => void;
   tabs?: HeaderTabItem[];
   title: string;
 }
 
-function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
-  const { navigate } = useAppNavigate();
+function ContentLayout({
+  breadCrumb,
+  children,
+  onChangeTab,
+  tabs,
+  title,
+}: Props) {
+  const { navigate } = useAppRouter();
   const { pathname } = useLocation();
-  const { isContentHeaderCollapsed, setHeaderStates } = useHeaderStore();
+  const { isContentHeaderCollapsed, isContentHeaderSticky, setHeaderStates } =
+    useHeaderStore();
+  const { activeSubKey } = useGetSidebarData();
+  const { setSubSidebarHistory } = useSidebarStore();
 
   const formattedBreadCrumb: BreadcrumbProps['items'] = breadCrumb?.map(
     ({ onClick, route, title }) => ({
@@ -45,7 +56,12 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
 
   return (
     <Flex className="flex-1" vertical>
-      <div className="sticky left-0 top-[3.5rem] z-headerContent">
+      <div
+        className={cn(
+          'z-headerContent',
+          isContentHeaderSticky ? 'sticky left-0 top-[3.5rem]' : 'relative',
+        )}
+      >
         <Flex
           align="top"
           className={cn(
@@ -107,11 +123,13 @@ function ContentLayout({ breadCrumb, children, tabs, title }: Props) {
                 more={{
                   visible: false,
                 }}
-                onChange={key =>
+                onChange={path => {
                   navigate({
-                    path: key as RouterPath,
-                  })
-                }
+                    path: path as RouterPath,
+                  });
+                  setSubSidebarHistory(activeSubKey, path as RouterPath);
+                  onChangeTab?.(path as RouterPath);
+                }}
                 size="small"
                 type="card"
               />

@@ -1,10 +1,70 @@
 {
   "component": {
     "button": {
-      "student": "Student"
+      "drawer": "Drawer",
+      "error": "Error",
+      "info": "Info",
+      "modal": "Modal",
+      "multipleSteps": "Multiple steps",
+      "progress": "Progress",
+      "singleStep": "Single step",
+      "student": "Student",
+      "success": "Success",
+      "warning": "Warning"
+    },
+    "description": {
+      "drawerForm": "Form inside a regular drawer",
+      "errorConfirmForm": "You sure want to delete this user?",
+      "infoConfirmForm": "You will receive an email with the new password.",
+      "modalForm": "Form inside a regular modal",
+      "routerForm": "Form that keep opening even when reloading the page",
+      "successConfirmForm": "Delete user successfully.",
+      "warningConfirmForm": "You will lose all data if you continue this action."
     },
     "label": {
-      "selected": "Selected"
+      "address": "Address",
+      "city": "City",
+      "companyName": "Company name",
+      "country": "Country",
+      "currentJobTitle": "Current job title",
+      "dateOfBirth": "Date of birth",
+      "email": "Email",
+      "fullName": "Full name",
+      "gpa": "GPA",
+      "graduationDate": "Graduation date",
+      "highestEducationLevel": "Highest education level",
+      "major": "Major",
+      "phoneNumber": "Phone number",
+      "previousCompanyName": "Previous company name",
+      "previousJobTitle": "Previous job title",
+      "relevantCourses": "Relevant courses",
+      "selected": "Selected",
+      "state": "State",
+      "university": "University",
+      "yearsOfExperience": "Years of experience",
+      "zipCode": "Zip code"
+    },
+    "placeholder": {
+      "address": "Enter address",
+      "city": "Enter city",
+      "companyName": "Enter company name",
+      "country": "Enter country",
+      "currentJobTitle": "Enter current job title",
+      "dateOfBirth": "Enter date of birth",
+      "email": "Enter email",
+      "fullName": "Enter full name",
+      "gpa": "Enter GPA",
+      "graduationDate": "Enter graduation date",
+      "highestEducationLevel": "Enter highest education level",
+      "major": "Enter major",
+      "phoneNumber": "Enter phone number",
+      "previousCompanyName": "Enter previous company name",
+      "previousJobTitle": "Enter previous job title",
+      "relevantCourses": "Enter relevant courses",
+      "state": "Enter state",
+      "university": "Enter university",
+      "yearsOfExperience": "Enter years of experience",
+      "zipCode": "Enter zip code"
     },
     "table": {
       "academicTranscript": "Academic transcript",
@@ -44,6 +104,24 @@
       "total": "Total",
       "user": "User",
       "vehicle": "Vehicle"
+    },
+    "title": {
+      "confirmForm": "Confirm form",
+      "drawerForm": "Drawer form",
+      "drawerMultipleStepsForm": "Drawer multiple steps form",
+      "drawerProgressForm": "Drawer progress form",
+      "drawerRouterForm": "Drawer router form",
+      "drawerSingleStepForm": "Drawer single step form",
+      "errorConfirmForm": "Error confirm form",
+      "infoConfirmForm": "Info confirm form",
+      "modalForm": "Modal form",
+      "modalMultipleStepsForm": "Modal multiple steps form",
+      "modalProgressForm": "Modal progress form",
+      "modalRouterForm": "Modal router form",
+      "modalSingleStepForm": "Modal single step form",
+      "routerForm": "Router form",
+      "successConfirmForm": "Success confirm form",
+      "warningConfirmForm": "Warning confirm form"
     },
     "tour": {
       "customizableTable": {

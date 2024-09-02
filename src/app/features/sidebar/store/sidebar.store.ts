@@ -2,17 +2,25 @@ import type { RemoveStates, SetStates } from '@/shared/types';
 import { WIDTH } from '@/shared/assets/styles/constants/width';
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import type { MainSidebarKey, SubSidebarKey } from '../model';
 
 interface SidebarState {
   isMainBarCollapsed?: boolean;
   isMainBarLocked?: boolean;
   isSubBarCollapsed?: boolean;
+  mainSidebarHistory?: Record<MainSidebarKey, SubSidebarKey>;
+  subSidebarHistory?: Record<SubSidebarKey, RouterPath>;
 }
 
 interface SidebarAction {
   getSidebarWidth: () => number;
   removeSidebarStates: RemoveStates<SidebarState>;
+  setMainSidebarHistory: (
+    mainKey: MainSidebarKey,
+    subKey: SubSidebarKey,
+  ) => void;
   setSidebarStates: SetStates<SidebarState>;
+  setSubSidebarHistory: (subKey: SubSidebarKey, path: RouterPath) => void;
 }
 
 export const useSidebarStore = create<SidebarAction & SidebarState>()(
@@ -45,6 +53,17 @@ export const useSidebarStore = create<SidebarAction & SidebarState>()(
             keys.forEach(key => (newState[key] = undefined));
             return newState;
           }),
+        setMainSidebarHistory: (mainKey, subKey) => {
+          set(state => ({
+            mainSidebarHistory: {
+              ...(state.mainSidebarHistory as Record<
+                MainSidebarKey,
+                SubSidebarKey
+              >),
+              [mainKey]: subKey,
+            },
+          }));
+        },
         setSidebarStates: param =>
           set(() => {
             const newState: SidebarState = {};
@@ -54,6 +73,14 @@ export const useSidebarStore = create<SidebarAction & SidebarState>()(
             });
             return newState;
           }),
+        setSubSidebarHistory: (subKey, path) => {
+          set(state => ({
+            subSidebarHistory: {
+              ...(state.subSidebarHistory as Record<SubSidebarKey, RouterPath>),
+              [subKey]: path,
+            },
+          }));
+        },
       }),
       {
         name: 'store-sidebar',

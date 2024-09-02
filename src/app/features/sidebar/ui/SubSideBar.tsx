@@ -4,14 +4,20 @@ import { Flex, Typography } from 'antd';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
-import { useGetSidebarItems } from '../model';
+import type { SubSidebarKey } from '../model';
+import { useGetSidebarData } from '../model';
 import { useSidebarStore } from '../store';
 
 const { Text } = Typography;
 
 function SubSideBar() {
-  const { isSubBarCollapsed, setSidebarStates } = useSidebarStore();
-  const { activeSubKey, mainLabel, subSidebarItems } = useGetSidebarItems();
+  const {
+    isSubBarCollapsed,
+    setMainSidebarHistory: setSidebarHistory,
+    setSidebarStates,
+  } = useSidebarStore();
+  const { activeMainKey, activeSubKey, mainLabel, subSidebarItems } =
+    useGetSidebarData();
 
   if (!subSidebarItems?.length) return null;
 
@@ -42,6 +48,7 @@ function SubSideBar() {
             key={item.key}
             onClick={() => {
               AppTool.scrollToTop();
+              setSidebarHistory(activeMainKey, item.key as SubSidebarKey);
             }}
             to={item.path}
           >

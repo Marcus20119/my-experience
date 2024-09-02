@@ -1,9 +1,15 @@
 {
   "layout": {
     "action": {
+      "collapseHeader": "Collapse header",
+      "collapseSidebar": "Collapse sidebar",
+      "expandHeader": "Expand header",
+      "expandSidebar": "Expand sidebar",
       "introduction": "Introduction",
       "removeData": "Remove data",
-      "saveData": "Save data"
+      "saveData": "Save data",
+      "stickHeader": "Stick header",
+      "unstickHeader": "Unstick header"
     },
     "lockSidebar": {
       "lock": "Lock Sidebar",
@@ -22,14 +28,16 @@
       "game": "Game",
       "image": "Image",
       "language": "Language",
-      "originalField": "Original Field",
-      "originalForm": "Original Form",
+      "multipleStepForm": "Multiple step form",
+      "originalField": "Original field",
+      "originalForm": "Original form",
       "other": "Other",
-      "specialField": "Special Field",
-      "specialForm": "Special Form",
+      "singleStepForm": "Single step form",
+      "specialField": "Special field",
+      "specialForm": "Special form",
       "table": "Table",
       "technology": "Technology",
-      "uiLibrary": "UI Library"
+      "uiLibrary": "UI library"
     }
   }
 }

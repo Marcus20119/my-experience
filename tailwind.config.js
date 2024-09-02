@@ -26,6 +26,8 @@ export default {
       width,
       spacing,
       height,
+      maxWidth: width,
+      maxHeight: height,
     },
   },
 };

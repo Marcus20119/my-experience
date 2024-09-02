@@ -1,11 +1,10 @@
 import type { StudentFormEntity } from '@/app/features/component/table';
 import type { ItemType } from 'antd/es/menu/interface';
 import type { TourProps } from 'antd/lib';
-import { StudentTable } from '@/app/features/component/table';
+import { StudentTable, useTableStore } from '@/app/features/component/table';
 import { TableLayout } from '@/app/layout';
 import { Value } from '@/shared/components';
 import { useToggle } from '@/shared/hooks';
-import { useLocalStore } from '@/shared/stores';
 import { Form, Tour } from 'antd';
 import dayjs from 'dayjs';
 import { InfoCircle, TickCircle } from 'iconsax-react';
@@ -20,7 +19,7 @@ function TableEditablePage() {
     open: openTour,
   } = useToggle();
 
-  const { setLocalStates, students } = useLocalStore();
+  const { setTableStates, students } = useTableStore();
 
   const tabItems: ItemType[] = [
     {
@@ -201,7 +200,7 @@ function TableEditablePage() {
         }}
         layout="vertical"
         onFinish={values =>
-          setLocalStates({
+          setTableStates({
             students: values.students,
           })
         }

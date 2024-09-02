@@ -313,6 +313,14 @@ module.exports = {
         ignoreCase: true,
       },
     ],
+    'perfectionist/sort-enums': [
+      'error',
+      {
+        type: 'alphabetical',
+        order: 'asc',
+        ignoreCase: true,
+      },
+    ],
     'sort-destructure-keys/sort-destructure-keys': [
       2,
       { caseSensitive: false },

@@ -74,6 +74,7 @@ function AntProvider() {
         },
       },
       token: {
+        ...defaultTheme.token,
         colorPrimary: primaryColor,
       },
     };

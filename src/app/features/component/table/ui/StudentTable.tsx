@@ -1,9 +1,7 @@
 import { useHeaderStore } from '@/app/features/header';
 import { useSidebarStore } from '@/app/features/sidebar';
-import { HEIGHT } from '@/shared/assets/styles/constants/height';
-import { SPACING } from '@/shared/assets/styles/constants/spacing';
-import { WIDTH } from '@/shared/assets/styles/constants/width';
-import { SelectUI } from '@/shared/components';
+import { HEIGHT, SPACING, WIDTH } from '@/shared/assets/styles/constants';
+import { Select } from '@/shared/components';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { DateTimeTool } from '@/shared/utils';
 import { Button, Flex, Popconfirm, Typography } from 'antd';
@@ -112,7 +110,7 @@ function StudentTable({ onChange, students }: Props) {
       dataIndex: 'gender',
       key: 'gender',
       render: (_, student) => (
-        <SelectUI
+        <Select
           className="w-full"
           onChange={value =>
             handleSave({

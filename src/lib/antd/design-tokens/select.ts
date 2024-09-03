@@ -8,8 +8,6 @@ export const SELECT: OverrideToken['Select'] = {
   boxShadow: `0 0 0 2px ${COLOR.neutral['300']}`,
   colorBorder: COLOR.neutral['400'],
   colorIcon: COLOR.neutral['500'],
-  colorPrimary: COLOR.neutral['700'],
-  colorPrimaryHover: COLOR.neutral['700'],
   colorTextDisabled: COLOR.neutral['500'],
   colorTextPlaceholder: COLOR.neutral['500'],
   controlHeight: 40,
@@ -20,7 +18,6 @@ export const SELECT: OverrideToken['Select'] = {
   fontSizeLG: 16,
   fontSizeSM: 14,
   fontWeightStrong: 400,
-  optionHeight: 32,
   optionPadding: `0.375rem 1rem`,
   optionSelectedFontWeight: 400,
 };

@@ -92,6 +92,7 @@ module.exports = {
         },
       ],
     ],
+    'react/prop-types': 'off',
 
     /* Typescript Rules*/
     '@typescript-eslint/array-type': 'error',

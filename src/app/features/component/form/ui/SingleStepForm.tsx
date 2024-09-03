@@ -15,18 +15,7 @@ function SingleStepForm({ form, onFinish, showButton = true }: Props) {
   const { t } = useTranslation();
 
   return (
-    <Form
-      autoComplete="off"
-      form={form}
-      layout="vertical"
-      onFinish={onFinish}
-      scrollToFirstError={{
-        behavior: 'smooth',
-        block: 'center',
-        scrollMode: 'always',
-      }}
-      size="middle"
-    >
+    <Form form={form} layout="vertical" onFinish={onFinish} size="middle">
       <Row gutter={[16, 0]}>
         <Col span={12}>
           <Form.Item<SingleStepFormEntity>

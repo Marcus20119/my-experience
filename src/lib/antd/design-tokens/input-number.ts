@@ -8,8 +8,6 @@ export const INPUT_NUMBER: OverrideToken['InputNumber'] = {
   borderRadiusSM: 8,
   colorBorder: COLOR.neutral['400'],
   colorIcon: COLOR.neutral['500'],
-  colorPrimary: COLOR.neutral['700'],
-  colorPrimaryHover: COLOR.neutral['700'],
   colorTextDisabled: COLOR.neutral['500'],
   colorTextPlaceholder: COLOR.neutral['500'],
   controlHeight: 40,

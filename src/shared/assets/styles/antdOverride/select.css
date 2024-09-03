@@ -10,3 +10,11 @@
     box-shadow: 0 0 0 2px var(--neutral-300-color) !important;
   }
 }
+
+.rc-virtual-list-scrollbar-thumb,
+.ant-select-tree-list-scrollbar-thumb {
+  background-color: var(--neutral-400-color) !important;
+  width: 10px !important;
+  border: 3px solid var(--neutral-100-color) !important;
+  border-radius: 8px !important;
+}

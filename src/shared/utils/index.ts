@@ -1,6 +1,7 @@
 export * from './api';
 export * from './app';
 export * from './dateTime';
+export * from './form';
 export * from './formValidators';
 export * from './image';
 export * from './logger';

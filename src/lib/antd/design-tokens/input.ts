@@ -9,8 +9,6 @@ export const INPUT: OverrideToken['Input'] = {
   colorBgBase: COLOR.neutral['0'],
   colorBorder: COLOR.neutral['400'],
   colorIcon: COLOR.neutral['600'],
-  colorPrimary: COLOR.neutral['700'],
-  colorPrimaryHover: COLOR.neutral['700'],
   colorText: COLOR.neutral['700'],
   colorTextDisabled: COLOR.neutral['500'],
   colorTextPlaceholder: COLOR.neutral['500'],

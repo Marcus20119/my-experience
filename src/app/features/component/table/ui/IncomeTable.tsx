@@ -1,9 +1,7 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { useHeaderStore } from '@/app/features/header';
 import { useSidebarStore } from '@/app/features/sidebar';
-import { HEIGHT } from '@/shared/assets/styles/constants/height';
-import { SPACING } from '@/shared/assets/styles/constants/spacing';
-import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { HEIGHT, SPACING, WIDTH } from '@/shared/assets/styles/constants';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { NumberTool } from '@/shared/utils';
 import { Table } from 'antd';

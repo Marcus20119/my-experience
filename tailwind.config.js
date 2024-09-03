@@ -13,6 +13,9 @@ const {
 const {
   HEIGHT: height,
 } = require('./src/shared/assets/styles/constants/height.ts');
+const {
+  SHADOW: boxShadow,
+} = require('./src/shared/assets/styles/constants/shadow.ts');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -28,6 +31,7 @@ export default {
       height,
       maxWidth: width,
       maxHeight: height,
+      boxShadow,
     },
   },
 };

@@ -1,3 +1,30 @@
 .ant-picker-now-btn:hover {
   color: var(--primary-color) !important;
 }
+
+/* Time picker */
+.ant-picker-time-panel-cell-selected {
+  .ant-picker-time-panel-cell-inner {
+    background-color: var(--secondaryLight-color) !important;
+  }
+}
+
+/* Week picker */
+.ant-picker-cell-week {
+  display: none;
+}
+
+.ant-picker-week-panel {
+  tr:first-of-type {
+    th:first-of-type {
+      display: none;
+    }
+  }
+}
+
+.ant-picker-week-panel-row {
+  .ant-picker-cell-week + .ant-picker-cell::before {
+    border-start-start-radius: 0.5rem;
+    border-end-start-radius: 0.5rem;
+  }
+}

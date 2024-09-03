@@ -1,6 +1,6 @@
 import type { SingleStepFormEntity } from '@/app/features/component/form';
 import { SingleStepForm, useFormStore } from '@/app/features/component/form';
-import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { WIDTH } from '@/shared/assets/styles/constants';
 import { Modal } from '@/shared/components';
 import { DEFAULT_TIMEOUT } from '@/shared/constants';
 import { Form } from 'antd';

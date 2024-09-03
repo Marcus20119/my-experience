@@ -21,18 +21,7 @@ function SecondStepForm({
   const { t } = useTranslation();
 
   return (
-    <Form
-      autoComplete="off"
-      form={form}
-      layout="vertical"
-      onFinish={onFinish}
-      scrollToFirstError={{
-        behavior: 'smooth',
-        block: 'center',
-        scrollMode: 'always',
-      }}
-      size="middle"
-    >
+    <Form form={form} layout="vertical" onFinish={onFinish} size="middle">
       <Row gutter={[16, 0]}>
         <Col span={24}>
           <Form.Item<MultipleFormSecondStepEntity>
@@ -61,7 +50,6 @@ function SecondStepForm({
             rules={[{ required: true }]}
           >
             <InputNumber
-              className="w-full"
               min={0}
               placeholder={t('component.placeholder.yearsOfExperience')}
               precision={1}
@@ -97,7 +85,6 @@ function SecondStepForm({
             name="yearsOfExperienceInPreviousJob"
           >
             <InputNumber
-              className="w-full"
               min={0}
               placeholder={t('component.placeholder.yearsOfExperience')}
               precision={1}

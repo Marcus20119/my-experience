@@ -6,6 +6,7 @@ import { useLocalStore } from '@/shared/stores/local.store';
 import { ThemeTool } from '@/shared/utils';
 import { ApolloProvider } from '@apollo/client';
 import { ConfigProvider, Spin } from 'antd';
+import { CloseCircle } from 'iconsax-react';
 import { Suspense, useEffect, useMemo } from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -42,6 +43,11 @@ function AntProvider() {
       return defaultTheme;
     }
 
+    const secondaryLightColor = ThemeTool.getHexColorVariant(
+      secondaryColor,
+      0.8,
+    );
+
     return {
       components: {
         ...defaultTheme.components,
@@ -49,19 +55,26 @@ function AntProvider() {
           ...defaultTheme.components.Button,
           primaryColor: secondaryColor ?? undefined,
         },
+        ['Cascader']: {
+          ...defaultTheme.components.Cascader,
+          optionSelectedBg: secondaryLightColor,
+        },
         ['DatePicker']: {
           ...defaultTheme.components.DatePicker,
-          cellActiveWithRangeBg: ThemeTool.getHexColorVariant(
-            secondaryColor,
-            0.8,
-          ),
+          cellActiveWithRangeBg: secondaryLightColor,
+          cellHoverWithRangeBg: secondaryLightColor,
         },
         ['Select']: {
           ...defaultTheme.components.Select,
-          optionSelectedBg: ThemeTool.getHexColorVariant(secondaryColor, 0.8),
+          optionSelectedBg: secondaryLightColor,
+        },
+        ['TreeSelect']: {
+          ...defaultTheme.components.TreeSelect,
+          nodeSelectedBg: secondaryLightColor,
         },
       },
       token: {
+        ...defaultTheme.token,
         colorPrimary: primaryColor,
       },
     };
@@ -75,6 +88,7 @@ function AntProvider() {
 
     if (secondaryColor) {
       COLOR.secondary = secondaryColor;
+      COLOR.secondaryLight = ThemeTool.getHexColorVariant(secondaryColor, 0.8);
     }
 
     //map colors variables for root
@@ -97,6 +111,18 @@ function AntProvider() {
     <ConfigProvider
       componentSize="small"
       form={formConfig}
+      input={{
+        allowClear: {
+          clearIcon: (
+            <CloseCircle
+              color={COLOR.neutral['400']}
+              size="18"
+              variant="Bold"
+            />
+          ),
+        },
+        autoComplete: 'off',
+      }}
       locale={locale}
       theme={theme}
     >

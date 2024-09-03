@@ -1,13 +1,18 @@
+import type { SelectProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { Icon } from '@iconify/react/dist/iconify.cjs';
-import { Select } from 'antd';
+import { Select as AntSelect, Tooltip } from 'antd';
 import { ArrowDown2, ArrowUp2, CloseCircle } from 'iconsax-react';
 import { useMemo, useState } from 'react';
 import { cn } from '@/lib/tailwind';
-import type { SelectUIProps } from './types';
 import { StyledSelect } from './styles';
+import TreeSelect from './TreeSelect';
 
-function SelectUI({
+export interface SelectUIProps extends SelectProps {
+  prefixIcon?: React.ReactNode;
+}
+
+function Select({
   allowClear,
   className,
   loading,
@@ -39,14 +44,14 @@ function SelectUI({
   return (
     <StyledSelect hasPrefixIcon={!!prefixIcon}>
       {prefixIcon ? <div className="prefix-icon">{prefixIcon}</div> : null}
-      <Select
+      <AntSelect
         allowClear={
           allowClear
             ? {
                 clearIcon: (
                   <CloseCircle
                     color={COLOR.neutral['400']}
-                    size="20"
+                    size="18"
                     variant="Bold"
                   />
                 ),
@@ -54,6 +59,16 @@ function SelectUI({
             : undefined
         }
         className={cn('w-full', className)}
+        filterOption={false}
+        maxTagCount="responsive"
+        maxTagPlaceholder={omittedValues => (
+          <Tooltip
+            overlayStyle={{ pointerEvents: 'none' }}
+            title={omittedValues.map(({ label }) => label).join(', ')}
+          >
+            <span>{`+ ${omittedValues.length} ...`}</span>
+          </Tooltip>
+        )}
         onDropdownVisibleChange={open => {
           setIsOpened(open);
           onDropdownVisibleChange?.(open);
@@ -65,4 +80,6 @@ function SelectUI({
   );
 }
 
-export default SelectUI;
+Select.Tree = TreeSelect;
+
+export { Select };

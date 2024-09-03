@@ -1,5 +1,4 @@
-import { COLOR } from '@/shared/assets/styles/constants';
-import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { COLOR, WIDTH } from '@/shared/assets/styles/constants';
 import { Flex, Typography } from 'antd';
 import { CloseCircle, InfoCircle, TickCircle, Warning2 } from 'iconsax-react';
 import { useMemo } from 'react';

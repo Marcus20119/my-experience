@@ -1,8 +1,6 @@
 import { useHeaderStore } from '@/app/features/header';
 import { useSidebarStore } from '@/app/features/sidebar';
-import { HEIGHT } from '@/shared/assets/styles/constants/height';
-import { SPACING } from '@/shared/assets/styles/constants/spacing';
-import { WIDTH } from '@/shared/assets/styles/constants/width';
+import { HEIGHT, SPACING, WIDTH } from '@/shared/assets/styles/constants';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { Button, Flex } from 'antd';
 import { Edit2, Trash } from 'iconsax-react';

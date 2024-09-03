@@ -13,11 +13,20 @@ interface Props extends CardProps {
   grids: GridCardItem[];
 }
 
-function GridCard({ grids, rootClassName, ...props }: Props) {
+function GridCard({ grids, rootClassName, styles, ...props }: Props) {
   return (
     <Card
       rootClassName={cn('rounded-b-lg overflow-hidden', rootClassName)}
       {...props}
+      styles={{
+        ...styles,
+        header: {
+          fontSize: 20,
+          fontWeight: 700,
+          letterSpacing: 0.5,
+          ...styles?.header,
+        },
+      }}
     >
       {grids.map((grid, index) => (
         <Card.Grid

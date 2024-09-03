@@ -1,4 +1,4 @@
-import type { OriginalFieldForm } from '@/app/features/component/field/model';
+import type { OriginalFieldForm } from '@/app/features/component/field';
 import type { GridCardItem } from '@/shared/components';
 import { Card } from '@/shared/components';
 import { Form, Input, InputNumber } from 'antd';
@@ -13,12 +13,12 @@ function InputFields() {
         <Form.Item<OriginalFieldForm>
           label="Input text"
           name="text"
-          rules={[
-            {
-              required: true,
-              whitespace: true,
-            },
-          ]}
+          // rules={[
+          //   {
+          //     required: true,
+          //     whitespace: true,
+          //   },
+          // ]}
         >
           <Input placeholder="Enter text" />
         </Form.Item>
@@ -31,7 +31,6 @@ function InputFields() {
           <InputNumber
             addonAfter="point"
             changeOnWheel
-            className="w-full"
             max={10}
             min={0}
             placeholder="Enter number"
@@ -59,6 +58,18 @@ function InputFields() {
     },
     {
       content: (
+        <Form.Item<OriginalFieldForm>
+          className="[&_.ant-input-affix-wrapper]:aspect-square [&_.ant-input-suffix]:hidden [&_.ant-input]:text-center [&_.ant-otp]:max-w-full"
+          label="Input OTP"
+          name="otp"
+        >
+          <OTP formatter={str => str.toUpperCase()} size="large" />
+        </Form.Item>
+      ),
+      span: 8,
+    },
+    {
+      content: (
         <Form.Item<OriginalFieldForm> label="Textarea" name="textarea">
           <TextArea
             autoSize={{
@@ -72,18 +83,6 @@ function InputFields() {
         </Form.Item>
       ),
       span: 16,
-    },
-    {
-      content: (
-        <Form.Item<OriginalFieldForm>
-          className="[&_.ant-input]:aspect-square"
-          label="Input OTP"
-          name="otp"
-        >
-          <OTP formatter={str => str.toUpperCase()} size="large" />
-        </Form.Item>
-      ),
-      span: 8,
     },
   ];
 

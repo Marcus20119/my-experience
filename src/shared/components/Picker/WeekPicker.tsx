@@ -1,13 +1,14 @@
 import type { DatePickerProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { DEFAULT_DATE_FORMAT } from '@/shared/constants';
-import { DatePicker } from 'antd';
+import { DatePicker as AntDatePicker } from 'antd';
+import dayjs from 'dayjs';
 import { Calendar, CloseCircle } from 'iconsax-react';
 import { cn } from '@/lib/tailwind';
 
-function DatePickerUI({ allowClear, className, ...props }: DatePickerProps) {
+function WeekPicker({ allowClear, className, ...props }: DatePickerProps) {
   return (
-    <DatePicker
+    <AntDatePicker
       allowClear={
         allowClear
           ? {
@@ -22,11 +23,18 @@ function DatePickerUI({ allowClear, className, ...props }: DatePickerProps) {
           : false
       }
       className={cn('w-full', className)}
-      format={DEFAULT_DATE_FORMAT}
+      format={value =>
+        `${dayjs(value).startOf('week').format(DEFAULT_DATE_FORMAT)} ~ ${dayjs(
+          value,
+        )
+          .endOf('week')
+          .format(DEFAULT_DATE_FORMAT)}`
+      }
+      picker="week"
       suffixIcon={<Calendar className="text-neutral-700" size="20" />}
       {...props}
     />
   );
 }
 
-export default DatePickerUI;
+export default WeekPicker;

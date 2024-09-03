@@ -12,8 +12,6 @@ export const DATE_PICKER: OverrideToken['DatePicker'] = {
   colorBgContainerDisabled: COLOR.neutral['100'],
   colorBorder: COLOR.neutral['400'],
   colorIcon: COLOR.neutral['600'],
-  colorPrimary: COLOR.neutral['700'],
-  colorPrimaryHover: COLOR.neutral['700'],
   colorText: COLOR.neutral['700'],
   colorTextPlaceholder: COLOR.neutral['500'],
   controlHeight: 40,

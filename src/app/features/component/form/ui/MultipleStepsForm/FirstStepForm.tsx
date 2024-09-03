@@ -1,6 +1,6 @@
 import type { MultipleFormFirstStepEntity } from '@/app/features/component/form';
 import type { FormInstance } from 'antd/lib';
-import { DatePickerUI } from '@/shared/components';
+import { Picker } from '@/shared/components';
 import { Button, Col, Flex, Form, Input, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -15,13 +15,7 @@ function FirstStepForm({ form, loading, onFinish, showButton = true }: Props) {
   const { t } = useTranslation();
 
   return (
-    <Form
-      autoComplete="off"
-      form={form}
-      layout="vertical"
-      onFinish={onFinish}
-      size="middle"
-    >
+    <Form form={form} layout="vertical" onFinish={onFinish} size="middle">
       <Row gutter={[16, 0]}>
         <Col span={12}>
           <Form.Item<MultipleFormFirstStepEntity>
@@ -58,9 +52,7 @@ function FirstStepForm({ form, loading, onFinish, showButton = true }: Props) {
             label={t('component.label.dateOfBirth')}
             name="dateOfBirth"
           >
-            <DatePickerUI
-              placeholder={t('component.placeholder.dateOfBirth')}
-            />
+            <Picker.Date placeholder={t('component.placeholder.dateOfBirth')} />
           </Form.Item>
         </Col>
 

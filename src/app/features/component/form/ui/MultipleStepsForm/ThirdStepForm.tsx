@@ -1,6 +1,6 @@
 import type { MultipleFormThirdStepEntity } from '@/app/features/component/form';
 import type { FormInstance } from 'antd/lib';
-import { DatePickerUI } from '@/shared/components';
+import { Picker } from '@/shared/components';
 import { Button, Col, Flex, Form, Input, InputNumber, Row } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -22,13 +22,7 @@ function ThirdStepForm({
   const { t } = useTranslation();
 
   return (
-    <Form
-      autoComplete="off"
-      form={form}
-      layout="vertical"
-      onFinish={onFinish}
-      size="middle"
-    >
+    <Form form={form} layout="vertical" onFinish={onFinish} size="middle">
       <Row gutter={[16, 0]}>
         <Col span={24}>
           <Form.Item<MultipleFormThirdStepEntity>
@@ -69,7 +63,6 @@ function ThirdStepForm({
             rules={[{ required: true }]}
           >
             <InputNumber
-              className="w-full"
               max={4}
               min={0}
               placeholder={t('component.placeholder.gpa')}
@@ -85,7 +78,7 @@ function ThirdStepForm({
             label={t('component.label.graduationDate')}
             name="graduationDate"
           >
-            <DatePickerUI
+            <Picker.Date
               placeholder={t('component.placeholder.graduationDate')}
             />
           </Form.Item>

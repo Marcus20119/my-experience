@@ -1,5 +1,9 @@
 import type { OriginalFieldForm } from '@/app/features/component/field';
-import { InputFields } from '@/app/features/component/field';
+import {
+  DatePickerFields,
+  InputFields,
+  SelectFields,
+} from '@/app/features/component/field';
 import { FieldLayout } from '@/app/layout';
 import { Button, Flex, Form } from 'antd';
 import { useTranslation } from 'react-i18next';
@@ -15,7 +19,6 @@ function FieldOriginalPage() {
       }}
     >
       <Form<OriginalFieldForm>
-        autoComplete="off"
         form={form}
         layout="vertical"
         onFinish={values => console.log(values)}
@@ -24,6 +27,8 @@ function FieldOriginalPage() {
         <Flex gap="1rem" vertical>
           <Flex gap="1rem" vertical>
             <InputFields />
+            <SelectFields />
+            <DatePickerFields />
           </Flex>
 
           <Flex justify="end">

@@ -14,6 +14,7 @@ export const COLOR = {
   primary: 'var(--primary-color)',
   primaryLight: 'var(--primaryLight-color)',
   secondary: 'var(--secondary-color)',
+  secondaryLight: 'var(--secondaryLight-color)',
   system: {
     alert: '#FFCC00',
     alertSoft: '#FFF9E5',

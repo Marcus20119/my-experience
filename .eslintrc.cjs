@@ -53,6 +53,7 @@ module.exports = {
     'plugin:import/warnings',
     'plugin:jsx-a11y/recommended',
     'prettier',
+    'plugin:@tanstack/eslint-plugin-query/recommended',
   ],
   plugins: [
     'perfectionist',
@@ -315,6 +316,14 @@ module.exports = {
       },
     ],
     'perfectionist/sort-enums': [
+      'error',
+      {
+        type: 'alphabetical',
+        order: 'asc',
+        ignoreCase: true,
+      },
+    ],
+    'perfectionist/sort-union-types': [
       'error',
       {
         type: 'alphabetical',

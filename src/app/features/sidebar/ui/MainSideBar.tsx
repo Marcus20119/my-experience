@@ -1,4 +1,4 @@
-import { COLOR } from '@/shared/assets/styles/constants';
+import { COLOR, Z_INDEX } from '@/shared/assets/styles/constants';
 import { ReactComponent as LogoReact } from '@/shared/assets/svgs/logo-react.svg';
 import { Flex, Tooltip, Typography } from 'antd';
 import { ToggleOffCircle, ToggleOnCircle } from 'iconsax-react';
@@ -77,6 +77,7 @@ function MainSideBar() {
               align={{ offset: [24, 0] }}
               placement="right"
               title={isMainBarLocked ? item.label : undefined}
+              zIndex={Number(Z_INDEX.sidebarTooltip)}
             >
               <Flex
                 align="center"

@@ -8,18 +8,18 @@ import { cn } from '@/lib/tailwind';
 import { StyledSelect } from './styles';
 import TreeSelect from './TreeSelect';
 
-export interface SelectUIProps extends SelectProps {
+export interface MySelectProps extends SelectProps {
   prefixIcon?: React.ReactNode;
 }
 
-function Select({
+function Select<T>({
   allowClear,
   className,
   loading,
   onDropdownVisibleChange,
   prefixIcon,
   ...props
-}: SelectUIProps) {
+}: MySelectProps) {
   const [isOpened, setIsOpened] = useState(false);
 
   const suffixIcon = useMemo(() => {
@@ -44,7 +44,7 @@ function Select({
   return (
     <StyledSelect hasPrefixIcon={!!prefixIcon}>
       {prefixIcon ? <div className="prefix-icon">{prefixIcon}</div> : null}
-      <AntSelect
+      <AntSelect<T>
         allowClear={
           allowClear
             ? {

@@ -4,7 +4,7 @@ import SubSideBar from './SubSideBar';
 
 function Sidebar() {
   return (
-    <Flex className="z-sidebar sticky left-0 top-0 h-screen flex-shrink-0">
+    <Flex className="sticky left-0 top-0 z-sidebar h-screen flex-shrink-0">
       <MainSideBar />
       <SubSideBar />
     </Flex>

@@ -5,13 +5,3 @@
 .ant-input-number-group-wrapper {
   width: 100% !important;
 }
-
-.ant-input-clear-icon {
-  visibility: hidden !important;
-}
-
-.ant-input-affix-wrapper-focused {
-  .ant-input-clear-icon {
-    visibility: visible !important;
-  }
-}

@@ -5,7 +5,7 @@ import { cn } from '@/lib/tailwind';
 const getWidthPercentage = (span: number) => `${(span / 24) * 100}%`;
 
 export interface GridCardItem {
-  content: React.ReactNode;
+  content?: React.ReactNode;
   span: number;
 }
 

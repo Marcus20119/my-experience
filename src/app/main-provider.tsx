@@ -142,7 +142,7 @@ function MainProvider() {
       <ApolloProvider client={apolloClient}>
         <QueryClientProvider client={queryClient}>
           <AntProvider />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position="right" />
         </QueryClientProvider>
       </ApolloProvider>
     </I18nextProvider>

@@ -59,10 +59,11 @@
       "pageNotFound": "Không tìm thấy trang!"
     },
     "placeholder": {
-      "email": "Vd. nguyenvana@gmail.com",
-      "fullName": " Vd. Nguyen Van A",
-      "phoneNumber": "Vd. 0233 123 ***",
+      "email": "Nhập email",
+      "fullName": "Nhập họ và tên",
+      "phoneNumber": "Nhập số điện thoại",
       "quickSearch": "Tìm kiếm nhanh...",
+      "search": "Tìm kiếm...",
       "selectGender": "Chọn giới tính"
     },
     "status": {

@@ -59,10 +59,11 @@
       "pageNotFound": "Page not found!"
     },
     "placeholder": {
-      "email": "Ex. nguyenvana@gmail.com",
-      "fullName": " Ex. Nguyen Van A",
-      "phoneNumber": "Ex. 0233 123 ***",
+      "email": "Enter email",
+      "fullName": " Enter full name",
+      "phoneNumber": "Enter phone number",
       "quickSearch": "Quick search...",
+      "search": "Search...",
       "selectGender": "Select gender"
     },
     "status": {

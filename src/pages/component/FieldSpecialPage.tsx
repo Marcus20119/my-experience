@@ -1,9 +1,10 @@
+import type { SpecialFieldForm } from '@/app/features/component/field';
+import { RestCountriesFields } from '@/app/features/component/field/ui/SpecialFields';
 import { FieldLayout } from '@/app/layout';
-import { queries } from '@/shared/tanstack/queries';
-import { useQuery } from '@tanstack/react-query';
+import { Button, Flex, Form } from 'antd';
 
 function FieldSpecialPage() {
-  const { data } = useQuery(queries.countries.all(['name', 'idd', 'flags']));
+  const [form] = Form.useForm<SpecialFieldForm>();
 
   return (
     <FieldLayout
@@ -11,7 +12,23 @@ function FieldSpecialPage() {
         path: '/component/field/special',
       }}
     >
-      Special Field Page
+      <Form<SpecialFieldForm>
+        form={form}
+        layout="vertical"
+        onFinish={values => console.log(values)}
+        size="middle"
+      >
+        <Flex gap="1rem" vertical>
+          <Flex gap="1rem" vertical>
+            <RestCountriesFields />
+          </Flex>
+          <Flex justify="end">
+            <Button htmlType="submit" type="primary">
+              Save
+            </Button>
+          </Flex>
+        </Flex>
+      </Form>
     </FieldLayout>
   );
 }

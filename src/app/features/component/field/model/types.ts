@@ -1,3 +1,4 @@
+import type { PhoneNumberValue } from '@/shared/components/Field/PhoneNumberField';
 import type { Dayjs } from 'dayjs';
 
 export interface OriginalFieldForm {
@@ -26,4 +27,11 @@ export interface OriginalFieldForm {
   timePicker?: Dayjs;
   treeSelect?: string;
   weekPicker?: Dayjs;
+}
+
+export interface SpecialFieldForm {
+  nationalityOffline?: string;
+  nationalityOnline?: string;
+  phoneNumberOffline?: PhoneNumberValue;
+  phoneNumberOnline?: PhoneNumberValue;
 }

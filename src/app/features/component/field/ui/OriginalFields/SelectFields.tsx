@@ -59,7 +59,7 @@ function SelectFields() {
         <Form.Item<OriginalFieldForm> label="Single select" name="singleSelect">
           <Select
             allowClear
-            filterOption={FormTool.filterSelectOption}
+            filterOption={FormTool.filterOption}
             optionFilterProp="label"
             options={selectOptions}
             placeholder="Select one option"
@@ -77,7 +77,7 @@ function SelectFields() {
         >
           <Select
             allowClear
-            filterOption={FormTool.filterSelectOption}
+            filterOption={FormTool.filterOption}
             mode="multiple"
             optionFilterProp="label"
             options={selectOptions}
@@ -125,7 +125,7 @@ function SelectFields() {
         <Form.Item<OriginalFieldForm> label="Auto complete" name="autocomplete">
           <AutoComplete
             allowClear
-            filterOption={FormTool.filterSelectOption}
+            filterOption={FormTool.filterOption}
             optionFilterProp="label"
             options={autoCompleteOptions}
             placeholder="Try to type 'Country 1'"

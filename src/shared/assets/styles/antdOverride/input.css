@@ -5,3 +5,7 @@
 .ant-input-number-group-wrapper {
   width: 100% !important;
 }
+
+.ant-color-picker-hex-input.ant-input-affix-wrapper {
+  padding: 4px 7px !important;
+}

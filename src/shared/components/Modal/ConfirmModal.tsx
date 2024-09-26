@@ -9,7 +9,7 @@ const { Text } = Typography;
 
 interface Props extends FormModalWrapperProps {
   description: string;
-  mode: 'error' | 'success' | 'warning' | 'info';
+  mode: 'error' | 'info' | 'success' | 'warning';
 }
 
 function ConfirmModal({

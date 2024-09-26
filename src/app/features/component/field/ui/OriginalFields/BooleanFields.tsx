@@ -82,7 +82,7 @@ function BooleanFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Switch" name="switch">
+        <Form.Item<OriginalFieldForm> label="Radio group" name="radioGroup">
           <Radio.Group options={radioOptions} />
         </Form.Item>
       ),

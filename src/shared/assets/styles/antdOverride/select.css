@@ -11,10 +11,25 @@
   }
 }
 
+.ant-space-compact {
+  .ant-select-focused:not(.ant-select-open) {
+    .ant-select-selector {
+      box-shadow: none !important;
+      border-color: var(--neutral-400-color) !important;
+    }
+  }
+}
+
 .rc-virtual-list-scrollbar-thumb,
 .ant-select-tree-list-scrollbar-thumb {
   background-color: var(--neutral-400-color) !important;
   width: 10px !important;
   border: 3px solid var(--neutral-100-color) !important;
   border-radius: 8px !important;
+}
+
+.ant-color-picker-input-container {
+  .ant-select-selector {
+    box-shadow: none !important;
+  }
 }

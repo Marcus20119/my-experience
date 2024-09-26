@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 const { Text, Title } = Typography;
 
 export interface FormModalWrapperProps
-  extends Omit<ModalProps, 'title' | 'loading'> {
+  extends Omit<ModalProps, 'loading' | 'title'> {
   extraHeader?: React.ReactNode;
   subTitle?: string;
   title?: string;

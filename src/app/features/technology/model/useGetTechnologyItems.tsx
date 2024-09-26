@@ -8,7 +8,7 @@ export const useGetTechnologyItems = () => {
   const { t } = useTranslation();
 
   const technologyItems: Record<
-    'language' | 'configuration' | 'ui' | 'other',
+    'configuration' | 'language' | 'other' | 'ui',
     ThreeDTicketProps[]
   > = {
     configuration: [

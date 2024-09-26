@@ -1,3 +1,4 @@
+import GoogleAddressField from './GoogleAddressField';
 import {
   NationalityOfflineField,
   NationalityOnlineField,
@@ -17,5 +18,6 @@ Field.PhoneNumberOnline = PhoneNumberOnlineField;
 Field.PhoneNumberOffline = PhoneNumberOfflineField;
 Field.NationalityOnline = NationalityOnlineField;
 Field.NationalityOffline = NationalityOfflineField;
+Field.GoogleAddressField = GoogleAddressField;
 
 export { Field };

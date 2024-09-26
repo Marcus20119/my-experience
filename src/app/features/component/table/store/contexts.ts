@@ -5,7 +5,7 @@ import { createContext } from 'react';
 export interface DragIndexState {
   active: UniqueIdentifier;
   direction?: 'bottom' | 'top';
-  over: UniqueIdentifier | undefined;
+  over: undefined | UniqueIdentifier;
 }
 
 export const DragIndexContext = createContext<DragIndexState>({

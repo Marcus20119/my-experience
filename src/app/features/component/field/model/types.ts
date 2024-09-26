@@ -13,7 +13,6 @@ export interface OriginalFieldForm {
   otp?: string;
   password?: string;
   presetPicker?: [Dayjs, Dayjs];
-  radio?: string;
   radioGroup?: string;
   rangeDatePicker?: [Dayjs, Dayjs];
   rangeTimePicker?: [Dayjs, Dayjs];
@@ -30,6 +29,7 @@ export interface OriginalFieldForm {
 }
 
 export interface SpecialFieldForm {
+  google?: string;
   nationalityOffline?: string;
   nationalityOnline?: string;
   phoneNumberOffline?: PhoneNumberValue;

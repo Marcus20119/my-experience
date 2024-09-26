@@ -76,7 +76,7 @@ function OtherFields() {
           label="Color picker"
           name="colorPicker"
         >
-          <ColorPicker format="hex" />
+          <ColorPicker />
         </Form.Item>
       ),
       span: 12,

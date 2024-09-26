@@ -1,5 +1,5 @@
 export const Z_INDEX = {
-  headerContent: '600',
+  headerContent: '500',
   headerMain: '600',
   popupSelectBase: '500',
   popupSelectModal: '700',

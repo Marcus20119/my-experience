@@ -1,5 +1,8 @@
 import type { SpecialFieldForm } from '@/app/features/component/field';
-import { RestCountriesFields } from '@/app/features/component/field/ui/SpecialFields';
+import {
+  GoogleAPIFields,
+  RestCountriesFields,
+} from '@/app/features/component/field/ui/SpecialFields';
 import { FieldLayout } from '@/app/layout';
 import { Button, Flex, Form } from 'antd';
 
@@ -21,6 +24,7 @@ function FieldSpecialPage() {
         <Flex gap="1rem" vertical>
           <Flex gap="1rem" vertical>
             <RestCountriesFields />
+            <GoogleAPIFields />
           </Flex>
           <Flex justify="end">
             <Button htmlType="submit" type="primary">

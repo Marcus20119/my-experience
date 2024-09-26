@@ -149,6 +149,7 @@ function PhoneNumberField({
             phoneNumber: String(phoneNumber),
           });
         }}
+        placeholder="000-000-000"
         prefix={
           selectedOption?.phoneCode ? (
             <Text className="text-neutral-500">

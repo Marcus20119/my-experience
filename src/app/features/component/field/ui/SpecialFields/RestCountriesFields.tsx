@@ -2,15 +2,18 @@ import type { SpecialFieldForm } from '@/app/features/component/field';
 import type { GridCardItem } from '@/shared/components';
 import { Card, Field } from '@/shared/components';
 import { Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 function RestCountriesFields() {
+  const { t } = useTranslation();
+
   const grids: GridCardItem[] = [
     {
       content: (
         <Form.Item<SpecialFieldForm>
-          label="Phone number (Online)"
+          label={t('component.label.phoneNumberOnline')}
           name="phoneNumberOnline"
-          tooltip="Get options by calling the API from REST Countries"
+          tooltip={t('component.tooltip.restCountriesOnline')}
         >
           <Field.PhoneNumberOnline />
         </Form.Item>
@@ -20,9 +23,9 @@ function RestCountriesFields() {
     {
       content: (
         <Form.Item<SpecialFieldForm>
-          label="Phone number (Offline)"
+          label={t('component.label.phoneNumberOffline')}
           name="phoneNumberOffline"
-          tooltip="Get options by stored data (from REST Countries v3.1)"
+          tooltip={t('component.tooltip.restCountriesOffline')}
         >
           <Field.PhoneNumberOffline />
         </Form.Item>
@@ -35,11 +38,13 @@ function RestCountriesFields() {
     {
       content: (
         <Form.Item<SpecialFieldForm>
-          label="Nationality (Online)"
+          label={t('component.label.nationalityOnline')}
           name="nationalityOnline"
-          tooltip="Get options by calling the API from REST Countries"
+          tooltip={t('component.tooltip.restCountriesOnline')}
         >
-          <Field.NationalityOnline />
+          <Field.NationalityOnline
+            placeholder={t('component.label.nationalityOnline')}
+          />
         </Form.Item>
       ),
       span: 8,
@@ -47,18 +52,25 @@ function RestCountriesFields() {
     {
       content: (
         <Form.Item<SpecialFieldForm>
-          label="Nationality (Offline)"
+          label={t('component.label.nationalityOffline')}
           name="nationalityOffline"
-          tooltip="Get options by stored data (from REST Countries v3.1)"
+          tooltip={t('component.tooltip.restCountriesOffline')}
         >
-          <Field.NationalityOffline />
+          <Field.NationalityOffline
+            placeholder={t('component.label.nationalityOffline')}
+          />
         </Form.Item>
       ),
       span: 8,
     },
   ];
 
-  return <Card.Grid grids={grids} title="Rest Countries API fields" />;
+  return (
+    <Card.Grid
+      grids={grids}
+      title={t('component.title.restCountriesAPIFields')}
+    />
+  );
 }
 
 export default RestCountriesFields;

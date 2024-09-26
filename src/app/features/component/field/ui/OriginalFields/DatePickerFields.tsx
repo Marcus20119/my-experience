@@ -5,8 +5,11 @@ import { Card, Picker } from '@/shared/components';
 import { Form } from 'antd';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 function DatePickerFields() {
+  const { t } = useTranslation();
+
   const [selectedStartDate, setSelectedStartDate] = useState(dayjs());
 
   const rangePresets: TimeRangePickerProps['presets'] = [
@@ -39,7 +42,10 @@ function DatePickerFields() {
   const grids: GridCardItem[] = [
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Date picker" name="datePicker">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.datePicker')}
+          name="datePicker"
+        >
           <Picker.Date />
         </Form.Item>
       ),
@@ -48,7 +54,7 @@ function DatePickerFields() {
     {
       content: (
         <Form.Item<OriginalFieldForm>
-          label="Range date picker"
+          label={t('component.label.rangeDatePicker')}
           name="rangeDatePicker"
         >
           <Picker.RangeDate />
@@ -58,7 +64,10 @@ function DatePickerFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Preset picker" name="presetPicker">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.presetPicker')}
+          name="presetPicker"
+        >
           <Picker.RangeDate
             onCalendarChange={dates => {
               if (dates?.[0]) {
@@ -77,7 +86,10 @@ function DatePickerFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="week picker" name="weekPicker">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.weekPicker')}
+          name="weekPicker"
+        >
           <Picker.Week showNow />
         </Form.Item>
       ),
@@ -85,7 +97,10 @@ function DatePickerFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Time picker" name="timePicker">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.timePicker')}
+          name="timePicker"
+        >
           <Picker.Time />
         </Form.Item>
       ),
@@ -94,7 +109,7 @@ function DatePickerFields() {
     {
       content: (
         <Form.Item<OriginalFieldForm>
-          label="Range time picker"
+          label={t('component.label.rangeTimePicker')}
           name="rangeTimePicker"
         >
           <Picker.RangeTime />
@@ -104,7 +119,9 @@ function DatePickerFields() {
     },
   ];
 
-  return <Card.Grid grids={grids} title="Date picker fields" />;
+  return (
+    <Card.Grid grids={grids} title={t('component.title.datePickerFields')} />
+  );
 }
 
 export default DatePickerFields;

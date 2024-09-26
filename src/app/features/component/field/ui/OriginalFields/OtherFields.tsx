@@ -4,15 +4,21 @@ import type { Color } from 'antd/es/color-picker';
 import { Card } from '@/shared/components';
 import { NumberTool } from '@/shared/utils';
 import { ColorPicker, Form, Rate, Slider } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const MIN_PRICE = 0;
 const MAX_PRICE = 5000000;
 
 function OtherFields() {
+  const { t } = useTranslation();
+
   const grids: GridCardItem[] = [
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Slider" name="slider">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.slider')}
+          name="slider"
+        >
           <Slider
             marks={{
               [0]: '0°C',
@@ -29,7 +35,10 @@ function OtherFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Slider range" name="sliderRange">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.sliderRange')}
+          name="sliderRange"
+        >
           <Slider
             marks={{
               [MAX_PRICE]: {
@@ -63,7 +72,10 @@ function OtherFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Rate" name="rate">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.rate')}
+          name="rate"
+        >
           <Rate allowHalf />
         </Form.Item>
       ),
@@ -73,7 +85,7 @@ function OtherFields() {
       content: (
         <Form.Item<OriginalFieldForm>
           getValueFromEvent={(color: Color) => `#${color.toHex()}`}
-          label="Color picker"
+          label={t('component.label.colorPicker')}
           name="colorPicker"
         >
           <ColorPicker />
@@ -83,7 +95,7 @@ function OtherFields() {
     },
   ];
 
-  return <Card.Grid grids={grids} title="Other fields" />;
+  return <Card.Grid grids={grids} title={t('component.title.otherFields')} />;
 }
 
 export default OtherFields;

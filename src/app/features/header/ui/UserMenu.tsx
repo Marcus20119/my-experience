@@ -23,6 +23,9 @@ function UserMenu() {
 
   return (
     <Dropdown
+      getPopupContainer={triggerNode =>
+        triggerNode.parentElement as HTMLElement
+      }
       menu={{
         items: menuItems,
       }}

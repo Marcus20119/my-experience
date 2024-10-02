@@ -79,7 +79,7 @@ const dynamicApolloLink: ApolloLink = ENDPOINTS.reduce<ApolloLink | undefined>(
   undefined,
 ) as ApolloLink;
 
-export const client = new ApolloClient({
+export const apolloClient = new ApolloClient({
   cache,
   connectToDevTools: !import.meta.env.VITE_NODE_ENV,
   defaultOptions: {

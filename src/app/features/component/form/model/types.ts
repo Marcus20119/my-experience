@@ -1,10 +1,5 @@
 import type { Dayjs } from 'dayjs';
 
-export enum StepType {
-  Multiple = 'multiple',
-  Single = 'single',
-}
-
 export interface SingleStepFormEntity {
   address?: string;
   city?: string;

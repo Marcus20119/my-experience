@@ -79,8 +79,8 @@ console.log(
   `Start gen type of service ::${endpointName} \nwith endpoint ::${schema?.link}`,
 );
 
-const baseGeneratedTypes = `src/shared/api/${endpointName}/schemas.tsx`;
-const documents = `src/shared/api/${endpointName}/**/**.{gql,graphql}`;
+const baseGeneratedTypes = `src/shared/apollo/${endpointName}/schemas.tsx`;
+const documents = `src/shared/apollo/${endpointName}/**/**.{gql,graphql}`;
 
 const config: CodegenConfig = {
   schema: [schema?.link],
@@ -124,7 +124,7 @@ const config: CodegenConfig = {
   },
   hooks: {
     afterAllFileWrite: [
-      'npx eslint --ext .tsx src/shared/api/private/ --fix',
+      'npx eslint --ext .tsx src/shared/apollo/private/ --fix',
       'prettier --write',
     ],
   },

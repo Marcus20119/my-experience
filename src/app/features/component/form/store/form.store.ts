@@ -7,7 +7,11 @@ import type {
   MultipleFormThirdStepEntity,
   SingleStepFormEntity,
 } from '../model';
-import { StepType } from '../model';
+
+enum StepType {
+  Multiple = 'multiple',
+  Single = 'single',
+}
 
 interface FormState {
   currentStep?: number;

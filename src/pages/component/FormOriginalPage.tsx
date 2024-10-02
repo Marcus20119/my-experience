@@ -8,7 +8,6 @@ import type { ItemType } from 'antd/es/menu/interface';
 import {
   MultipleStepsForm,
   SingleStepForm,
-  StepType,
 } from '@/app/features/component/form';
 import { useFormStore } from '@/app/features/component/form/store';
 import { FormLayout } from '@/app/layout';
@@ -17,6 +16,11 @@ import { Flex, Form, Typography } from 'antd';
 import { Convertshape2 } from 'iconsax-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+
+enum StepType {
+  Multiple = 'multiple',
+  Single = 'single',
+}
 
 const { Title } = Typography;
 

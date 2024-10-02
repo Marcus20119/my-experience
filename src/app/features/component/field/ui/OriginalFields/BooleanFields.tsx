@@ -38,7 +38,11 @@ function BooleanFields() {
   const grids: GridCardItem[] = [
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Checkbox" name="checkbox">
+        <Form.Item<OriginalFieldForm>
+          label="Checkbox"
+          name="checkbox"
+          valuePropName="checked"
+        >
           <Checkbox>Agree with our conditions.</Checkbox>
         </Form.Item>
       ),

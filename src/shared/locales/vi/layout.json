@@ -16,11 +16,13 @@
       "unlock": "Unlock Sidebar"
     },
     "title": {
+      "aboutMe": "About me",
       "animation": "Animation",
       "calendar": "Calendar",
       "component": "Component",
       "configuration": "Configuration",
       "customizableTable": "Customizable table",
+      "dailyCalendar": "Daily calendar",
       "editableTable": "Editable table",
       "expandableTable": "Expandable table",
       "field": "Field",
@@ -28,16 +30,23 @@
       "game": "Game",
       "image": "Image",
       "language": "Language",
+      "monthlyCalendar": "Monthly calendar",
       "multipleStepForm": "Multiple step form",
+      "myCertificates": "My certificates",
+      "myProjects": "My projects",
       "originalField": "Original field",
       "originalForm": "Original form",
       "other": "Other",
+      "schedule": "Schedule",
+      "settings": "Settings",
       "singleStepForm": "Single step form",
       "specialField": "Special field",
       "specialForm": "Special form",
+      "system": "System",
       "table": "Table",
       "technology": "Technology",
-      "uiLibrary": "UI library"
+      "uiLibrary": "UI library",
+      "weeklyCalendar": "Weekly calendar"
     }
   }
 }

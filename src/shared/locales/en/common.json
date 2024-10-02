@@ -1,37 +1,38 @@
 {
   "common": {
     "button": {
-      "addItem": "Add item",
       "addMore": "Add more",
-      "allFilters": "All filters",
       "apply": "Apply",
       "back": "Back",
       "cancel": "Cancel",
-      "clearFilter": "Clear filter",
       "confirm": "Confirm",
       "continue": "Continue",
       "create": "Create",
       "customizeColumns": "Customize columns",
       "delete": "Delete",
       "deleteAll": "Delete all",
-      "exploreMore": "Explore more",
       "finish": "Finish",
       "home": "Home",
       "language": "Language",
       "loadMore": "Load more",
-      "login": "Login",
       "next": "Next",
       "ok": "OK",
-      "profile": "Profile",
-      "register": "Register",
       "reset": "Reset",
       "save": "Save",
       "search": "Search",
       "seeMore": "See more",
       "uploadPhoto": "Upload photo",
       "viewLess": "View less",
-      "viewMap": "View map",
       "viewMore": "View more"
+    },
+    "dayOfWeek": {
+      "fri": "Fri",
+      "mon": "Mon",
+      "sat": "Sat",
+      "sun": "Sun",
+      "thu": "Thu",
+      "tue": "Tue",
+      "wed": "Wed"
     },
     "description": {
       "emptySearch": "Try using other keywords or filters"
@@ -47,27 +48,17 @@
       "nonBinary": "Non-binary"
     },
     "label": {
-      "all": "All",
-      "email": "Email",
-      "fullName": "Full name",
-      "phoneNumber": "Phone number",
-      "results": "Results",
-      "sortBy": "Sort by"
+      "results": "Results"
     },
-    "message": {
-      "linkNotFound": "Sorry, the link does not exist",
-      "pageNotFound": "Page not found!"
+
+    "language": {
+      "en": "English",
+      "vi": "Vietnamese"
     },
     "placeholder": {
-      "email": "Enter email",
-      "fullName": " Enter full name",
-      "phoneNumber": "Enter phone number",
       "quickSearch": "Quick search...",
       "search": "Search...",
       "selectGender": "Select gender"
-    },
-    "status": {
-      "na": "N/A"
     },
     "title": {
       "emptyData": "Empty data",
@@ -75,11 +66,8 @@
       "sureDelete": "Sure to delete?"
     },
     "unit": {
-      "days": "Day",
       "million": "M",
-      "months": "Month",
-      "thousand": "K",
-      "years": "Year"
+      "thousand": "K"
     }
   }
 }

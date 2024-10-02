@@ -5,11 +5,17 @@ import { AppTool } from '../utils';
 export type RouterNavigator<T extends RouterPath = RouterPath> = T extends T
   ? {
       param?: PathProps<T>;
-      path: T;
+      path?: T;
+      hash?: string;
+      search?: string;
     }
   : never;
 
 const getNavigatePath = ({ param, path }: RouterNavigator) => {
+  if (!path) {
+    return undefined;
+  }
+
   let newPath = String(path);
 
   if (param) {
@@ -27,10 +33,14 @@ export const useAppRouter = <P extends RouterPath>(_?: P) => {
   const navig = useNavigate();
   const param = useParams();
 
-  const navigate = (nav: RouterNavigator) => {
-    const newPath = getNavigatePath(nav);
+  const navigate = (route: RouterNavigator) => {
+    const newPath = getNavigatePath(route);
 
-    navig(newPath);
+    navig({
+      hash: route.hash,
+      pathname: newPath,
+      search: route.search,
+    });
     AppTool.scrollToTop();
   };
 

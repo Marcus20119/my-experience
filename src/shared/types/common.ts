@@ -1,3 +1,6 @@
+import type { AnyObject } from 'antd/es/_util/type';
+import type { Dayjs } from 'dayjs';
+
 type Primitive = boolean | null | number | string | undefined;
 
 export type DeepPartial<T> = T extends Primitive
@@ -13,3 +16,9 @@ export type IntersectionEachUnion<T, U> = T extends T
     ? T & U
     : never
   : never;
+
+export type ChangeDayjsToString<T extends AnyObject> = {
+  [K in keyof T]: T[K] extends Dayjs ? string : T[K];
+};
+
+export type Language = 'en' | 'vi';

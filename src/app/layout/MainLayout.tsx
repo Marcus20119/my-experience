@@ -1,5 +1,5 @@
 import type { ItemType } from 'antd/es/menu/interface';
-import { useKeyDown } from '@/shared/hooks';
+import { useKeyDown, useMatchRoutes } from '@/shared/hooks';
 import { Dropdown, Flex, Typography } from 'antd';
 import { Add, ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +17,8 @@ function MainLayout() {
     useHeaderStore();
   const sideBarWidth = getSidebarWidth();
 
+  const disabledSidebarActions = useMatchRoutes(['/settings']);
+
   useKeyDown({
     keys: ['Control', 'ArrowUp', 'ArrowDown', 'ArrowRight', 'ArrowLeft'],
     onKeyPress: keys => {
@@ -32,18 +34,27 @@ function MainLayout() {
         });
       }
 
-      if (keys.includes('Control') && keys.includes('ArrowRight')) {
+      if (
+        keys.includes('Control') &&
+        keys.includes('ArrowRight') &&
+        !disabledSidebarActions
+      ) {
         setSidebarStates({
           isSubBarCollapsed: false,
         });
       }
 
-      if (keys.includes('Control') && keys.includes('ArrowLeft')) {
+      if (
+        keys.includes('Control') &&
+        keys.includes('ArrowLeft') &&
+        !disabledSidebarActions
+      ) {
         setSidebarStates({
           isSubBarCollapsed: true,
         });
       }
     },
+    updateDependencies: [disabledSidebarActions],
   });
 
   const contextHeaderMenuItems: ItemType[] = [
@@ -82,6 +93,7 @@ function MainLayout() {
         }),
     },
     {
+      disabled: disabledSidebarActions,
       key: 'sidebar-collapse',
       label: (
         <Flex align="center" gap="2rem" justify="space-between">

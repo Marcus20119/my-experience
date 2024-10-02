@@ -1,4 +1,5 @@
 export * from './useAppRouter';
+export * from './useAppSearchParams';
 export * from './useCalculateElementSize';
 export * from './useDrawerRouter';
 export * from './useElementSize';

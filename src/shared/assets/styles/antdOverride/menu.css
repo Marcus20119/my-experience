@@ -1,0 +1,4 @@
+.ant-dropdown-menu-item-disabled {
+  background-color: var(--neutral-200-color) !important;
+  opacity: 0.5;
+}

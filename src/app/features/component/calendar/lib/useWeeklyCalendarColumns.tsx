@@ -20,14 +20,18 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
       {
         dataIndex: 'monday',
         key: 'monday',
-        render: (_, { monday }) => <WeeklyWrapperCell<T> items={monday} />,
+        render: (_, { monday }) => (
+          <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Monday} items={monday} />
+        ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Monday} />,
         width: 152,
       },
       {
         dataIndex: 'tuesday',
         key: 'tuesday',
-        render: (_, { tuesday }) => <WeeklyWrapperCell<T> items={tuesday} />,
+        render: (_, { tuesday }) => (
+          <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Tuesday} items={tuesday} />
+        ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Tuesday} />,
         width: 152,
       },
@@ -35,7 +39,10 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
         dataIndex: 'wednesday',
         key: 'wednesday',
         render: (_, { wednesday }) => (
-          <WeeklyWrapperCell<T> items={wednesday} />
+          <WeeklyWrapperCell<T>
+            dayOfWeek={DayOfWeek.Wednesday}
+            items={wednesday}
+          />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Wednesday} />,
         width: 152,
@@ -43,28 +50,42 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
       {
         dataIndex: 'thursday',
         key: 'thursday',
-        render: (_, { thursday }) => <WeeklyWrapperCell<T> items={thursday} />,
+        render: (_, { thursday }) => (
+          <WeeklyWrapperCell<T>
+            dayOfWeek={DayOfWeek.Thursday}
+            items={thursday}
+          />
+        ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Thursday} />,
         width: 152,
       },
       {
         dataIndex: 'friday',
         key: 'friday',
-        render: (_, { friday }) => <WeeklyWrapperCell<T> items={friday} />,
+        render: (_, { friday }) => (
+          <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Friday} items={friday} />
+        ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Friday} />,
         width: 152,
       },
       {
         dataIndex: 'saturday',
         key: 'saturday',
-        render: (_, { saturday }) => <WeeklyWrapperCell<T> items={saturday} />,
+        render: (_, { saturday }) => (
+          <WeeklyWrapperCell<T>
+            dayOfWeek={DayOfWeek.Saturday}
+            items={saturday}
+          />
+        ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Saturday} />,
         width: 152,
       },
       {
         dataIndex: 'sunday',
         key: 'sunday',
-        render: (_, { sunday }) => <WeeklyWrapperCell<T> items={sunday} />,
+        render: (_, { sunday }) => (
+          <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Sunday} items={sunday} />
+        ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Sunday} />,
         width: 152,
       },

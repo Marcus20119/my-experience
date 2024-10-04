@@ -1,39 +1,60 @@
 import { useWeeklyCalendarContext } from '@/app/features/component/calendar/context';
+import { useGetCurrentTime } from '@/app/features/component/calendar/lib';
 import { Flex, Typography } from 'antd';
 import dayjs from 'dayjs';
 import { cn } from '@/lib/tailwind';
+import { WeeklyTrackLine } from '../TrackLine';
 
 const { Text } = Typography;
 
 function WeeklyTimeRangeCell() {
-  const { endHour, hourCellHeight, startHour } = useWeeklyCalendarContext();
+  const currentTime = useGetCurrentTime();
+  const { baseDate, endHour, hourCellHeight, startHour, timeFormat } =
+    useWeeklyCalendarContext();
+
+  const renderTimeFormat = timeFormat === 'h:mm A' ? 'h A' : timeFormat;
+  const isCurrentWeek = dayjs(baseDate).isSame(currentTime, 'week');
 
   return (
-    <Flex className="time-range" vertical>
+    <Flex className="relative" id="time-range" vertical>
       {Array(endHour - startHour + 1)
         .fill(0)
-        .map((_, index) => (
-          <Flex
-            className="pr-2"
-            justify="end"
-            key={index}
-            style={{
-              height: hourCellHeight,
-            }}
-          >
-            <Text
-              className={cn(
-                'text-xs',
-                index === 0 ? 'hidden' : '-translate-y-2',
-              )}
+        .map((_, index) => {
+          const hourTime = dayjs()
+            .startOf('date')
+            .add(startHour + index, 'hour');
+
+          const shouldHideHourTime = isCurrentWeek
+            ? Math.abs(currentTime.diff(hourTime, 'minute')) < 15
+            : false;
+
+          return (
+            <Flex
+              className="pr-2"
+              justify="end"
+              key={index}
+              style={{
+                height: hourCellHeight,
+              }}
             >
-              {dayjs()
-                .startOf('date')
-                .add(startHour + index, 'hour')
-                .format('HH:mm')}
-            </Text>
-          </Flex>
-        ))}
+              <Text
+                className={cn(
+                  'text-sm',
+                  index === 0 || shouldHideHourTime
+                    ? 'hidden'
+                    : '-translate-y-3',
+                )}
+              >
+                {dayjs()
+                  .startOf('date')
+                  .add(startHour + index, 'hour')
+                  .format(renderTimeFormat)}
+              </Text>
+            </Flex>
+          );
+        })}
+
+      <WeeklyTrackLine isTimeRange />
     </Flex>
   );
 }

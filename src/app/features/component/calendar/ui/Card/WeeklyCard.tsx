@@ -1,45 +1,58 @@
 import type { WeeklyCalendarEntity } from '@/app/features/component/calendar/model';
 import { useWeeklyCalendarContext } from '@/app/features/component/calendar/context';
-import { getWeeklyCalendarItemHeight } from '@/app/features/component/calendar/lib';
-import { Col, Flex } from 'antd';
+import { getTimeInMinutes } from '@/app/features/component/calendar/lib';
+import { Flex, Typography } from 'antd';
+import dayjs from 'dayjs';
 import { useMemo } from 'react';
+import { cn } from '@/lib/tailwind';
 
-interface AppointmentCardProps {
-  appointment: WeeklyCalendarEntity;
-  numberOfAppointments: number;
+const { Text } = Typography;
+
+interface AppointmentCardProps<T extends WeeklyCalendarEntity> {
+  groupCount: number;
+  item: T;
 }
 
-function WeeklyCard({
-  appointment,
-  numberOfAppointments,
-}: AppointmentCardProps) {
-  const { endHour, hourCellHeight, startHour } = useWeeklyCalendarContext();
-  const { endTime, startTime } = appointment;
+function WeeklyCard<T extends WeeklyCalendarEntity>({
+  groupCount,
+  item,
+}: AppointmentCardProps<T>) {
+  const { hourCellHeight, itemRender, onClickItem } =
+    useWeeklyCalendarContext();
+  const { endTime, startTime } = item;
 
-  const height = getWeeklyCalendarItemHeight({
-    endHour,
-    endTime,
-    hourCellHeight,
-    startHour,
-    startTime,
-  });
+  const height = useMemo(() => {
+    const rangeTimeInMinutes =
+      getTimeInMinutes(endTime) - getTimeInMinutes(startTime);
 
-  const span: number = useMemo(() => {
-    if (numberOfAppointments === 1) return 24;
-    if (numberOfAppointments === 2) return 12;
-    return 8;
-  }, [numberOfAppointments]);
+    return (rangeTimeInMinutes * hourCellHeight) / 60;
+  }, [endTime, hourCellHeight, startTime]);
+
+  const passedItem = dayjs().isAfter(dayjs(endTime));
 
   return (
-    <Col span={span}>
-      <Flex
-        style={{
-          height,
-        }}
-      >
-        hehe
-      </Flex>
-    </Col>
+    <Flex
+      className={cn(
+        'relative px-[1px] py-0.5',
+        onClickItem ? 'cursor-pointer' : '',
+        passedItem ? 'opacity-80' : '',
+      )}
+      onClick={() => onClickItem?.(item)}
+      style={{
+        height,
+      }}
+    >
+      {itemRender ? (
+        itemRender(item, { groupCount, height })
+      ) : (
+        <Flex
+          className="h-full w-full rounded-sm bg-primaryLight px-1 py-0.5 shadow-card"
+          vertical
+        >
+          <Text>{dayjs(item.startTime).format('H:mm')}</Text>
+        </Flex>
+      )}
+    </Flex>
   );
 }
 

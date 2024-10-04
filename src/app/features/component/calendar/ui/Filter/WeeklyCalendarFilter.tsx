@@ -3,11 +3,13 @@ import type { ChangeDayjsToString } from '@/shared/types';
 import type { FormInstance } from 'antd/lib';
 import { Picker } from '@/shared/components';
 import { useAppRouter, useAppSearchParams } from '@/shared/hooks';
-import { Button, Flex, Form } from 'antd';
+import { Button, Flex, Form, Space } from 'antd';
 import dayjs from 'dayjs';
-import { Add } from 'iconsax-react';
+import { Add, ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import queryString from 'query-string';
 import { useEffect, useRef } from 'react';
+
+const { Compact } = Space;
 
 interface Props {
   form: FormInstance<MockWeeklyFilterEntity>;
@@ -18,6 +20,8 @@ function WeeklyCalendarFilter({ form }: Props) {
   const isSetInitialValues = useRef(false);
   const searchParams =
     useAppSearchParams<ChangeDayjsToString<MockWeeklyFilterEntity>>();
+
+  const baseDate = Form.useWatch('baseDate', form);
 
   useEffect(() => {
     if (!isSetInitialValues.current) {
@@ -43,9 +47,43 @@ function WeeklyCalendarFilter({ form }: Props) {
   return (
     <Flex align="center" justify="space-between">
       <Form<MockWeeklyFilterEntity> form={form} onFinish={onFinish}>
-        <Form.Item<MockWeeklyFilterEntity> name="baseDate" noStyle>
-          <Picker.Week onChange={form.submit} size="middle" />
-        </Form.Item>
+        <Compact>
+          <Button
+            className="border-neutral-400 hover:border-neutral-700"
+            ghost
+            icon={<ArrowLeft2 size="20" />}
+            onClick={() => {
+              form.setFields([
+                {
+                  name: 'baseDate',
+                  value: baseDate?.subtract(1, 'week'),
+                },
+              ]);
+
+              form.submit();
+            }}
+            size="middle"
+          />
+          <Form.Item<MockWeeklyFilterEntity> name="baseDate" noStyle>
+            <Picker.Week onChange={form.submit} size="middle" />
+          </Form.Item>
+          <Button
+            className="border-neutral-400 hover:border-neutral-700"
+            ghost
+            icon={<ArrowRight2 size="20" />}
+            onClick={() => {
+              form.setFields([
+                {
+                  name: 'baseDate',
+                  value: baseDate?.add(1, 'week'),
+                },
+              ]);
+
+              form.submit();
+            }}
+            size="middle"
+          />
+        </Compact>
       </Form>
 
       <Button icon={<Add />} size="middle" type="primary">

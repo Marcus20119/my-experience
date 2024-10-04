@@ -1,32 +1,51 @@
+import type { Dayjs } from 'dayjs';
+import { useWeeklyCalendarContext } from '@/app/features/component/calendar/context';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { Flex } from 'antd';
 import { Add } from 'iconsax-react';
+import { cn } from '@/lib/tailwind';
+import DisabledCell from './DisabledCell';
 
 interface Props {
-  hour: number;
-  minute: number;
+  disabled: boolean;
+  startTime: Dayjs;
 }
 
-function WeeklyCreateNewItemCell({ hour: _h, minute: _m }: Props) {
+function WeeklyCreateNewItemCell({ disabled, startTime: _ }: Props) {
+  const { onCreateNewItem } = useWeeklyCalendarContext();
+
   return (
     <Flex
       align="center"
-      className="group h-full cursor-pointer p-0.5"
+      className={cn(
+        'group h-full',
+        disabled ? 'cursor-default' : '',
+        !disabled && onCreateNewItem ? 'cursor-pointer p-0.5' : '',
+      )}
       justify="center"
     >
-      <Flex
-        align="center"
-        className="hidden h-full w-full rounded-md transition-all group-hover:flex group-hover:bg-secondaryLight"
-        justify="center"
-      >
+      {disabled ? (
+        <DisabledCell />
+      ) : (
         <Flex
           align="center"
-          className="h-5 w-5 rounded-full bg-primary"
+          className={cn(
+            'hidden h-full w-full rounded-md transition-all',
+            onCreateNewItem
+              ? 'group-hover:flex group-hover:bg-secondaryLight'
+              : '',
+          )}
           justify="center"
         >
-          <Add color={COLOR.secondary} size="16" />
+          <Flex
+            align="center"
+            className="h-5 w-5 rounded-full bg-primary"
+            justify="center"
+          >
+            <Add color={COLOR.secondary} size="16" />
+          </Flex>
         </Flex>
-      </Flex>
+      )}
     </Flex>
   );
 }

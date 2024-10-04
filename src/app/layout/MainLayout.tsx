@@ -1,4 +1,5 @@
 import type { ItemType } from 'antd/es/menu/interface';
+import { Z_INDEX } from '@/shared/assets/styles/constants';
 import { useKeyDown, useMatchRoutes } from '@/shared/hooks';
 import { Dropdown, Flex, Typography } from 'antd';
 import { Add, ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from 'iconsax-react';
@@ -15,8 +16,8 @@ function MainLayout() {
     useSidebarStore();
   const { isContentHeaderCollapsed, isContentHeaderSticky, setHeaderStates } =
     useHeaderStore();
-  const sideBarWidth = getSidebarWidth();
 
+  const sideBarWidth = getSidebarWidth();
   const disabledSidebarActions = useMatchRoutes(['/settings']);
 
   useKeyDown({
@@ -124,6 +125,9 @@ function MainLayout() {
   return (
     <Dropdown
       menu={{ items: contextHeaderMenuItems }}
+      overlayStyle={{
+        zIndex: Number(Z_INDEX.contextMenuPopup),
+      }}
       trigger={['contextMenu']}
     >
       <Flex className="min-h-screen">

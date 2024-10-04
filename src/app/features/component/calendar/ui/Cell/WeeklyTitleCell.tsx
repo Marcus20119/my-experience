@@ -18,17 +18,17 @@ function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
   const { baseDate } = useWeeklyCalendarContext();
 
   const title = useMemo(() => getDayOfWeekTitle(dayOfWeek), [dayOfWeek]);
-  const isToday =
-    dayjs().endOf('date').toISOString() ===
-    dayjs(baseDate).day(dayOfWeek).endOf('date').toISOString();
+  const isCurrentDay = dayOfWeek === dayjs().day();
 
   const formattedDate = useMemo(() => {
     if (i18n.language === 'vi') {
+      const newBaseDate = dayjs(baseDate).subtract(1, 'day');
+
       if (dayOfWeek === DayOfWeek.Sunday) {
-        return dayjs(baseDate).day(dayOfWeek).add(1, 'week').format('DD');
+        return dayjs(newBaseDate).day(dayOfWeek).add(1, 'week').format('DD');
       }
 
-      return dayjs(baseDate).day(dayOfWeek).format('DD');
+      return dayjs(newBaseDate).day(dayOfWeek).format('DD');
     }
 
     return dayjs(baseDate).day(dayOfWeek).format('DD');
@@ -42,7 +42,7 @@ function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
       <Text
         className={cn(
           'text-primaryText h-8 w-8 flex-shrink text-center text-lg font-semibold leading-8',
-          isToday && 'rounded-full bg-primary text-secondary',
+          isCurrentDay && 'rounded-full bg-primary text-secondary',
         )}
       >
         {formattedDate}

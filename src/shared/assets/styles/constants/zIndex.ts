@@ -1,4 +1,5 @@
 export const Z_INDEX = {
+  contextMenuPopup: '9999',
   headerContent: '500',
   headerMain: '600',
   popupHeader: '700',

@@ -1,3 +1,5 @@
+import type { Dayjs } from 'dayjs';
+
 /* eslint-disable perfectionist/sort-union-types */
 export type Hour =
   | 0
@@ -37,9 +39,9 @@ export enum DayOfWeek {
 
 // ----- WEEKLY CALENDAR -----
 export interface WeeklyCalendarEntity {
-  endTime: string;
+  endTime: Dayjs | string;
   id: string;
-  startTime: string;
+  startTime: Dayjs | string;
 }
 
 export interface TimeRange {
@@ -59,5 +61,19 @@ export interface WeeklyRow<T extends WeeklyCalendarEntity> {
 
 export interface WeeklyGroup<T extends WeeklyCalendarEntity> {
   items: T[];
-  startTime: string;
+  startTime: Dayjs | string;
 }
+
+export type WeeklyDisabledCell = (
+  | {
+      type: 'dayOfWeek';
+      dayOfWeek: DayOfWeek;
+      hours?: Hour[];
+      minutes?: (hour: Hour) => (0 | 30)[];
+    }
+  | {
+      type: 'rangeTime';
+      startTime: Dayjs | string;
+      endTime: Dayjs | string;
+    }
+)[];

@@ -1,12 +1,13 @@
+import type { Dayjs } from 'dayjs';
 import type { Hour } from '../model';
 import { getTimeInMinutes } from './getTimeInMinutes';
 
 interface Props {
   endHour: Hour;
-  endTime: string;
+  endTime: Dayjs | string;
   hourCellHeight: number;
   startHour: Hour;
-  startTime: string;
+  startTime: Dayjs | string;
 }
 
 /**
@@ -28,10 +29,10 @@ export const getWeeklyCalendarItemHeight = ({
 }: Props) => {
   const startMinutes = getTimeInMinutes(startTime);
   const endMinutes = getTimeInMinutes(endTime);
-  const rangeTimeInMinutes = (endHour - startHour + 1) * 60;
+  const rangeHourInMinutes = (endHour - startHour + 1) * 60;
   const weeklyWrapperCellHeight = hourCellHeight * (endHour - startHour + 1);
 
   return (
-    ((endMinutes - startMinutes) * weeklyWrapperCellHeight) / rangeTimeInMinutes
+    ((endMinutes - startMinutes) * weeklyWrapperCellHeight) / rangeHourInMinutes
   );
 };

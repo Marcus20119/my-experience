@@ -111,7 +111,7 @@ function MyTable<T extends AnyObject>({
   }, [activeColumnKeys, orderColumnKeys, resizedColumns]);
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <Table<T>
         columns={customizedColumns as TableProps<T>['columns']}
         components={{

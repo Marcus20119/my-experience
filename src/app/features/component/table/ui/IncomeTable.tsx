@@ -1,7 +1,5 @@
-/* eslint-disable react/no-unstable-nested-components */
 import { useHeaderStore } from '@/app/features/header';
-import { useSidebarStore } from '@/app/features/sidebar';
-import { HEIGHT, SPACING, WIDTH } from '@/shared/assets/styles/constants';
+import { HEIGHT, SPACING } from '@/shared/assets/styles/constants';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { NumberTool } from '@/shared/utils';
 import { Table } from 'antd';
@@ -14,15 +12,12 @@ function IncomeTable() {
   const { t } = useTranslation();
   const { columns } = useIncomeTableColumns();
   const { getHeaderHeight } = useHeaderStore();
-  const { getSidebarWidth } = useSidebarStore();
-  const { height, width } = useCalculateElementSize({
+  const { height } = useCalculateElementSize({
     heightOffset:
       getHeaderHeight() +
       SPACING.contentPadding * 2 +
       HEIGHT.tableHeader * 2 +
       40 * 2, // Summary row height
-    widthOffset:
-      getSidebarWidth() + SPACING.contentPadding * 2 + WIDTH.scrollbar,
   });
 
   return (
@@ -38,7 +33,7 @@ function IncomeTable() {
       initialColumns={columns}
       pagination={false}
       rowKey="id"
-      scroll={{ x: width, y: height }}
+      scroll={{ x: 'max-content', y: height }}
       summary={data => {
         const salary = data.reduce((acc, item) => acc + item.salary, 0);
         const freelance = data.reduce((acc, item) => acc + item.freelance, 0);

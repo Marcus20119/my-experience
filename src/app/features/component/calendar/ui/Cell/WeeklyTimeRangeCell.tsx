@@ -12,7 +12,7 @@ function WeeklyTimeRangeCell() {
   const { baseDate, endHour, hourCellHeight, startHour, timeFormat } =
     useWeeklyCalendarContext();
 
-  const renderTimeFormat = timeFormat === 'h:mm A' ? 'h A' : timeFormat;
+  const renderTimeFormat = timeFormat === 'H:mm A' ? 'h A' : timeFormat;
   const isCurrentWeek = dayjs(baseDate).isSame(currentTime, 'week');
 
   return (

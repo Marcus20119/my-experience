@@ -1,6 +1,5 @@
 import { useHeaderStore } from '@/app/features/header';
-import { useSidebarStore } from '@/app/features/sidebar';
-import { HEIGHT, SPACING, WIDTH } from '@/shared/assets/styles/constants';
+import { HEIGHT, SPACING } from '@/shared/assets/styles/constants';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { Button, Flex } from 'antd';
 import { Edit2, Trash } from 'iconsax-react';
@@ -20,15 +19,12 @@ function FooterActions() {
 function UserTable() {
   const { columns } = useUserTableColumns();
   const { getHeaderHeight } = useHeaderStore();
-  const { getSidebarWidth } = useSidebarStore();
-  const { height, width } = useCalculateElementSize({
+  const { height } = useCalculateElementSize({
     heightOffset:
       getHeaderHeight() +
       SPACING.contentPadding * 2 +
       HEIGHT.tableHeader +
       HEIGHT.pagination,
-    widthOffset:
-      getSidebarWidth() + SPACING.contentPadding * 2 + WIDTH.scrollbar,
   });
 
   return (
@@ -37,7 +33,7 @@ function UserTable() {
       footerActions={FooterActions}
       initialColumns={columns}
       rowKey="id"
-      scroll={{ x: width, y: height }}
+      scroll={{ x: 'max-content', y: height }}
       showCustomizeTable
       showResizable
       showRowSelection

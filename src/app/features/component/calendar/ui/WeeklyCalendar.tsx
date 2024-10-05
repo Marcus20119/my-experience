@@ -6,9 +6,9 @@ import type { WeeklyContextProps } from '../context';
 import { WeeklyCalendarProvider } from '../context';
 import { useGetWeeklyCalendarData, useWeeklyCalendarColumns } from '../lib';
 import {
-  DEFAULT_HOUR_CELL_HEIGHT,
   DEFAULT_WEEKLY_CALENDAR_END_TIME,
   DEFAULT_WEEKLY_CALENDAR_START_TIME,
+  DEFAULT_WEEKLY_HOUR_CELL_HEIGHT,
   type WeeklyCalendarEntity,
   type WeeklyRow,
 } from '../model';
@@ -49,9 +49,11 @@ function WeeklyCalendar<T extends WeeklyCalendarEntity>({
   dataSource,
   disabledCell,
   endHour = DEFAULT_WEEKLY_CALENDAR_END_TIME,
-  hourCellHeight = DEFAULT_HOUR_CELL_HEIGHT,
+  hourCellHeight = DEFAULT_WEEKLY_HOUR_CELL_HEIGHT,
   itemRender,
   loading,
+  maxItemShowPerGroup = 3,
+  onClickHeader,
   onClickItem,
   onCreateNewItem,
   scroll,
@@ -68,6 +70,8 @@ function WeeklyCalendar<T extends WeeklyCalendarEntity>({
       endHour={endHour}
       hourCellHeight={hourCellHeight}
       itemRender={itemRender}
+      maxItemShowPerGroup={maxItemShowPerGroup}
+      onClickHeader={onClickHeader}
       onClickItem={onClickItem}
       onCreateNewItem={onCreateNewItem}
       startHour={startHour}

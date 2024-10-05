@@ -2,7 +2,7 @@ import type { ColumnType } from 'antd/es/table';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { WeeklyCalendarEntity, WeeklyRow } from '../model';
-import { DayOfWeek } from '../model';
+import { DayOfWeek, DEFAULT_WEEKLY_COLUMN_WIDTH } from '../model';
 import { WeeklyTimeRangeCell, WeeklyTitleCell, WeeklyWrapperCell } from '../ui';
 
 export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
@@ -24,7 +24,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Monday} items={monday} />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Monday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
       {
         dataIndex: 'tuesday',
@@ -33,7 +33,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Tuesday} items={tuesday} />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Tuesday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
       {
         dataIndex: 'wednesday',
@@ -45,7 +45,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Wednesday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
       {
         dataIndex: 'thursday',
@@ -57,7 +57,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Thursday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
       {
         dataIndex: 'friday',
@@ -66,7 +66,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Friday} items={friday} />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Friday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
       {
         dataIndex: 'saturday',
@@ -78,7 +78,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Saturday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
       {
         dataIndex: 'sunday',
@@ -87,7 +87,7 @@ export const useWeeklyCalendarColumns = <T extends WeeklyCalendarEntity>() => {
           <WeeklyWrapperCell<T> dayOfWeek={DayOfWeek.Sunday} items={sunday} />
         ),
         title: <WeeklyTitleCell dayOfWeek={DayOfWeek.Sunday} />,
-        width: 152,
+        width: DEFAULT_WEEKLY_COLUMN_WIDTH,
       },
     ];
 

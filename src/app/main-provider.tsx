@@ -47,13 +47,13 @@ function AntProvider() {
   }, []);
 
   const theme: ThemeConfig = useMemo(() => {
-    if (!primaryColor) {
+    if (!primaryColor || !secondaryColor) {
       return defaultTheme;
     }
 
     const secondaryLightColor = ThemeTool.getHexColorVariant(
       secondaryColor,
-      0.8,
+      0.2,
     );
 
     return {
@@ -91,12 +91,12 @@ function AntProvider() {
   useEffect(() => {
     if (primaryColor) {
       COLOR.primary = primaryColor;
-      COLOR.primaryLight = ThemeTool.getHexColorVariant(primaryColor, 0.8);
+      COLOR.primaryLight = ThemeTool.getHexColorVariant(primaryColor, 0.2);
     }
 
     if (secondaryColor) {
       COLOR.secondary = secondaryColor;
-      COLOR.secondaryLight = ThemeTool.getHexColorVariant(secondaryColor, 0.8);
+      COLOR.secondaryLight = ThemeTool.getHexColorVariant(secondaryColor, 0.2);
     }
 
     //map colors variables for root

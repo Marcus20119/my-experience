@@ -1,5 +1,7 @@
+/* eslint-disable perfectionist/sort-objects */
 import dayjs from 'dayjs';
-import type { WeeklyCalendarEntity, WeeklyRow } from '../model';
+import { useMemo } from 'react';
+import { DayOfWeek, type WeeklyCalendarEntity, type WeeklyRow } from '../model';
 
 interface Props<T extends WeeklyCalendarEntity> {
   dataSource?: T[];
@@ -8,47 +10,45 @@ interface Props<T extends WeeklyCalendarEntity> {
 export const useGetWeeklyCalendarData = <T extends WeeklyCalendarEntity>({
   dataSource,
 }: Props<T>) => {
-  const appointmentResponse: T[] = dataSource ?? [];
+  const calendarData: WeeklyRow<T>[] = useMemo(() => {
+    const formattedDataSource: T[] =
+      dataSource?.map(item => ({
+        ...item,
+        endTime: dayjs(item.endTime).second(0).millisecond(0),
+        startTime: dayjs(item.startTime).second(0).millisecond(0),
+      })) ?? [];
 
-  const calendarData: WeeklyRow<T>[] = [
-    {
-      friday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 5,
-        ) ?? [],
-      monday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 1,
-        ) ?? [],
-      saturday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 6,
-        ) ?? [],
-      sunday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 0,
-        ) ?? [],
-      thursday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 4,
-        ) ?? [],
-      tuesday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 2,
-        ) ?? [],
-      wednesday:
-        appointmentResponse?.filter(
-          appointment =>
-            appointment.startTime && dayjs(appointment.startTime).day() === 3,
-        ) ?? [],
-    },
-  ];
+    const daysOfWeekMap: Record<number, keyof WeeklyRow<T>> = {
+      [DayOfWeek.Monday]: 'monday',
+      [DayOfWeek.Tuesday]: 'tuesday',
+      [DayOfWeek.Wednesday]: 'wednesday',
+      [DayOfWeek.Thursday]: 'thursday',
+      [DayOfWeek.Friday]: 'friday',
+      [DayOfWeek.Saturday]: 'saturday',
+      [DayOfWeek.Sunday]: 'sunday',
+    };
+
+    const weekData: WeeklyRow<T> = {
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: [],
+    };
+
+    formattedDataSource.forEach(item => {
+      const day = dayjs(item.startTime).day();
+      const dayKey = daysOfWeekMap[day];
+
+      if (dayKey) {
+        weekData[dayKey].push(item);
+      }
+    });
+
+    return [weekData];
+  }, [dataSource]);
 
   return { calendarData };
 };

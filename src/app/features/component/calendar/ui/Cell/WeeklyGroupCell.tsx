@@ -1,10 +1,11 @@
 import { useWeeklyCalendarContext } from '@/app/features/component/calendar/context';
 import { getTimeInMinutes } from '@/app/features/component/calendar/lib';
 import {
+  DEFAULT_WEEKLY_COLUMN_WIDTH,
   type WeeklyCalendarEntity,
   type WeeklyGroup,
 } from '@/app/features/component/calendar/model';
-import { Flex, Typography } from 'antd';
+import { Flex, Popover, Typography } from 'antd';
 import { useMemo } from 'react';
 import { WeeklyCard } from '../Card';
 
@@ -19,7 +20,8 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
   group,
   order,
 }: Props<T>) {
-  const { hourCellHeight, startHour } = useWeeklyCalendarContext();
+  const { hourCellHeight, maxItemShowPerGroup, startHour } =
+    useWeeklyCalendarContext();
 
   const { items, startTime } = group;
 
@@ -36,8 +38,14 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
     [items],
   );
 
-  const showItems = sortedItems.slice(0, 3);
-  const restItems = sortedItems.slice(3);
+  const showItems = useMemo(
+    () => sortedItems.slice(0, maxItemShowPerGroup),
+    [maxItemShowPerGroup, sortedItems],
+  );
+  const restItems = useMemo(
+    () => sortedItems.slice(maxItemShowPerGroup),
+    [maxItemShowPerGroup, sortedItems],
+  );
 
   const top = useMemo(() => {
     const startTimeInMinutes = getTimeInMinutes(startTime);
@@ -67,13 +75,19 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
               left,
               top,
               width,
-              zIndex: order,
+              zIndex: order + 1, // prevent z-index = 0
             }}
           >
-            <WeeklyCard groupCount={array.length} item={item} key={item.id} />
+            <WeeklyCard
+              groupCount={array.length}
+              item={item}
+              key={item.id}
+              mode="in-calendar"
+            />
           </div>
         );
       })}
+
       {restItems?.length ? (
         <Flex
           className="absolute right-0 h-8 w-7 cursor-pointer px-[1px] py-0.5"
@@ -81,13 +95,38 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
             top,
           }}
         >
-          <Flex
-            align="center"
-            className="aspect-square w-full rounded-sm bg-primaryLight px-1 py-0.5 shadow-card"
-            justify="center"
+          <Popover
+            arrow={false}
+            content={
+              <Flex
+                gap="0.25rem"
+                style={{
+                  width: DEFAULT_WEEKLY_COLUMN_WIDTH * 1.2,
+                }}
+                vertical
+              >
+                {restItems.map(item => (
+                  <WeeklyCard
+                    groupCount={restItems.length}
+                    item={item}
+                    key={item.id}
+                    mode="in-popover"
+                  />
+                ))}
+              </Flex>
+            }
+            destroyTooltipOnHide
+            overlayClassName="[&_.ant-popover-inner]:p-1.5"
+            placement="rightTop"
           >
-            <Text>+{restItems.length}</Text>
-          </Flex>
+            <Flex
+              align="center"
+              className="aspect-square w-full rounded-sm bg-primaryLight px-1 py-0.5 shadow-card"
+              justify="center"
+            >
+              <Text>+{restItems.length}</Text>
+            </Flex>
+          </Popover>
         </Flex>
       ) : null}
     </>

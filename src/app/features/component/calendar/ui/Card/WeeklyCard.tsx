@@ -11,11 +11,13 @@ const { Text } = Typography;
 interface AppointmentCardProps<T extends WeeklyCalendarEntity> {
   groupCount: number;
   item: T;
+  mode: 'in-calendar' | 'in-popover';
 }
 
 function WeeklyCard<T extends WeeklyCalendarEntity>({
   groupCount,
   item,
+  mode,
 }: AppointmentCardProps<T>) {
   const { hourCellHeight, itemRender, onClickItem } =
     useWeeklyCalendarContext();
@@ -35,15 +37,23 @@ function WeeklyCard<T extends WeeklyCalendarEntity>({
       className={cn(
         'relative px-[1px] py-0.5',
         onClickItem ? 'cursor-pointer' : '',
-        passedItem ? 'opacity-80' : '',
       )}
       onClick={() => onClickItem?.(item)}
       style={{
-        height,
+        height: mode === 'in-calendar' ? height : 'w-fit',
       }}
     >
       {itemRender ? (
-        itemRender(item, { groupCount, height })
+        <div className="h-full w-full bg-neutral-0">
+          <div
+            className={cn(
+              'h-full w-full',
+              passedItem && mode === 'in-calendar' ? 'opacity-70' : '',
+            )}
+          >
+            {itemRender(item, { groupCount, height, mode })}
+          </div>
+        </div>
       ) : (
         <Flex
           className="h-full w-full rounded-sm bg-primaryLight px-1 py-0.5 shadow-card"

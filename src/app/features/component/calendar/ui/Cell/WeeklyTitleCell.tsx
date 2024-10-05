@@ -15,7 +15,7 @@ interface TitleCellProps {
 
 function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
   const { i18n } = useTranslation();
-  const { baseDate } = useWeeklyCalendarContext();
+  const { baseDate, onClickHeader } = useWeeklyCalendarContext();
 
   const title = useMemo(() => getDayOfWeekTitle(dayOfWeek), [dayOfWeek]);
   const isCurrentDay = dayOfWeek === dayjs().day();
@@ -25,17 +25,25 @@ function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
       const newBaseDate = dayjs(baseDate).subtract(1, 'day');
 
       if (dayOfWeek === DayOfWeek.Sunday) {
-        return dayjs(newBaseDate).day(dayOfWeek).add(1, 'week').format('DD');
+        return dayjs(newBaseDate).day(dayOfWeek).add(1, 'week');
       }
 
-      return dayjs(newBaseDate).day(dayOfWeek).format('DD');
+      return dayjs(newBaseDate).day(dayOfWeek);
     }
 
-    return dayjs(baseDate).day(dayOfWeek).format('DD');
+    return dayjs(baseDate).day(dayOfWeek);
   }, [baseDate, dayOfWeek, i18n.language]);
 
   return (
-    <Flex align="end" className="h-hull px-2 py-2" justify="space-between">
+    <Flex
+      align="end"
+      className={cn(
+        'h-full px-2 py-2',
+        onClickHeader ? 'cursor-pointer hover:opacity-90' : 'cursor-default',
+      )}
+      justify="space-between"
+      onClick={() => onClickHeader?.(formattedDate.startOf('day'))}
+    >
       <Text className="line-clamp-1 text-xs font-semibold uppercase text-neutral-500">
         {title}
       </Text>
@@ -45,7 +53,7 @@ function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
           isCurrentDay && 'rounded-full bg-primary text-secondary',
         )}
       >
-        {formattedDate}
+        {formattedDate.format('DD')}
       </Text>
     </Flex>
   );

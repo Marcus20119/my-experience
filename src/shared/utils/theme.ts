@@ -37,8 +37,25 @@ function componentToHex(c: number) {
   return hex.length == 1 ? `0${hex}` : hex;
 }
 
-function hexToRgb(hex: string) {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+function checkIsRgbColor(color: string) {
+  return /^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/i.test(color);
+}
+
+function hexToRgb(color: string) {
+  if (checkIsRgbColor(color)) {
+    const match = color.match(
+      /^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/,
+    );
+
+    if (!match) {
+      return null;
+    }
+
+    const [r, g, b] = match.slice(1).map(Number);
+    return { b, g, r };
+  }
+
+  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
   return result
     ? {
         b: parseInt(result[3], 16),
@@ -52,17 +69,13 @@ function rgbToHex(r: number, g: number, b: number) {
   return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
 }
 
-function getHexColorVariant(color?: string, lightVolume?: number) {
-  if (!color || !lightVolume) {
-    return '';
-  }
-
+function getHexColorVariant(color: string, lightVolume: number) {
   const { b, g, r } = hexToRgb(color) || { b: 0, g: 0, r: 0 };
 
   return rgbToHex(
-    Math.round(r + (255 - r) * lightVolume),
-    Math.round(g + (255 - g) * lightVolume),
-    Math.round(b + (255 - b) * lightVolume),
+    Math.round(r + (255 - r) * (1 - lightVolume)),
+    Math.round(g + (255 - g) * (1 - lightVolume)),
+    Math.round(b + (255 - b) * (1 - lightVolume)),
   );
 }
 

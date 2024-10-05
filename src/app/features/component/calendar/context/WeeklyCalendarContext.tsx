@@ -4,9 +4,9 @@ import dayjs from 'dayjs';
 import { createContext, useContext } from 'react';
 import type { Hour, WeeklyCalendarEntity, WeeklyDisabledCell } from '../model';
 import {
-  DEFAULT_HOUR_CELL_HEIGHT,
   DEFAULT_WEEKLY_CALENDAR_END_TIME,
   DEFAULT_WEEKLY_CALENDAR_START_TIME,
+  DEFAULT_WEEKLY_HOUR_CELL_HEIGHT,
 } from '../model';
 
 export interface WeeklyContextProps<
@@ -21,12 +21,15 @@ export interface WeeklyContextProps<
     additionalData: {
       groupCount: number;
       height: number;
+      mode: 'in-calendar' | 'in-popover';
     },
   ) => React.ReactNode;
+  maxItemShowPerGroup: number;
+  onClickHeader?: (date: Dayjs) => void;
   onClickItem?: (item: T) => void;
   onCreateNewItem?: (startTime: Dayjs) => void;
   startHour: Hour;
-  timeFormat: 'h:mm A' | 'H:mm';
+  timeFormat: 'H:mm A' | 'H:mm';
   trackLine:
     | {
         color?: string;
@@ -37,7 +40,8 @@ export interface WeeklyContextProps<
 const WeeklyCalendarContext = createContext<WeeklyContextProps>({
   baseDate: dayjs(),
   endHour: DEFAULT_WEEKLY_CALENDAR_END_TIME,
-  hourCellHeight: DEFAULT_HOUR_CELL_HEIGHT,
+  hourCellHeight: DEFAULT_WEEKLY_HOUR_CELL_HEIGHT,
+  maxItemShowPerGroup: 3,
   startHour: DEFAULT_WEEKLY_CALENDAR_START_TIME,
   timeFormat: 'H:mm',
   trackLine: {

@@ -28,10 +28,6 @@ function CalendarLayout({ children, route, tabItems }: Props) {
         return t('layout.title.monthlyCalendar');
       }
 
-      case '/component/calendar/schedule': {
-        return t('layout.title.schedule');
-      }
-
       default: {
         return '';
       }
@@ -62,10 +58,6 @@ function CalendarLayout({ children, route, tabItems }: Props) {
     {
       label: t('layout.title.monthlyCalendar'),
       route: { path: '/component/calendar/monthly' },
-    },
-    {
-      label: t('layout.title.schedule'),
-      route: { path: '/component/calendar/schedule' },
     },
   ];
 

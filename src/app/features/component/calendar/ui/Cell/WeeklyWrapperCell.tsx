@@ -39,7 +39,9 @@ function WeeklyWrapperCell<T extends WeeklyCalendarEntity>({
       const { startTime } = item;
 
       const group = itemGroups.find(
-        itemGroup => itemGroup.startTime === startTime,
+        itemGroup =>
+          dayjs(itemGroup.startTime).toISOString() ===
+          dayjs(startTime).toISOString(),
       );
 
       if (group) {

@@ -9,24 +9,36 @@ import {
   WeeklyCalendarFilter,
 } from '@/app/features/component/calendar';
 import { useHeaderStore } from '@/app/features/header';
-import { useSidebarStore } from '@/app/features/sidebar';
 import CalendarLayout from '@/app/layout/CalendarLayout';
-import { SPACING, WIDTH } from '@/shared/assets/styles/constants';
-import { useCalculateElementSize } from '@/shared/hooks';
+import { SPACING } from '@/shared/assets/styles/constants';
+import { Value } from '@/shared/components';
+import CalendarItemModal from '@/shared/components/Modal/CalendarItemModal';
+import {
+  useAppRouter,
+  useCalculateElementSize,
+  useToggle,
+} from '@/shared/hooks';
 import { Flex, Form, Typography } from 'antd';
 import dayjs from 'dayjs';
+import queryString from 'query-string';
+import { useState } from 'react';
 import { cn } from '@/lib/tailwind';
 
-const { Text, Title } = Typography;
+const { Paragraph, Text, Title } = Typography;
 
 function CalendarWeeklyPage() {
+  const { navigate } = useAppRouter();
   const { getHeaderHeight } = useHeaderStore();
-  const { getSidebarWidth } = useSidebarStore();
-  const { height, width } = useCalculateElementSize({
+  const { height } = useCalculateElementSize({
     heightOffset: getHeaderHeight() + SPACING.contentPadding * 2 + 58 + 50, // 58 - filter height, 50 - header height
-    widthOffset:
-      getSidebarWidth() + SPACING.contentPadding * 2 + WIDTH.scrollbar,
   });
+  const {
+    onClose: onCloseDetail,
+    onOpen: onOpenDetail,
+    open: openDetail,
+  } = useToggle();
+
+  const [selectedItem, setSelectedItem] = useState<MockWeeklyCalendarEntity>();
 
   const [form] = Form.useForm<MockWeeklyFilterEntity>();
   const baseDate = Form.useWatch('baseDate', form);
@@ -54,9 +66,14 @@ function CalendarWeeklyPage() {
               type: 'dayOfWeek',
             },
           ]}
-          itemRender={(item, { groupCount, height }) => (
+          itemRender={(item, { groupCount, height, mode }) => (
             <Flex
-              className="h-full w-full rounded-sm px-1 py-0.5 shadow-md"
+              className={cn(
+                'h-full w-full',
+                mode === 'in-calendar'
+                  ? 'rounded-sm px-1 py-0.5 shadow-md'
+                  : 'rounded-md px-2 py-1',
+              )}
               style={{
                 backgroundColor: item.color,
               }}
@@ -78,17 +95,45 @@ function CalendarWeeklyPage() {
               >
                 {item.title}
               </Title>
+              {mode === 'in-popover' ? (
+                <Paragraph className="text-xs">{item.description}</Paragraph>
+              ) : null}
             </Flex>
           )}
+          onClickHeader={date => {
+            navigate({
+              path: '/component/calendar/daily',
+              search: queryString.stringify({
+                baseDate: date.toISOString(),
+              }),
+            });
+          }}
           onClickItem={item => {
-            console.log(item);
+            setSelectedItem(item);
+            onOpenDetail();
           }}
           onCreateNewItem={startTime => {
             console.log(startTime);
           }}
-          scroll={{ x: width, y: height }}
+          scroll={{ x: 'max-content', y: height }}
         />
       </Flex>
+      <CalendarItemModal
+        color={selectedItem?.color}
+        onCancel={() => {
+          onCloseDetail();
+          setSelectedItem(undefined);
+        }}
+        open={openDetail}
+        title={selectedItem?.title}
+      >
+        <Value.List
+          value={[
+            `${dayjs(selectedItem?.startTime).format('H:mm')} - ${dayjs(selectedItem?.endTime).format('H:mm')}, ${dayjs(selectedItem?.startTime).format('DD/MM/YYYY')}`,
+            selectedItem?.description,
+          ]}
+        />
+      </CalendarItemModal>
     </CalendarLayout>
   );
 }

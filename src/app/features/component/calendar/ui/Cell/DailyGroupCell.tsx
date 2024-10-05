@@ -1,27 +1,27 @@
 import type {
-  WeeklyCalendarEntity,
-  WeeklyGroup,
+  DailyCalendarEntity,
+  DailyGroup,
 } from '@/app/features/component/calendar/model';
-import { useWeeklyCalendarContext } from '@/app/features/component/calendar/context';
+import { useDailyCalendarContext } from '@/app/features/component/calendar/context';
 import { getTimeInMinutes } from '@/app/features/component/calendar/lib';
 import { DEFAULT_WEEKLY_COLUMN_WIDTH } from '@/app/features/component/calendar/model';
 import { Flex, Popover, Typography } from 'antd';
 import { useMemo } from 'react';
-import { WeeklyCard } from '../Card';
+import { DailyCard } from '../Card';
 
 const { Text } = Typography;
 
-interface Props<T extends WeeklyCalendarEntity> {
-  group: WeeklyGroup<T>;
+interface Props<T extends DailyCalendarEntity> {
+  group: DailyGroup<T>;
   order: number;
 }
 
-function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
+function DailyGroupCell<T extends DailyCalendarEntity>({
   group,
   order,
 }: Props<T>) {
   const { hourCellHeight, maxItemShowPerGroup, startHour } =
-    useWeeklyCalendarContext();
+    useDailyCalendarContext();
 
   const { items, startTime } = group;
 
@@ -78,7 +78,7 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
               zIndex: order + 1, // prevent z-index = 0
             }}
           >
-            <WeeklyCard
+            <DailyCard
               groupCount={array.length}
               item={item}
               key={item.id}
@@ -106,7 +106,7 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
                 vertical
               >
                 {restItems.map(item => (
-                  <WeeklyCard
+                  <DailyCard
                     groupCount={restItems.length}
                     item={item}
                     key={item.id}
@@ -133,4 +133,4 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
   );
 }
 
-export default WeeklyGroupCell;
+export default DailyGroupCell;

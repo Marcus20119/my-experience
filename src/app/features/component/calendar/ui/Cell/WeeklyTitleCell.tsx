@@ -17,8 +17,12 @@ function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
   const { i18n } = useTranslation();
   const { baseDate, onClickHeader } = useWeeklyCalendarContext();
 
-  const title = useMemo(() => getDayOfWeekTitle(dayOfWeek), [dayOfWeek]);
-  const isCurrentDay = dayOfWeek === dayjs().day();
+  const dayOfWeekTitle = useMemo(
+    () => getDayOfWeekTitle(dayOfWeek),
+    [dayOfWeek],
+  );
+  const isCurrentDay =
+    dayOfWeek === dayjs().day() && dayjs().isSame(baseDate, 'week');
 
   const formattedDate = useMemo(() => {
     if (i18n.language === 'vi') {
@@ -45,16 +49,18 @@ function WeeklyTitleCell({ dayOfWeek }: TitleCellProps) {
       onClick={() => onClickHeader?.(formattedDate.startOf('day'))}
     >
       <Text className="line-clamp-1 text-xs font-semibold uppercase text-neutral-500">
-        {title}
+        {dayOfWeekTitle}
       </Text>
-      <Text
+      <Flex
+        align="center"
         className={cn(
-          'text-primaryText h-8 w-8 flex-shrink text-center text-lg font-semibold leading-8',
+          'h-8 w-8 flex-shrink-0 text-center text-lg font-semibold leading-8',
           isCurrentDay && 'rounded-full bg-primary text-secondary',
         )}
+        justify="center"
       >
         {formattedDate.format('DD')}
-      </Text>
+      </Flex>
     </Flex>
   );
 }

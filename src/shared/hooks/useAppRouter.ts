@@ -1,3 +1,4 @@
+import type { NavigateOptions} from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { PathProps } from '../types';
 import { AppTool } from '../utils';
@@ -33,14 +34,17 @@ export const useAppRouter = <P extends RouterPath>(_?: P) => {
   const navig = useNavigate();
   const param = useParams();
 
-  const navigate = (route: RouterNavigator) => {
+  const navigate = (route: RouterNavigator, options?: NavigateOptions) => {
     const newPath = getNavigatePath(route);
 
-    navig({
-      hash: route.hash,
-      pathname: newPath,
-      search: route.search,
-    });
+    navig(
+      {
+        hash: route.hash,
+        pathname: newPath,
+        search: route.search,
+      },
+      options,
+    );
     AppTool.scrollToTop();
   };
 

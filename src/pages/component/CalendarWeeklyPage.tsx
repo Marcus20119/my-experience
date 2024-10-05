@@ -11,8 +11,7 @@ import {
 import { useHeaderStore } from '@/app/features/header';
 import CalendarLayout from '@/app/layout/CalendarLayout';
 import { SPACING } from '@/shared/assets/styles/constants';
-import { Value } from '@/shared/components';
-import CalendarItemModal from '@/shared/components/Modal/CalendarItemModal';
+import { Modal, Value } from '@/shared/components';
 import {
   useAppRouter,
   useCalculateElementSize,
@@ -118,7 +117,7 @@ function CalendarWeeklyPage() {
           scroll={{ x: 'max-content', y: height }}
         />
       </Flex>
-      <CalendarItemModal
+      <Modal.CalendarItem
         color={selectedItem?.color}
         onCancel={() => {
           onCloseDetail();
@@ -133,7 +132,7 @@ function CalendarWeeklyPage() {
             selectedItem?.description,
           ]}
         />
-      </CalendarItemModal>
+      </Modal.CalendarItem>
     </CalendarLayout>
   );
 }

@@ -3,16 +3,15 @@ import { COLOR } from '@/shared/assets/styles/constants';
 import { Table } from 'antd';
 import dayjs from 'dayjs';
 import type { WeeklyContextProps } from '../context';
+import type { WeeklyCalendarEntity, WeeklyRow } from '../model';
 import { WeeklyCalendarProvider } from '../context';
 import { useGetWeeklyCalendarData, useWeeklyCalendarColumns } from '../lib';
 import {
   DEFAULT_WEEKLY_CALENDAR_END_TIME,
   DEFAULT_WEEKLY_CALENDAR_START_TIME,
   DEFAULT_WEEKLY_HOUR_CELL_HEIGHT,
-  type WeeklyCalendarEntity,
-  type WeeklyRow,
 } from '../model';
-import { AppointmentsCalendarStyled } from './styles';
+import { WeeklyCalendarStyled } from './styles';
 
 interface WeeklyTableProps<T> extends Pick<TableProps, 'loading' | 'scroll'> {
   dataSource?: T[];
@@ -28,7 +27,7 @@ function WeeklyTable<T extends WeeklyCalendarEntity>({
   const columns = useWeeklyCalendarColumns<T>();
 
   return (
-    <AppointmentsCalendarStyled>
+    <WeeklyCalendarStyled>
       <Table<WeeklyRow<T>>
         bordered
         columns={columns}
@@ -36,7 +35,7 @@ function WeeklyTable<T extends WeeklyCalendarEntity>({
         pagination={false}
         {...props}
       />
-    </AppointmentsCalendarStyled>
+    </WeeklyCalendarStyled>
   );
 }
 

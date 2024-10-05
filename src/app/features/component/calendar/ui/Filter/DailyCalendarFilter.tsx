@@ -1,4 +1,4 @@
-import type { MockWeeklyFilterEntity } from '@/app/features/component/calendar/model';
+import type { MockDailyFilterEntity } from '@/app/features/component/calendar/model';
 import type { ChangeDayjsToString } from '@/shared/types';
 import type { FormInstance } from 'antd/lib';
 import { Picker } from '@/shared/components';
@@ -12,20 +12,20 @@ import { useEffect, useRef } from 'react';
 const { Compact } = Space;
 
 interface Props {
-  form: FormInstance<MockWeeklyFilterEntity>;
+  form: FormInstance<MockDailyFilterEntity>;
 }
 
-function WeeklyCalendarFilter({ form }: Props) {
+function DailyCalendarFilter({ form }: Props) {
   const { navigate } = useAppRouter();
   const isSetInitialValues = useRef(false);
   const searchParams =
-    useAppSearchParams<ChangeDayjsToString<MockWeeklyFilterEntity>>();
+    useAppSearchParams<ChangeDayjsToString<MockDailyFilterEntity>>();
 
   const baseDate = Form.useWatch('baseDate', form);
 
   useEffect(() => {
     if (!isSetInitialValues.current) {
-      const initialValues: MockWeeklyFilterEntity = {
+      const initialValues: MockDailyFilterEntity = {
         baseDate: dayjs(searchParams.baseDate || undefined),
       };
 
@@ -34,8 +34,8 @@ function WeeklyCalendarFilter({ form }: Props) {
     }
   }, [form, searchParams.baseDate]);
 
-  const onFinish = (values: MockWeeklyFilterEntity) => {
-    const formattedValues: ChangeDayjsToString<MockWeeklyFilterEntity> = {
+  const onFinish = (values: MockDailyFilterEntity) => {
+    const formattedValues: ChangeDayjsToString<MockDailyFilterEntity> = {
       baseDate: values.baseDate?.toISOString(),
     };
 
@@ -51,7 +51,7 @@ function WeeklyCalendarFilter({ form }: Props) {
 
   return (
     <Flex align="center" justify="space-between">
-      <Form<MockWeeklyFilterEntity> form={form} onFinish={onFinish}>
+      <Form<MockDailyFilterEntity> form={form} onFinish={onFinish}>
         <Compact>
           <Button
             className="border-neutral-400 hover:border-neutral-700"
@@ -61,7 +61,7 @@ function WeeklyCalendarFilter({ form }: Props) {
               form.setFields([
                 {
                   name: 'baseDate',
-                  value: baseDate?.subtract(1, 'week'),
+                  value: baseDate?.subtract(1, 'day'),
                 },
               ]);
 
@@ -69,8 +69,8 @@ function WeeklyCalendarFilter({ form }: Props) {
             }}
             size="middle"
           />
-          <Form.Item<MockWeeklyFilterEntity> name="baseDate" noStyle>
-            <Picker.Week onChange={form.submit} size="middle" />
+          <Form.Item<MockDailyFilterEntity> name="baseDate" noStyle>
+            <Picker.Date onChange={form.submit} size="middle" />
           </Form.Item>
           <Button
             className="border-neutral-400 hover:border-neutral-700"
@@ -80,7 +80,7 @@ function WeeklyCalendarFilter({ form }: Props) {
               form.setFields([
                 {
                   name: 'baseDate',
-                  value: baseDate?.add(1, 'week'),
+                  value: baseDate?.add(1, 'day'),
                 },
               ]);
 
@@ -98,4 +98,4 @@ function WeeklyCalendarFilter({ form }: Props) {
   );
 }
 
-export default WeeklyCalendarFilter;
+export default DailyCalendarFilter;

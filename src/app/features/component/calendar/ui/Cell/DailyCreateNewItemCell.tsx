@@ -1,5 +1,5 @@
 import type { Dayjs } from 'dayjs';
-import { useWeeklyCalendarContext } from '@/app/features/component/calendar/context';
+import { useDailyCalendarContext } from '@/app/features/component/calendar/context';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { Flex } from 'antd';
 import { Add } from 'iconsax-react';
@@ -11,8 +11,8 @@ interface Props {
   startTime: Dayjs;
 }
 
-function WeeklyCreateNewItemCell({ disabled, startTime }: Props) {
-  const { onCreateNewItem } = useWeeklyCalendarContext();
+function DailyCreateNewItemCell({ disabled, startTime }: Props) {
+  const { onCreateNewItem } = useDailyCalendarContext();
 
   return (
     <Flex
@@ -51,4 +51,4 @@ function WeeklyCreateNewItemCell({ disabled, startTime }: Props) {
   );
 }
 
-export default WeeklyCreateNewItemCell;
+export default DailyCreateNewItemCell;

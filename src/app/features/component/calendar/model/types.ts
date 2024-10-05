@@ -37,6 +37,36 @@ export enum DayOfWeek {
   Wednesday = 3,
 }
 
+// ----- DAILY CALENDAR -----
+export interface DailyCalendarEntity {
+  endTime: Dayjs | string;
+  id: string;
+  startTime: Dayjs | string;
+}
+
+export interface DailyRow<T extends DailyCalendarEntity> {
+  data: T[];
+}
+
+export interface DailyGroup<T extends DailyCalendarEntity> {
+  items: T[];
+  startTime: Dayjs | string;
+}
+
+export type DailyDisabledCell = (
+  | {
+      type: 'dayOfWeek';
+      dayOfWeek: DayOfWeek;
+      hours?: Hour[];
+      minutes?: (hour: Hour) => (0 | 30)[];
+    }
+  | {
+      type: 'rangeTime';
+      startTime: Dayjs | string;
+      endTime: Dayjs | string;
+    }
+)[];
+
 // ----- WEEKLY CALENDAR -----
 export interface WeeklyCalendarEntity {
   endTime: Dayjs | string;

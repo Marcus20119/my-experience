@@ -32,3 +32,19 @@ export interface MockWeeklyCalendarEntity {
 export interface MockWeeklyFilterEntity {
   baseDate: Dayjs;
 }
+
+export interface MockMonthlyCalendarEntity {
+  // Required for the calendar to work
+  endTime: Dayjs | string;
+  id: string;
+  startTime: Dayjs | string;
+
+  // Additional fields
+  description?: string;
+  title: string;
+  color: string;
+}
+
+export interface MockMonthlyFilterEntity {
+  baseDate: Dayjs;
+}

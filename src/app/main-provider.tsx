@@ -44,7 +44,7 @@ function AntProvider() {
   useEffect(() => {
     i18n.changeLanguage(language);
     dayjs.locale(language);
-  }, []);
+  }, [language]);
 
   const theme: ThemeConfig = useMemo(() => {
     if (!primaryColor || !secondaryColor) {

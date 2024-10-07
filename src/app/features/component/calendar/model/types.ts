@@ -107,3 +107,47 @@ export type WeeklyDisabledCell = (
       endTime: Dayjs | string;
     }
 )[];
+
+// ----- MONTHLY CALENDAR -----
+
+export interface MonthlyCalendarEntity {
+  endTime: Dayjs | string;
+  id: string;
+  startTime: Dayjs | string;
+}
+
+export interface MonthlyRow<T extends WeeklyCalendarEntity> {
+  friday: {
+    day: Dayjs;
+    items: T[];
+  };
+  monday: {
+    day: Dayjs;
+    items: T[];
+  };
+  saturday: {
+    day: Dayjs;
+    items: T[];
+  };
+  sunday: {
+    day: Dayjs;
+    items: T[];
+  };
+  thursday: {
+    day: Dayjs;
+    items: T[];
+  };
+  tuesday: {
+    day: Dayjs;
+    items: T[];
+  };
+  wednesday: {
+    day: Dayjs;
+    items: T[];
+  };
+}
+
+export interface MonthlyGroup<T extends WeeklyCalendarEntity> {
+  items: T[];
+  startTime: Dayjs | string;
+}

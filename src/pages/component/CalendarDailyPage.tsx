@@ -3,11 +3,11 @@ import type {
   MockDailyFilterEntity,
 } from '@/app/features/component/calendar';
 import {
+  DailyCalendar,
   DailyCalendarFilter,
   DayOfWeek,
   mockDailyData,
 } from '@/app/features/component/calendar';
-import DailyCalendar from '@/app/features/component/calendar/ui/DailyCalendar';
 import { useHeaderStore } from '@/app/features/header';
 import CalendarLayout from '@/app/layout/CalendarLayout';
 import { SPACING } from '@/shared/assets/styles/constants';

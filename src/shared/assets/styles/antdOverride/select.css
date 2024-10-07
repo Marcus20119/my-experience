@@ -33,3 +33,8 @@
     box-shadow: none !important;
   }
 }
+
+.ant-select-item-option-content {
+  display: flex;
+  align-items: center;
+}

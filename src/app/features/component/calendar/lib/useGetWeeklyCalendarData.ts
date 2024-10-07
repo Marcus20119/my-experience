@@ -2,6 +2,7 @@
 import dayjs from 'dayjs';
 import { useMemo } from 'react';
 import { DayOfWeek, type WeeklyCalendarEntity, type WeeklyRow } from '../model';
+import { getTimeInMinutes } from './getTimeInMinutes';
 
 interface Props<T extends WeeklyCalendarEntity> {
   dataSource?: T[];
@@ -12,11 +13,20 @@ export const useGetWeeklyCalendarData = <T extends WeeklyCalendarEntity>({
 }: Props<T>) => {
   const calendarData: WeeklyRow<T>[] = useMemo(() => {
     const formattedDataSource: T[] =
-      dataSource?.map(item => ({
-        ...item,
-        endTime: dayjs(item.endTime).second(0).millisecond(0),
-        startTime: dayjs(item.startTime).second(0).millisecond(0),
-      })) ?? [];
+      dataSource
+        ?.map(item => ({
+          ...item,
+          endTime: dayjs(item.endTime).second(0).millisecond(0),
+          startTime: dayjs(item.startTime).second(0).millisecond(0),
+        }))
+        ?.sort((a, b) => {
+          const aRangeTime =
+            getTimeInMinutes(a.startTime) - getTimeInMinutes(a.endTime);
+          const bRangeTime =
+            getTimeInMinutes(b.startTime) - getTimeInMinutes(b.endTime);
+
+          return aRangeTime - bRangeTime;
+        }) ?? [];
 
     const daysOfWeekMap: Record<number, keyof WeeklyRow<T>> = {
       [DayOfWeek.Monday]: 'monday',

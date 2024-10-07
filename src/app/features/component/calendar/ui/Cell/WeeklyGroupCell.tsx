@@ -25,26 +25,13 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
 
   const { items, startTime } = group;
 
-  const sortedItems: T[] = useMemo(
-    () =>
-      items.sort((a, b) => {
-        const aRangeTime =
-          getTimeInMinutes(a.startTime) - getTimeInMinutes(a.endTime);
-        const bRangeTime =
-          getTimeInMinutes(b.startTime) - getTimeInMinutes(b.endTime);
-
-        return aRangeTime - bRangeTime;
-      }),
-    [items],
-  );
-
   const showItems = useMemo(
-    () => sortedItems.slice(0, maxItemShowPerGroup),
-    [maxItemShowPerGroup, sortedItems],
+    () => items.slice(0, maxItemShowPerGroup),
+    [maxItemShowPerGroup, items],
   );
   const restItems = useMemo(
-    () => sortedItems.slice(maxItemShowPerGroup),
-    [maxItemShowPerGroup, sortedItems],
+    () => items.slice(maxItemShowPerGroup),
+    [maxItemShowPerGroup, items],
   );
 
   const top = useMemo(() => {

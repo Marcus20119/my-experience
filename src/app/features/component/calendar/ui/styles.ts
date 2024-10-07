@@ -44,3 +44,17 @@ export const WeeklyCalendarStyled = styled.div`
     z-index: ${WEEKLY_Z_INDEX.itemHover} !important;
   }
 `;
+
+export const MonthlyCalendarStyled = styled.div`
+  .ant-table-cell {
+    padding: 0 !important;
+  }
+
+  td {
+    background-color: white !important;
+  }
+
+  th {
+    height: 3rem !important; // 48px
+  }
+`;

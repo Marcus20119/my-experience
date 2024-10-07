@@ -46,6 +46,7 @@
       "inputText": "Input text",
       "inputTextArea": "Input text area",
       "major": "Major",
+      "monthPicker": "Month picker",
       "multipleSelect": "Multiple select",
       "nationalityOffline": "Nationality (Offline)",
       "nationalityOnline": "Nationality (Online)",

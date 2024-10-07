@@ -101,7 +101,7 @@ function WeeklyTrackLine({ dayOfWeek, isTimeRange }: Props) {
 
   return (
     <Flex
-      className="absolute -left-[1px] right-0"
+      className="absolute -left-[1px] -right-[1px]"
       style={{
         top: shouldBoldTrackLine
           ? trackLinePositionTop - 1
@@ -118,6 +118,7 @@ function WeeklyTrackLine({ dayOfWeek, isTimeRange }: Props) {
           borderColor: trackLine.color,
         }}
       />
+
       {isCurrentDay ? (
         <div
           className="absolute -left-[5px] top-1/2 h-3 w-3 -translate-y-1/2 rounded-full"

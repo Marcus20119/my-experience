@@ -79,7 +79,7 @@ function DailyTrackLine({ isTimeRange }: Props) {
       }}
     >
       <div
-        className="w-full border-0 border-b border-solid"
+        className="w-full border-0 border-b-2 border-solid"
         style={{
           borderColor: trackLine.color,
         }}

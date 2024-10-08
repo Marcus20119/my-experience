@@ -21,3 +21,7 @@
   font-size: 0.75rem !important;
   font-weight: 500 !important;
 }
+
+.ant-form-item-tooltip {
+  margin-top: 0.125rem !important;
+}

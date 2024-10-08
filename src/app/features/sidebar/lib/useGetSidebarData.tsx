@@ -2,17 +2,17 @@ import { Box1, Colorfilter, Cpu, Game, Image } from 'iconsax-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import type { SidebarItem } from './types';
+import type { SidebarItem } from '../model';
+import { MainSidebarKey, SubSidebarKey } from '../model';
 import { useSidebarStore } from '../store';
-import { MainSidebarKey, SubSidebarKey } from './types';
 
 export const useGetSidebarData = () => {
   const { t } = useTranslation();
   const { mainSidebarHistory, subSidebarHistory } = useSidebarStore();
   const { pathname } = useLocation();
 
-  const defaultMainSidebarItems: SidebarItem[] = useMemo(
-    () => [
+  const defaultMainSidebarItems: SidebarItem[] = useMemo(() => {
+    const items: SidebarItem[] = [
       {
         children: [
           {
@@ -70,7 +70,7 @@ export const useGetSidebarData = () => {
             key: SubSidebarKey.Calendar,
             label: t('layout.title.calendar'),
             match: '/component/calendar',
-            path: '/component/calendar',
+            path: '/component/calendar/daily',
           },
         ],
         icon: <Box1 />,
@@ -100,9 +100,10 @@ export const useGetSidebarData = () => {
         match: '/game',
         path: '/game',
       },
-    ],
-    [t],
-  );
+    ];
+
+    return items;
+  }, [t]);
 
   const mainSidebarItems = useMemo(
     () =>

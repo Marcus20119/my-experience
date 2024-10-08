@@ -1,6 +1,5 @@
 import { useHeaderStore } from '@/app/features/header';
-import { useSidebarStore } from '@/app/features/sidebar';
-import { HEIGHT, SPACING, WIDTH } from '@/shared/assets/styles/constants';
+import { HEIGHT, SPACING } from '@/shared/assets/styles/constants';
 import { Select } from '@/shared/components';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { DateTimeTool } from '@/shared/utils';
@@ -29,15 +28,12 @@ interface Props {
 function StudentTable({ onChange, students }: Props) {
   const { t } = useTranslation();
   const { getHeaderHeight } = useHeaderStore();
-  const { getSidebarWidth } = useSidebarStore();
-  const { height, width } = useCalculateElementSize({
+  const { height } = useCalculateElementSize({
     heightOffset:
       getHeaderHeight() +
       SPACING.contentPadding * 2 +
       HEIGHT.tableHeader * 2 +
       +ADD_STUDENT_BUTTON_HEIGHT,
-    widthOffset:
-      getSidebarWidth() + SPACING.contentPadding * 2 + WIDTH.scrollbar,
   });
 
   const defaultValue: EditableTableRow<StudentTableEntity> = useMemo(
@@ -368,7 +364,7 @@ function StudentTable({ onChange, students }: Props) {
         columns={formattedColumns as EditableColumnType<StudentTableEntity>[]}
         dataSource={dataSource}
         pagination={false}
-        scroll={{ x: width, y: height }}
+        scroll={{ x: 'max-content', y: height }}
       />
       <Flex
         align="center"

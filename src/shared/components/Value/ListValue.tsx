@@ -3,7 +3,7 @@ import { Typography } from 'antd';
 const { Paragraph, Text } = Typography;
 
 interface Props {
-  value?: string[];
+  value?: React.ReactNode[];
 }
 
 function ListValue({ value }: Props) {
@@ -12,9 +12,9 @@ function ListValue({ value }: Props) {
   return (
     <Paragraph>
       <ul>
-        {value.map((item, index) => (
+        {value.filter(Boolean).map((item, index) => (
           <li key={index}>
-            <Text>{item}</Text>
+            {typeof item === 'string' ? <Text>{item}</Text> : item}
           </li>
         ))}
       </ul>

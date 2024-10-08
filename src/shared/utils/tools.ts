@@ -84,7 +84,7 @@ const omitDeepArrayWalk = <T extends object>(arr: T[], key: string) =>
 const isNumber = (value?: null | number) =>
   typeof value === 'number' && !Number.isNaN(value);
 
-const isDefinedAndNotNull = <T>(value: T | null | undefined): value is T =>
+const isDefinedAndNotNull = <T>(value: null | T | undefined): value is T =>
   value !== null && value !== undefined;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -99,7 +99,7 @@ function ContentLayout({
                 className="w-full [&_.ant-tabs-nav-wrap]:justify-end [&_.ant-tabs-nav]:m-0"
                 defaultActiveKey={pathname}
                 items={tabs.map(tab => ({
-                  key: tab.route.path,
+                  key: tab.route.path as string,
                   label: tab.menuItems ? (
                     <Dropdown
                       menu={{

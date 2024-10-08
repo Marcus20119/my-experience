@@ -5,7 +5,7 @@ import { ToggleOffCircle, ToggleOnCircle } from 'iconsax-react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
-import { useGetSidebarData } from '../model';
+import { useGetSidebarData } from '../lib';
 import { useSidebarStore } from '../store';
 
 const { Text } = Typography;

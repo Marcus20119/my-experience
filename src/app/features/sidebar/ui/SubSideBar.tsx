@@ -5,21 +5,20 @@ import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import { Link } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
 import type { SubSidebarKey } from '../model';
-import { useGetSidebarData } from '../model';
+import { useGetSidebarData } from '../lib';
 import { useSidebarStore } from '../store';
 
 const { Text } = Typography;
 
 function SubSideBar() {
+  const { isSubBarCollapsed, setMainSidebarHistory, setSidebarStates } =
+    useSidebarStore();
   const {
-    isSubBarCollapsed,
-    setMainSidebarHistory: setSidebarHistory,
-    setSidebarStates,
-  } = useSidebarStore();
-  const { activeMainKey, activeSubKey, mainLabel, subSidebarItems } =
-    useGetSidebarData();
-
-  if (!subSidebarItems?.length) return null;
+    activeMainKey,
+    activeSubKey,
+    mainLabel,
+    subSidebarItems = [],
+  } = useGetSidebarData();
 
   const onToggleSubSidebar = () => {
     setSidebarStates({
@@ -48,7 +47,7 @@ function SubSideBar() {
             key={item.key}
             onClick={() => {
               AppTool.scrollToTop();
-              setSidebarHistory(activeMainKey, item.key as SubSidebarKey);
+              setMainSidebarHistory(activeMainKey, item.key as SubSidebarKey);
             }}
             to={item.path}
           >
@@ -79,7 +78,10 @@ function SubSideBar() {
 
       <Flex
         align="center"
-        className="absolute right-0 top-7 h-5 w-5 translate-x-1/2 cursor-pointer rounded-full border border-solid border-neutral-300 bg-neutral-600"
+        className={cn(
+          'absolute right-0 top-7 h-5 w-5 translate-x-1/2 cursor-pointer rounded-full border border-solid border-neutral-300 bg-neutral-600',
+          subSidebarItems?.length ? 'flex' : 'hidden',
+        )}
         justify="center"
         onClick={onToggleSubSidebar}
         role="presentation"

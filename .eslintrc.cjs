@@ -307,14 +307,6 @@ module.exports = {
         order: 'asc',
       },
     ],
-    'perfectionist/sort-switch-case': [
-      'error',
-      {
-        type: 'alphabetical',
-        order: 'asc',
-        ignoreCase: true,
-      },
-    ],
     'perfectionist/sort-enums': [
       'error',
       {

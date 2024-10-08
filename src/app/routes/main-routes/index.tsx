@@ -5,6 +5,7 @@ import { COMPONENT_ROUTES } from './componentRoutes';
 import { GAME_ROUTES } from './gameRoutes';
 import { IMAGE_ROUTES } from './imageRoutes';
 import { TECHNOLOGY_ROUTES } from './technologyRoutes';
+import { USER_ROUTES } from './userRoutes';
 
 const MAIN_ROUTES = [
   ...TECHNOLOGY_ROUTES,
@@ -12,6 +13,7 @@ const MAIN_ROUTES = [
   ...ANIMATION_ROUTES,
   ...GAME_ROUTES,
   ...COMPONENT_ROUTES,
+  ...USER_ROUTES,
 ] as const satisfies DeepReadonly<RouteObject[]>;
 
 export default MAIN_ROUTES;

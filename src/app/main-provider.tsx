@@ -8,9 +8,10 @@ import { ApolloProvider } from '@apollo/client';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ConfigProvider, Spin } from 'antd';
+import dayjs from 'dayjs';
 import { CloseCircle } from 'iconsax-react';
 import { Suspense, useEffect, useMemo } from 'react';
-import { I18nextProvider, useTranslation } from 'react-i18next';
+import { I18nextProvider } from 'react-i18next';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { theme as defaultTheme } from '@/lib/antd';
 import { i18nFormConfig } from '@/lib/antd/form';
@@ -22,33 +23,37 @@ import { queryClient } from '@/lib/tanstack-client';
 import { routes } from './routes';
 
 function AntProvider() {
-  const { i18n } = useTranslation();
-  const { primaryColor, secondaryColor } = useLocalStore();
+  const { language, primaryColor, secondaryColor } = useLocalStore();
 
   const locale: Locale = useMemo(() => {
-    if (i18n.language === 'en') {
+    if (language === 'en') {
       return enUS;
     }
 
     return viVN;
-  }, [i18n.language]);
+  }, [language]);
 
   const formConfig: FormConfig = useMemo(() => {
-    if (i18n.language === 'en') {
+    if (language === 'en') {
       return i18nFormConfig.en;
     }
 
     return i18nFormConfig.vi;
-  }, [i18n.language]);
+  }, [language]);
+
+  useEffect(() => {
+    i18n.changeLanguage(language);
+    dayjs.locale(language);
+  }, [language]);
 
   const theme: ThemeConfig = useMemo(() => {
-    if (!primaryColor) {
+    if (!primaryColor || !secondaryColor) {
       return defaultTheme;
     }
 
     const secondaryLightColor = ThemeTool.getHexColorVariant(
       secondaryColor,
-      0.8,
+      0.2,
     );
 
     return {
@@ -86,12 +91,12 @@ function AntProvider() {
   useEffect(() => {
     if (primaryColor) {
       COLOR.primary = primaryColor;
-      COLOR.primaryLight = ThemeTool.getHexColorVariant(primaryColor, 0.8);
+      COLOR.primaryLight = ThemeTool.getHexColorVariant(primaryColor, 0.2);
     }
 
     if (secondaryColor) {
       COLOR.secondary = secondaryColor;
-      COLOR.secondaryLight = ThemeTool.getHexColorVariant(secondaryColor, 0.8);
+      COLOR.secondaryLight = ThemeTool.getHexColorVariant(secondaryColor, 0.2);
     }
 
     //map colors variables for root
@@ -142,7 +147,7 @@ function MainProvider() {
       <ApolloProvider client={apolloClient}>
         <QueryClientProvider client={queryClient}>
           <AntProvider />
-          <ReactQueryDevtools initialIsOpen={false} />
+          <ReactQueryDevtools initialIsOpen={false} position="right" />
         </QueryClientProvider>
       </ApolloProvider>
     </I18nextProvider>

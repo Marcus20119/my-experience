@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 interface Props {
   keys: KeyboardEventKey[];
   onKeyPress?: (keys: KeyboardEventKey[]) => void;
+  updateDependencies?: (boolean | number | string | undefined)[];
 }
 
-export const useKeyDown = ({ keys, onKeyPress }: Props) => {
+export const useKeyDown = ({
+  keys,
+  onKeyPress,
+  updateDependencies = [],
+}: Props) => {
   const [pressedKeys, setPressedKeys] = useState<KeyboardEventKey[]>([]);
 
   useEffect(() => {
@@ -33,7 +38,7 @@ export const useKeyDown = ({ keys, onKeyPress }: Props) => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [keys]);
+  }, [keys, updateDependencies]);
 
   return { pressedKeys };
 };

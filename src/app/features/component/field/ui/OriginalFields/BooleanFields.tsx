@@ -12,10 +12,13 @@ import {
   Switch,
   Typography,
 } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 const { Text } = Typography;
 
 function BooleanFields() {
+  const { t } = useTranslation();
+
   const checkboxOptions: CheckboxOptionType[] = [
     { label: 'Python', value: 'python' },
     { label: 'Java', value: 'java' },
@@ -39,11 +42,11 @@ function BooleanFields() {
     {
       content: (
         <Form.Item<OriginalFieldForm>
-          label="Checkbox"
+          label={t('component.label.checkbox')}
           name="checkbox"
           valuePropName="checked"
         >
-          <Checkbox>Agree with our conditions.</Checkbox>
+          <Checkbox>{t('component.value.agreeWithOurConditions')}</Checkbox>
         </Form.Item>
       ),
       span: 8,
@@ -51,7 +54,7 @@ function BooleanFields() {
     {
       content: (
         <Form.Item<OriginalFieldForm>
-          label="Checkbox group"
+          label={t('component.label.checkboxGroup')}
           name="checkboxGroup"
         >
           <Checkbox.Group className="w-full">
@@ -71,10 +74,13 @@ function BooleanFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Switch" name="switch">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.switch')}
+          name="switch"
+        >
           <Flex align="center" gap="0.5rem">
             <Switch />
-            <Text>Apply</Text>
+            <Text>{t('component.value.apply')}</Text>
           </Flex>
         </Form.Item>
       ),
@@ -82,7 +88,10 @@ function BooleanFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Switch" name="switch">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.radioGroup')}
+          name="radioGroup"
+        >
           <Radio.Group options={radioOptions} />
         </Form.Item>
       ),
@@ -90,7 +99,7 @@ function BooleanFields() {
     },
   ];
 
-  return <Card.Grid grids={grids} title="Boolean fields" />;
+  return <Card.Grid grids={grids} title={t('component.title.booleanFields')} />;
 }
 
 export default BooleanFields;

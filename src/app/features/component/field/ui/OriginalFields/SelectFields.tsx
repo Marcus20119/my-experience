@@ -5,8 +5,11 @@ import type { TreeSelectProps } from 'antd/lib';
 import { AutoComplete, Card, Cascader, Select } from '@/shared/components';
 import { FormTool } from '@/shared/utils';
 import { Form } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 function SelectFields() {
+  const { t } = useTranslation();
+
   const selectOptions: DefaultOptionType[] = Array(10)
     .fill(null)
     .map((_, index) => ({
@@ -56,13 +59,16 @@ function SelectFields() {
   const grids: GridCardItem[] = [
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Single select" name="singleSelect">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.singleSelect')}
+          name="singleSelect"
+        >
           <Select
             allowClear
-            filterOption={FormTool.filterSelectOption}
+            filterOption={FormTool.filterOption}
             optionFilterProp="label"
             options={selectOptions}
-            placeholder="Select one option"
+            placeholder={t('component.placeholder.singleSelect')}
             showSearch
           />
         </Form.Item>
@@ -72,16 +78,16 @@ function SelectFields() {
     {
       content: (
         <Form.Item<OriginalFieldForm>
-          label="Multiple select"
+          label={t('component.label.multipleSelect')}
           name="multiSelect"
         >
           <Select
             allowClear
-            filterOption={FormTool.filterSelectOption}
+            filterOption={FormTool.filterOption}
             mode="multiple"
             optionFilterProp="label"
             options={selectOptions}
-            placeholder="Select multiple options"
+            placeholder={t('component.placeholder.multipleSelect')}
             showSearch
           />
         </Form.Item>
@@ -90,11 +96,14 @@ function SelectFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Tree select" name="treeSelect">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.treeSelect')}
+          name="treeSelect"
+        >
           <Select.Tree
             allowClear
             filterTreeNode={FormTool.filterTreeNode}
-            placeholder="Select tree option"
+            placeholder={t('component.placeholder.treeSelect')}
             showCheckedStrategy="SHOW_PARENT"
             showSearch
             treeCheckable
@@ -108,11 +117,14 @@ function SelectFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Cascader" name="cascader">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.cascader')}
+          name="cascader"
+        >
           <Cascader
             allowClear
             options={cascaderOptions}
-            placeholder="Select tree option"
+            placeholder={t('component.placeholder.cascader')}
             showCheckedStrategy="SHOW_PARENT"
             showSearch
           />
@@ -122,20 +134,23 @@ function SelectFields() {
     },
     {
       content: (
-        <Form.Item<OriginalFieldForm> label="Auto complete" name="autocomplete">
+        <Form.Item<OriginalFieldForm>
+          label={t('component.label.autocomplete')}
+          name="autocomplete"
+        >
           <AutoComplete
             allowClear
-            filterOption={FormTool.filterSelectOption}
+            filterOption={FormTool.filterOption}
             optionFilterProp="label"
             options={autoCompleteOptions}
-            placeholder="Try to type 'Country 1'"
+            placeholder={t('component.placeholder.autocomplete')}
           />
         </Form.Item>
       ),
       span: 8,
     },
   ];
-  return <Card.Grid grids={grids} title="Select fields" />;
+  return <Card.Grid grids={grids} title={t('component.title.selectFields')} />;
 }
 
 export default SelectFields;

@@ -1,9 +1,9 @@
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import type { RemoveStates, SetStates } from '../types';
+import type { Language, RemoveStates, SetStates } from '../types';
 
 interface LocalState {
-  language?: string;
+  language?: Language;
   primaryColor?: string;
   secondaryColor?: string;
 }
@@ -17,7 +17,7 @@ export const useLocalStore = create<LocalAction & LocalState>()(
   devtools(
     persist(
       set => ({
-        language: 'en',
+        language: 'vi',
         primaryColor: '#3A393B',
         removeLocalStates: keys =>
           set(() => {

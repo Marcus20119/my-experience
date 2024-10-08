@@ -63,7 +63,7 @@ export interface IncomeTableEntity {
   salary: number;
   totalExpense: number;
   totalIncome: number;
-  type: 'week' | 'month';
+  type: 'month' | 'week';
 }
 
 export interface StudentFormEntity {
@@ -100,7 +100,7 @@ export interface MyTableColumn<T>
 }
 
 // Editable Table
-export type InputType = 'number' | 'rangeDate' | 'text' | 'date' | 'textarea';
+export type InputType = 'date' | 'number' | 'rangeDate' | 'text' | 'textarea';
 
 export type EditableTableProps<T extends AnyObject> = Parameters<
   typeof Table<T>
@@ -108,12 +108,12 @@ export type EditableTableProps<T extends AnyObject> = Parameters<
 
 export interface AdditionalEditableTableProps<T extends AnyObject> {
   dataIndex?: keyof T;
-  disabled?: boolean | ((record: T) => boolean); // used to disabled the editable cell
+  disabled?: ((record: T) => boolean) | boolean; // used to disabled the editable cell
   editable?: boolean;
   inputDateProps?: DatePickerProps;
-  inputNumberProps?: Omit<InputNumberProps, 'min' | 'max'> & {
-    min?: number | ((record: T) => number);
-    max?: number | ((record: T) => number);
+  inputNumberProps?: Omit<InputNumberProps, 'max' | 'min'> & {
+    min?: ((record: T) => number) | number;
+    max?: ((record: T) => number) | number;
   };
   inputRangeDateProps?: RangePickerProps;
   inputTextAreaProps?: TextAreaProps;

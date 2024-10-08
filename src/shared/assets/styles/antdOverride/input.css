@@ -6,12 +6,6 @@
   width: 100% !important;
 }
 
-.ant-input-clear-icon {
-  visibility: hidden !important;
-}
-
-.ant-input-affix-wrapper-focused {
-  .ant-input-clear-icon {
-    visibility: visible !important;
-  }
+.ant-color-picker-hex-input.ant-input-affix-wrapper {
+  padding: 4px 7px !important;
 }

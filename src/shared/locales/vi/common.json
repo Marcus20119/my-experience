@@ -1,37 +1,38 @@
 {
   "common": {
     "button": {
-      "addItem": "Add item",
-      "addMore": "Add more",
-      "allFilters": "All filters",
-      "apply": "Apply",
-      "back": "Back",
-      "cancel": "Cancel",
-      "clearFilter": "Clear filter",
-      "confirm": "Confirm",
-      "continue": "Continue",
-      "create": "Create",
-      "customizeColumns": "Customize columns",
-      "delete": "Delete",
-      "deleteAll": "Delete all",
-      "exploreMore": "Explore more",
-      "finish": "Finish",
-      "home": "Home",
-      "language": "Language",
-      "loadMore": "Load more",
-      "login": "Login",
-      "next": "Next",
+      "addMore": "Thêm",
+      "apply": "Áp dụng",
+      "back": "Trở lại",
+      "cancel": "Hủy",
+      "confirm": "Xác nhận",
+      "continue": "Tiếp tục",
+      "create": "Tạo",
+      "customizeColumns": "Tùy chỉnh cột",
+      "delete": "Xóa",
+      "deleteAll": "Xóa tất cả",
+      "finish": "Kết thúc",
+      "home": "Trang chủ",
+      "language": "Ngôn ngữ",
+      "loadMore": "Xem thêm",
+      "next": "Tiếp theo",
       "ok": "OK",
-      "profile": "Profile",
-      "register": "Register",
-      "reset": "Reset",
-      "save": "Save",
-      "search": "Search",
-      "seeMore": "See more",
-      "uploadPhoto": "Upload photo",
-      "viewLess": "View less",
-      "viewMap": "View map",
+      "reset": "Làm mới",
+      "save": "Lưu",
+      "search": "Tìm kiếm",
+      "seeMore": "Xem thêm",
+      "uploadPhoto": "Tải ảnh lên",
+      "viewLess": "Ẩn bớt",
       "viewMore": "View more"
+    },
+    "dayOfWeek": {
+      "fri": "Thứ 6",
+      "mon": "Thứ 2",
+      "sat": "Thứ 7",
+      "sun": "Chủ nhật",
+      "thu": "Thứ 5",
+      "tue": "Thứ 3",
+      "wed": "Thứ 4"
     },
     "description": {
       "emptySearch": "Hãy thử sử dụng từ khóa hoặc bộ lọc khác"
@@ -47,26 +48,16 @@
       "nonBinary": "Khác"
     },
     "label": {
-      "all": "Tất cả",
-      "email": "Email",
-      "fullName": "Họ và tên",
-      "phoneNumber": "Số điện thoại",
-      "results": "Kết quả",
-      "sortBy": "Sắp xếp theo"
+      "results": "Kết quả"
     },
-    "message": {
-      "linkNotFound": "Rất tiếc, đường dẫn liên kết không tồn tại",
-      "pageNotFound": "Không tìm thấy trang!"
+    "language": {
+      "en": "Tiếng Anh",
+      "vi": "Tiếng Việt"
     },
     "placeholder": {
-      "email": "Vd. nguyenvana@gmail.com",
-      "fullName": " Vd. Nguyen Van A",
-      "phoneNumber": "Vd. 0233 123 ***",
       "quickSearch": "Tìm kiếm nhanh...",
+      "search": "Tìm kiếm...",
       "selectGender": "Chọn giới tính"
-    },
-    "status": {
-      "na": "N/A"
     },
     "title": {
       "emptyData": "Không có dữ liệu",
@@ -74,11 +65,8 @@
       "sureDelete": "Chắc chắn muốn xóa?"
     },
     "unit": {
-      "days": "Ngày",
       "million": "tr",
-      "months": "Tháng",
-      "thousand": "k",
-      "years": "Năm"
+      "thousand": "k"
     }
   }
 }

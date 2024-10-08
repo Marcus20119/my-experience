@@ -2,7 +2,7 @@ import type { DefaultOptionType } from 'antd/es/select';
 import type { TreeSelectProps } from 'antd/lib';
 import { TextTool } from './text';
 
-const filterSelectOption = (input?: string, option?: DefaultOptionType) => {
+const filterOption = (input?: string, option?: DefaultOptionType) => {
   const formattedInput = TextTool.latinize(input).toLowerCase();
 
   if (!option || !option.label || typeof option.label !== 'string') {
@@ -30,6 +30,6 @@ const filterTreeNode = (
 };
 
 export const FormTool = {
-  filterSelectOption,
+  filterOption,
   filterTreeNode,
 };

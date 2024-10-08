@@ -1,5 +1,8 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
+import CalendarDailyPage from '@/pages/component/CalendarDailyPage';
+import CalendarMonthlyPage from '@/pages/component/CalendarMonthlyPage';
+import CalendarWeeklyPage from '@/pages/component/CalendarWeeklyPage';
 import FieldOriginalPage from '@/pages/component/FieldOriginalPage';
 import FieldSpecialPage from '@/pages/component/FieldSpecialPage';
 import FormOriginalPage from '@/pages/component/FormOriginalPage';
@@ -38,7 +41,15 @@ export const COMPONENT_ROUTES = [
     path: 'component/field/special',
   },
   {
-    element: <div>Calendar Page</div>,
-    path: 'component/calendar',
+    element: <CalendarDailyPage />,
+    path: 'component/calendar/daily',
+  },
+  {
+    element: <CalendarWeeklyPage />,
+    path: 'component/calendar/weekly',
+  },
+  {
+    element: <CalendarMonthlyPage />,
+    path: 'component/calendar/monthly',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

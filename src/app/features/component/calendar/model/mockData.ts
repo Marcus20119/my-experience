@@ -162,4 +162,48 @@ export const mockMonthlyData: MockMonthlyCalendarEntity[] = [
     startTime: dayjs().day(6).hour(9).minute(0).toISOString(),
     title: 'Buy groceries',
   },
+  {
+    color: CALENDAR_COLORS[2],
+    description: "My friend's birthday",
+    endTime: dayjs().day(6).hour(11).minute(30).add(1, 'week').toISOString(),
+    id: '7',
+    startTime: dayjs().day(3).hour(9).minute(0).add(1, 'week').toISOString(),
+    title: 'Opening event',
+  },
+  {
+    color: CALENDAR_COLORS[0],
+    description: 'The event last from previous month to this month',
+    endTime: dayjs()
+      .startOf('month')
+      .add(3, 'day')
+      .hour(10)
+      .minute(0)
+      .toISOString(),
+    id: '7',
+    startTime: dayjs()
+      .startOf('month')
+      .subtract(3, 'day')
+      .hour(9)
+      .minute(0)
+      .toISOString(),
+    title: 'Last month event',
+  },
+  {
+    color: CALENDAR_COLORS[4],
+    description: 'The event last from previous month to this month',
+    endTime: dayjs()
+      .endOf('month')
+      .add(3, 'day')
+      .hour(10)
+      .minute(0)
+      .toISOString(),
+    id: '7',
+    startTime: dayjs()
+      .endOf('month')
+      .subtract(3, 'day')
+      .hour(9)
+      .minute(0)
+      .toISOString(),
+    title: 'Next month event',
+  },
 ];

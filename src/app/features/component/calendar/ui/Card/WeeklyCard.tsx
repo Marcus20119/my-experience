@@ -8,7 +8,7 @@ import { cn } from '@/lib/tailwind';
 
 const { Text } = Typography;
 
-interface AppointmentCardProps<T extends WeeklyCalendarEntity> {
+interface WeeklyCardProps<T extends WeeklyCalendarEntity> {
   groupCount: number;
   item: T;
   mode: 'in-calendar' | 'in-popover';
@@ -18,7 +18,7 @@ function WeeklyCard<T extends WeeklyCalendarEntity>({
   groupCount,
   item,
   mode,
-}: AppointmentCardProps<T>) {
+}: WeeklyCardProps<T>) {
   const { hourCellHeight, itemRender, onClickItem } =
     useWeeklyCalendarContext();
   const { endTime, startTime } = item;
@@ -40,7 +40,7 @@ function WeeklyCard<T extends WeeklyCalendarEntity>({
       )}
       onClick={() => onClickItem?.(item)}
       style={{
-        height: mode === 'in-calendar' ? height : 'w-fit',
+        height: mode === 'in-calendar' ? height : 'h-fit',
       }}
     >
       {itemRender ? (

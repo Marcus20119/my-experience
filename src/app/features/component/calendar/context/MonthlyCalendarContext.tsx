@@ -1,7 +1,10 @@
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { createContext, useContext } from 'react';
-import type { DayOfWeek, MonthlyCalendarEntity } from '../model';
+import type {
+  MonthlyCalendarEntity,
+  MonthlyDisabledCell,
+} from '../model';
 import { DEFAULT_DAILY_HOUR_CELL_HEIGHT } from '../model';
 
 export interface MonthlyContextProps<
@@ -9,16 +12,15 @@ export interface MonthlyContextProps<
 > {
   baseDate: Dayjs | string;
   dayCellHeight: number;
+  disabledCell?: MonthlyDisabledCell;
   itemRender?: (
     item: T,
     additionalData: {
       groupCount: number;
-      height: number;
       mode: 'in-calendar' | 'in-popover';
     },
   ) => React.ReactNode;
   maxItemShowPerGroup: number;
-  onClickHeader?: (dayOfWeek: DayOfWeek, baseDate: Dayjs) => void;
   onClickItem?: (item: T) => void;
   onCreateNewItem?: (startTime: Dayjs) => void;
   timeFormat: 'H:mm A' | 'H:mm';

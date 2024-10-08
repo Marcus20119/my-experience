@@ -6,7 +6,7 @@ import { useWeeklyCalendarContext } from '@/app/features/component/calendar/cont
 import { getTimeInMinutes } from '@/app/features/component/calendar/lib';
 import { DEFAULT_WEEKLY_COLUMN_WIDTH } from '@/app/features/component/calendar/model';
 import { Flex, Popover, Typography } from 'antd';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { WeeklyCard } from '../Card';
 
 const { Text } = Typography;
@@ -24,6 +24,10 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
     useWeeklyCalendarContext();
 
   const { items, startTime } = group;
+
+  const [columnWidth, setColumnWidth] = useState<number>(
+    DEFAULT_WEEKLY_COLUMN_WIDTH,
+  );
 
   const showItems = useMemo(
     () => items.slice(0, maxItemShowPerGroup),
@@ -88,7 +92,7 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
               <Flex
                 gap="0.25rem"
                 style={{
-                  width: DEFAULT_WEEKLY_COLUMN_WIDTH * 1.2,
+                  width: columnWidth - 16,
                 }}
                 vertical
               >
@@ -103,6 +107,16 @@ function WeeklyGroupCell<T extends WeeklyCalendarEntity>({
               </Flex>
             }
             destroyTooltipOnHide
+            onOpenChange={() => {
+              const getTableCellElement = document.querySelector(
+                'td.ant-table-cell:last-child',
+              );
+
+              if (getTableCellElement) {
+                const { width } = getTableCellElement.getBoundingClientRect();
+                setColumnWidth(width);
+              }
+            }}
             overlayClassName="[&_.ant-popover-inner]:p-1.5"
             placement="rightTop"
           >

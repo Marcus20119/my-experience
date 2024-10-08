@@ -1,3 +1,4 @@
+export * from './formatRangeDate';
 export * from './getDayOfWeekTitle';
 export * from './getTimeInMinutes';
 export * from './useDailyCalendarColumns';

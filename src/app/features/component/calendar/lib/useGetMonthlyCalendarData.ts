@@ -44,14 +44,26 @@ export const useGetMonthlyCalendarData = <T extends MonthlyCalendarEntity>({
 
     formattedDataSource?.forEach(item => {
       if (
-        dayjs(item.startTime).isBefore(startDay) ||
-        dayjs(item.endTime).isAfter(endDay)
+        dayjs(item.endTime).isBefore(startDay) ||
+        dayjs(item.startTime).isAfter(endDay)
       ) {
         return;
       }
 
-      const order = dayjs(item.startTime).diff(startDay, 'day');
-      monthData[order].push(item);
+      const order = dayjs(item.startTime).isBefore(startDay)
+        ? 0
+        : dayjs(item.startTime).diff(startDay, 'day');
+      const range = dayjs(item.startTime).isBefore(startDay)
+        ? dayjs(item.endTime).diff(startDay, 'day')
+        : dayjs(item.endTime).diff(item.startTime, 'day');
+
+      for (let i = 0; i <= range; i++) {
+        if (!monthData[order + i]) {
+          continue;
+        }
+
+        monthData[order + i].push(item);
+      }
     });
 
     const formattedMonthData: MonthlyRow<T>[] = Array.from({

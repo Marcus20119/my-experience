@@ -6,6 +6,7 @@ import {
   DailyCalendar,
   DailyCalendarFilter,
   DayOfWeek,
+  formatRangeDate,
   mockDailyData,
 } from '@/app/features/component/calendar';
 import { useHeaderStore } from '@/app/features/header';
@@ -116,7 +117,10 @@ function CalendarDailyPage() {
       >
         <Value.List
           value={[
-            `${dayjs(selectedItem?.startTime).format('H:mm')} - ${dayjs(selectedItem?.endTime).format('H:mm')}, ${dayjs(selectedItem?.startTime).format('DD/MM/YYYY')}`,
+            formatRangeDate({
+              endTime: selectedItem?.endTime,
+              startTime: selectedItem?.startTime,
+            }),
             selectedItem?.description,
           ]}
         />

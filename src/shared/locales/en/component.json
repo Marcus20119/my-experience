@@ -22,6 +22,7 @@
       "warningConfirmForm": "You will lose all data if you continue this action."
     },
     "label": {
+      "addEvent": "Add event",
       "address": "Address",
       "autocomplete": "Auto complete",
       "autocompleteAddress": "Auto complete address",
@@ -36,6 +37,7 @@
       "dateOfBirth": "Date of birth",
       "datePicker": "Date picker",
       "email": "Email",
+      "event": "Event",
       "fullName": "Full name",
       "gpa": "GPA",
       "graduationDate": "Graduation date",

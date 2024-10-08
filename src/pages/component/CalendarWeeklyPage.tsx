@@ -4,6 +4,7 @@ import type {
 } from '@/app/features/component/calendar';
 import {
   DayOfWeek,
+  formatRangeDate,
   mockWeeklyData,
   WeeklyCalendar,
   WeeklyCalendarFilter,
@@ -128,7 +129,10 @@ function CalendarWeeklyPage() {
       >
         <Value.List
           value={[
-            `${dayjs(selectedItem?.startTime).format('H:mm')} - ${dayjs(selectedItem?.endTime).format('H:mm')}, ${dayjs(selectedItem?.startTime).format('DD/MM/YYYY')}`,
+            formatRangeDate({
+              endTime: selectedItem?.endTime,
+              startTime: selectedItem?.startTime,
+            }),
             selectedItem?.description,
           ]}
         />

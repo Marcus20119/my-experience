@@ -3,6 +3,8 @@ import type {
   MockMonthlyFilterEntity,
 } from '@/app/features/component/calendar';
 import {
+  DayOfWeek,
+  formatRangeDate,
   mockMonthlyData,
   MonthlyCalendar,
   MonthlyCalendarFilter,
@@ -10,9 +12,14 @@ import {
 import { useHeaderStore } from '@/app/features/header';
 import CalendarLayout from '@/app/layout/CalendarLayout';
 import { SPACING } from '@/shared/assets/styles/constants';
+import { Modal, Value } from '@/shared/components';
 import { useCalculateElementSize, useToggle } from '@/shared/hooks';
-import { Flex, Form } from 'antd';
+import { Flex, Form, Typography } from 'antd';
+import dayjs from 'dayjs';
 import { useState } from 'react';
+import { cn } from '@/lib/tailwind';
+
+const { Paragraph, Text, Title } = Typography;
 
 function CalendarMonthlyPage() {
   const { getHeaderHeight } = useHeaderStore();
@@ -42,40 +49,48 @@ function CalendarMonthlyPage() {
         <MonthlyCalendar<MockMonthlyCalendarEntity>
           baseDate={baseDate}
           dataSource={mockMonthlyData}
-          // itemRender={(item) => (
-          // <Flex
-          //   className={cn(
-          //     'h-full w-full',
-          //     mode === 'in-calendar'
-          //       ? 'rounded-sm px-1 py-0.5 shadow-md'
-          //       : 'rounded-md px-2 py-1',
-          //   )}
-          //   style={{
-          //     backgroundColor: item.color,
-          //   }}
-          //   vertical
-          // >
-          //   <Text>
-          //     {groupCount > 2
-          //       ? dayjs(item.startTime).format('H:mm')
-          //       : `${dayjs(item.startTime).format('H:mm')} - ${dayjs(item.endTime).format('H:mm')}`}
-          //   </Text>
-          //   <Title
-          //     className={cn(
-          //       'text-sm',
-          //       height < 160 && 'line-clamp-3',
-          //       height < 120 && 'line-clamp-2',
-          //       height < 80 && 'line-clamp-1',
-          //     )}
-          //     level={3}
-          //   >
-          //     {item.title}
-          //   </Title>
-          //   {mode === 'in-popover' ? (
-          //     <Paragraph className="text-xs">{item.description}</Paragraph>
-          //   ) : null}
-          // </Flex>
-          // )}
+          disabledCell={[
+            {
+              dayOfWeek: DayOfWeek.Sunday,
+              type: 'dayOfWeek',
+            },
+          ]}
+          itemRender={(item, { groupCount, mode }) => (
+            <Flex
+              className={cn(
+                'h-full w-full',
+                mode === 'in-calendar'
+                  ? 'rounded-sm px-1 py-0.5 shadow-md'
+                  : 'rounded-md px-2 py-1',
+              )}
+              style={{
+                backgroundColor: item.color,
+              }}
+              vertical
+            >
+              {mode === 'in-popover' ? (
+                <Text>
+                  {groupCount > 2
+                    ? dayjs(item.startTime).format('H:mm')
+                    : `${dayjs(item.startTime).format('H:mm')} - ${dayjs(item.endTime).format('H:mm')}`}
+                </Text>
+              ) : null}
+              <Title
+                className={cn(
+                  'text-sm',
+                  height < 160 && 'line-clamp-3',
+                  height < 120 && 'line-clamp-2',
+                  height < 80 && 'line-clamp-1',
+                )}
+                level={3}
+              >
+                {item.title}
+              </Title>
+              {mode === 'in-popover' ? (
+                <Paragraph className="text-xs">{item.description}</Paragraph>
+              ) : null}
+            </Flex>
+          )}
           maxItemShowPerGroup={3}
           onClickItem={item => {
             setSelectedItem(item);
@@ -87,6 +102,25 @@ function CalendarMonthlyPage() {
           scroll={{ x: 'max-content', y: height }}
         />
       </Flex>
+      <Modal.CalendarItem
+        color={selectedItem?.color}
+        onCancel={() => {
+          onCloseDetail();
+          setSelectedItem(undefined);
+        }}
+        open={openDetail}
+        title={selectedItem?.title}
+      >
+        <Value.List
+          value={[
+            formatRangeDate({
+              endTime: selectedItem?.endTime,
+              startTime: selectedItem?.startTime,
+            }),
+            selectedItem?.description,
+          ]}
+        />
+      </Modal.CalendarItem>
     </CalendarLayout>
   );
 }

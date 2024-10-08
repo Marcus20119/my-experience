@@ -151,3 +151,15 @@ export interface MonthlyGroup<T extends WeeklyCalendarEntity> {
   items: T[];
   startTime: Dayjs | string;
 }
+
+export type MonthlyDisabledCell = (
+  | {
+      type: 'dayOfWeek';
+      dayOfWeek: DayOfWeek;
+    }
+  | {
+      type: 'rangeTime';
+      startTime: Dayjs | string;
+      endTime: Dayjs | string;
+    }
+)[];

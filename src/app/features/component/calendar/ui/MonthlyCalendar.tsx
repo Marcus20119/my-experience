@@ -43,6 +43,7 @@ function MonthlyCalendar<T extends MonthlyCalendarEntity>({
   baseDate = dayjs(),
   dataSource,
   dayCellHeight = DEFAULT_MONTHLY_DAY_CELL_HEIGHT,
+  disabledCell,
   itemRender,
   loading,
   maxItemShowPerGroup = 3,
@@ -55,6 +56,7 @@ function MonthlyCalendar<T extends MonthlyCalendarEntity>({
     <MonthlyCalendarProvider<T>
       baseDate={baseDate}
       dayCellHeight={dayCellHeight}
+      disabledCell={disabledCell}
       itemRender={itemRender}
       maxItemShowPerGroup={maxItemShowPerGroup}
       onClickItem={onClickItem}

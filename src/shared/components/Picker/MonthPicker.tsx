@@ -1,6 +1,6 @@
 import type { DatePickerProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { DEFAULT_MONTH_FORMAT } from '@/shared/constants';
+import { DEFAULT_FULL_MONTH_FORMAT } from '@/shared/constants';
 import { DatePicker as AntDatePicker } from 'antd';
 import dayjs from 'dayjs';
 import { Calendar, CloseCircle } from 'iconsax-react';
@@ -26,7 +26,7 @@ function MonthPicker({ allowClear, className, ...props }: DatePickerProps) {
       format={value =>
         dayjs(value)
           .startOf('week')
-          .format(DEFAULT_MONTH_FORMAT)
+          .format(DEFAULT_FULL_MONTH_FORMAT)
           .replace(/Th0?/, 'Th')
       }
       picker="month"

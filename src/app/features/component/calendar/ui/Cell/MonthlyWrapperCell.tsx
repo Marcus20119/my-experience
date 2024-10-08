@@ -97,6 +97,7 @@ function MonthlyWrapperCell<T extends MonthlyCalendarEntity>({
         </Flex>
 
         <MonthlyGroupCell
+          disabled={isDisabled}
           group={{
             items,
             startTime: day.startOf('day'),

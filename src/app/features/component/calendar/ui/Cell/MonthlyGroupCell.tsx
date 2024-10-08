@@ -14,10 +14,12 @@ import MonthlyCreateNewItemCell from './MonthlyCreateNewItemCell';
 const { Text } = Typography;
 
 interface Props<T extends MonthlyCalendarEntity> {
+  disabled: boolean;
   group: MonthlyGroup<T>;
 }
 
 function MonthlyGroupCell<T extends MonthlyCalendarEntity>({
+  disabled,
   group,
 }: Props<T>) {
   const { t } = useTranslation();
@@ -95,7 +97,9 @@ function MonthlyGroupCell<T extends MonthlyCalendarEntity>({
         </Flex>
       ) : null}
 
-      {!restItems?.length && showItems.length < maxItemShowPerGroup ? (
+      {!restItems?.length &&
+      showItems.length < maxItemShowPerGroup &&
+      !disabled ? (
         <MonthlyCreateNewItemCell startTime={dayjs(group.startTime)} />
       ) : null}
     </Flex>

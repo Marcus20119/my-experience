@@ -1,3 +1,5 @@
+import { icons } from '@/shared/assets/svgs/generatedIcons';
+import { addIcon } from '@iconify/react';
 import dayjs from 'dayjs';
 import isBetween from 'dayjs/plugin/isBetween';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -6,6 +8,14 @@ import ReactDOM from 'react-dom/client';
 import MainProvider from './main-provider';
 import '../shared/assets/styles/index.css';
 import 'dayjs/locale/vi';
+
+icons.forEach(icon => {
+  addIcon(`@local:${icon.name}`, {
+    body: icon.content.body,
+    height: icon.content.height || undefined,
+    width: icon.content.width || undefined,
+  });
+});
 
 dayjs.extend(isBetween);
 dayjs.extend(relativeTime);

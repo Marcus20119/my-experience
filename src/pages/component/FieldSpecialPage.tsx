@@ -2,8 +2,10 @@ import type { SpecialFieldForm } from '@/app/features/component/field';
 import {
   GoogleAPIFields,
   RestCountriesFields,
+  UploadFields,
 } from '@/app/features/component/field/ui/SpecialFields';
 import { FieldLayout } from '@/app/layout';
+import { Icon } from '@iconify/react';
 import { Button, Flex, Form } from 'antd';
 
 function FieldSpecialPage() {
@@ -25,6 +27,7 @@ function FieldSpecialPage() {
           <Flex gap="1rem" vertical>
             <RestCountriesFields />
             <GoogleAPIFields />
+            <UploadFields />
           </Flex>
           <Flex justify="end">
             <Button htmlType="submit" type="primary">
@@ -33,6 +36,8 @@ function FieldSpecialPage() {
           </Flex>
         </Flex>
       </Form>
+
+      <Icon height={40} icon="@local:file-xls" width={40} />
     </FieldLayout>
   );
 }

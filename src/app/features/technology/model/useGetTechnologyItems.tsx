@@ -1,7 +1,7 @@
 import type { ThreeDTicketProps } from '@/shared/components/Ticket/ThreeDTicket';
 import { ReactComponent as LogoEmotion } from '@/shared/assets/svgs/logo-emotion.svg';
 import { ReactComponent as LogoJavascript } from '@/shared/assets/svgs/logo-javascript.svg';
-import { Icon } from '@iconify/react/dist/iconify.cjs';
+import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 
 export const useGetTechnologyItems = () => {

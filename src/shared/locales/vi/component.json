@@ -49,6 +49,7 @@
       "inputTextArea": "Input text area",
       "major": "Major",
       "monthPicker": "Month picker",
+      "multipleFiles": "Multiple files",
       "multipleSelect": "Multiple select",
       "nationalityOffline": "Nationality (Offline)",
       "nationalityOnline": "Nationality (Online)",
@@ -64,6 +65,7 @@
       "rate": "Rate",
       "relevantCourses": "Relevant courses",
       "selected": "Selected",
+      "singleFile": "Single file",
       "singleSelect": "Single select",
       "slider": "Slider",
       "sliderRange": "Slider range",
@@ -175,6 +177,7 @@
       "routerForm": "Router form",
       "selectFields": "Select fields",
       "successConfirmForm": "Success confirm form",
+      "uploadFields": "Upload fields",
       "warningConfirmForm": "Warning confirm form"
     },
     "tooltip": {

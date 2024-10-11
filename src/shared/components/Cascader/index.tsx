@@ -1,6 +1,6 @@
 import type { GetProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { Icon } from '@iconify/react/dist/iconify.cjs';
+import { Icon } from '@iconify/react';
 import { Cascader as AntdCascader, Tooltip } from 'antd';
 import { ArrowDown2, ArrowRight2, ArrowUp2, CloseCircle } from 'iconsax-react';
 import { useMemo, useState } from 'react';

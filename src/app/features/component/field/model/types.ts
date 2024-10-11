@@ -30,8 +30,10 @@ export interface OriginalFieldForm {
 
 export interface SpecialFieldForm {
   google?: string;
+  multipleFiles?: string[];
   nationalityOffline?: string;
   nationalityOnline?: string;
   phoneNumberOffline?: PhoneNumberValue;
   phoneNumberOnline?: PhoneNumberValue;
+  singleFile?: string;
 }

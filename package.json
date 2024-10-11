@@ -23,7 +23,8 @@
     "format": "prettier --write \"./**/*.{ts,tsx}\"",
     "test:units": "vitest run tests/unit",
     "test:integrations": "vitest run tests/integrations",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "generate:svg-icons": "node scripts/generateSvgIcons.cjs"
   },
   "dependencies": {
     "@apollo/client": "^3.10.4",

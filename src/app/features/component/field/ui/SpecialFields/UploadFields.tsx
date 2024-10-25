@@ -1,6 +1,7 @@
 import type { SpecialFieldForm } from '@/app/features/component/field';
 import type { GridCardItem } from '@/shared/components';
-import { Card } from '@/shared/components';
+import { Card, Field } from '@/shared/components';
+import { DOCUMENT_TYPES, IMAGE_TYPES } from '@/shared/constants';
 import { Form } from 'antd';
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +15,7 @@ function GoogleAPIFields() {
           label={t('component.label.singleFile')}
           name="singleFile"
         >
-          singleFile
+          <Field.UploadFile acceptTypes={IMAGE_TYPES} maxFileSize={20} />
         </Form.Item>
       ),
       span: 8,
@@ -24,8 +25,13 @@ function GoogleAPIFields() {
         <Form.Item<SpecialFieldForm>
           label={t('component.label.multipleFiles')}
           name="multipleFiles"
+          valuePropName="fileList"
         >
-          multipleFiles
+          <Field.UploadFile
+            acceptTypes={DOCUMENT_TYPES}
+            maxFileSize={10}
+            multiple
+          />
         </Form.Item>
       ),
       span: 8,

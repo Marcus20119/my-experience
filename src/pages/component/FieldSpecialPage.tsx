@@ -5,7 +5,6 @@ import {
   UploadFields,
 } from '@/app/features/component/field/ui/SpecialFields';
 import { FieldLayout } from '@/app/layout';
-import { Icon } from '@iconify/react';
 import { Button, Flex, Form } from 'antd';
 
 function FieldSpecialPage() {
@@ -36,8 +35,6 @@ function FieldSpecialPage() {
           </Flex>
         </Flex>
       </Form>
-
-      <Icon height={40} icon="@local:file-xls" width={40} />
     </FieldLayout>
   );
 }

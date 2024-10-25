@@ -79,11 +79,18 @@ const latinize = (str?: null | string) => {
   return str.replace(/[^A-Za-z0-9[\] ]/g, a => LATIN_LETTER[a] || a);
 };
 
+const getSlug = (str: string) =>
+  latinize(str)
+    .toLowerCase()
+    .replace(/ /g, '-')
+    .replace(/[^a-z0-9-.]/g, '');
+
 export const TextTool = {
   capitalizeFirstLetter,
   getGoogleMapUrl,
   getMailToUrl,
   getPhoneCallUrl,
+  getSlug,
   latinize,
   truncateText,
 };

@@ -5,6 +5,7 @@
       "apply": "Áp dụng",
       "back": "Trở lại",
       "cancel": "Hủy",
+      "clickToUpload": "Nhấn để tải lên",
       "confirm": "Xác nhận",
       "continue": "Tiếp tục",
       "create": "Tạo",
@@ -25,6 +26,10 @@
       "viewLess": "Ẩn bớt",
       "viewMore": "View more"
     },
+    "conjunction": {
+      "and": "and",
+      "or": "or"
+    },
     "dayOfWeek": {
       "fri": "Thứ 6",
       "mon": "Thứ 2",
@@ -39,6 +44,8 @@
     },
     "error": {
       "email": "Vui lòng nhập email hợp lệ",
+      "invalidFileType": "Loại tệp không hợp lệ cho tệp có tên: {{fileName}}",
+      "maxFileSize": "Kích thước tệp phải nhỏ hơn {{maxFileSize}}MB",
       "phoneNumber": "Vui lòng nhập số điện thoại hợp lệ",
       "smtWentWrong": "Đã xảy ra lỗi, vui lòng thử lại sau."
     },
@@ -55,6 +62,8 @@
       "vi": "Tiếng Việt"
     },
     "placeholder": {
+      "maxFileSize": "(tối đa {{maxFileSize}}MB)",
+      "orDragAndDrop": "hoặc kéo và thả",
       "quickSearch": "Tìm kiếm nhanh...",
       "search": "Tìm kiếm...",
       "selectGender": "Chọn giới tính"

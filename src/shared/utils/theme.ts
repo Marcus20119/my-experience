@@ -26,7 +26,7 @@ function setWebIcon(iconUrl?: string) {
   const link = document.createElement('link');
   link.type = 'image/x-icon';
   link.rel = 'shortcut icon';
-  link.href = iconUrl;
+  link.href = iconUrl.replace('http://', 'https://');
 
   // Append the new favicon link to the head
   head.appendChild(link);

@@ -12,10 +12,12 @@ function NationalityOnlineField({ ...props }: MySelectProps) {
   );
 
   const options: DefaultOptionType[] =
-    countries?.map(country => ({
-      label: country.name.common,
-      value: country.name.common,
-    })) ?? [];
+    countries
+      ?.sort((a, b) => a?.name?.common?.localeCompare(b?.name?.common))
+      ?.map(country => ({
+        label: country.name.common,
+        value: country.name.common,
+      })) ?? [];
 
   return (
     <Select<CountryName>

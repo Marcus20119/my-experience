@@ -10,23 +10,17 @@ function setWebIcon(iconUrl?: string) {
   // Select the head element
   const [head] = document.getElementsByTagName('head');
 
-  if (!head) {
-    return;
-  }
-
   // Remove existing favicon links
   const existingIcons = head.querySelectorAll("link[rel*='icon']");
   existingIcons.forEach(icon => {
-    if (icon?.parentNode) {
-      icon.parentNode.removeChild(icon);
-    }
+    icon.parentNode?.removeChild(icon);
   });
 
   // Create a new favicon link
   const link = document.createElement('link');
   link.type = 'image/x-icon';
-  link.rel = 'shortcut icon';
-  link.href = iconUrl;
+  link.rel = 'icon';
+  link.href = iconUrl.replace('http://', 'https://');
 
   // Append the new favicon link to the head
   head.appendChild(link);
@@ -45,11 +39,7 @@ function hexToRgb(color: string) {
   if (checkIsRgbColor(color)) {
     const match = color.match(
       /^rgb\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)$/,
-    );
-
-    if (!match) {
-      return null;
-    }
+    ) as RegExpMatchArray;
 
     const [r, g, b] = match.slice(1).map(Number);
     return { b, g, r };
@@ -80,7 +70,11 @@ function getHexColorVariant(color: string, lightVolume: number) {
 }
 
 export const ThemeTool = {
+  checkIsRgbColor,
+  componentToHex,
   getHexColorVariant,
+  hexToRgb,
+  rgbToHex,
   setWebIcon,
   setWebsiteTitle,
 };

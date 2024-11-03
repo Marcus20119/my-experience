@@ -10,14 +10,15 @@ export interface SidebarItem {
 export enum MainSidebarKey {
   Animation = 'animation',
   Component = 'component',
+  Feature = 'feature',
   Game = 'game',
-  Image = 'image',
   Technology = 'technology',
 }
 
 export enum SubSidebarKey {
   Calendar = 'calendar',
   Configuration = 'configuration',
+  EditImage = 'edit-image',
   Field = 'field',
   Form = 'form',
   Language = 'language',

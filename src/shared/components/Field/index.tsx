@@ -8,6 +8,7 @@ import {
   PhoneNumberOnlineField,
 } from './PhoneNumberField';
 import SearchField from './SearchField';
+import { UploadFileField } from './UploadField';
 
 function Field() {
   return null;
@@ -19,5 +20,6 @@ Field.PhoneNumberOffline = PhoneNumberOfflineField;
 Field.NationalityOnline = NationalityOnlineField;
 Field.NationalityOffline = NationalityOfflineField;
 Field.GoogleAddressField = GoogleAddressField;
+Field.UploadFile = UploadFileField;
 
 export { Field };

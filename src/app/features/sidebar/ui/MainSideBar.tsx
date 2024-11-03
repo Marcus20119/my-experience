@@ -12,12 +12,8 @@ const { Text } = Typography;
 
 function MainSideBar() {
   const { t } = useTranslation();
-  const {
-    isMainBarCollapsed,
-    isMainBarLocked,
-    isSubBarCollapsed,
-    setSidebarStates,
-  } = useSidebarStore();
+  const { isMainBarCollapsed, isMainBarLocked, setSidebarStates } =
+    useSidebarStore();
   const { activeMainKey, mainSidebarItems } = useGetSidebarData();
 
   const onExpandMainSidebar = () => {
@@ -90,11 +86,9 @@ function MainSideBar() {
                 )}
                 gap="0.5rem"
                 onClick={() => {
-                  if (activeMainKey === item.key) {
-                    setSidebarStates({
-                      isSubBarCollapsed: !isSubBarCollapsed,
-                    });
-                  }
+                  setSidebarStates({
+                    isSubBarCollapsed: false,
+                  });
                 }}
               >
                 <div className="flex-shrink-0" role="presentation">

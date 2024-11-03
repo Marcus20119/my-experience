@@ -1,7 +1,5 @@
 import type { ThreeDTicketProps } from '@/shared/components/Ticket/ThreeDTicket';
-import { ReactComponent as LogoEmotion } from '@/shared/assets/svgs/logo-emotion.svg';
-import { ReactComponent as LogoJavascript } from '@/shared/assets/svgs/logo-javascript.svg';
-import { Icon } from '@iconify/react/dist/iconify.cjs';
+import { Icon } from '@iconify/react';
 import { useTranslation } from 'react-i18next';
 
 export const useGetTechnologyItems = () => {
@@ -102,12 +100,24 @@ export const useGetTechnologyItems = () => {
       {
         color1: '#e6d148',
         description: t('technology.description.javascript'),
-        icon: <LogoJavascript />,
+        icon: <Icon height="64" icon="@local:logo-javascript" width="64" />,
         rate: 4,
         title: 'Javascript',
       },
     ],
-    other: [],
+    other: [
+      {
+        color1: '#729b1b',
+        color2: '#b8cc8e',
+        color3: '#fcc72b',
+        description: t('technology.description.vitest'),
+        icon: (
+          <Icon height="64" icon="vscode-icons:file-type-vitest" width="64" />
+        ),
+        rate: 3,
+        title: 'Vitest',
+      },
+    ],
     ui: [
       {
         color1: '#4285eb',
@@ -139,7 +149,7 @@ export const useGetTechnologyItems = () => {
         color2: '#b48531',
         color3: '#764775',
         description: t('technology.description.emotion'),
-        icon: <LogoEmotion />,
+        icon: <Icon height="64" icon="@local:logo-emotion" width="64" />,
         rate: 4.5,
         title: 'Emotion',
       },

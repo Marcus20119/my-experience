@@ -1,8 +1,8 @@
-const scrollToTop = () => {
-  window.scrollTo({ behavior: 'smooth', top: 0 });
+const scrollToTop = (top?: number) => {
+  window.scrollTo({ behavior: 'smooth', top });
 };
 
-const scrollToTarget = (sectionId: string, headerOffset: number) => {
+const scrollToTarget = (sectionId: string, offset: number) => {
   const element = document.getElementById(sectionId);
 
   if (element) {
@@ -11,7 +11,7 @@ const scrollToTarget = (sectionId: string, headerOffset: number) => {
     const elementPosition = elementRect - bodyRect;
     window.scrollTo({
       behavior: 'smooth',
-      top: elementPosition - headerOffset,
+      top: elementPosition - offset,
     });
   }
 };

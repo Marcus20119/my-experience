@@ -1,6 +1,6 @@
 import type { SelectProps } from 'antd/lib';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { Icon } from '@iconify/react/dist/iconify.cjs';
+import { Icon } from '@iconify/react';
 import { Select as AntSelect, Tooltip } from 'antd';
 import { ArrowDown2, ArrowUp2, CloseCircle } from 'iconsax-react';
 import { useMemo, useState } from 'react';

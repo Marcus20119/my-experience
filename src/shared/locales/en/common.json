@@ -5,6 +5,7 @@
       "apply": "Apply",
       "back": "Back",
       "cancel": "Cancel",
+      "clickToUpload": "Click to upload",
       "confirm": "Confirm",
       "continue": "Continue",
       "create": "Create",
@@ -25,6 +26,10 @@
       "viewLess": "View less",
       "viewMore": "View more"
     },
+    "conjunction": {
+      "and": "and",
+      "or": "or"
+    },
     "dayOfWeek": {
       "fri": "Fri",
       "mon": "Mon",
@@ -39,6 +44,8 @@
     },
     "error": {
       "email": "Please enter a valid email",
+      "invalidFileType": "Invalid file type for file has name: {{fileName}}",
+      "maxFileSize": "File size must be less than {{maxFileSize}}MB",
       "phoneNumber": "Please enter a valid phone number",
       "smtWentWrong": "Something went wrong, please try again later."
     },
@@ -56,6 +63,8 @@
       "vi": "Vietnamese"
     },
     "placeholder": {
+      "maxFileSize": "(max {{maxFileSize}}MB)",
+      "orDragAndDrop": "or drag and drop",
       "quickSearch": "Quick search...",
       "search": "Search...",
       "selectGender": "Select gender"

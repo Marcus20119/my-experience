@@ -5,26 +5,26 @@ import { TextTool } from './text';
 const filterOption = (input?: string, option?: DefaultOptionType) => {
   const formattedInput = TextTool.latinize(input).toLowerCase();
 
-  if (!option || !option.label || typeof option.label !== 'string') {
+  if (!option || !option.label || typeof option.label !== 'string' || !input) {
     return false;
   }
 
-  const formattedOption = TextTool.latinize(option?.label ?? '').toLowerCase();
+  const formattedOption = TextTool.latinize(option.label).toLowerCase();
 
   return formattedOption.includes(formattedInput);
 };
 
 const filterTreeNode = (
-  input: string,
-  option: NonNullable<TreeSelectProps['treeData']>[number],
+  input?: string,
+  option?: NonNullable<TreeSelectProps['treeData']>[number],
 ) => {
   const formattedInput = TextTool.latinize(input).toLowerCase();
 
-  if (!option || !option.label || typeof option.label !== 'string') {
+  if (!option || !option.label || typeof option.label !== 'string' || !input) {
     return false;
   }
 
-  const formattedOption = TextTool.latinize(option?.label ?? '').toLowerCase();
+  const formattedOption = TextTool.latinize(option.label).toLowerCase();
 
   return formattedOption.includes(formattedInput);
 };

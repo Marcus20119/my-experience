@@ -1,9 +1,10 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
+import EditImagePage from '@/pages/feature/EditImagePage';
 
-export const IMAGE_ROUTES = [
+export const FEATURE_ROUTES = [
   {
-    element: <div>Image Page</div>,
-    path: 'image',
+    element: <EditImagePage />,
+    path: 'feature/edit-image',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

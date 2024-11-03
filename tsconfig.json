@@ -26,7 +26,8 @@
       "@/*": ["./src/*"],
       "@/lib": ["./src/lib/*"],
       "@/app/*": ["src/app/*"],
-      "@/pages/*": ["src/pages/*"]
+      "@/pages/*": ["src/pages/*"],
+      "@/shared/*": ["src/shared/*"]
     }
   },
   "include": ["src", "src/@types/**/*", ".eslintrc.cjs"],

@@ -1,4 +1,4 @@
-import { Box1, Colorfilter, Cpu, Game, Image } from 'iconsax-react';
+import { Box1, Colorfilter, Cpu, ElementEqual, Game } from 'iconsax-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
@@ -80,11 +80,19 @@ export const useGetSidebarData = () => {
         path: '/component/table/customizable',
       },
       {
-        icon: <Image />,
-        key: MainSidebarKey.Image,
-        label: t('layout.title.image'),
-        match: '/image',
-        path: '/image',
+        children: [
+          {
+            key: SubSidebarKey.EditImage,
+            label: t('layout.title.editImage'),
+            match: '/feature/edit-image',
+            path: '/feature/edit-image',
+          },
+        ],
+        icon: <ElementEqual />,
+        key: MainSidebarKey.Feature,
+        label: t('layout.title.feature'),
+        match: '/feature',
+        path: '/feature/edit-image',
       },
       {
         icon: <Colorfilter />,

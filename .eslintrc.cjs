@@ -22,7 +22,6 @@ module.exports = {
     },
   },
   overrides: [
-    { extends: 'plugin:jest/all', files: ['src'] },
     {
       files: ['*.json'],
       rules: {
@@ -34,10 +33,7 @@ module.exports = {
     'dist',
     '*.js',
     'node_modules',
-    'tests/**',
     'alias.ts',
-    '**/*.test.ts',
-    '**/*.test.tsx',
     '*.config.ts',
     '*.d.ts',
     'codegen.ts',
@@ -54,12 +50,12 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'prettier',
     'plugin:@tanstack/eslint-plugin-query/recommended',
+    'plugin:@vitest/legacy-recommended',
   ],
   plugins: [
     'perfectionist',
     'prettier',
     'react-refresh',
-    'jest',
     'unused-imports',
     'sort-destructure-keys',
   ],

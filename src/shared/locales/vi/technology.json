@@ -12,7 +12,8 @@
       "reactQuery": "Powerful asynchronous state management",
       "tailwind": "A utility-first CSS framework for rapid UI development.",
       "typescript": "A statically typed superset of JavaScript.",
-      "vite": "Supercharges React development with blazing-fast build times."
+      "vite": "Supercharges React development with blazing-fast build times.",
+      "vitest": "A test runner for Vite."
     }
   }
 }

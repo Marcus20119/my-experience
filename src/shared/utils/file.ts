@@ -1,6 +1,6 @@
 import { FileType } from '../types';
 
-const getFileNameByExtension = (extension?: string) => {
+const getFileTypeByExtension = (extension?: string) => {
   switch (extension) {
     case 'pdf':
       return FileType.Pdf;
@@ -47,20 +47,16 @@ const getFileNameByExtension = (extension?: string) => {
   }
 };
 
-const getFileTypeFromName = (name: string) => {
+const getFileTypeFromName = (name?: string) => {
+  if (!name) {
+    return undefined;
+  }
+
   const ext = name.split('.').pop()?.toLowerCase();
-
-  return getFileNameByExtension(ext);
-};
-
-const getFile = (file: Blob, callback: (url: string) => void) => {
-  const reader = new FileReader();
-  reader.readAsDataURL(file);
-  reader.onload = () => callback(reader.result as string);
+  return getFileTypeByExtension(ext);
 };
 
 export const FileTool = {
-  getFile,
-  getFileNameByExtension,
+  getFileTypeByExtension,
   getFileTypeFromName,
 };

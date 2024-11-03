@@ -2,28 +2,19 @@ import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import { DEFAULT_DATE_FORMAT, DEFAULT_DAY_MONTH_FORMAT } from '../constants';
 
-/**
- * Formats a date string into the specified template format using dayjs.
- *
- * @param {string} date - The date string to format.
- * @returns {string} The formatted date string.
- */
 const formatDate = (date?: Dayjs | null | string) =>
   date ? dayjs(date).format(DEFAULT_DATE_FORMAT) : '';
 
-/**
- * Formats a date range into a string.
- *
- * @param {string} startDate - the start date of the range
- * @param {string} endDate - the end date of the range
- * @return {string} the formatted date range string
- */
 const formatDateRange = (
-  startDate?: Dayjs | string,
-  endDate?: Dayjs | string,
+  startDate?: Dayjs | null | string,
+  endDate?: Dayjs | null | string,
 ) => {
-  const start = startDate ? dayjs(startDate).format(DEFAULT_DATE_FORMAT) : null;
-  const end = endDate ? dayjs(endDate).format(DEFAULT_DATE_FORMAT) : null;
+  if (!startDate || !endDate) {
+    return '';
+  }
+
+  const start = dayjs(startDate).format(DEFAULT_DATE_FORMAT);
+  const end = dayjs(endDate).format(DEFAULT_DATE_FORMAT);
 
   const isSameDate = start === end;
 

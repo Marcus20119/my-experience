@@ -14,6 +14,7 @@ const { Text, Title } = Typography;
 interface Props {
   breadCrumb?: BreadCrumbItem[];
   children: React.ReactNode;
+  contentNoPadding?: boolean;
   onChangeTab?: (path: RouterPath) => void;
   tabs?: HeaderTabItem[];
   title: string;
@@ -22,6 +23,7 @@ interface Props {
 function ContentLayout({
   breadCrumb,
   children,
+  contentNoPadding,
   onChangeTab,
   tabs,
   title,
@@ -157,7 +159,14 @@ function ContentLayout({
           )}
         </Flex>
       </div>
-      <div className="flex-1 overflow-hidden p-contentPadding">{children}</div>
+      <div
+        className={cn(
+          'flex-1 overflow-hidden',
+          contentNoPadding ? '' : 'p-contentPadding',
+        )}
+      >
+        {children}
+      </div>
     </Flex>
   );
 }

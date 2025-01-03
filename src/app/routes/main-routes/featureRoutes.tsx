@@ -1,10 +1,10 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
-import EditImagePage from '@/pages/feature/EditImagePage';
+import CanvaEditorPage from '@/pages/feature/CanvaEditorPage';
 
 export const FEATURE_ROUTES = [
   {
-    element: <EditImagePage />,
-    path: 'feature/edit-image',
+    element: <CanvaEditorPage />,
+    path: 'feature/canva-editor',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

@@ -3,7 +3,8 @@ import { Select } from '@/shared/components';
 import { DEFAULT_DEBOUNCE_TIME_OFFLINE } from '@/shared/constants';
 import { TextTool } from '@/shared/utils';
 import { Divider, Flex, Form, InputNumber, Space, Typography } from 'antd';
-import { debounce, uniqBy } from 'lodash-es';
+import debounce from 'lodash-es/debounce';
+import uniqBy from 'lodash-es/uniqBy';
 import { useEffect, useState } from 'react';
 import type {
   OfflineCountry,

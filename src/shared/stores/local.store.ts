@@ -1,9 +1,11 @@
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
+import type { RouterNavigator } from '../hooks';
 import type { Language, RemoveStates, SetStates } from '../types';
 
 interface LocalState {
   language?: Language;
+  prevRoute?: RouterNavigator;
   primaryColor?: string;
   secondaryColor?: string;
 }

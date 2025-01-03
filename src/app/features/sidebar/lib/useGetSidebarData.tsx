@@ -82,17 +82,17 @@ export const useGetSidebarData = () => {
       {
         children: [
           {
-            key: SubSidebarKey.EditImage,
-            label: t('layout.title.editImage'),
-            match: '/feature/edit-image',
-            path: '/feature/edit-image',
+            key: SubSidebarKey.CanvaEditor,
+            label: t('layout.title.canvaEditor'),
+            match: '/feature/canva-editor',
+            path: '/feature/canva-editor',
           },
         ],
         icon: <ElementEqual />,
         key: MainSidebarKey.Feature,
         label: t('layout.title.feature'),
         match: '/feature',
-        path: '/feature/edit-image',
+        path: '/feature/canva-editor',
       },
       {
         icon: <Colorfilter />,

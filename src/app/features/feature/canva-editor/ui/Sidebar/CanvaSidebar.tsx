@@ -74,6 +74,7 @@ function CanvaSidebar() {
           return (
             <Tooltip
               key={tab.key}
+              open={tab.children ? false : undefined}
               placement="right"
               title={t('common.tooltip.comingSoon')}
             >

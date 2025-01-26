@@ -33,16 +33,16 @@ function CanvaEditorPage() {
         asset={{
           image: {
             urls: [
-              '/src/shared/assets/images/cat-1.png',
-              '/src/shared/assets/images/cat-2.jpg',
-              '/src/shared/assets/images/cat-3.jpg',
-              '/src/shared/assets/images/cat-4.jpg',
-              '/src/shared/assets/images/cat-5.jpg',
-              '/src/shared/assets/images/cat-6.jpg',
-              '/src/shared/assets/images/cat-7.jpg',
-              '/src/shared/assets/images/cat-8.jpg',
-              '/src/shared/assets/images/cat-9.jpg',
-              '/src/shared/assets/images/cat-10.jpg',
+              '/images/cat-1.png',
+              '/images/cat-2.jpg',
+              '/images/cat-3.jpg',
+              '/images/cat-4.jpg',
+              '/images/cat-5.jpg',
+              '/images/cat-6.jpg',
+              '/images/cat-7.jpg',
+              '/images/cat-8.jpg',
+              '/images/cat-9.jpg',
+              '/images/cat-10.jpg',
             ],
           },
         }}

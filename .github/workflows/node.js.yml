@@ -17,15 +17,17 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
+      
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
-    - run: npm ci
+    - run: pnpm ci
     - run: pnpm run build --if-present
-    - run: npm test:watch
+    - run: pnpm test:watch
     
   Deploy-Preview:
     runs-on: ubuntu-latest

@@ -76,7 +76,7 @@ function UserMenu() {
           className="rounded-full object-cover"
           height="2rem"
           preview={false}
-          src="/src/shared/assets/images/avatar.jpg"
+          src="/images/avatar.jpg"
           width="2rem"
         />
       </Flex>

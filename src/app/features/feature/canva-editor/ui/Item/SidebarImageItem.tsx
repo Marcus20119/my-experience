@@ -1,8 +1,8 @@
 import { useCanvaEditorContext } from '@/app/features/feature/canva-editor/context';
 import { useGetContainerSize } from '@/app/features/feature/canva-editor/lib';
 import {
-  A4_SIZE,
   CanvaItemType,
+  PAPER_SIZE,
 } from '@/app/features/feature/canva-editor/model';
 import { Flex, Image } from 'antd';
 import useImage from 'use-image';
@@ -15,15 +15,17 @@ interface Props {
 
 function SidebarImageItem({ frameSize, src }: Props) {
   const [image] = useImage(src ?? '', 'anonymous', 'origin');
-  const { onAddItem, stageRef, stageSize } = useCanvaEditorContext();
+  const { onAddItem, paperType, stageRef, stageSize } = useCanvaEditorContext();
 
   const { height, width } = useGetContainerSize({
     frameSize,
-    imageSize: {
+    stageSize: {
       height: image?.height,
       width: image?.width,
     },
   });
+
+  const paperSize = PAPER_SIZE[paperType];
 
   return (
     <Flex className="relative aspect-square w-full">
@@ -47,10 +49,10 @@ function SidebarImageItem({ frameSize, src }: Props) {
             const imageHeight = image?.height ?? 0;
 
             onAddItem({
-              height: (imageHeight / A4_SIZE.height) * 100,
+              height: (imageHeight / paperSize.height) * 100,
               type: CanvaItemType.Image,
               url: image?.src ?? '',
-              width: (imageWidth / A4_SIZE.width) * 100,
+              width: (imageWidth / paperSize.width) * 100,
               x: (pointerPositions.x / stageSize.width) * 100,
               y: (pointerPositions.y / stageSize.height) * 100,
             });

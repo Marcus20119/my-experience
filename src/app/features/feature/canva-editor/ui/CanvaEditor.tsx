@@ -3,6 +3,7 @@ import type { CanvaEditorContextProps } from '../context';
 import { CanvaEditorProvider } from '../context';
 import { CANVA_SIZE } from '../model';
 import { CanvaFooter } from './Footer';
+import { CanvaHeader } from './Header';
 import { CanvaSidebar } from './Sidebar';
 import { CanvaWorkspace } from './Workspace';
 
@@ -45,6 +46,7 @@ function CanvaEditor({ asset, height, initialItems, width }: Props) {
           }}
           vertical
         >
+          <CanvaHeader />
           <CanvaWorkspace />
           <CanvaFooter />
         </Flex>

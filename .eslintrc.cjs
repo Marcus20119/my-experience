@@ -163,6 +163,11 @@ module.exports = {
         next: ['*'],
         prev: ['interface', 'type', 'block-like'],
       },
+      {
+        blankLine: 'any',
+        prev: ['case', 'default'],
+        next: ['case', 'default'],
+      },
     ],
     '@typescript-eslint/prefer-optional-chain': 'error',
     '@typescript-eslint/restrict-template-expressions': 'warn',

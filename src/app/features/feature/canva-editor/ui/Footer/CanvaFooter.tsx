@@ -15,13 +15,13 @@ function CanvaFooter() {
   return (
     <Flex
       align="center"
-      className="w-full"
+      className="w-full px-4"
       justify="end"
       style={{
         height: CANVA_SIZE.footerHeight,
       }}
     >
-      <Flex align="center" gap="0.5rem">
+      <Flex align="center" gap="0.75rem">
         <Tooltip title="Fit to screen">
           <Button
             icon={<Maximize2 size="20" />}
@@ -44,14 +44,14 @@ function CanvaFooter() {
 
         <InputNumber
           addonAfter="%"
-          className="w-28"
+          className="w-20"
+          controls={false}
           max={300}
           min={30}
           onChange={onSetZoomLevel}
           precision={0}
           size="small"
           step={1}
-          style={{ margin: '0 16px' }}
           value={roundedZoomLevel}
         />
       </Flex>

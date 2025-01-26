@@ -1,16 +1,30 @@
+/* eslint-disable prefer-destructuring */
 import { useCanvaEditorContext } from '@/app/features/feature/canva-editor/context';
-import { cn } from '@/lib/tailwind';
+import {
+  CanvaItemType,
+  CanvaShapeType,
+} from '@/app/features/feature/canva-editor/model';
 import { Button, Space, Tooltip } from 'antd';
 import { BackwardItem, ForwardItem, Trash } from 'iconsax-react';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
+import { cn } from '@/lib/tailwind';
 
 const { Compact } = Space;
+
+interface ButtonAction {
+  disabled?: boolean;
+  icon: React.ReactNode;
+  label: string;
+  onClick: () => void;
+}
 
 interface Props {
   zIndex: number;
 }
 
 function CanvaItemActions({ zIndex }: Props) {
+  const { t } = useTranslation();
   const {
     isEditing,
     items,
@@ -18,7 +32,6 @@ function CanvaItemActions({ zIndex }: Props) {
     onRemoveProduct,
     onSendToBack,
     selectedItem,
-    setSelectedItem,
     stageSize,
   } = useCanvaEditorContext();
 
@@ -28,7 +41,60 @@ function CanvaItemActions({ zIndex }: Props) {
       return 0;
     }
 
-    const { height, rotation, width, x, y } = selectedItem;
+    const { rotation = 0, type, x, y } = selectedItem;
+
+    let height: number = 0;
+    let width: number = 0;
+
+    switch (type) {
+      case CanvaItemType.Image:
+      case CanvaItemType.Text: {
+        height = selectedItem.height;
+        width = selectedItem.width;
+        break;
+      }
+
+      case CanvaItemType.Shape: {
+        switch (selectedItem.props.shapeType) {
+          case CanvaShapeType.Rectangle: {
+            height = selectedItem.props.height;
+            width = selectedItem.props.width;
+            break;
+          }
+          case CanvaShapeType.Square: {
+            height = selectedItem.props.height;
+            width = selectedItem.props.width;
+            break;
+          }
+          case CanvaShapeType.Circle:
+          case CanvaShapeType.Triangle:
+          case CanvaShapeType.Pentagon:
+          case CanvaShapeType.Hexagon: {
+            height = selectedItem.props.radius * 2;
+            width = selectedItem.props.radius * 2;
+            break;
+          }
+          case CanvaShapeType.Ellipse: {
+            height = selectedItem.props.radiusY * 2;
+            width = selectedItem.props.radiusX * 2;
+            break;
+          }
+          case CanvaShapeType.Star: {
+            height = selectedItem.props.outerRadius * 2;
+            width = selectedItem.props.outerRadius * 2;
+            break;
+          }
+          default: {
+            break;
+          }
+        }
+
+        break;
+      }
+      default: {
+        break;
+      }
+    }
 
     const alpha = rotation * (Math.PI / 180);
     // the degree when diagonal line is vertical
@@ -64,7 +130,7 @@ function CanvaItemActions({ zIndex }: Props) {
     return maxY;
   }, [selectedItem, stageSize.height]);
 
-  const actions = useMemo(() => {
+  const buttonActions = useMemo<ButtonAction[]>(() => {
     if (!selectedItem) {
       return [];
     }
@@ -73,39 +139,28 @@ function CanvaItemActions({ zIndex }: Props) {
       {
         disabled: !items?.some(item => item.zIndex > selectedItem?.zIndex),
         icon: <ForwardItem size="20" variant="Bulk" />,
-        label: 'Bring to front',
+        label: t('feature.canva.button.bringToFront'),
         onClick: () => {
           onBringToFront(selectedItem.id);
-          setSelectedItem({ ...selectedItem, zIndex: selectedItem.zIndex + 1 });
         },
       },
       {
         disabled: selectedItem?.zIndex === 0,
         icon: <BackwardItem size="20" variant="Bulk" />,
-        label: 'Send to back',
+        label: t('feature.canva.button.sendToBack'),
         onClick: () => {
           onSendToBack(selectedItem.id);
-          setSelectedItem({ ...selectedItem, zIndex: selectedItem.zIndex - 1 });
         },
       },
       {
-        disabled: false,
         icon: <Trash size="20" variant="Bulk" />,
-        label: 'Remove',
+        label: t('feature.canva.button.remove'),
         onClick: () => {
           onRemoveProduct(selectedItem.id);
-          setSelectedItem(null);
         },
       },
     ];
-  }, [
-    items,
-    onBringToFront,
-    onRemoveProduct,
-    onSendToBack,
-    selectedItem,
-    setSelectedItem,
-  ]);
+  }, [items, onBringToFront, onRemoveProduct, onSendToBack, selectedItem, t]);
 
   // if no item is selected or the item is being edited, don't show actions
   if (!selectedItem || isEditing) {
@@ -122,11 +177,14 @@ function CanvaItemActions({ zIndex }: Props) {
         zIndex,
       }}
     >
-      {actions.map(action => (
+      {buttonActions.map(action => (
         <Tooltip key={action.label} placement="bottom" title={action.label}>
           <Button
             className={cn(
-              action.disabled ? 'border-neutral-100 bg-neutral-100' : '',
+              'border-neutral-300',
+              action.disabled
+                ? 'bg-neutral-100'
+                : 'bg-neutral-0 hover:border-neutral-600 hover:bg-neutral-100',
             )}
             disabled={action.disabled}
             icon={action.icon}

@@ -58,6 +58,10 @@ function CanvaWorkspace() {
                 return <Item.CanvaImage item={item} key={index} />;
               }
 
+              if (item.type === CanvaItemType.Shape) {
+                return <Item.CanvaShape item={item} key={index} />;
+              }
+
               return null;
             })}
           </Layer>

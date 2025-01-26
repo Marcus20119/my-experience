@@ -2,6 +2,11 @@
 import type { CanvaImageItemEntity } from '@/app/features/feature/canva-editor/model';
 import type Konva from 'konva';
 import { useCanvaEditorContext } from '@/app/features/feature/canva-editor/context';
+import { getDashValue } from '@/app/features/feature/canva-editor/lib';
+import {
+  DEFAULT_STROKE_COLOR,
+  DEFAULT_STROKE_WIDTH,
+} from '@/app/features/feature/canva-editor/model';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { useEffect, useRef } from 'react';
 import { Image, Transformer } from 'react-konva';
@@ -55,6 +60,10 @@ function CanvaImageItem({ item }: Props) {
         x={(item.x * stageSize.width) / 100}
         y={(item.y * stageSize.height) / 100}
         rotation={item.rotation}
+        cornerRadius={item.cornerRadius}
+        stroke={item.strokeColor ?? DEFAULT_STROKE_COLOR}
+        strokeWidth={item.strokeWidth ?? DEFAULT_STROKE_WIDTH}
+        dash={getDashValue(item.strokeType)}
         // Events
         onClick={e => {
           e.cancelBubble = true;
@@ -90,7 +99,6 @@ function CanvaImageItem({ item }: Props) {
           };
 
           onUpdateItem(newItem);
-          setSelectedItem(newItem);
           setIsEditing(false);
         }}
         onTransformStart={e => {
@@ -120,13 +128,13 @@ function CanvaImageItem({ item }: Props) {
           };
 
           onUpdateItem(newItem);
-          setSelectedItem(newItem);
           setIsEditing(false);
         }}
       />
 
       {selectedItem?.id === item.id ? (
         <Transformer
+          anchorCornerRadius={4}
           anchorFill="true"
           anchorStroke={COLOR.secondary}
           anchorStrokeWidth={2}
@@ -139,10 +147,10 @@ function CanvaImageItem({ item }: Props) {
 
             return newBox;
           }}
+          centeredScaling
           flipEnabled={false}
           ref={trRef}
           rotationSnaps={[0, 45, 90, 135, 180, 235, 270]}
-          anchorCornerRadius={4}
         />
       ) : null}
     </>

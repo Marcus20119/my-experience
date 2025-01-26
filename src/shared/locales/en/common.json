@@ -74,6 +74,9 @@
       "emptySearch": "No results found",
       "sureDelete": "Sure to delete?"
     },
+    "tooltip": {
+      "comingSoon": "Coming soon"
+    },
     "unit": {
       "million": "M",
       "thousand": "K"

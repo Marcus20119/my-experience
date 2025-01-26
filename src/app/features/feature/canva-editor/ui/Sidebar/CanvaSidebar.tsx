@@ -3,11 +3,13 @@ import {
   CANVA_SIZE,
 } from '@/app/features/feature/canva-editor/model';
 import { COLOR } from '@/shared/assets/styles/constants';
-import { ConfigProvider, Flex, Typography } from 'antd';
+import { ConfigProvider, Flex, Tooltip, Typography } from 'antd';
 import { Gallery, Shapes1, Text as TextIC } from 'iconsax-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/tailwind';
 import ImageSection from './ImageSection';
+import ShapeSection from './ShapeSection';
 
 const { Text } = Typography;
 
@@ -18,7 +20,7 @@ enum CanvaActionTabKey {
 }
 
 interface CanvaActionTab {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   color: string;
   icon: React.ReactNode;
   key: CanvaActionTabKey;
@@ -26,6 +28,8 @@ interface CanvaActionTab {
 }
 
 function CanvaSidebar() {
+  const { t } = useTranslation();
+
   const [activeTabKey, setActiveTabKey] = useState<CanvaActionTabKey>(
     CanvaActionTabKey.Image,
   );
@@ -39,18 +43,17 @@ function CanvaSidebar() {
       label: 'Image',
     },
     {
-      children: <div>Text</div>,
-      color: CANVA_COLOR.text,
-      icon: <TextIC size="28" variant="Bulk" />,
-      key: CanvaActionTabKey.Text,
-      label: 'Text',
-    },
-    {
-      children: <div>Shape</div>,
+      children: <ShapeSection />,
       color: CANVA_COLOR.shape,
       icon: <Shapes1 size="28" variant="Bulk" />,
       key: CanvaActionTabKey.Shape,
       label: 'Shape',
+    },
+    {
+      color: CANVA_COLOR.text,
+      icon: <TextIC size="28" variant="Bulk" />,
+      key: CanvaActionTabKey.Text,
+      label: 'Text',
     },
   ];
 
@@ -66,33 +69,41 @@ function CanvaSidebar() {
       >
         {tabs.map(tab => {
           const isActive = tab.key === activeTabKey;
+          const disabled = !tab.children;
+
           return (
-            <Flex
-              align="center"
-              className={cn(
-                'cursor-pointer rounded-l-lg py-2 pl-3 transition-all duration-300 ease-in-out',
-                isActive ? '' : '',
-              )}
-              gap="0.125rem"
+            <Tooltip
               key={tab.key}
-              onClick={() => {
-                setActiveTabKey(tab.key);
-              }}
-              vertical
+              placement="right"
+              title={t('common.tooltip.comingSoon')}
             >
-              <div
+              <Flex
+                align="center"
                 className={cn(
-                  'rounded-lg p-0.5',
-                  isActive ? 'shadow-card-lg' : '',
+                  'rounded-l-lg py-2 pl-3 transition-all duration-300 ease-in-out',
+                  disabled ? 'cursor-not-allowed' : 'cursor-pointer',
                 )}
-                style={{
-                  color: isActive ? tab.color : COLOR.neutral['400'],
+                gap="0.125rem"
+                onClick={() => {
+                  if (disabled) return;
+                  setActiveTabKey(tab.key);
                 }}
+                vertical
               >
-                {tab.icon}
-              </div>
-              <Text className="text-xs">{tab.label}</Text>
-            </Flex>
+                <div
+                  className={cn(
+                    'rounded-lg p-0.5',
+                    isActive ? 'shadow-card-lg' : '',
+                  )}
+                  style={{
+                    color: isActive ? tab.color : COLOR.neutral['400'],
+                  }}
+                >
+                  {tab.icon}
+                </div>
+                <Text className="text-xs">{tab.label}</Text>
+              </Flex>
+            </Tooltip>
           );
         })}
       </Flex>

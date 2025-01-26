@@ -1,5 +1,5 @@
 import { FileType } from '@/shared/types';
-import { describe, expect, test } from 'vitest';
+import { describe, expect, test, vi } from 'vitest';
 import { FileTool } from '../file';
 
 const { getFileTypeByExtension, getFileTypeFromName } = FileTool;
@@ -62,6 +62,25 @@ describe('FileTool', () => {
       [undefined, undefined],
     ])('getFileTypeFromName(%j) -> %s', (name, expected) => {
       expect(getFileTypeFromName(name)).toBe(expected);
+    });
+  });
+
+  describe('downloadURI', () => {
+    test('should create a download link with the correct URI and name', () => {
+      const uri = 'data:image/png;base64,abc';
+      const name = 'test.png';
+
+      const link = document.createElement('a');
+      link.download = name;
+      link.href = uri;
+
+      const spy = vi.spyOn(document, 'createElement').mockReturnValue(link);
+      const appendSpy = vi.spyOn(document.body, 'appendChild');
+
+      FileTool.downloadURI(uri, name);
+
+      expect(spy).toHaveBeenCalledWith('a');
+      expect(appendSpy).toHaveBeenCalledWith(link);
     });
   });
 });

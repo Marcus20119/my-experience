@@ -7,18 +7,18 @@ interface Props {
         height: number;
       }
     | number;
-  imageSize?: {
+  stageSize?: {
     width?: number;
     height?: number;
   };
 }
 
-export const useGetContainerSize = ({ frameSize, imageSize }: Props) => {
+export const useGetContainerSize = ({ frameSize, stageSize }: Props) => {
   const imageTagSize = useMemo(() => {
     let width = 0;
     let height = 0;
 
-    if (!imageSize?.height || !imageSize?.width || !frameSize) {
+    if (!stageSize?.height || !stageSize?.width || !frameSize) {
       return {
         height: 0,
         width: 0,
@@ -29,8 +29,8 @@ export const useGetContainerSize = ({ frameSize, imageSize }: Props) => {
       (typeof frameSize === 'number' ? frameSize : frameSize.width) ?? 1;
     const frameHeight =
       (typeof frameSize === 'number' ? frameSize : frameSize.height) ?? 1;
-    const imageWidth = imageSize?.width ?? 1;
-    const imageHeight = imageSize?.height ?? 1;
+    const imageWidth = stageSize?.width ?? 1;
+    const imageHeight = stageSize?.height ?? 1;
 
     const frameRatio = frameWidth / frameHeight;
     const pictureRatio = imageWidth / imageHeight;
@@ -48,7 +48,7 @@ export const useGetContainerSize = ({ frameSize, imageSize }: Props) => {
       height,
       width,
     };
-  }, [imageSize?.height, imageSize?.width, frameSize]);
+  }, [stageSize?.height, stageSize?.width, frameSize]);
 
   return imageTagSize;
 };

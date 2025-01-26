@@ -1,7 +1,4 @@
-import {
-  CanvaEditor,
-  CanvaItemType,
-} from '@/app/features/feature/canva-editor';
+import { CanvaEditor } from '@/app/features/feature/canva-editor';
 import { type BreadCrumbItem, useHeaderStore } from '@/app/features/header';
 import { useSidebarStore } from '@/app/features/sidebar';
 import { ContentLayout } from '@/app/layout';
@@ -50,19 +47,6 @@ function CanvaEditorPage() {
           },
         }}
         height={height}
-        initialItems={[
-          {
-            height: 17,
-            id: '1',
-            rotation: 0,
-            type: CanvaItemType.Image,
-            url: '/src/shared/assets/images/cat-1.png',
-            width: 15,
-            x: 10,
-            y: 10,
-            zIndex: 0,
-          },
-        ]}
         width={width}
       />
     </ContentLayout>

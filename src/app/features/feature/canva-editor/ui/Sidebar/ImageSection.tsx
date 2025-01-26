@@ -1,7 +1,7 @@
 import { useCanvaEditorContext } from '@/app/features/feature/canva-editor/context';
 import { CANVA_SIZE } from '@/app/features/feature/canva-editor/model';
 import { Icon } from '@iconify/react';
-import { Button, Col, Flex, Row } from 'antd';
+import { Button, Col, Flex, Row, Tooltip } from 'antd';
 import { useTranslation } from 'react-i18next';
 import Item from '../Item';
 
@@ -10,19 +10,24 @@ function ImageSection() {
   const { asset, height } = useCanvaEditorContext();
 
   const srcs = asset?.image.urls;
-  const _loading = asset?.image.loading;
+
+  const frameSize =
+    (CANVA_SIZE.sidebarWidth - CANVA_SIZE.actionBarWidth - 12 * 2) / 2; // 12 is the gutter size, 2 is the number of columns
 
   return (
     <Flex gap={CANVA_SIZE.sidebarSectionSpace} vertical>
       <Flex className="w-full px-3">
-        <Button
-          className="w-full"
-          icon={<Icon height="20" icon="lucide:upload-cloud" width="20" />}
-          size="middle"
-          type="primary"
-        >
-          {t('common.button.uploadPhoto')}
-        </Button>
+        <Tooltip placement="bottom" title={t('common.tooltip.comingSoon')}>
+          <Button
+            className="w-full"
+            disabled
+            icon={<Icon height="20" icon="lucide:upload-cloud" width="20" />}
+            size="middle"
+            type="primary"
+          >
+            {t('common.button.uploadPhoto')}
+          </Button>
+        </Tooltip>
       </Flex>
       <div
         className="white-background-scrollbar w-full overflow-y-auto px-3"
@@ -38,15 +43,7 @@ function ImageSection() {
         >
           {srcs?.map((src, index) => (
             <Col key={index} span={12}>
-              <Item.SidebarImage
-                frameSize={
-                  (CANVA_SIZE.sidebarWidth -
-                    CANVA_SIZE.actionBarWidth -
-                    12 * 2) /
-                  2
-                }
-                src={src}
-              />
+              <Item.SidebarImage frameSize={frameSize} src={src} />
             </Col>
           ))}
         </Row>

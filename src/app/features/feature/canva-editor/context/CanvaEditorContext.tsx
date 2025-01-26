@@ -1,14 +1,23 @@
 import type Konva from 'konva';
 import type { RefObject } from 'react';
+import { LoggerTool } from '@/shared/utils';
 import { createContext, useContext, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import type {
   AddCanvaItemEntityInput,
   CanvaItemEntity,
   CanvaSize,
+  UpdateCanvaItemEntityInput,
 } from '../model';
 import { useGetContainerSize, useInitialCanvaEvents } from '../lib';
-import { A4_SIZE, CANVA_SIZE } from '../model';
+import {
+  CANVA_SIZE,
+  CanvaItemType,
+  CanvaPaperType,
+  PAPER_SIZE,
+} from '../model';
+
+const { showError } = LoggerTool;
 
 export interface CanvaEditorContextProps {
   asset?: {
@@ -29,9 +38,11 @@ interface CanvaEditorInternalContextProps {
   onBringToFront: (id: string) => void;
   onRemoveProduct: (id: string) => void;
   onSendToBack: (id: string) => void;
-  onUpdateItem: (updatedItem: CanvaItemEntity) => void;
+  onUpdateItem: (updatedItem: UpdateCanvaItemEntityInput) => void;
+  paperType: CanvaPaperType;
   selectedItem: CanvaItemEntity | null;
   setIsEditing: React.Dispatch<React.SetStateAction<boolean>>;
+  setPaperType: React.Dispatch<React.SetStateAction<CanvaPaperType>>;
   setSelectedItem: React.Dispatch<React.SetStateAction<CanvaItemEntity | null>>;
   setZoomLevel: React.Dispatch<React.SetStateAction<number>>;
   stageRef: null | RefObject<Konva.Stage>;
@@ -52,8 +63,10 @@ const CanvaEditorContext = createContext<
   onRemoveProduct: () => 0,
   onSendToBack: () => 0,
   onUpdateItem: () => 0,
+  paperType: CanvaPaperType.A4Vertical,
   selectedItem: null,
   setIsEditing: () => 0,
+  setPaperType: () => 0,
   setSelectedItem: () => 0,
   setZoomLevel: () => 0,
   stageRef: null,
@@ -81,17 +94,20 @@ export function CanvaEditorProvider({
   const [selectedItem, setSelectedItem] = useState<CanvaItemEntity | null>(
     null,
   );
+  const [paperType, setPaperType] = useState<CanvaPaperType>(
+    CanvaPaperType.A4Vertical,
+  );
   const [isEditing, setIsEditing] = useState(false);
   console.log('items:', items);
 
   const workspaceSize = {
-    height: props.height - CANVA_SIZE.footerHeight,
+    height: props.height - (CANVA_SIZE.footerHeight + CANVA_SIZE.headerHeight),
     width: props.width - CANVA_SIZE.sidebarWidth - 1, // 1 is the border width
   };
 
   const originalStageSize = useGetContainerSize({
     frameSize: workspaceSize,
-    imageSize: A4_SIZE,
+    stageSize: PAPER_SIZE[paperType],
   });
 
   const stageSize = {
@@ -103,24 +119,52 @@ export function CanvaEditorProvider({
     const newItem: CanvaItemEntity = {
       ...item,
       id: uuidv4(),
-      rotation: 0,
       zIndex: items.length,
     };
 
     setItems([...items, newItem]);
   };
 
-  const onUpdateItem = (updatedItem: CanvaItemEntity) => {
-    const newItems = items.map(item =>
-      item.id === updatedItem.id
-        ? {
+  const onUpdateItem = (updatedItem: UpdateCanvaItemEntityInput) => {
+    if (!updatedItem?.id) {
+      return showError('Item id is required');
+    }
+
+    const newItems = items.map(item => {
+      if (item.id === updatedItem.id) {
+        // Update only the props of the item
+        if (
+          item.type === CanvaItemType.Shape &&
+          updatedItem.type === CanvaItemType.Shape
+        ) {
+          return {
             ...item,
             ...updatedItem,
-          }
-        : item,
-    );
+            props: {
+              ...item.props,
+              ...updatedItem.props,
+            },
+          };
+        }
 
-    setItems(newItems);
+        return {
+          ...item,
+          ...updatedItem,
+        };
+      }
+
+      return item;
+    });
+
+    setItems(newItems as CanvaItemEntity[]);
+
+    if (selectedItem?.id === updatedItem.id) {
+      const newItem = newItems.find(item => item.id === updatedItem.id);
+
+      if (newItem) {
+        setSelectedItem(newItem as CanvaItemEntity);
+      }
+    }
   };
 
   const onRemoveProduct = (id: string) => {
@@ -135,6 +179,10 @@ export function CanvaEditorProvider({
         }))
         .filter(product => product.id !== id),
     );
+
+    if (selectedItem?.id === id) {
+      setSelectedItem(null);
+    }
   };
 
   const onBringToFront = (id: string) => {
@@ -160,6 +208,10 @@ export function CanvaEditorProvider({
     });
 
     setItems(newItems);
+
+    if (selectedItem?.id === id) {
+      setSelectedItem({ ...selectedItem, zIndex: currentItem.zIndex + 1 });
+    }
   };
 
   const onSendToBack = (id: string) => {
@@ -185,6 +237,10 @@ export function CanvaEditorProvider({
     });
 
     setItems(newItems);
+
+    if (selectedItem?.id === id) {
+      setSelectedItem({ ...selectedItem, zIndex: currentItem.zIndex - 1 });
+    }
   };
 
   useInitialCanvaEvents({
@@ -200,8 +256,10 @@ export function CanvaEditorProvider({
     onRemoveProduct,
     onSendToBack,
     onUpdateItem,
+    paperType,
     selectedItem,
     setIsEditing,
+    setPaperType,
     setSelectedItem,
     setZoomLevel,
     stageRef,

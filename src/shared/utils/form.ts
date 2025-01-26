@@ -20,7 +20,7 @@ const filterTreeNode = (
 ) => {
   const formattedInput = TextTool.latinize(input).toLowerCase();
 
-  if (!option || !option.label || typeof option.label !== 'string' || !input) {
+  if (!option?.label || typeof option.label !== 'string' || !input) {
     return false;
   }
 

@@ -1,0 +1,25 @@
+{
+  "feature": {
+    "canva": {
+      "button": {
+        "bringToFront": "Bring to front",
+        "remove": "Remove",
+        "sendToBack": "Send to back"
+      },
+      "label": {
+        "border": "Border",
+        "borderColor": "Border color",
+        "borderWeight": "Border weight",
+        "cornerRounding": "Corner rounding",
+        "download": "Download",
+        "paperSize": "Paper size",
+        "shapeFill": "Shape fill"
+      },
+      "paper": {
+        "a4Horizontal": "A4 - Horizontal",
+        "a4Vertical": "A4 - Vertical",
+        "square": "Square"
+      }
+    }
+  }
+}

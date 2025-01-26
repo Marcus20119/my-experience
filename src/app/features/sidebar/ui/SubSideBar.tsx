@@ -1,5 +1,5 @@
 import { COLOR } from '@/shared/assets/styles/constants';
-import { AppTool } from '@/shared/utils';
+import { useAppRouter } from '@/shared/hooks';
 import { Flex, Typography } from 'antd';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import { Link } from 'react-router-dom';
@@ -11,6 +11,7 @@ import { useSidebarStore } from '../store';
 const { Text } = Typography;
 
 function SubSideBar() {
+  const { navigate } = useAppRouter();
   const { isSubBarCollapsed, setMainSidebarHistory, setSidebarStates } =
     useSidebarStore();
   const {
@@ -45,8 +46,9 @@ function SubSideBar() {
         {subSidebarItems.map(item => (
           <Link
             key={item.key}
-            onClick={() => {
-              AppTool.scrollToTop();
+            onClick={e => {
+              e.preventDefault();
+              navigate({ path: item.path });
               setMainSidebarHistory(activeMainKey, item.key as SubSidebarKey);
             }}
             to={item.path}

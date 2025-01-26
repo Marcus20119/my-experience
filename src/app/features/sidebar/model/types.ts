@@ -17,8 +17,8 @@ export enum MainSidebarKey {
 
 export enum SubSidebarKey {
   Calendar = 'calendar',
+  CanvaEditor = 'canva-editor',
   Configuration = 'configuration',
-  EditImage = 'edit-image',
   Field = 'field',
   Form = 'form',
   Language = 'language',

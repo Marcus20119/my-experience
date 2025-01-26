@@ -5,7 +5,7 @@ import { NotiTool, TextTool } from '@/shared/utils';
 import { FileTool } from '@/shared/utils/file';
 import { Icon } from '@iconify/react';
 import { Flex, Typography, Upload } from 'antd';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { v4 as uuidv4 } from 'uuid';
 import type { UploadedFileProps } from './UploadedFile';
@@ -43,6 +43,7 @@ function UploadFileField({
   value,
   ...props
 }: Props & FileProps) {
+  const isSetInitialFiles = useRef<boolean>(false);
   const { t } = useTranslation();
 
   const [files, setFiles] = useState<UploadedFileProps[]>(() => {
@@ -167,6 +168,39 @@ function UploadFileField({
       onChange?.(files[0]?.url || undefined);
     }
   }, [files]);
+
+  useEffect(() => {
+    if (value?.length && !files.length && !isSetInitialFiles?.current) {
+      setFiles(
+        multiple
+          ? value.map(file => {
+              const name = file.split('/').pop() as string;
+              const type = FileTool.getFileTypeFromName(name);
+
+              return {
+                id: uuidv4(),
+                loading: false,
+                name,
+                type,
+                url: file,
+              };
+            })
+          : [
+              {
+                id: uuidv4(),
+                loading: false,
+                name: value.split('/').pop() as string,
+                type: FileTool.getFileTypeFromName(
+                  value.split('/').pop() as string,
+                ),
+                url: value,
+              },
+            ],
+      );
+
+      isSetInitialFiles.current = true;
+    }
+  }, [value]);
 
   return (
     <>

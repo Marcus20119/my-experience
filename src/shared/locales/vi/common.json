@@ -73,6 +73,9 @@
       "emptySearch": "Không tìm thấy kết quả",
       "sureDelete": "Chắc chắn muốn xóa?"
     },
+    "tooltip": {
+      "comingSoon": "Sắp ra mắt"
+    },
     "unit": {
       "million": "tr",
       "thousand": "k"

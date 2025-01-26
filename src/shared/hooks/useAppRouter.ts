@@ -1,6 +1,7 @@
-import type { NavigateOptions} from 'react-router-dom';
+import type { NavigateOptions } from 'react-router-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { PathProps } from '../types';
+import { useLocalStore } from '../stores';
 import { AppTool } from '../utils';
 
 export type RouterNavigator<T extends RouterPath = RouterPath> = T extends T
@@ -33,10 +34,21 @@ const getNavigatePath = ({ param, path }: RouterNavigator) => {
 export const useAppRouter = <P extends RouterPath>(_?: P) => {
   const navig = useNavigate();
   const param = useParams();
+  const { prevRoute, setLocalStates } = useLocalStore();
 
   const navigate = (route: RouterNavigator, options?: NavigateOptions) => {
     const newPath = getNavigatePath(route);
 
+    setLocalStates({
+      prevRoute: route?.path
+        ? {
+            ...route,
+          }
+        : {
+            ...prevRoute,
+            ...route,
+          },
+    });
     navig(
       {
         hash: route.hash,

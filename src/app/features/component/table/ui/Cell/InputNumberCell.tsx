@@ -27,7 +27,6 @@ function InputNumberCell({ editing, onSave, ...props }: Props) {
       parser={NumberTool.parserInputNumber}
       ref={ref}
       size="small"
-      type="number"
       {...props}
     />
   );

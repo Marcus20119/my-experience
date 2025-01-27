@@ -17,6 +17,7 @@ import { Gender } from '../model';
 import EditableTable from './EditableTable';
 
 const { Paragraph, Text } = Typography;
+const { formatDate, formatDateRange } = DateTimeTool;
 
 const ADD_STUDENT_BUTTON_HEIGHT = 48;
 
@@ -144,7 +145,7 @@ function StudentTable({ onChange, students }: Props) {
       key: 'birthDate',
       render: (_, { birthDate }) => (
         <Text className="input-date-cell w-full text-wrap text-right text-sm">
-          {DateTimeTool.formatDate(birthDate)}
+          {formatDate(birthDate)}
         </Text>
       ),
       title: t('component.table.birthDate'),
@@ -158,7 +159,7 @@ function StudentTable({ onChange, students }: Props) {
       key: 'applyDate',
       render: (_, { applyDate }) => (
         <Text className="input-range-date-cell w-full text-wrap text-right text-sm">
-          {DateTimeTool.formatDateRange(applyDate?.[0], applyDate?.[1])}
+          {formatDateRange(applyDate?.[0], applyDate?.[1])}
         </Text>
       ),
       title: t('component.table.applyDate'),

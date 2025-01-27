@@ -7,7 +7,6 @@ import type { ColumnType } from 'antd/lib/table';
 import type { Dayjs } from 'dayjs';
 import type { ParseKeys } from 'i18next';
 import type { DetailedHTMLProps, ThHTMLAttributes } from 'react';
-import type { ResizableProps } from 'react-resizable';
 
 export enum Gender {
   Female = 'female',
@@ -81,9 +80,11 @@ export type HeaderCellProps = DetailedHTMLProps<
   Omit<ThHTMLAttributes<HTMLTableCellElement>, 'onResize'>,
   HTMLTableCellElement
 > & {
-  onResize: ResizableProps['onResize'];
+  onResizeEnd: (width: number) => void;
+  onResizeStart: () => void;
   onResetSize: () => void;
   width: number;
+  minWidth?: number;
 };
 
 export type CustomOnHeaderCell<T> = (
@@ -124,10 +125,12 @@ export interface AdditionalEditableTableProps<T extends AnyObject> {
 export interface EditableColumnType<T extends AnyObject>
   extends Omit<
       NonNullable<TableProps<T>['columns']>[number],
-      'columns' | 'dataIndex'
+      'columns' | 'dataIndex' | 'onHeaderCell' | 'width'
     >,
     AdditionalEditableTableProps<T> {
   children?: EditableColumnType<T>[];
+  onHeaderCell?: (column: EditableColumnType<T>) => HeaderCellProps;
+  width: number;
 }
 
 export type EditableTableRow<T extends AnyObject> = {

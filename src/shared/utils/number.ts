@@ -4,10 +4,11 @@ import { DEFAULT_CURRENCY_UNIT } from '../constants';
 import { useLocalStore } from '../stores';
 
 const formatterInputNumber = (num?: null | number | string): string => {
-  if (!num || isNaN(Number(num))) return '';
+  if (!num || isNaN(Number(num))) return String(num);
 
   return `${num
     .toString()
+    .replace('.', '')
     .replace(/^[+-]?\d+/, init =>
       init.replace(new RegExp(`(\\d)(?=(\\d{${3}})+$)`, 'g'), '$1,'),
     )}`;
@@ -27,10 +28,10 @@ const formatNumber = (num?: null | number | string, digit = 3) => {
     )}`;
 };
 
-const formatMoney = (value?: null | number | string): string => {
+const formatMoney = (value?: null | number | string): string | undefined => {
   const symbol = DEFAULT_CURRENCY_UNIT;
 
-  if (!value || isNaN(Number(value))) return `${symbol} 0`;
+  if (!value || isNaN(Number(value))) return undefined;
 
   return `${symbol} ${formatNumber(value)}`;
 };

@@ -98,7 +98,6 @@ export function CanvaEditorProvider({
     CanvaPaperType.A4Vertical,
   );
   const [isEditing, setIsEditing] = useState(false);
-  console.log('items:', items);
 
   const workspaceSize = {
     height: props.height - (CANVA_SIZE.footerHeight + CANVA_SIZE.headerHeight),

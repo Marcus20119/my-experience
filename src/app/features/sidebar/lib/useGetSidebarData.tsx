@@ -87,6 +87,12 @@ export const useGetSidebarData = () => {
             match: '/feature/canva-editor',
             path: '/feature/canva-editor',
           },
+          {
+            key: SubSidebarKey.Excel,
+            label: t('layout.title.excel'),
+            match: '/feature/excel',
+            path: '/feature/excel',
+          },
         ],
         icon: <ElementEqual />,
         key: MainSidebarKey.Feature,

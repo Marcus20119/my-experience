@@ -1,3 +1,4 @@
+import type { CompactActionEntity } from '@/shared/components';
 import { useCanvaEditorContext } from '@/app/features/feature/canva-editor/context';
 import {
   CANVA_SIZE,
@@ -7,34 +8,18 @@ import {
   DEFAULT_FILL_COLOR,
   DEFAULT_STROKE_DISABLED_COLOR,
 } from '@/app/features/feature/canva-editor/model';
-import { Select } from '@/shared/components';
+import { Action, Select } from '@/shared/components';
 import { FileTool } from '@/shared/utils/file';
 import { Icon } from '@iconify/react';
-import { Button, ColorPicker, Flex, Popover, Tooltip } from 'antd';
+import { Button, ColorPicker, Flex } from 'antd';
 import { DocumentDownload } from 'iconsax-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cn } from '@/lib/tailwind';
 import BorderPopover from './BorderPopover';
 import CornerRoundingPopover from './CornerRoundingPopover';
-import { StyledCompact } from './styles';
 
 const { downloadURI } = FileTool;
-
-interface ButtonAction {
-  disabled?: boolean;
-  icon: React.ReactNode;
-  label: string;
-  onClick?: () => void;
-  popover?: React.ReactNode;
-  type: 'button';
-}
-
-interface CustomAction {
-  element: React.ReactNode;
-  label: string;
-  type: 'custom';
-}
 
 function CanvaHeader() {
   const { t } = useTranslation();
@@ -59,9 +44,10 @@ function CanvaHeader() {
   const enabledCornerRadius = isRect || isImage;
   const enabledBorder = !!selectedItem;
   const enabledFillColor = isShape;
-  const enabledDownload = !!stageRef && items?.length && !isEditing;
+  const enabledDownload =
+    !!stageRef && items?.length && !isEditing && !selectedItem;
 
-  const actions = useMemo<(ButtonAction | CustomAction)[]>(
+  const actions = useMemo<CompactActionEntity[]>(
     () => [
       {
         element: (
@@ -209,48 +195,7 @@ function CanvaHeader() {
         height: CANVA_SIZE.headerHeight,
       }}
     >
-      <StyledCompact>
-        {actions.map(action => {
-          if (action.type === 'button') {
-            return (
-              <Popover
-                content={action.popover}
-                key={action.label}
-                open={action.popover ? undefined : false}
-                trigger="click"
-              >
-                <Tooltip placement="bottom" title={action.label}>
-                  <Button
-                    className={cn(
-                      'border-neutral-300',
-                      action.disabled
-                        ? 'bg-neutral-100'
-                        : 'bg-neutral-0 hover:border-neutral-600 hover:bg-neutral-100',
-                    )}
-                    disabled={action.disabled}
-                    icon={action.icon}
-                    onClick={action.onClick}
-                  />
-                </Tooltip>
-              </Popover>
-            );
-          }
-
-          if (action.type === 'custom') {
-            return (
-              <Tooltip
-                key={action.label}
-                placement="bottom"
-                title={action.label}
-              >
-                {action.element}
-              </Tooltip>
-            );
-          }
-
-          return null;
-        })}
-      </StyledCompact>
+      <Action.Compact actions={actions} />
     </Flex>
   );
 }

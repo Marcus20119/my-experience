@@ -4,20 +4,10 @@ import {
   CanvaItemType,
   CanvaShapeType,
 } from '@/app/features/feature/canva-editor/model';
-import { Button, Space, Tooltip } from 'antd';
+import { Action, type CompactActionEntity } from '@/shared/components';
 import { BackwardItem, ForwardItem, Trash } from 'iconsax-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { cn } from '@/lib/tailwind';
-
-const { Compact } = Space;
-
-interface ButtonAction {
-  disabled?: boolean;
-  icon: React.ReactNode;
-  label: string;
-  onClick: () => void;
-}
 
 interface Props {
   zIndex: number;
@@ -130,7 +120,7 @@ function CanvaItemActions({ zIndex }: Props) {
     return maxY;
   }, [selectedItem, stageSize.height]);
 
-  const buttonActions = useMemo<ButtonAction[]>(() => {
+  const actions = useMemo<CompactActionEntity[]>(() => {
     if (!selectedItem) {
       return [];
     }
@@ -143,6 +133,7 @@ function CanvaItemActions({ zIndex }: Props) {
         onClick: () => {
           onBringToFront(selectedItem.id);
         },
+        type: 'button',
       },
       {
         disabled: selectedItem?.zIndex === 0,
@@ -151,6 +142,7 @@ function CanvaItemActions({ zIndex }: Props) {
         onClick: () => {
           onSendToBack(selectedItem.id);
         },
+        type: 'button',
       },
       {
         icon: <Trash size="20" variant="Bulk" />,
@@ -158,6 +150,7 @@ function CanvaItemActions({ zIndex }: Props) {
         onClick: () => {
           onRemoveProduct(selectedItem.id);
         },
+        type: 'button',
       },
     ];
   }, [items, onBringToFront, onRemoveProduct, onSendToBack, selectedItem, t]);
@@ -168,7 +161,8 @@ function CanvaItemActions({ zIndex }: Props) {
   }
 
   return (
-    <Compact
+    <Action.Compact
+      actions={actions}
       block
       className="absolute w-fit -translate-x-1/2 translate-y-1/2"
       style={{
@@ -176,23 +170,7 @@ function CanvaItemActions({ zIndex }: Props) {
         top: `${top}%`,
         zIndex,
       }}
-    >
-      {buttonActions.map(action => (
-        <Tooltip key={action.label} placement="bottom" title={action.label}>
-          <Button
-            className={cn(
-              'border-neutral-300',
-              action.disabled
-                ? 'bg-neutral-100'
-                : 'bg-neutral-0 hover:border-neutral-600 hover:bg-neutral-100',
-            )}
-            disabled={action.disabled}
-            icon={action.icon}
-            onClick={action.onClick}
-          />
-        </Tooltip>
-      ))}
-    </Compact>
+    />
   );
 }
 

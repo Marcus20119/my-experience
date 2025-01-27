@@ -33,13 +33,13 @@ function UserTable() {
 
   return (
     <MyTable<UserTableEntity>
+      columns={columns}
+      customizable
       dataSource={mockUserData}
       footerActions={FooterActions}
-      initialColumns={columns}
+      resizable
       rowKey="id"
       scroll={{ x: width, y: height }}
-      showCustomizeTable
-      showResizable
       showRowSelection
       tableName="customizableTable"
     />

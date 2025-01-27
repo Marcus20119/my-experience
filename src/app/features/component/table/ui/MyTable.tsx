@@ -1,6 +1,5 @@
 import type { TableProps } from 'antd/lib';
 import type { AnyObject } from 'antd/lib/_util/type';
-import type { ResizableProps } from 'react-resizable';
 import { Checkbox, Flex, Table, Typography } from 'antd';
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-react';
 import { useMemo, useState } from 'react';
@@ -12,22 +11,22 @@ import Cell from './Cell';
 const { Text } = Typography;
 
 interface Props<T> extends Omit<TableProps<T>, 'columns'> {
+  columns?: MyTableColumn<T>[];
+  customizable?: boolean;
   footerActions?: (selectedRowKeys: React.Key[]) => React.ReactNode;
-  initialColumns?: MyTableColumn<T>[];
-  showCustomizeTable?: boolean;
+  resizable?: boolean;
   showPagination?: boolean;
-  showResizable?: boolean;
   showRowSelection?: boolean;
   tableName: string;
 }
 
 function MyTable<T extends AnyObject>({
+  columns: initialColumns = [],
   components,
+  customizable,
   footerActions,
-  initialColumns = [],
-  showCustomizeTable,
+  resizable,
   showPagination = true,
-  showResizable,
   showRowSelection,
   tableName,
   ...props
@@ -39,7 +38,7 @@ function MyTable<T extends AnyObject>({
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   const [columns, setColumns] = useState<MyTableColumn<T>[]>(() => {
-    if (showCustomizeTable) {
+    if (customizable) {
       return initialColumns.map((column, index) => {
         if (index === initialColumns.length - 1) {
           return {
@@ -63,20 +62,57 @@ function MyTable<T extends AnyObject>({
   const resizedColumns: MyTableColumn<T>[] = useMemo(
     () =>
       columns.map((column, index) => {
-        const onResize: ResizableProps['onResize'] = (_, { size }) => {
+        const onResizeStart = () => {
           setColumns(prevColumns => {
             const nextColumns = [...prevColumns];
-            nextColumns[index] = { ...nextColumns[index], width: size.width };
+            nextColumns[index] = {
+              ...nextColumns[index],
+              children: nextColumns[index].children?.map(child => ({
+                ...child,
+                fixed: child.fixed || 'left',
+              })),
+              fixed: nextColumns[index].fixed || 'left',
+            };
+            return nextColumns;
+          });
+        };
+
+        const onResizeEnd = (width: number) => {
+          setColumns(prevColumns => {
+            const defaultFixed = initialColumns[index].fixed;
+            const prevWidth = prevColumns[index].width;
+
+            const nextColumns = [...prevColumns];
+            nextColumns[index] = {
+              ...nextColumns[index],
+              children: nextColumns[index].children?.map(child => ({
+                ...child,
+                fixed: defaultFixed,
+                width: width * (child.width / prevWidth),
+              })),
+              fixed: defaultFixed,
+              width,
+            };
             return nextColumns;
           });
         };
 
         const onResetSize = () => {
           setColumns(prevColumns => {
+            const defaultFixed = initialColumns[index].fixed;
             const defaultWidth = initialColumns[index].width;
+            const prevWidth = prevColumns[index].width;
 
             const nextColumns = [...prevColumns];
-            nextColumns[index] = { ...nextColumns[index], width: defaultWidth };
+            nextColumns[index] = {
+              ...nextColumns[index],
+              children: nextColumns[index].children?.map(child => ({
+                ...child,
+                width: defaultWidth * (child.width / prevWidth),
+              })),
+              fixed: defaultFixed,
+              width: defaultWidth,
+            };
             return nextColumns;
           });
         };
@@ -85,7 +121,8 @@ function MyTable<T extends AnyObject>({
           ...column,
           onHeaderCell: column => ({
             onResetSize,
-            onResize,
+            onResizeEnd,
+            onResizeStart,
             width: column.width,
           }),
         };
@@ -115,7 +152,7 @@ function MyTable<T extends AnyObject>({
       <Table<T>
         columns={customizedColumns as TableProps<T>['columns']}
         components={{
-          header: showResizable
+          header: resizable
             ? {
                 cell: Cell.Header,
               }

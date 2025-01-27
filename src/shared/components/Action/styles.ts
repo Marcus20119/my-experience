@@ -3,7 +3,7 @@ import { Space } from 'antd';
 
 const { Compact } = Space;
 
-export const StyledCompact = styled(Compact)`
+export const StyledCompactAction = styled(Compact)`
   .ant-select-selector {
     border-color: var(--neutral-300-color) !important;
   }

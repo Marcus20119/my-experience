@@ -23,6 +23,7 @@ function IncomeTable() {
   return (
     <MyTable<IncomeTableEntity>
       bordered
+      columns={columns}
       dataSource={mockIncomeTable}
       expandable={{
         defaultExpandedRowKeys: [mockIncomeTable[3].id],
@@ -30,7 +31,6 @@ function IncomeTable() {
           'This is a nested table. We can customize the row rendering by providing a function.',
         rowExpandable: ({ type }) => type === 'month',
       }}
-      initialColumns={columns}
       pagination={false}
       rowKey="id"
       scroll={{ x: 'max-content', y: height }}

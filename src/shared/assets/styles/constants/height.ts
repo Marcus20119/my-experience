@@ -1,4 +1,5 @@
 export const HEIGHT = {
+  compactAction: 32,
   headerContent: 80,
   headerMain: 56,
   pagination: 48,

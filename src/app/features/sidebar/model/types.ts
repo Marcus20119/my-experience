@@ -19,6 +19,7 @@ export enum SubSidebarKey {
   Calendar = 'calendar',
   CanvaEditor = 'canva-editor',
   Configuration = 'configuration',
+  Excel = 'excel',
   Field = 'field',
   Form = 'form',
   Language = 'language',

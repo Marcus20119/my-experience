@@ -4,12 +4,20 @@ import type {
 } from '@/app/features/component/table';
 import type { Dispatch, SetStateAction } from 'react';
 import { EditableTable } from '@/app/features/component/table';
+import { useClickOutside } from '@/shared/hooks';
 import { DateTimeTool, NumberTool } from '@/shared/utils';
 import { Typography } from 'antd';
-import { useCallback, useMemo } from 'react';
-import type { ExcelTableEntity } from '../model';
+import { useCallback, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import type { ExcelTableEntity, RangeAddress, RangeStyle } from '../model';
 import { getExcelColumnName } from '../lib';
-import { INITIAL_WIDTH } from '../model';
+import {
+  EXCEL_ACTION_CLASS,
+  EXCEL_ACTION_ID,
+  ExcelMode,
+  INITIAL_WIDTH,
+} from '../model';
+import { StyledExcelWrapper } from './styles';
 
 const { Paragraph, Text } = Typography;
 const { formatDate } = DateTimeTool;
@@ -17,17 +25,46 @@ const { formatMoney } = NumberTool;
 
 interface Props {
   dataSource: EditableTableRow<ExcelTableEntity>[];
+  mode: ExcelMode;
+  rangeStyles: RangeStyle[];
+  selectedRange: null | RangeAddress;
   setDataSource: Dispatch<SetStateAction<EditableTableRow<ExcelTableEntity>[]>>;
+  setSelectedRange: Dispatch<SetStateAction<null | RangeAddress>>;
   setWidths: Dispatch<SetStateAction<Record<keyof ExcelTableEntity, number>>>;
   tableHeight: number;
 }
 
 function ExcelTable({
   dataSource,
+  mode,
+  rangeStyles,
+  selectedRange,
   setDataSource,
+  setSelectedRange,
   setWidths,
   tableHeight,
 }: Props) {
+  const { t } = useTranslation();
+
+  const [isMouseDown, setIsMouseDown] = useState(false);
+
+  useClickOutside({
+    callback: () => setSelectedRange(null),
+    exceptions: [
+      ...[
+        EXCEL_ACTION_ID.bold,
+        EXCEL_ACTION_ID.italic,
+        EXCEL_ACTION_ID.underline,
+      ].map(id => `#${id}`),
+      ...[
+        EXCEL_ACTION_CLASS.fill,
+        EXCEL_ACTION_CLASS.textColor,
+        'ant-color-picker',
+      ].map(className => `.${className}`),
+    ],
+    selector: '.ant-table-body',
+  });
+
   const handleSave = useCallback(
     (row: EditableTableRow<ExcelTableEntity>) => {
       const newData = [...dataSource];
@@ -55,26 +92,28 @@ function ExcelTable({
         inputType: 'text',
         key: 'key',
         render: (_, { key }) => (
-          <Text className="w-full text-wrap text-sm font-semibold">{key}</Text>
+          <Text className="row-key-cell w-full text-wrap text-sm font-semibold">
+            {key}
+          </Text>
         ),
         title: 1,
         width: INITIAL_WIDTH.key,
       },
       {
         dataIndex: 'name',
-        editable: true,
+        editable: mode === ExcelMode.Editing,
         fixed: 'left',
         inputType: 'text',
         key: 'name',
         render: (_, { name }) => (
           <Text className="w-full text-wrap text-sm">{name}</Text>
         ),
-        title: 'Name',
+        title: t('feature.excel.label.name'),
         width: INITIAL_WIDTH.name,
       },
       {
         dataIndex: 'age',
-        editable: true,
+        editable: mode === ExcelMode.Editing,
         inputNumberProps: {
           min: 0,
         },
@@ -83,12 +122,12 @@ function ExcelTable({
         render: (_, { age }) => (
           <Text className="w-full text-wrap text-sm">{age}</Text>
         ),
-        title: 'Age',
+        title: t('feature.excel.label.age'),
         width: INITIAL_WIDTH.age,
       },
       {
         dataIndex: 'dayOfBirth',
-        editable: true,
+        editable: mode === ExcelMode.Editing,
         inputType: 'date',
         key: 'dayOfBirth',
         render: (_, { dayOfBirth }) => (
@@ -96,44 +135,46 @@ function ExcelTable({
             {formatDate(dayOfBirth)}
           </Text>
         ),
-        title: 'Day of birth',
+        title: t('feature.excel.label.dayOfBirth'),
         width: INITIAL_WIDTH.dayOfBirth,
       },
       {
         dataIndex: 'salary',
-        editable: true,
+        editable: mode === ExcelMode.Editing,
         inputNumberProps: {
           min: 0,
         },
         inputType: 'number',
         key: 'salary',
-        render: (_, { salary }) => (
-          <Text className="w-full text-wrap text-sm">
-            {formatMoney(salary)}
-          </Text>
-        ),
-        title: 'Salary',
+        render: (_, { salary }) =>
+          salary ? (
+            <Text className="w-full text-wrap text-sm">
+              {formatMoney(salary)}
+            </Text>
+          ) : null,
+        title: t('feature.excel.label.salary'),
         width: INITIAL_WIDTH.salary,
       },
       {
         dataIndex: 'otherIncome',
-        editable: true,
+        editable: mode === ExcelMode.Editing,
         inputNumberProps: {
           min: 0,
         },
         inputType: 'number',
         key: 'otherIncome',
-        render: (_, { otherIncome }) => (
-          <Text className="w-full text-wrap text-sm">
-            {formatMoney(otherIncome)}
-          </Text>
-        ),
-        title: 'Other income',
+        render: (_, { otherIncome }) =>
+          otherIncome ? (
+            <Text className="w-full text-wrap text-sm">
+              {formatMoney(otherIncome)}
+            </Text>
+          ) : null,
+        title: t('feature.excel.label.otherIncome'),
         width: INITIAL_WIDTH.otherIncome,
       },
       {
         dataIndex: 'note',
-        editable: true,
+        editable: mode === ExcelMode.Editing,
         inputTextAreaProps: {
           autoSize: true,
         },
@@ -145,28 +186,105 @@ function ExcelTable({
           </Paragraph>
         ),
 
-        title: 'Note',
+        title: t('feature.excel.label.note'),
         width: INITIAL_WIDTH.note,
       },
     ],
-    [],
+    [mode, t],
   );
 
   const formattedColumns = useMemo(() => {
     const excelColumns: EditableColumnType<
       EditableTableRow<ExcelTableEntity>
-    >[] = columns.map((col, index) => ({
-      align: 'center',
-      children: [col],
-      className: 'bg-neutral-100',
-      editable: col.editable,
-      fixed: col.fixed,
-      title: getExcelColumnName(index),
-      width: col.width,
-    }));
+    >[] = columns.map((col, index) => {
+      const colName = getExcelColumnName(index);
+
+      return {
+        align: 'center',
+        children: [{ ...col, ['data-col-key']: colName }],
+        className: 'bg-neutral-100',
+        editable: col.editable,
+        fixed: col.fixed,
+        title: colName,
+        width: col.width,
+      };
+    });
 
     return excelColumns.map(col => {
-      if (!col.editable) {
+      const stylingEvents = {
+        onMouseDown: (e: MouseEvent) => {
+          if (mode === ExcelMode.Styling) {
+            document.body.style.cursor = 'cell';
+            const cell = e.currentTarget as HTMLTableCellElement;
+            const row = cell.parentElement as HTMLTableRowElement;
+
+            const colKey = cell?.dataset?.colKey;
+            const rowKey = row?.dataset?.rowKey;
+
+            if (!colKey || !rowKey) return;
+
+            setIsMouseDown(true);
+            setSelectedRange({
+              end: {
+                col: colKey,
+                row: Number(rowKey),
+              },
+              start: {
+                col: colKey,
+                row: Number(rowKey),
+              },
+            });
+          }
+        },
+        onMouseEnter: (e: MouseEvent) => {
+          if (mode === ExcelMode.Styling) {
+            if (!isMouseDown) return;
+
+            const cell = e.currentTarget as HTMLTableCellElement;
+            const row = cell.parentElement as HTMLTableRowElement;
+
+            const colKey = cell?.dataset?.colKey;
+            const rowKey = row?.dataset?.rowKey;
+
+            if (!colKey || !rowKey) return;
+
+            setSelectedRange(prev => {
+              if (!prev) return null;
+
+              return {
+                ...prev,
+                end: {
+                  col: colKey,
+                  row: Number(rowKey),
+                },
+              };
+            });
+          }
+        },
+        onMouseUp: () => {
+          if (mode === ExcelMode.Styling) {
+            document.body.style.cursor = 'default';
+            setIsMouseDown(false);
+          }
+        },
+      };
+
+      if (!col.editable && mode === ExcelMode.Styling) {
+        return {
+          ...col,
+          children: col.children?.map(child => ({
+            ...child,
+
+            onCell: (record: EditableTableRow<ExcelTableEntity>) => ({
+              ...child,
+              ...stylingEvents,
+              record,
+            }),
+          })),
+        };
+      }
+
+      if (!col.editable && mode === ExcelMode.Editing) {
         return col;
       }
 
@@ -187,28 +305,30 @@ function ExcelTable({
         }),
       };
     });
-  }, [columns, handleSave]);
+  }, [columns, handleSave, isMouseDown, mode, setSelectedRange]);
 
   return (
-    <EditableTable<EditableTableRow<ExcelTableEntity>>
-      columns={formattedColumns as EditableColumnType<ExcelTableEntity>[]}
-      dataSource={dataSource}
-      onResize={columns => {
-        const widths = columns.reduce(
-          (acc, col) => {
-            const key = col.children?.[0].dataIndex as keyof ExcelTableEntity;
-            acc[key] = col.children?.[0].width ?? 0;
-            return acc;
-          },
-          {} as Record<keyof ExcelTableEntity, number>,
-        );
+    <StyledExcelWrapper rangeStyles={rangeStyles} selectedRange={selectedRange}>
+      <EditableTable<EditableTableRow<ExcelTableEntity>>
+        columns={formattedColumns as EditableColumnType<ExcelTableEntity>[]}
+        dataSource={dataSource}
+        onResize={columns => {
+          const widths = columns.reduce(
+            (acc, col) => {
+              const key = col.children?.[0].dataIndex as keyof ExcelTableEntity;
+              acc[key] = col.children?.[0].width ?? 0;
+              return acc;
+            },
+            {} as Record<keyof ExcelTableEntity, number>,
+          );
 
-        setWidths(widths);
-      }}
-      pagination={false}
-      resizable
-      scroll={{ x: 'max-content', y: tableHeight }}
-    />
+          setWidths(widths);
+        }}
+        pagination={false}
+        resizable
+        scroll={{ x: 'max-content', y: tableHeight }}
+      />
+    </StyledExcelWrapper>
   );
 }
 

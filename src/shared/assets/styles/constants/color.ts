@@ -1,6 +1,7 @@
 export const COLOR = {
   neutral: {
     ['0']: '#ffffff',
+    ['50']: '#fafafa',
     ['100']: '#f5f5f5',
     ['200']: '#ededed',
     ['300']: '#e0e0e0',

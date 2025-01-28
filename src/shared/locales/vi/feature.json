@@ -20,6 +20,24 @@
         "a4Vertical": "A4 - Vertical",
         "square": "Square"
       }
+    },
+    "excel": {
+      "label": {
+        "age": "Age",
+        "bold": "Bold",
+        "dayOfBirth": "Day of birth",
+        "download": "Download",
+        "editing": "Editing",
+        "fill": "Fill",
+        "italic": "Italic",
+        "name": "Name",
+        "note": "Note",
+        "otherIncome": "Other income",
+        "salary": "Salary",
+        "styling": "Styling",
+        "textColor": "Text color",
+        "underline": "Underline"
+      }
     }
   }
 }

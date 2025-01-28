@@ -1,6 +1,7 @@
 export * from './useAppRouter';
 export * from './useAppSearchParams';
 export * from './useCalculateElementSize';
+export * from './useClickOutside';
 export * from './useDrawerRouter';
 export * from './useElementSize';
 export * from './useKeyDown';

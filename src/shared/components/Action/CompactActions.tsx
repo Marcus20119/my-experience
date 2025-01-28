@@ -27,10 +27,15 @@ function CompactActions({ actions, ...props }: Props) {
                     action.disabled
                       ? 'bg-neutral-100'
                       : 'bg-neutral-0 hover:border-neutral-600 hover:bg-neutral-100',
+                    action.active
+                      ? 'border-secondary bg-primary shadow-none hover:bg-primary hover:opacity-90'
+                      : '',
                   )}
                   disabled={action.disabled}
                   icon={action.icon}
+                  id={action.id}
                   onClick={action.onClick}
+                  type={action.active ? 'primary' : 'default'}
                 />
               </Tooltip>
             </Popover>

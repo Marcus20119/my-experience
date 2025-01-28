@@ -1,7 +1,9 @@
 export interface ButtonActionEntity {
+  active?: boolean;
   disabled?: boolean;
   icon: React.ReactNode;
-  label: string;
+  id?: string;
+  label?: string;
   onClick?: () => void;
   popover?: React.ReactNode;
   type: 'button';
@@ -9,7 +11,7 @@ export interface ButtonActionEntity {
 
 export interface CustomActionEntity {
   element: React.ReactNode;
-  label: string;
+  label?: string;
   type: 'custom';
 }
 

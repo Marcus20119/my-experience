@@ -1,8 +1,13 @@
 import type { EditableTableRow } from '@/app/features/component/table';
-import type { ExcelTableEntity } from '@/app/features/feature/excel';
+import type {
+  ExcelTableEntity,
+  RangeAddress,
+  RangeStyle,
+} from '@/app/features/feature/excel';
 import type { BreadCrumbItem } from '@/app/features/header';
 import {
   ExcelActions,
+  ExcelMode,
   ExcelTable,
   INITIAL_WIDTH,
 } from '@/app/features/feature/excel';
@@ -38,7 +43,7 @@ function ExcelPage() {
 
   const defaultValue: EditableTableRow<ExcelTableEntity>[] = useMemo(
     () =>
-      Array(20)
+      Array(19)
         .fill(null)
         .map((_, index) => ({
           key: index + 2,
@@ -51,14 +56,31 @@ function ExcelPage() {
     useState<EditableTableRow<ExcelTableEntity>[]>(defaultValue);
   const [widths, setWidths] =
     useState<Record<keyof ExcelTableEntity, number>>(INITIAL_WIDTH);
+  const [mode, setMode] = useState<ExcelMode>(ExcelMode.Editing);
+  const [selectedRange, setSelectedRange] = useState<null | RangeAddress>(null);
+
+  // Muốn upgrade logic này thì hãy style cho từng cell, set bộ style cho range với start cell, tạm thời không làm vì mất thời gian
+  const [rangeStyles, setRangeStyles] = useState<RangeStyle[]>([]);
 
   return (
     <ContentLayout breadCrumb={breadCrumb} title={t('layout.title.excel')}>
       <Flex gap="1rem" vertical>
-        <ExcelActions dataSource={dataSource} widths={widths} />
+        <ExcelActions
+          dataSource={dataSource}
+          mode={mode}
+          rangeStyles={rangeStyles}
+          selectedRange={selectedRange}
+          setMode={setMode}
+          setRangeStyles={setRangeStyles}
+          widths={widths}
+        />
         <ExcelTable
           dataSource={dataSource}
+          mode={mode}
+          rangeStyles={rangeStyles}
+          selectedRange={selectedRange}
           setDataSource={setDataSource}
+          setSelectedRange={setSelectedRange}
           setWidths={setWidths}
           tableHeight={height}
         />

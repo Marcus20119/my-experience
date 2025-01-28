@@ -6,6 +6,6 @@ export const INITIAL_WIDTH: Record<keyof ExcelTableEntity, number> = {
   key: 40,
   name: 180,
   note: 400,
-  otherIncome: 100,
+  otherIncome: 132,
   salary: 100,
 };

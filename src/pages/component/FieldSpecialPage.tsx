@@ -16,12 +16,7 @@ function FieldSpecialPage() {
         path: '/component/field/special',
       }}
     >
-      <Form<SpecialFieldForm>
-        form={form}
-        layout="vertical"
-        onFinish={values => console.log(values)}
-        size="middle"
-      >
+      <Form<SpecialFieldForm> form={form} layout="vertical" size="middle">
         <Flex gap="1rem" vertical>
           <Flex gap="1rem" vertical>
             <RestCountriesFields />

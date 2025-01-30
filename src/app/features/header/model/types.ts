@@ -1,7 +1,7 @@
 import type { RouterNavigator } from '@/shared/hooks';
 import type { ItemType } from 'antd/es/menu/interface';
 
-export interface BreadCrumbItem {
+export interface BreadcrumbItem {
   onClick?: () => void;
   route?: RouterNavigator;
   title: string;

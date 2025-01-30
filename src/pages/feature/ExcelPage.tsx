@@ -4,7 +4,7 @@ import type {
   RangeAddress,
   RangeStyle,
 } from '@/app/features/feature/excel';
-import type { BreadCrumbItem } from '@/app/features/header';
+import type { BreadcrumbItem } from '@/app/features/header';
 import {
   ExcelActions,
   ExcelMode,
@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 function ExcelPage() {
   const { t } = useTranslation();
 
-  const breadCrumb: BreadCrumbItem[] = [
+  const breadCrumb: BreadcrumbItem[] = [
     {
       title: t('layout.title.feature'),
     },

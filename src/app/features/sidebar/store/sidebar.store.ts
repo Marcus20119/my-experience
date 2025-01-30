@@ -6,7 +6,6 @@ import type { MainSidebarKey, SubSidebarKey } from '../model';
 
 interface SidebarState {
   isMainBarCollapsed?: boolean;
-  isMainBarLocked?: boolean;
   isSubBarCollapsed?: boolean;
   mainSidebarHistory?: Record<MainSidebarKey, SubSidebarKey>;
   subSidebarHistory?: Record<SubSidebarKey, RouterPath>;
@@ -45,7 +44,6 @@ export const useSidebarStore = create<SidebarAction & SidebarState>()(
           return 0;
         },
         isMainBarCollapsed: true,
-        isMainBarLocked: true,
         isSubBarCollapsed: false,
         removeSidebarStates: keys =>
           set(() => {

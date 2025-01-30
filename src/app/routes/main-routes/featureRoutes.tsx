@@ -1,7 +1,9 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
-import CanvaEditorPage from '@/pages/feature/CanvaEditorPage';
-import ExcelPage from '@/pages/feature/ExcelPage';
+import { lazy } from 'react';
+
+const CanvaEditorPage = lazy(() => import('@/pages/feature/CanvaEditorPage'));
+const ExcelPage = lazy(() => import('@/pages/feature/ExcelPage'));
 
 export const FEATURE_ROUTES = [
   {

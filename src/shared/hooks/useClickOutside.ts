@@ -17,8 +17,15 @@ export const useClickOutside = ({
     const handleClickOutside = (event: MouseEvent) => {
       const element = document.querySelector(selector);
       const isInsideException = exceptions.some(exceptionSelector => {
-        const exceptionElement = document.querySelector(exceptionSelector);
-        return exceptionElement?.contains(event.target as Node);
+        const exceptionElements = document.querySelectorAll(exceptionSelector);
+
+        for (let i = 0; i < exceptionElements.length; i++) {
+          if (exceptionElements[i].contains(event.target as Node)) {
+            return true;
+          }
+        }
+
+        return false;
       });
 
       // If the click is outside the target element and not inside an exception element

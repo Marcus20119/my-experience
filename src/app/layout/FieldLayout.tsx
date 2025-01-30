@@ -1,4 +1,4 @@
-import type { BreadCrumbItem, HeaderTabItem } from '@/app/features/header';
+import type { BreadcrumbItem, HeaderTabItem } from '@/app/features/header';
 import type { RouterNavigator } from '@/shared/hooks';
 import type { ItemType } from 'antd/es/menu/interface';
 import { ContentLayout } from '@/app/layout';
@@ -30,7 +30,7 @@ function FieldLayout({ children, route, tabItems }: Props) {
     }
   }, [route.path, t]);
 
-  const breadCrumb: BreadCrumbItem[] = [
+  const breadCrumb: BreadcrumbItem[] = [
     {
       title: t('layout.title.component'),
     },

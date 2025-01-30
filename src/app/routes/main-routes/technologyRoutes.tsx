@@ -1,11 +1,15 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
-import {
-  ConfigurationPage,
-  LanguagePage,
-  OtherTechnologyPage,
-  UILibraryPage,
-} from '@/pages/technology';
+import { lazy } from 'react';
+
+const ConfigurationPage = lazy(
+  () => import('@/pages/technology/ConfigurationPage'),
+);
+const LanguagePage = lazy(() => import('@/pages/technology/LanguagePage'));
+const OtherTechnologyPage = lazy(
+  () => import('@/pages/technology/OtherTechnologyPage'),
+);
+const UILibraryPage = lazy(() => import('@/pages/technology/UILibraryPage'));
 
 export const TECHNOLOGY_ROUTES = [
   {

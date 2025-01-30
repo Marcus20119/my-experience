@@ -14,30 +14,12 @@ const { Text } = Typography;
 function MainSideBar() {
   const { t } = useTranslation();
   const { navigate } = useAppRouter();
-  const { isMainBarCollapsed, isMainBarLocked, setSidebarStates } =
-    useSidebarStore();
+  const { isMainBarCollapsed, setSidebarStates } = useSidebarStore();
   const { activeMainKey, mainSidebarItems } = useGetSidebarData();
-
-  const onExpandMainSidebar = () => {
-    if (isMainBarLocked) return;
-
-    setSidebarStates({
-      isMainBarCollapsed: false,
-    });
-  };
-
-  const onCollapseMainSidebar = () => {
-    if (isMainBarLocked) return;
-
-    setSidebarStates({
-      isMainBarCollapsed: true,
-    });
-  };
 
   const onToggleLockMainSidebar = () => {
     setSidebarStates({
-      isMainBarCollapsed: true,
-      isMainBarLocked: !isMainBarLocked,
+      isMainBarCollapsed: !isMainBarCollapsed,
     });
   };
 
@@ -48,8 +30,6 @@ function MainSideBar() {
         isMainBarCollapsed ? 'w-sidebarCollapsed' : 'w-sidebarExpanded',
       )}
       gap="1rem"
-      onMouseEnter={onExpandMainSidebar}
-      onMouseLeave={onCollapseMainSidebar}
       vertical
     >
       <Flex
@@ -83,7 +63,7 @@ function MainSideBar() {
             <Tooltip
               align={{ offset: [24, 0] }}
               placement="right"
-              title={isMainBarLocked ? item.label : undefined}
+              title={isMainBarCollapsed ? item.label : undefined}
               zIndex={Number(Z_INDEX.sidebarTooltip)}
             >
               <Flex
@@ -120,7 +100,7 @@ function MainSideBar() {
         align={{ offset: [24, 0] }}
         mouseEnterDelay={0.3} // Prevents the tooltip from flickering
         placement="right"
-        title={isMainBarLocked ? t('layout.lockSidebar.unlock') : undefined}
+        title={isMainBarCollapsed ? t('layout.action.expand') : undefined}
       >
         <Flex
           align="center"
@@ -131,7 +111,7 @@ function MainSideBar() {
           gap="0.5rem"
           onClick={onToggleLockMainSidebar}
         >
-          {isMainBarLocked ? (
+          {isMainBarCollapsed ? (
             <ToggleOnCircle className="flex-shrink-0" color={COLOR.secondary} />
           ) : (
             <ToggleOffCircle
@@ -142,9 +122,9 @@ function MainSideBar() {
 
           {!isMainBarCollapsed ? (
             <Text className="line-clamp-1 font-semibold text-inherit">
-              {isMainBarLocked
-                ? t('layout.lockSidebar.unlock')
-                : t('layout.lockSidebar.lock')}
+              {isMainBarCollapsed
+                ? t('layout.action.expand')
+                : t('layout.action.collapse')}
             </Text>
           ) : null}
         </Flex>

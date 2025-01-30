@@ -1,12 +1,17 @@
+import { Header } from '@/app/features/header';
+import { Sidebar, useSidebarStore } from '@/app/features/sidebar';
 import { useAppRouter } from '@/shared/hooks';
 import { useLocalStore } from '@/shared/stores';
-import { useEffect } from 'react';
+import { Flex } from 'antd';
+import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
+import ContentLayout from './ContentLayout/ContentLayout';
 
 function RootLayout() {
   const { navigate } = useAppRouter();
   const { prevRoute } = useLocalStore();
   const { pathname } = useLocation();
+  const { getSidebarWidth } = useSidebarStore();
 
   useEffect(() => {
     if (pathname === '/') {
@@ -20,7 +25,28 @@ function RootLayout() {
     }
   }, [pathname]);
 
-  return <Outlet />;
+  return (
+    <Suspense
+      fallback={
+        <Flex className="min-h-screen">
+          <Sidebar />
+
+          <Flex
+            className="transition-all duration-300"
+            style={{
+              width: `calc(100% - ${getSidebarWidth()}px)`,
+            }}
+            vertical
+          >
+            <Header />
+            <ContentLayout.Loading />
+          </Flex>
+        </Flex>
+      }
+    >
+      <Outlet />
+    </Suspense>
+  );
 }
 
 export default RootLayout;

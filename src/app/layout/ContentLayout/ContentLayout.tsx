@@ -1,18 +1,19 @@
+import type { BreadcrumbItem, HeaderTabItem } from '@/app/features/header';
 import type { BreadcrumbProps } from 'antd/lib';
+import { useHeaderStore } from '@/app/features/header';
+import { useGetSidebarData, useSidebarStore } from '@/app/features/sidebar';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { useAppRouter } from '@/shared/hooks';
 import { Breadcrumb, Dropdown, Flex, Tabs, Typography } from 'antd';
 import { ArrowDown2, ArrowRight2, ArrowUp2 } from 'iconsax-react';
 import { useLocation } from 'react-router-dom';
 import { cn } from '@/lib/tailwind';
-import type { BreadCrumbItem, HeaderTabItem } from '../features/header';
-import { useHeaderStore } from '../features/header';
-import { useGetSidebarData, useSidebarStore } from '../features/sidebar';
+import ContentLayoutLoading from './ContentLayoutLoading';
 
 const { Text, Title } = Typography;
 
 interface Props {
-  breadCrumb?: BreadCrumbItem[];
+  breadCrumb?: BreadcrumbItem[];
   children: React.ReactNode;
   contentNoPadding?: boolean;
   onChangeTab?: (path: RouterPath) => void;
@@ -170,5 +171,7 @@ function ContentLayout({
     </Flex>
   );
 }
+
+ContentLayout.Loading = ContentLayoutLoading;
 
 export default ContentLayout;

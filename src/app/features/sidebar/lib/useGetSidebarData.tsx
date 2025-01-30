@@ -93,6 +93,12 @@ export const useGetSidebarData = () => {
             match: '/feature/excel',
             path: '/feature/excel',
           },
+          {
+            key: SubSidebarKey.ChartPlayground,
+            label: t('layout.title.chartPlayground'),
+            match: '/feature/chart-playground',
+            path: '/feature/chart-playground/bar',
+          },
         ],
         icon: <ElementEqual />,
         key: MainSidebarKey.Feature,

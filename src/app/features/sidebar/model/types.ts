@@ -18,6 +18,7 @@ export enum MainSidebarKey {
 export enum SubSidebarKey {
   Calendar = 'calendar',
   CanvaEditor = 'canva-editor',
+  ChartPlayground = 'chart-playground',
   Configuration = 'configuration',
   Excel = 'excel',
   Field = 'field',

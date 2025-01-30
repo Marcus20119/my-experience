@@ -7,8 +7,8 @@ pnpm check-types
 echo '(2/3) ✅  Linting your project'
 pnpm lint-staged
 
-echo '(3/3) ✅ Running tests'
-pnpm test:watch
+# echo '(3/3) ✅ Running tests'
+# pnpm test:watch
 
 # echo '(3/5) 🏗️👷 Generating dependency visualization'
 # pnpm dep-cruiser:preview

@@ -135,4 +135,5 @@ export interface EditableColumnType<T extends AnyObject>
 
 export type EditableTableRow<T extends AnyObject> = {
   key?: React.Key;
+  children?: EditableTableRow<T>[]; // for nested table
 } & T;

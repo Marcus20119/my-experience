@@ -76,6 +76,10 @@
   border-top: 1px solid #000 !important;
 }
 
+.ant-table-row-level-1:last-of-type > td {
+  border-bottom: 1px solid #000 !important;
+}
+
 .ant-table-cell:has(.ant-table-expanded-row-fixed) {
   border-right: 1px solid #000 !important;
 }

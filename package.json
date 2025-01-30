@@ -45,6 +45,8 @@
     "antd": "^5.22.7",
     "axios": "^1.7.2",
     "dayjs": "^1.11.11",
+    "echarts": "^5.6.0",
+    "echarts-for-react": "^3.0.2",
     "graphql": "^16.8.1",
     "iconsax-react": "^0.0.8",
     "konva": "^9.3.16",

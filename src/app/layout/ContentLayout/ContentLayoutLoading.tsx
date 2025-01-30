@@ -1,7 +1,7 @@
 import { useHeaderStore } from '@/app/features/header';
 import { COLOR } from '@/shared/assets/styles/constants';
 import { Loading } from '@/shared/components';
-import { Breadcrumb, Flex } from 'antd';
+import { Breadcrumb, Flex, Image } from 'antd';
 import { ArrowDown2, ArrowRight2, ArrowUp2 } from 'iconsax-react';
 import { cn } from '@/lib/tailwind';
 
@@ -90,6 +90,16 @@ function ContentLayoutLoading() {
           )}
         </Flex>
       </div>
+
+      <Flex align="center" className="w-full flex-1" justify="center">
+        <Image
+          className="object-contain object-center"
+          height="60%"
+          preview={false}
+          src="/images/cat_loading.gif"
+          width="60%"
+        />
+      </Flex>
     </Flex>
   );
 }

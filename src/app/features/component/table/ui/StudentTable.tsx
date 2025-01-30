@@ -34,7 +34,7 @@ function StudentTable({ onChange, students }: Props) {
       getHeaderHeight() +
       SPACING.contentPadding * 2 +
       HEIGHT.tableHeader * 2 +
-      +ADD_STUDENT_BUTTON_HEIGHT,
+      ADD_STUDENT_BUTTON_HEIGHT,
   });
 
   const defaultValue: EditableTableRow<StudentTableEntity> = useMemo(

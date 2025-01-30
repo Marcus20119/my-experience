@@ -1,15 +1,35 @@
 import type { DeepReadonly } from '@/shared/types';
 import type { RouteObject } from 'react-router-dom';
-import CalendarDailyPage from '@/pages/component/CalendarDailyPage';
-import CalendarMonthlyPage from '@/pages/component/CalendarMonthlyPage';
-import CalendarWeeklyPage from '@/pages/component/CalendarWeeklyPage';
-import FieldOriginalPage from '@/pages/component/FieldOriginalPage';
-import FieldSpecialPage from '@/pages/component/FieldSpecialPage';
-import FormOriginalPage from '@/pages/component/FormOriginalPage';
-import FormSpecialPage from '@/pages/component/FormSpecialPage';
-import TableCustomizablePage from '@/pages/component/TableCustomizablePage';
-import TableEditablePage from '@/pages/component/TableEditablePage';
-import TableExpandablePage from '@/pages/component/TableExpandablePage';
+import { lazy } from 'react';
+
+const CalendarDailyPage = lazy(
+  () => import('@/pages/component/CalendarDailyPage'),
+);
+const CalendarMonthlyPage = lazy(
+  () => import('@/pages/component/CalendarMonthlyPage'),
+);
+const CalendarWeeklyPage = lazy(
+  () => import('@/pages/component/CalendarWeeklyPage'),
+);
+const FieldOriginalPage = lazy(
+  () => import('@/pages/component/FieldOriginalPage'),
+);
+const FieldSpecialPage = lazy(
+  () => import('@/pages/component/FieldSpecialPage'),
+);
+const FormOriginalPage = lazy(
+  () => import('@/pages/component/FormOriginalPage'),
+);
+const FormSpecialPage = lazy(() => import('@/pages/component/FormSpecialPage'));
+const TableCustomizablePage = lazy(
+  () => import('@/pages/component/TableCustomizablePage'),
+);
+const TableEditablePage = lazy(
+  () => import('@/pages/component/TableEditablePage'),
+);
+const TableExpandablePage = lazy(
+  () => import('@/pages/component/TableExpandablePage'),
+);
 
 export const COMPONENT_ROUTES = [
   {

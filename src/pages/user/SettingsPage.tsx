@@ -1,4 +1,4 @@
-import type { BreadCrumbItem } from '@/app/features/header';
+import type { BreadcrumbItem } from '@/app/features/header';
 import { ChangeLanguage } from '@/app/features/settings/change-language';
 import { ContentLayout } from '@/app/layout';
 import { Col, Divider, Flex, Row, Typography } from 'antd';
@@ -16,7 +16,7 @@ interface SettingItem {
 function SettingsPage() {
   const { t } = useTranslation();
 
-  const breadCrumb: BreadCrumbItem[] = [
+  const breadCrumb: BreadcrumbItem[] = [
     {
       title: t('layout.title.system'),
     },

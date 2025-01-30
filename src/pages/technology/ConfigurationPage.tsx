@@ -1,4 +1,4 @@
-import type { BreadCrumbItem } from '@/app/features/header';
+import type { BreadcrumbItem } from '@/app/features/header';
 import { useGetTechnologyItems } from '@/app/features/technology';
 import { ContentLayout } from '@/app/layout';
 import { Ticket } from '@/shared/components/Ticket';
@@ -9,7 +9,7 @@ function ConfigurationPage() {
   const { t } = useTranslation();
   const { technologyItems } = useGetTechnologyItems();
 
-  const breadCrumb: BreadCrumbItem[] = [
+  const breadCrumb: BreadcrumbItem[] = [
     {
       title: t('layout.title.technology'),
     },

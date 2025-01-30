@@ -1,5 +1,5 @@
 import { CanvaEditor } from '@/app/features/feature/canva-editor';
-import { type BreadCrumbItem, useHeaderStore } from '@/app/features/header';
+import { type BreadcrumbItem, useHeaderStore } from '@/app/features/header';
 import { useSidebarStore } from '@/app/features/sidebar';
 import { ContentLayout } from '@/app/layout';
 import { useCalculateElementSize } from '@/shared/hooks';
@@ -14,7 +14,7 @@ function CanvaEditorPage() {
     widthOffset: getSidebarWidth(),
   });
 
-  const breadCrumb: BreadCrumbItem[] = [
+  const breadCrumb: BreadcrumbItem[] = [
     {
       title: t('layout.title.feature'),
     },

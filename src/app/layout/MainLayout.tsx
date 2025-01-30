@@ -17,7 +17,7 @@ function MainLayout() {
   const { isContentHeaderCollapsed, isContentHeaderSticky, setHeaderStates } =
     useHeaderStore();
 
-  const sideBarWidth = getSidebarWidth();
+  const sidebarWidth = getSidebarWidth();
   const disabledSidebarActions = useMatchRoutes(['/settings']);
 
   useKeyDown({
@@ -136,7 +136,7 @@ function MainLayout() {
         <Flex
           className="transition-all duration-300"
           style={{
-            width: `calc(100% - ${sideBarWidth}px)`,
+            width: `calc(100% - ${sidebarWidth}px)`,
           }}
           vertical
         >

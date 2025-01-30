@@ -85,7 +85,7 @@ function BarChart({ dataSource }: Props) {
     [dataSource],
   );
 
-  const _option: EChartsOption = {
+  const option: EChartsOption = {
     grid: {
       bottom: '3%',
       containLabel: true,
@@ -202,7 +202,9 @@ function BarChart({ dataSource }: Props) {
     ],
   };
 
-  return <ReactEcharts className="h-full" option={formattedOptions} />;
+  return (
+    <ReactEcharts className="h-full" option={formattedOptions ?? option} />
+  );
 }
 
 export default BarChart;

@@ -1,4 +1,3 @@
-export { default as ChartPlaygroundLayout } from './ChartPlaygroundLayout';
 export { default as ContentLayout } from './ContentLayout/ContentLayout';
 export { default as FieldLayout } from './FieldLayout';
 export { default as FormLayout } from './FormLayout';

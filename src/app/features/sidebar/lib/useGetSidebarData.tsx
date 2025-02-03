@@ -97,7 +97,7 @@ export const useGetSidebarData = () => {
             key: SubSidebarKey.ChartPlayground,
             label: t('layout.title.chartPlayground'),
             match: '/feature/chart-playground',
-            path: '/feature/chart-playground/bar',
+            path: '/feature/chart-playground',
           },
         ],
         icon: <ElementEqual />,

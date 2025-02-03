@@ -1,3 +1,4 @@
+import type ReactEcharts from 'echarts-for-react';
 import type { Dispatch, SetStateAction } from 'react';
 import {
   type EditableColumnType,
@@ -9,19 +10,22 @@ import { HEIGHT, SPACING } from '@/shared/assets/styles/constants';
 import { useCalculateElementSize } from '@/shared/hooks';
 import { NumberTool } from '@/shared/utils';
 import { Button, Flex, Tooltip, Typography } from 'antd';
-import { Eye, EyeSlash } from 'iconsax-react';
+import { Eye, EyeSlash, Rank } from 'iconsax-react';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { BarTableEntity } from '../model';
 
 const { Text } = Typography;
 const { formatMoney } = NumberTool;
 
 interface Props {
+  chartRef: React.RefObject<ReactEcharts>;
   dataSource: EditableTableRow<BarTableEntity>[];
   setDataSource: Dispatch<SetStateAction<EditableTableRow<BarTableEntity>[]>>;
 }
 
-function BarTable({ dataSource, setDataSource }: Props) {
+function BarTable({ chartRef, dataSource, setDataSource }: Props) {
+  const { t } = useTranslation();
   const { getHeaderHeight } = useHeaderStore();
   const { height } = useCalculateElementSize({
     heightOffset:
@@ -92,7 +96,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
       render: (_, { name }) => (
         <Text className="input-text-cell w-full text-wrap text-sm">{name}</Text>
       ),
-      title: 'Name',
+      title: t('feature.chart.label.name'),
       width: 156,
     },
     {
@@ -106,7 +110,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(monday)}
         </Text>
       ),
-      title: 'Mon',
+      title: t('feature.chart.label.mon'),
       width: 80,
     },
     {
@@ -120,7 +124,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(tuesday)}
         </Text>
       ),
-      title: 'Tue',
+      title: t('feature.chart.label.tue'),
       width: 80,
     },
     {
@@ -134,7 +138,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(wednesday)}
         </Text>
       ),
-      title: 'Wed',
+      title: t('feature.chart.label.wed'),
       width: 80,
     },
     {
@@ -148,7 +152,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(thursday)}
         </Text>
       ),
-      title: 'Thu',
+      title: t('feature.chart.label.thu'),
       width: 80,
     },
     {
@@ -162,7 +166,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(friday)}
         </Text>
       ),
-      title: 'Fri',
+      title: t('feature.chart.label.fri'),
       width: 80,
     },
     {
@@ -176,7 +180,7 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(saturday)}
         </Text>
       ),
-      title: 'Sat',
+      title: t('feature.chart.label.sat'),
       width: 80,
     },
     {
@@ -190,28 +194,55 @@ function BarTable({ dataSource, setDataSource }: Props) {
           {formatMoney(sunday)}
         </Text>
       ),
-      title: 'Sun',
+      title: t('feature.chart.label.sun'),
       width: 80,
     },
     {
       dataIndex: 'id',
       fixed: 'right',
       key: 'id',
-      render: (_, record) =>
-        !record.stackId && !!record?.children?.length ? null : (
-          <Flex align="center" gap="0.5rem">
-            <Tooltip title={record?.hidden ? 'Show' : 'Hide'}>
-              <Button
-                icon={
-                  record?.hidden ? <EyeSlash size="20" /> : <Eye size="20" />
-                }
-                onClick={() => {
-                  handleSave({ ...record, hidden: !record.hidden });
-                }}
-              />
-            </Tooltip>
-          </Flex>
-        ),
+      render: (_, record) => (
+        <Flex align="center" gap="0.5rem">
+          <Tooltip
+            title={
+              record?.hidden
+                ? t('feature.chart.button.show')
+                : t('feature.chart.button.hide')
+            }
+          >
+            <Button
+              icon={record?.hidden ? <EyeSlash size="20" /> : <Eye size="20" />}
+              onClick={() => {
+                handleSave({ ...record, hidden: !record.hidden });
+                chartRef.current?.getEchartsInstance().dispatchAction({
+                  name: record.name,
+                  type: 'legendToggleSelect',
+                });
+              }}
+            />
+          </Tooltip>
+          <Tooltip
+            title={
+              record?.emphasis
+                ? t('feature.chart.button.deEmphasis')
+                : t('feature.chart.button.emphasis')
+            }
+          >
+            <Button
+              icon={
+                record?.emphasis ? (
+                  <Rank size="20" variant="Bulk" />
+                ) : (
+                  <Rank size="20" />
+                )
+              }
+              onClick={() => {
+                handleSave({ ...record, emphasis: !record.emphasis });
+              }}
+            />
+          </Tooltip>
+        </Flex>
+      ),
       width: 80,
     },
   ];

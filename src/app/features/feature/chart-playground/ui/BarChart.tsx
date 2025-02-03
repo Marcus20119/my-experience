@@ -1,14 +1,17 @@
 import type { EditableTableRow } from '@/app/features/component/table';
 import type { EChartsOption } from 'echarts';
 import ReactEcharts from 'echarts-for-react';
-import { useMemo } from 'react';
+import { forwardRef, useMemo } from 'react';
 import type { BarTableEntity } from '../model';
 
 interface Props {
   dataSource: EditableTableRow<BarTableEntity>[];
 }
 
-function BarChart({ dataSource }: Props) {
+function BarChart(
+  { dataSource }: Props,
+  ref: React.ForwardedRef<ReactEcharts>,
+) {
   const formattedOptions = useMemo<EChartsOption>(
     () => ({
       grid: {
@@ -22,27 +25,33 @@ function BarChart({ dataSource }: Props) {
         bottom: 0,
         itemWidth: 16,
       },
-      series: dataSource
-        .filter(record => !record.hidden)
-        .map((record, _, array) => ({
-          barGap: '12%',
-          barWidth: record.stackId ? '7.5%' : '18%',
-          data: [
-            record.monday,
-            record.tuesday,
-            record.wednesday,
-            record.thursday,
-            record.friday,
-            record.saturday,
-            record.sunday,
-          ],
-          emphasis: {
-            focus: 'series',
-          },
-          name: record.name,
-          stack: array?.find(item => item.id === record.stackId)?.name,
-          type: 'bar',
-        })),
+      series: dataSource.map((record, _, array) => ({
+        barGap: '12%',
+        barWidth: record.stackId ? '7.5%' : '18%',
+        data: [
+          record.monday,
+          record.tuesday,
+          record.wednesday,
+          record.thursday,
+          record.friday,
+          record.saturday,
+          record.sunday,
+        ],
+        emphasis: {
+          focus: 'series',
+        },
+        markLine: record?.emphasis
+          ? {
+              data: [[{ type: 'min' }, { type: 'max' }]],
+              lineStyle: {
+                type: 'dashed',
+              },
+            }
+          : undefined,
+        name: record.name,
+        stack: array?.find(item => item.id === record.stackId)?.name,
+        type: 'bar',
+      })),
       toolbox: {
         feature: {
           brush: {
@@ -55,7 +64,7 @@ function BarChart({ dataSource }: Props) {
             yAxisIndex: 'none',
           },
           magicType: {
-            show: false,
+            type: ['line', 'bar'],
           },
           restore: {
             show: false,
@@ -203,8 +212,12 @@ function BarChart({ dataSource }: Props) {
   };
 
   return (
-    <ReactEcharts className="h-full" option={formattedOptions ?? option} />
+    <ReactEcharts
+      className="h-full"
+      option={formattedOptions ?? option}
+      ref={ref}
+    />
   );
 }
 
-export default BarChart;
+export default forwardRef(BarChart);

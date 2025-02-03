@@ -4,14 +4,8 @@ import { lazy } from 'react';
 
 const CanvaEditorPage = lazy(() => import('@/pages/feature/CanvaEditorPage'));
 const ExcelPage = lazy(() => import('@/pages/feature/ExcelPage'));
-const BarChartPlaygroundPage = lazy(
-  () => import('@/pages/feature/chart-playground/BarChartPlaygroundPage'),
-);
-const LineChartPlaygroundPage = lazy(
-  () => import('@/pages/feature/chart-playground/LineChartPlaygroundPage'),
-);
-const PieChartPlaygroundPage = lazy(
-  () => import('@/pages/feature/chart-playground/PieChartPlaygroundPage'),
+const ChartPlaygroundPage = lazy(
+  () => import('@/pages/feature/ChartPlaygroundPage'),
 );
 
 export const FEATURE_ROUTES = [
@@ -24,15 +18,7 @@ export const FEATURE_ROUTES = [
     path: 'feature/excel',
   },
   {
-    element: <BarChartPlaygroundPage />,
-    path: 'feature/chart-playground/bar',
-  },
-  {
-    element: <LineChartPlaygroundPage />,
-    path: 'feature/chart-playground/line',
-  },
-  {
-    element: <PieChartPlaygroundPage />,
-    path: 'feature/chart-playground/pie',
+    element: <ChartPlaygroundPage />,
+    path: 'feature/chart-playground',
   },
 ] as const satisfies DeepReadonly<RouteObject[]>;

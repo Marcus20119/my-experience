@@ -21,6 +21,24 @@
         "square": "Square"
       }
     },
+    "chart": {
+      "button": {
+        "deEmphasis": "De-emphasis",
+        "emphasis": "Emphasis",
+        "hide": "Hide",
+        "show": "Show"
+      },
+      "label": {
+        "fri": "Fri",
+        "mon": "Mon",
+        "name": "Name",
+        "sat": "Sat",
+        "sun": "Sun",
+        "thu": "Thu",
+        "tue": "Tue",
+        "wed": "Wed"
+      }
+    },
     "excel": {
       "label": {
         "age": "Age",

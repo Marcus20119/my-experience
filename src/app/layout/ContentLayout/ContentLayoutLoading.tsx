@@ -94,10 +94,9 @@ function ContentLayoutLoading() {
       <Flex align="center" className="w-full flex-1" justify="center">
         <Image
           className="object-contain object-center"
-          height="60%"
+          height="65%"
           preview={false}
           src="/images/cat_loading.gif"
-          width="60%"
         />
       </Flex>
     </Flex>

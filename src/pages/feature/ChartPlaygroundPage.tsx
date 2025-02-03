@@ -1,12 +1,28 @@
 /* eslint-disable perfectionist/sort-objects */
 import type { EditableTableRow } from '@/app/features/component/table';
 import type { BarTableEntity } from '@/app/features/feature/chart-playground';
+import type { BreadcrumbItem } from '@/app/features/header';
+import type ReactEcharts from 'echarts-for-react';
 import { BarChart, BarTable } from '@/app/features/feature/chart-playground';
-import { ChartPlaygroundLayout } from '@/app/layout';
+import { ContentLayout } from '@/app/layout';
 import { Splitter } from 'antd';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-function BarChartPlaygroundPage() {
+function ChartPlaygroundPage() {
+  const chartRef = useRef<ReactEcharts>(null);
+
+  const { t } = useTranslation();
+
+  const breadCrumb: BreadcrumbItem[] = [
+    {
+      title: t('layout.title.feature'),
+    },
+    {
+      title: t('layout.title.chartPlayground'),
+    },
+  ];
+
   const defaultValue: EditableTableRow<BarTableEntity[]> = useMemo(
     () => [
       {
@@ -146,24 +162,25 @@ function BarChartPlaygroundPage() {
   const [dataSource, setDataSource] =
     useState<EditableTableRow<BarTableEntity>[]>(defaultValue);
 
-  console.log('dataSource:', dataSource);
-
   return (
-    <ChartPlaygroundLayout
-      route={{
-        path: '/feature/chart-playground/bar',
-      }}
+    <ContentLayout
+      breadCrumb={breadCrumb}
+      title={t('layout.title.chartPlayground')}
     >
       <Splitter>
         <Splitter.Panel defaultSize="50%">
-          <BarTable dataSource={dataSource} setDataSource={setDataSource} />
+          <BarTable
+            chartRef={chartRef}
+            dataSource={dataSource}
+            setDataSource={setDataSource}
+          />
         </Splitter.Panel>
         <Splitter.Panel defaultSize="50%">
-          <BarChart dataSource={dataSource} />
+          <BarChart dataSource={dataSource} ref={chartRef} />
         </Splitter.Panel>
       </Splitter>
-    </ChartPlaygroundLayout>
+    </ContentLayout>
   );
 }
 
-export default BarChartPlaygroundPage;
+export default ChartPlaygroundPage;

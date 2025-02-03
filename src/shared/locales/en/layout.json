@@ -16,7 +16,6 @@
     "title": {
       "aboutMe": "About me",
       "animation": "Animation",
-      "barChart": "Bar chart",
       "calendar": "Calendar",
       "canvaEditor": "Canva editor",
       "chartPlayground": "Chart playground",
@@ -32,7 +31,6 @@
       "form": "Form",
       "game": "Game",
       "language": "Language",
-      "lineChart": "Line chart",
       "monthlyCalendar": "Monthly calendar",
       "multipleStepForm": "Multiple step form",
       "myCertificates": "My certificates",
@@ -40,7 +38,6 @@
       "originalField": "Original field",
       "originalForm": "Original form",
       "other": "Other",
-      "pieChart": "Pie chart",
       "schedule": "Schedule",
       "settings": "Settings",
       "singleStepForm": "Single step form",
